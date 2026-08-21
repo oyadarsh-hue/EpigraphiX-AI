@@ -32,8 +32,8 @@
 ### Running the Web Studio Interface
 1. Clone the repository:
    ``bash
-   git clone https://github.com/adarsh23saji/CODTECH-INTERNSHIP.git
-   cd CODTECH-INTERNSHIP/web_studio
+   git clone https://github.com/oyadarsh-hue/EpigraphiX-AI.git
+   cd EpigraphiX-AI/web_studio
    ``
 2. Start the local server:
    ``bash
@@ -56,4 +56,4 @@
 
 ## ????? Author
 
-- **Adarsh S** — [GitHub Profile](https://github.com/adarsh23saji)
+- **ADARSH S** — [@oyadarsh-hue](https://github.com/oyadarsh-hue)
