@@ -1111,6 +1111,9 @@ function processCanvasImagePixels() {
 
   currentOCRResult = {
     imageId: Date.now(),
+    isManuscript: true,
+    status: 'valid_inscribed_leaf',
+    leafRect: leaf,
     boxes: sortedBoxes,
     rawPredictedCharacters: initialRawSeq,
     candidateWords: uniqueRankedCandidates,
