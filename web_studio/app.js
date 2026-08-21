@@ -602,6 +602,110 @@ function generateEpigraphicalRawSequence(word, wordIndex) {
   return chars.join('-');
 }
 
+// --- SCIENTIFIC PALM-LEAF MANUSCRIPT CHROMATOGRAPHY & EPIGRAPHICAL DOMAIN DETECTOR ---
+function detectPalmLeafManuscript(data, w, h) {
+  let palmColorPixels = 0;
+  let whitePixels = 0;
+  let blueDominantPixels = 0;
+  let totalSampled = 0;
+
+  let minLeafX = w, maxLeafX = 0, minLeafY = h, maxLeafY = 0;
+  let strokeCount = 0;
+
+  const step = Math.max(2, Math.floor(Math.sqrt((w * h) / 100000)));
+
+  for (let y = 0; y < h; y += step) {
+    for (let x = 0; x < w; x += step) {
+      const idx = (y * w + x) * 4;
+      const r = data[idx];
+      const g = data[idx + 1];
+      const b = data[idx + 2];
+      totalSampled++;
+
+      // Check pure background white (common in portrait/ID photo backdrops)
+      if (r > 225 && g > 225 && b > 225) {
+        whitePixels++;
+        continue;
+      }
+
+      // Check blue dominant (clothing / sky / casual photos)
+      if (b > r + 15 && b > g + 10) {
+        blueDominantPixels++;
+      }
+
+      // Palm leaf cellulose chromatography (ochre, golden-brown, tan, sepia: R >= G >= B)
+      const isPalmHue = (r >= g && g >= b && (r - b) >= 10) || (r > 70 && g > 50 && b < 120 && (r / Math.max(1, b)) >= 1.20);
+      // Allow grayscale parchment / binarized historical document scans
+      const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
+
+      if (isPalmHue || isGrayscaleParchment) {
+        palmColorPixels++;
+        if (x < minLeafX) minLeafX = x;
+        if (x > maxLeafX) maxLeafX = x;
+        if (y < minLeafY) minLeafY = y;
+        if (y > maxLeafY) maxLeafY = y;
+      }
+    }
+  }
+
+  const palmColorRatio = palmColorPixels / Math.max(1, totalSampled);
+  const whiteRatio = whitePixels / Math.max(1, totalSampled);
+  const blueRatio = blueDominantPixels / Math.max(1, totalSampled);
+  const aspectRatio = w / Math.max(1, h);
+
+  // Boundary rect of detected palm leaf
+  const leafW = Math.max(10, maxLeafX - minLeafX);
+  const leafH = Math.max(10, maxLeafY - minLeafY);
+  const leafRect = {
+    x: Math.max(0, minLeafX < w ? minLeafX : 0),
+    y: Math.max(0, minLeafY < h ? minLeafY : 0),
+    w: leafW > 20 ? leafW : w,
+    h: leafH > 20 ? leafH : h
+  };
+
+  // Horizontal stroke projection profile inside candidate palm-leaf area
+  const projY = new Array(h).fill(0);
+  for (let y = leafRect.y; y < leafRect.y + leafRect.h; y += step) {
+    for (let x = leafRect.x; x < leafRect.x + leafRect.w; x += step) {
+      const idx = (y * w + x) * 4;
+      const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
+      if (lum < 135) {
+        projY[y]++;
+        strokeCount++;
+      }
+    }
+  }
+
+  // Count text line peaks in projection profile
+  let linePeaks = 0;
+  for (let y = leafRect.y + 12; y < leafRect.y + leafRect.h - 12; y += step * 2) {
+    if (projY[y] > (leafRect.w * 0.03) && projY[y] > projY[Math.max(0, y - step * 2)] && projY[y] > projY[Math.min(h - 1, y + step * 2)]) {
+      linePeaks++;
+    }
+  }
+
+  // Strict Epigraphical Domain Validation Rules
+  const isPortraitPhoto = (whiteRatio > 0.30 && blueRatio > 0.05) || (whiteRatio > 0.35 && aspectRatio < 1.3) || (blueRatio > 0.15);
+  const isLackingPalmTexture = palmColorRatio < 0.18;
+  const hasNoTextStructure = strokeCount < 20 || (linePeaks === 0 && aspectRatio < 1.6);
+
+  if (isPortraitPhoto || isLackingPalmTexture || hasNoTextStructure) {
+    return {
+      isValidManuscript: false,
+      confidence: 0,
+      reason: isPortraitPhoto ? 'Non-Manuscript Portrait Photo Detected' : 'No Palm-Leaf Cellulose Inscription Detected',
+      leafRect: null
+    };
+  }
+
+  return {
+    isValidManuscript: true,
+    confidence: Math.min(0.99, Math.max(0.75, palmColorRatio + (linePeaks * 0.04))),
+    reason: 'Valid Historical Palm-Leaf Manuscript Inscription',
+    leafRect: leafRect
+  };
+}
+
 // --- FULL-IMAGE MULTI-ROW ADAPTIVE GRID SEGMENTATION WITH SOTA 1: FANI NET FIBER INPAINTER ---
 function processCanvasImagePixels() {
   if (!currentImage) return;
@@ -614,6 +718,37 @@ function processCanvasImagePixels() {
   const h = imageCanvas.height;
   const imgData = imgCtx.getImageData(0, 0, w, h);
   const data = imgData.data;
+
+  // 1. First Validate whether the uploaded image is a valid Palm-Leaf Manuscript
+  const leafDetection = detectPalmLeafManuscript(data, w, h);
+
+  if (!leafDetection.isValidManuscript) {
+    currentOCRResult = {
+      imageId: Date.now(),
+      isManuscript: false,
+      leafRect: null,
+      boxes: [],
+      rawPredictedCharacters: '⚠️ Non-Manuscript Image Detected (No Inscriptions Found)',
+      candidateWords: [],
+      selectedCandidateIndex: 0
+    };
+
+    benchmarkResults = {
+      wordAccuracyRate: '0.0%',
+      characterAccuracy: '0.0%',
+      f1Score: '0.0%',
+      characterErrorRate: '100.0%',
+      wordErrorRate: '100.0%',
+      timestamp: new Date().toLocaleString(),
+      reconstructedWords: []
+    };
+
+    hasActiveImageData = true;
+    renderOCRResultToUI();
+    renderImage();
+    updateBenchmarkUI();
+    return;
+  }
 
   // Dynamically calibrate Sauvola Window (k) & Fiber Inpainting Level from THIS palm leaf's pixels
   const thresholdSlider = document.getElementById('thresholdSlider');
@@ -675,38 +810,49 @@ function processCanvasImagePixels() {
     }
   }
 
-  // Dynamic Palm-Leaf Text Line and Character Glyph Segmentation Engine
-  let numLines = 1;
-  if (h >= 360) numLines = Math.min(4, Math.max(3, Math.round(h / 110)));
-  else if (h >= 200) numLines = 3;
-  else if (h >= 110) numLines = 2;
+  // STRICT LEAF-BOUNDED TEXT LINE AND CHARACTER GLYPH SEGMENTATION
+  // Bounding boxes are strictly kept INSIDE the detected palm leaf boundary!
+  const leaf = leafDetection.leafRect || { x: 0, y: 0, w: w, h: h };
+  const leafPadX = Math.max(4, Math.floor(leaf.w * 0.02));
+  const leafPadY = Math.max(4, Math.floor(leaf.h * 0.04));
+  const boundX = leaf.x + leafPadX;
+  const boundY = leaf.y + leafPadY;
+  const boundW = Math.max(30, leaf.w - (leafPadX * 2));
+  const boundH = Math.max(25, leaf.h - (leafPadY * 2));
 
-  const lineH = h / numLines;
+  let numLines = 1;
+  if (boundH >= 320) numLines = Math.min(4, Math.max(3, Math.round(boundH / 100)));
+  else if (boundH >= 180) numLines = 3;
+  else if (boundH >= 90) numLines = 2;
+
+  const lineH = boundH / numLines;
   let textLines = [];
   let sortedBoxes = [];
 
   for (let r = 0; r < numLines; r++) {
-    const yTop = Math.max(2, Math.floor(r * lineH + lineH * 0.08));
-    const yBot = Math.min(h - 2, Math.floor((r + 1) * lineH - lineH * 0.08));
-    const boxH = Math.max(22, yBot - yTop);
+    const yTop = Math.max(boundY, Math.floor(boundY + r * lineH + lineH * 0.06));
+    const yBot = Math.min(boundY + boundH, Math.floor(boundY + (r + 1) * lineH - lineH * 0.06));
+    const boxH = Math.max(20, yBot - yTop);
 
-    // Number of glyph columns along this line (8 to 16 well-proportioned characters)
-    const targetGlyphW = Math.max(28, Math.min(58, Math.round(boxH * 0.9)));
-    const glyphsCount = Math.max(4, Math.min(14, Math.floor((w - 24) / targetGlyphW)));
-    const actualGlyphW = Math.floor((w - 24) / glyphsCount);
+    const targetGlyphW = Math.max(24, Math.min(54, Math.round(boxH * 0.85)));
+    const glyphsCount = Math.max(3, Math.min(16, Math.floor(boundW / targetGlyphW)));
+    const actualGlyphW = Math.floor(boundW / glyphsCount);
 
     const lineBoxes = [];
     for (let c = 0; c < glyphsCount; c++) {
-      const xLeft = Math.max(2, Math.floor(12 + c * actualGlyphW));
-      const boxW = Math.max(22, actualGlyphW - 6);
+      const xLeft = Math.max(boundX, Math.floor(boundX + c * actualGlyphW + 2));
+      const boxW = Math.max(18, actualGlyphW - 4);
+
+      // Verify that this character box is 100% inside the palm leaf boundary
+      if (xLeft + boxW > boundX + boundW || yTop + boxH > boundY + boundH) continue;
 
       // Verify local ink presence inside cell
       let inkCount = 0;
-      for (let sy = yTop; sy < yBot; sy += 3) {
+      for (let sy = yTop; sy < yTop + boxH; sy += 3) {
         for (let sx = xLeft; sx < xLeft + boxW; sx += 3) {
           const idx = (sy * w + sx) * 4;
           const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
-          if (lum < 135) inkCount++;
+          if (lum < 140) inkCount++;
         }
       }
 
@@ -727,15 +873,18 @@ function processCanvasImagePixels() {
     }
   }
 
-  // Fallback if low contrast
+  // Fallback inside leaf boundary if low contrast
   if (sortedBoxes.length === 0) {
-    const fallbackBoxW = Math.floor((w - 20) / 8);
-    const fallbackBoxH = Math.floor(h * 0.5);
-    for (let i = 0; i < 6; i++) {
-      const b = { x: 10 + i * fallbackBoxW, y: Math.floor(h * 0.25), w: fallbackBoxW - 6, h: fallbackBoxH, lineIdx: 0 };
-      sortedBoxes.push(b);
+    const fallbackBoxW = Math.floor(boundW / 6);
+    const fallbackBoxH = Math.floor(boundH * 0.7);
+    for (let i = 0; i < 5; i++) {
+      const bx = boundX + i * fallbackBoxW;
+      if (bx + fallbackBoxW - 4 <= boundX + boundW) {
+        const b = { x: bx, y: Math.floor(boundY + boundH * 0.15), w: fallbackBoxW - 4, h: fallbackBoxH, lineIdx: 0 };
+        sortedBoxes.push(b);
+      }
     }
-    textLines = [{ lineIdx: 0, avgY: h / 2, boxes: sortedBoxes }];
+    textLines = [{ lineIdx: 0, avgY: boundY + boundH / 2, boxes: sortedBoxes }];
   }
 
   const activeDict = loadedDictionary.length > 0 ? loadedDictionary : [
@@ -1142,15 +1291,41 @@ function renderOCRResultToUI() {
   // ALWAYS Render Binarized Character Crops Gallery FIRST
   renderBinarizedCropsTray();
 
-  if (!currentOCRResult.candidateWords || currentOCRResult.candidateWords.length === 0) {
-    if (displayRawText) displayRawText.textContent = 'No characters detected';
-    if (displayCorrText) displayCorrText.textContent = 'No meaningful Malayalam word detected';
-    if (valDist) valDist.textContent = '0';
-    if (valConf) valConf.textContent = '0%';
+  if (!currentOCRResult.isManuscript || !currentOCRResult.candidateWords || currentOCRResult.candidateWords.length === 0) {
+    if (displayRawText) displayRawText.innerHTML = '<span style="color:#ef4444; font-size:12px; font-weight:700;">⚠️ Non-Manuscript Image (No Epigraphical Inscriptions Found)</span>';
+    if (displayCorrText) displayCorrText.innerHTML = '<span style="color:#ef4444; font-size:15px; font-weight:800;">⚠️ Invalid Palm-Leaf Input</span>';
+    if (valDist) valDist.textContent = '--';
+    if (valConf) valConf.textContent = '0.0%';
     if (valSub) valSub.textContent = '0';
     if (valIns) valIns.textContent = '0';
     if (valDel) valDel.textContent = '0';
-    if (extractedContainer) extractedContainer.innerHTML = '<div style="color:var(--text-sub);font-size:13px;">No characters detected.</div>';
+
+    const valPalaeoAge = document.getElementById('valPalaeoAge');
+    if (valPalaeoAge) valPalaeoAge.textContent = 'N/A — Non-Palm Leaf Artifact (Upload a Thaliyola manuscript)';
+
+    const valVedicAccent = document.getElementById('valVedicAccent');
+    if (valVedicAccent) valVedicAccent.textContent = 'N/A — Non-Epigraphical Content';
+
+    const transOldVsNew = document.getElementById('transOldVsNew');
+    const transEnglish = document.getElementById('transEnglish');
+    const transHindi = document.getElementById('transHindi');
+    const transGenreBadge = document.getElementById('transGenreBadge');
+
+    if (transOldVsNew) transOldVsNew.innerHTML = '<strong>Status:</strong> Non-Palm Leaf Image Uploaded';
+    if (transEnglish) transEnglish.textContent = 'Please upload a historical Malayalam or Grantha palm-leaf manuscript (താലിയോല).';
+    if (transHindi) transHindi.textContent = 'कृपया ऐतिहासिक ताड़पत्र पाण्डुलिपि (താളിയോല) अपलोड करें।';
+    if (transGenreBadge) transGenreBadge.textContent = 'Non-Manuscript';
+
+    if (extractedContainer) {
+      extractedContainer.innerHTML = `
+        <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; padding:14px; text-align:center; color:#fca5a5; font-size:11.5px; line-height:1.6;">
+          <div style="font-size:18px; margin-bottom:4px;">⚠️</div>
+          <strong style="color:#f87171; font-size:12.5px;">Non-Palm Leaf Image Detected</strong><br>
+          EpigraphiX-AI is engineered specifically for historical Malayalam & Grantha palm-leaf manuscripts (<em>താളിയോല / Thaliyola</em>).<br>
+          <span style="color:#94a3b8; font-size:10.5px;">The uploaded image does not contain palm-leaf cellulose striations or historical stylus incisions. Character extraction and OCR inference have been halted.</span>
+        </div>
+      `;
+    }
     renderImage();
     return;
   }
@@ -2938,6 +3113,33 @@ function renderImage() {
     const rawData = imgCtx.getImageData(0, 0, w, h);
     const fatData = computeBiometricScribeFatigue(rawData, currentOCRResult.boxes);
     imgCtx.putImageData(fatData, 0, 0);
+  }
+
+  // If non-manuscript image, render warning overlay and SKIP drawing character bounding boxes
+  if (currentOCRResult.isManuscript === false) {
+    imgCtx.save();
+    imgCtx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+    imgCtx.strokeStyle = 'rgba(239, 68, 68, 0.7)';
+    imgCtx.lineWidth = 1.5;
+    const badgeW = Math.min(w - 24, 460);
+    const badgeH = 34;
+    const badgeX = (w - badgeW) / 2;
+    const badgeY = 14;
+    imgCtx.beginPath();
+    if (typeof imgCtx.roundRect === 'function') {
+      imgCtx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
+    } else {
+      imgCtx.rect(badgeX, badgeY, badgeW, badgeH);
+    }
+    imgCtx.fill();
+    imgCtx.stroke();
+
+    imgCtx.fillStyle = '#f87171';
+    imgCtx.font = 'bold 12px Manrope, sans-serif';
+    imgCtx.textAlign = 'center';
+    imgCtx.fillText('⚠️ Non-Palm Leaf Image (Epigraphical OCR Inactive)', w / 2, badgeY + 21);
+    imgCtx.restore();
+    return;
   }
 
   // Draw bounding boxes ONLY if bBoxesVisible is TRUE and boxes exist
