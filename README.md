@@ -1,4 +1,4 @@
-# ?? EpigraphiX-AI: Neural Palm-Leaf Manuscript OCR & Epigraphical Intelligence Suite
+# 📜 EpigraphiX-AI: Neural Palm-Leaf Manuscript OCR & Epigraphical Intelligence Suite
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -9,7 +9,7 @@
 
 ---
 
-## ?? Key Features & Scientific Innovations
+## 🔬 Key Features & Scientific Innovations
 
 1. **Fiber-Aware Neural Inpainting (FANI)**: Detects and suppresses high-frequency cellulose fiber striations while preserving micro-stylus ink incisions.
 2. **O(1) Integral-Image Adaptive Sauvola Binarization**: High-speed local thresholding running in $<5\text{ms}$.
@@ -27,26 +27,26 @@
 
 ---
 
-## ?? Quick Start Guide
+## 🚀 Quick Start Guide
 
 ### Running the Web Studio Interface
 1. Clone the repository:
-   ``bash
+   ```bash
    git clone https://github.com/oyadarsh-hue/EpigraphiX-AI.git
    cd EpigraphiX-AI/web_studio
-   ``
+   ```
 2. Start the local server:
-   ``bash
+   ```bash
    python -m http.server 8080
-   ``
+   ```
 3. Open your browser and navigate to:
-   ``
+   ```
    http://localhost:8080
-   ``
+   ```
 
 ---
 
-## ??? Tech Stack
+## 🛠️ Tech Stack
 
 - **Frontend**: Vanilla JavaScript (ES6+), HTML5 Canvas API (Pixel-Level Processing), Modern Glassmorphic CSS3, SVG Morphing.
 - **Backend & Tooling**: Python 3 HTTP Microservices, Node.js Sandbox Test Suite, MATLAB Engine.
@@ -54,6 +54,6 @@
 
 ---
 
-## ????? Author
+## 👨‍💻 Author
 
-- **ADARSH S** � [@oyadarsh-hue](https://github.com/oyadarsh-hue)
+- **ADARSH S** — [@oyadarsh-hue](https://github.com/oyadarsh-hue)
