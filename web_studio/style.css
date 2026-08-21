@@ -1009,7 +1009,7 @@ body {
 @media print {
   @page {
     size: portrait;
-    margin: 8mm 10mm;
+    margin: 6mm 8mm;
   }
   body {
     background: #ffffff !important;
@@ -1038,12 +1038,18 @@ body {
     visibility: visible !important;
   }
   .report-page-1 {
-    page-break-after: always !important;
-    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
   .report-page-2 {
     page-break-before: always !important;
     break-before: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
   .report-section {
     page-break-inside: avoid !important;

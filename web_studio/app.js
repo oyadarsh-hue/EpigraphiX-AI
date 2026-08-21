@@ -3466,24 +3466,24 @@ function generateReportHTML() {
       </div>
 
       <!-- ==================== PAGE 2: 5-MODEL 2D DECISION BOUNDARIES ==================== -->
-      <div class="report-page report-page-2" style="box-sizing:border-box; margin-top:20px;">
-        <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px;">
-          <div style="margin-bottom:8px; border-bottom:2px solid #e2e8f0; padding-bottom:4px; display:flex; justify-content:space-between; align-items:center;">
+      <div class="report-page report-page-2" style="box-sizing:border-box; margin-top:14px;">
+        <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px;">
+          <div style="margin-bottom:6px; border-bottom:1.5px solid #e2e8f0; padding-bottom:3px; display:flex; justify-content:space-between; align-items:center;">
             <div>
-              <h2 style="font-size:12px; font-weight:700; color:#1e293b; margin:0 0 2px 0;">
+              <h2 style="font-size:11.5px; font-weight:700; color:#1e293b; margin:0 0 1px 0;">
                 📈 SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations
               </h2>
-              <p style="font-size:9px; color:#64748b; margin:0;">
+              <p style="font-size:8.5px; color:#64748b; margin:0;">
                 Separating hyperplanes, density contours, and manifold clustering computed for the manuscript glyphs:
               </p>
             </div>
-            <span style="font-size:9px; font-weight:700; color:#0284c7; background:#e0f2fe; padding:2px 8px; border-radius:4px; border:1px solid #bae6fd;">
+            <span style="font-size:8.5px; font-weight:700; color:#0284c7; background:#e0f2fe; padding:1px 6px; border-radius:4px; border:1px solid #bae6fd;">
               Comparative Visual Analysis
             </span>
           </div>
 
           <!-- 2x2 Grid for 4 models (SVM, GNB, RF, k-NN) -->
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:6px;">
             ${[
               { id: 'svm', icon: '🎯', badgeColor: '#166534', badgeBg: '#f0fdf4' },
               { id: 'gnb', icon: '📊', badgeColor: '#0369a1', badgeBg: '#f0f9ff' },
@@ -3491,37 +3491,33 @@ function generateReportHTML() {
               { id: 'knn', icon: '📍', badgeColor: '#0284c7', badgeBg: '#f0f9ff' }
             ].map(item => {
               const m = mlModelsRegistry[item.id] || mlModelsRegistry.svm;
-              const graphUrl = generateModelGraphDataURL(item.id, 480, 240);
+              const graphUrl = generateModelGraphDataURL(item.id, 360, 160);
               return `
-                <div class="model-graph-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.03); page-break-inside:avoid; break-inside:avoid;">
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px; border-bottom:1px solid #f1f5f9; padding-bottom:2px;">
-                    <h3 style="font-size:11px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
-                    <span style="font-size:8.5px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:1px 5px; border-radius:4px; border:1px solid #e2e8f0;">
+                <div class="model-graph-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:5px; padding:5px 6px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f1f5f9; padding-bottom:1px;">
+                    <h3 style="font-size:10px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
+                    <span style="font-size:7.5px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:0.5px 4px; border-radius:3px; border:1px solid #e2e8f0;">
                       ${m.title}
                     </span>
                   </div>
-                  <div style="text-align:center; margin:2px 0;">
-                    <img src="${graphUrl}" alt="${m.title}" style="width:100%; height:105px; object-fit:contain; display:block; margin:0 auto; border-radius:4px; border:1px solid #e2e8f0;" />
+                  <div style="text-align:center; margin:1px 0;">
+                    <img src="${graphUrl}" alt="${m.title}" style="width:100%; height:70px; object-fit:contain; display:block; margin:0 auto; border-radius:3px; border:1px solid #e2e8f0;" />
                   </div>
-                  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-top:3px; font-size:9px; text-align:center;">
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
-                      <div style="color:#64748b; font-size:8px;">Accuracy</div>
-                      <strong style="color:#15803d; font-size:10px;">${m.acc}</strong>
+                  <div style="display:flex; justify-content:space-between; gap:2px; margin-top:2px; font-size:8px; text-align:center;">
+                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#15803d;">${m.acc}</strong>
                     </div>
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
-                      <div style="color:#64748b; font-size:8px;">F1-Score</div>
-                      <strong style="color:#7e22ce; font-size:10px;">${m.f1}</strong>
+                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#7e22ce;">${m.f1}</strong>
                     </div>
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
-                      <div style="color:#64748b; font-size:8px;">Latency</div>
-                      <strong style="color:#0369a1; font-size:10px;">${m.latency}</strong>
+                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${m.latency}</strong>
                     </div>
-                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
-                      <div style="color:#64748b; font-size:8px;">Formula</div>
-                      <strong style="color:#b45309; font-size:8px; font-family:monospace;">${m.core}</strong>
+                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${m.core}</strong>
                     </div>
                   </div>
-                  <p style="font-size:8.5px; color:#475569; margin:3px 0 0 0; line-height:1.25;">
+                  <p style="font-size:7.5px; color:#475569; margin:2px 0 0 0; line-height:1.18;">
                     ${m.desc}
                   </p>
                 </div>
@@ -3529,42 +3525,38 @@ function generateReportHTML() {
             }).join('')}
           </div>
 
-          <!-- 5th Model: CNN Neural Lattice (Full Width Balanced Layout) -->
+          <!-- 5th Model: CNN Neural Lattice (Full Width Balanced Compact Layout) -->
           ${(() => {
             const cnnM = mlModelsRegistry.cnn || mlModelsRegistry.svm;
-            const cnnGraphUrl = generateModelGraphDataURL('cnn', 480, 240);
+            const cnnGraphUrl = generateModelGraphDataURL('cnn', 360, 160);
             return `
-              <div class="model-graph-card" style="background:#ffffff; border:1.5px solid #d8b4fe; border-radius:6px; padding:8px 10px; box-shadow:0 1px 3px rgba(0,0,0,0.03); page-break-inside:avoid; break-inside:avoid;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px; border-bottom:1px solid #f3e8ff; padding-bottom:2px;">
-                  <h3 style="font-size:11px; font-weight:800; color:#6b21a8; margin:0;">🧬 ${cnnM.name}</h3>
-                  <span style="font-size:8.5px; font-weight:700; background:#faf5ff; color:#7e22ce; padding:1px 6px; border-radius:4px; border:1px solid #e9d5ff;">
+              <div class="model-graph-card" style="background:#ffffff; border:1px solid #d8b4fe; border-radius:5px; padding:4px 8px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f3e8ff; padding-bottom:1px;">
+                  <h3 style="font-size:10px; font-weight:800; color:#6b21a8; margin:0;">🧬 ${cnnM.name}</h3>
+                  <span style="font-size:7.5px; font-weight:700; background:#faf5ff; color:#7e22ce; padding:0.5px 5px; border-radius:3px; border:1px solid #e9d5ff;">
                     ${cnnM.title}
                   </span>
                 </div>
-                <div style="display:flex; gap:10px; align-items:center;">
-                  <div style="width:170px; flex-shrink:0;">
-                    <img src="${cnnGraphUrl}" alt="${cnnM.title}" style="width:100%; height:80px; object-fit:contain; display:block; border-radius:4px; border:1px solid #e2e8f0;" />
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <div style="width:110px; flex-shrink:0;">
+                    <img src="${cnnGraphUrl}" alt="${cnnM.title}" style="width:100%; height:52px; object-fit:contain; display:block; border-radius:3px; border:1px solid #e2e8f0;" />
                   </div>
                   <div style="flex:1;">
-                    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-bottom:3px; font-size:9px; text-align:center;">
-                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
-                        <div style="color:#64748b; font-size:8px;">Accuracy</div>
-                        <strong style="color:#7e22ce; font-size:10px;">${cnnM.acc}</strong>
+                    <div style="display:flex; justify-content:space-between; gap:2px; margin-bottom:2px; font-size:8px; text-align:center;">
+                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                        <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#7e22ce;">${cnnM.acc}</strong>
                       </div>
-                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
-                        <div style="color:#64748b; font-size:8px;">F1-Score</div>
-                        <strong style="color:#6b21a8; font-size:10px;">${cnnM.f1}</strong>
+                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                        <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#6b21a8;">${cnnM.f1}</strong>
                       </div>
-                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
-                        <div style="color:#64748b; font-size:8px;">Latency</div>
-                        <strong style="color:#0369a1; font-size:10px;">${cnnM.latency}</strong>
+                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                        <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${cnnM.latency}</strong>
                       </div>
-                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
-                        <div style="color:#64748b; font-size:8px;">Formula</div>
-                        <strong style="color:#b45309; font-size:8px; font-family:monospace;">${cnnM.core}</strong>
+                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                        <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${cnnM.core}</strong>
                       </div>
                     </div>
-                    <p style="font-size:8.5px; color:#475569; margin:0; line-height:1.25;">
+                    <p style="font-size:7.5px; color:#475569; margin:0; line-height:1.18;">
                       ${cnnM.desc}
                     </p>
                   </div>
@@ -3734,13 +3726,25 @@ function openPrintPreviewWindow() {
           .btn-print:hover { background: #7dd3fc; }
           .report-wrapper { max-width: 860px; margin: 20px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
           @media print {
-            @page { size: portrait; margin: 8mm 10mm; }
+            @page { size: portrait; margin: 6mm 8mm; }
             .top-bar { display: none !important; }
             body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .report-wrapper { margin: 0 !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; padding: 0 !important; }
             .report-container { padding: 0 !important; }
-            .report-page-1 { page-break-after: always !important; break-after: page !important; margin-bottom: 0 !important; }
-            .report-page-2 { page-break-before: always !important; break-before: page !important; margin-top: 0 !important; }
+            .report-page-1 {
+              page-break-inside: avoid !important;
+              break-inside: avoid !important;
+              margin-bottom: 0 !important;
+              padding-bottom: 0 !important;
+            }
+            .report-page-2 {
+              page-break-before: always !important;
+              break-before: page !important;
+              page-break-inside: avoid !important;
+              break-inside: avoid !important;
+              margin-top: 0 !important;
+              padding-top: 0 !important;
+            }
             .report-section { page-break-inside: avoid !important; break-inside: avoid !important; }
             .model-graph-card { page-break-inside: avoid !important; break-inside: avoid !important; }
             table, tr { page-break-inside: avoid !important; break-inside: avoid !important; }
@@ -4044,13 +4048,20 @@ function drawDecisionBoundaryOnContext(ctx, modelType = 'svm', W = 620, H = 460,
   const xMin = -3.2, xMax = 3.6;
   const yMin = -2.8, yMax = 2.8;
 
-  function toPxX(x) { return 65 + ((x - xMin) / (xMax - xMin)) * (W - 100); }
-  function toPxY(y) { return (H - 55) - ((y - yMin) / (yMax - yMin)) * (H - 95); }
+  const fontScale = isPrint ? Math.min(1.0, W / 480) : 1.0;
+  const padLeft = isPrint ? Math.round(36 * fontScale + 12) : 65;
+  const padRight = isPrint ? Math.round(20 * fontScale + 10) : 35;
+  const padTop = isPrint ? Math.round(20 * fontScale + 6) : 40;
+  const padBottom = isPrint ? Math.round(22 * fontScale + 8) : 55;
+
+  function toPxX(x) { return padLeft + ((x - xMin) / (xMax - xMin)) * (W - padLeft - padRight); }
+  function toPxY(y) { return (H - padBottom) - ((y - yMin) / (yMax - yMin)) * (H - padTop - padBottom); }
 
   // Draw Grid Lines & Tick Labels
   ctx.strokeStyle = '#e2e8f0';
   ctx.lineWidth = 1;
 
+  const tickFontSize = Math.max(8, Math.round(11 * fontScale));
   for (let x = -3; x <= 3; x += 1) {
     const px = toPxX(x);
     ctx.beginPath();
@@ -4059,9 +4070,9 @@ function drawDecisionBoundaryOnContext(ctx, modelType = 'svm', W = 620, H = 460,
     ctx.stroke();
 
     ctx.fillStyle = '#1e293b';
-    ctx.font = '12px Manrope, sans-serif';
+    ctx.font = `${tickFontSize}px Manrope, sans-serif`;
     ctx.textAlign = 'center';
-    ctx.fillText(x.toString(), px, H - 38);
+    ctx.fillText(x.toString(), px, H - Math.round(padBottom * 0.45));
   }
 
   for (let y = -2; y <= 2; y += 1) {
@@ -4072,29 +4083,29 @@ function drawDecisionBoundaryOnContext(ctx, modelType = 'svm', W = 620, H = 460,
     ctx.stroke();
 
     ctx.fillStyle = '#1e293b';
-    ctx.font = '12px Manrope, sans-serif';
+    ctx.font = `${tickFontSize}px Manrope, sans-serif`;
     ctx.textAlign = 'right';
-    ctx.fillText(y.toString(), 55, py + 4);
+    ctx.fillText(y.toString(), padLeft - 6, py + Math.round(tickFontSize * 0.35));
   }
 
   // Draw Outer Frame
   ctx.strokeStyle = '#0f172a';
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth = isPrint ? 1.2 : 1.5;
   ctx.strokeRect(toPxX(xMin), toPxY(yMax), toPxX(xMax) - toPxX(xMin), toPxY(yMin) - toPxY(yMax));
 
   // Axis Labels & Title
   const modelMeta = mlModelsRegistry[modelType] || mlModelsRegistry.svm;
 
   ctx.fillStyle = '#0f172a';
-  ctx.font = 'bold 15px Manrope, sans-serif';
+  ctx.font = `bold ${Math.max(9, Math.round(14 * fontScale))}px Manrope, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText(modelMeta.title, W / 2, 28);
+  ctx.fillText(modelMeta.title, W / 2, Math.max(12, Math.round(padTop * 0.75)));
 
-  ctx.font = '13px Manrope, sans-serif';
-  ctx.fillText('Feature 1 (Horizontal Projection Variance)', W / 2, H - 14);
+  ctx.font = `${Math.max(8, Math.round(11 * fontScale))}px Manrope, sans-serif`;
+  ctx.fillText('Feature 1 (Horizontal Projection Variance)', W / 2, H - 3);
 
   ctx.save();
-  ctx.translate(20, H / 2);
+  ctx.translate(Math.max(9, Math.round(padLeft * 0.28)), H / 2);
   ctx.rotate(-Math.PI / 2);
   ctx.fillText('Feature 2 (Loop Curvature Entropy)', 0, 0);
   ctx.restore();
