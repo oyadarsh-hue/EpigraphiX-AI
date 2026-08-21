@@ -625,35 +625,40 @@ function detectPalmLeafManuscript(data, w, h) {
       sampledInRow++;
 
       // Check pure background white (portrait/ID photo backdrops)
-      if (r > 225 && g > 225 && b > 225) {
+      if (r > 228 && g > 228 && b > 228) {
         whitePixels++;
         continue;
       }
 
-      // Check blue dominant (clothing / sky / casual photos)
-      if (b > r + 15 && b > g + 10) {
+      // Check modern blue dyes (clothing / sky / casual photos)
+      if (b > r + 16 && b > g + 10) {
         blueDominantPixels++;
         continue;
       }
 
-      // Check saturated red cloth background (common in manuscript photography: R is very high, G & B are low)
-      const isRedCloth = (r - g > 65) && (g < 80);
+      // Check saturated red background cloth
+      const isRedCloth = ((r - g > 45) && (g < 115)) || ((r - b > 40) && (b < 95)) || ((r > 120) && (g < 60) && (b < 80));
       if (isRedCloth) continue;
+
+      // Check purple / velvet book cover (Blue is higher than Green on purple fabrics)
+      const isPurple = (b > g + 8) && (r > 75);
+      if (isPurple) continue;
 
       // Check pure dark / black background
       const isDark = (r < 28) && (g < 28) && (b < 36);
       if (isDark) continue;
 
       // Authentic Palm-Leaf / Parchment Chromatography (Ochre, golden-brown, tan, sepia, dark patina, or light parchment)
-      const isWarmPalm = (r >= g - 18) && (g >= b - 24) && (r > 35) && (g > 30) && (r - g < 68);
-      const isLightParchment = (r > 40) && (g > 35) && (b > 30) && (Math.abs(r - g) < 35) && (Math.abs(g - b) < 35) && (r < 225);
+      const isLightPalm = (r > 130) && (g > 120) && (b > 100) && (r - g < 40) && (r - b < 60) && (g >= b - 8);
+      const isOchrePalm = (r >= 65) && (g >= 48) && (b >= 38) && (r >= g - 12) && (g >= b - 10) && (r - g < 55) && (r / Math.max(1, b) >= 1.12);
+      const isDarkPatina = (r >= 45) && (g >= 38) && (b >= 28) && (Math.abs(r - g) < 35) && (Math.abs(g - b) < 35) && (g >= b - 8);
 
-      if (isWarmPalm || isLightParchment) {
+      if (isLightPalm || isOchrePalm || isDarkPatina) {
         palmPxInRow++;
       }
     }
 
-    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.12) {
+    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.22) {
       for (let sy = y; sy < Math.min(h, y + step); sy++) {
         isLeafRow[sy] = 1;
       }
@@ -665,7 +670,7 @@ function detectPalmLeafManuscript(data, w, h) {
   const aspect = w / Math.max(1, h);
 
   // Reject non-manuscripts (photos with blue clothing / modern dyes, studio backdrops, or non-epigraphical color profiles)
-  const isTooBlue = blueRatio > 0.25;
+  const isTooBlue = blueRatio > 0.20;
   const isTooWhite = whiteRatio > 0.32;
   const isPortraitRatio = (whiteRatio > 0.18 && aspect < 1.15);
   if (isTooBlue || isTooWhite || isPortraitRatio) {
@@ -695,12 +700,12 @@ function detectPalmLeafManuscript(data, w, h) {
   }
 
   // If a distinct palm leaf strip was found
-  if (longestSpanLen >= Math.max(18, Math.floor(h * 0.10))) {
+  if (longestSpanLen >= Math.max(18, Math.floor(h * 0.08))) {
     minLeafY = longestSpanStart;
     maxLeafY = longestSpanStart + longestSpanLen;
   } else {
     // If full image is an elongated crop (like sample.jpg)
-    if (aspect >= 1.5) {
+    if (aspect >= 1.4) {
       minLeafY = 0;
       maxLeafY = h;
     } else {
@@ -723,18 +728,19 @@ function detectPalmLeafManuscript(data, w, h) {
       const b = data[idx + 2];
       sampledInCol++;
 
-      const isRedCloth = (r - g > 65) && (g < 80);
-      const isDark = (r < 38) && (g < 38) && (b < 48);
-      const isWarmPalm = (r >= g - 12) && (g >= b - 18) && (r > 42) && (g > 35) && (r - g < 68);
-      const isLightParchment = (r > 105) && (g > 95) && (b > 65) && (r - g < 65);
-      const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
+      const isRedCloth = ((r - g > 45) && (g < 115)) || ((r - b > 40) && (b < 95)) || ((r > 120) && (g < 60) && (b < 80));
+      const isPurple = (b > g + 8) && (r > 75);
+      const isDark = (r < 28) && (g < 28) && (b < 36);
+      const isLightPalm = (r > 130) && (g > 120) && (b > 100) && (r - g < 40) && (r - b < 60) && (g >= b - 8);
+      const isOchrePalm = (r >= 65) && (g >= 48) && (b >= 38) && (r >= g - 12) && (g >= b - 10) && (r - g < 55) && (r / Math.max(1, b) >= 1.12);
+      const isDarkPatina = (r >= 45) && (g >= 38) && (b >= 28) && (Math.abs(r - g) < 35) && (Math.abs(g - b) < 35) && (g >= b - 8);
 
-      if (!isRedCloth && !isDark && (isWarmPalm || isLightParchment || isGrayscaleParchment)) {
+      if (!isRedCloth && !isPurple && !isDark && (isLightPalm || isOchrePalm || isDarkPatina)) {
         palmPxInCol++;
       }
     }
 
-    if (sampledInCol > 0 && (palmPxInCol / sampledInCol) > 0.12) {
+    if (sampledInCol > 0 && (palmPxInCol / sampledInCol) > 0.18) {
       for (let sx = x; sx < Math.min(w, x + step); sx++) {
         isLeafCol[sx] = 1;
       }
@@ -3010,8 +3016,8 @@ function renderBinarizedCropsTray() {
   const countBadge = document.getElementById('cropCountBadge') || document.getElementById('binarizedCountBadge');
   if (!container || !currentImage) return;
 
-  if (!currentOCRResult.boxes || currentOCRResult.boxes.length === 0) {
-    container.innerHTML = '<span style="color:var(--text-sub); font-size:12px;">No character boxes extracted.</span>';
+  if (!currentOCRResult.boxes || currentOCRResult.boxes.length === 0 || currentOCRResult.isManuscript === false) {
+    container.innerHTML = '<span style="color:var(--text-sub); font-size:12px;">No character boxes extracted (Non-manuscript image).</span>';
     if (countBadge) countBadge.textContent = '0 Detected';
     return;
   }
@@ -4103,18 +4109,18 @@ function updateSearch() {
   const activeDict = loadedDictionary.length > 0 ? loadedDictionary : [];
 
   if (!query) {
-    const dynamicTags = (currentOCRResult.candidateWords && currentOCRResult.candidateWords.length > 0)
-      ? currentOCRResult.candidateWords.map(c => c.word)
-      : activeDict.slice(0, 8);
-
-    dynamicTags.forEach(w => {
-      const tag = document.createElement('span');
-      tag.className = 'result-tag';
-      tag.style.cursor = 'pointer';
-      tag.textContent = w;
-      tag.addEventListener('click', () => window.setSearchQuery(w));
-      lexiconResults.appendChild(tag);
-    });
+    if (currentOCRResult.candidateWords && currentOCRResult.candidateWords.length > 0) {
+      currentOCRResult.candidateWords.forEach(c => {
+        const tag = document.createElement('span');
+        tag.className = 'result-tag';
+        tag.style.cursor = 'pointer';
+        tag.textContent = c.word;
+        tag.addEventListener('click', () => window.setSearchQuery(c.word));
+        lexiconResults.appendChild(tag);
+      });
+    } else {
+      lexiconResults.innerHTML = '<span style="color:var(--text-sub); font-size:12px;">Type a Malayalam word above to search the historical lexicon Trie.</span>';
+    }
     return;
   }
 
@@ -4746,8 +4752,18 @@ if (modelSelectorBar) {
 
 // Multi-stage Initializers to ensure immediate canvas and table display
 updateModelComparisonUI();
-document.addEventListener('DOMContentLoaded', updateModelComparisonUI);
-window.addEventListener('load', updateModelComparisonUI);
+updateBenchmarkUI();
+updateSearch();
+document.addEventListener('DOMContentLoaded', () => {
+  updateModelComparisonUI();
+  updateBenchmarkUI();
+  updateSearch();
+});
+window.addEventListener('load', () => {
+  updateModelComparisonUI();
+  updateBenchmarkUI();
+  updateSearch();
+});
 setTimeout(updateModelComparisonUI, 50);
 setTimeout(updateModelComparisonUI, 300);
 setTimeout(updateModelComparisonUI, 1000);
