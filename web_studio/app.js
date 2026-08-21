@@ -3297,11 +3297,15 @@ function generateReportHTML() {
     : [];
 
   return `
-    <div style="background:#ffffff; color:#0f172a; padding:20px; font-family:'Manrope', 'Noto Sans Malayalam', sans-serif; width:100%; box-sizing:border-box;">
-      <div style="background:linear-gradient(135deg, #0f172a, #1e293b); color:#ffffff; padding:18px 20px; border-radius:12px; margin-bottom:14px; border-left:6px solid #38bdf8;">
-        <h1 style="font-size:18px; font-weight:800; color:#38bdf8; margin:0 0 4px 0;">⚡ Malayalam Palm-Leaf OCR Evaluation Report</h1>
-        <div style="font-size:11px; color:#94a3b8;">Generated: ${timestampStr} | SOTA FANI-Net & NLL Lattice Classifier</div>
-      </div>
+    <div class="report-container" style="background:#ffffff; color:#0f172a; padding:16px 20px; font-family:'Manrope', 'Noto Sans Malayalam', sans-serif; width:100%; box-sizing:border-box;">
+      
+      <!-- ==================== PAGE 1: EXECUTIVE OCR & LINGUISTIC BENCHMARK ==================== -->
+      <div class="report-page report-page-1" style="box-sizing:border-box;">
+        <!-- Title Banner -->
+        <div style="background:linear-gradient(135deg, #0f172a, #1e293b); color:#ffffff; padding:14px 18px; border-radius:10px; margin-bottom:12px; border-left:6px solid #38bdf8;">
+          <h1 style="font-size:17px; font-weight:800; color:#38bdf8; margin:0 0 3px 0;">⚡ Malayalam Palm-Leaf OCR Evaluation Report</h1>
+          <div style="font-size:10px; color:#94a3b8;">Generated: ${timestampStr} | SOTA FANI-Net & NLL Lattice Classifier</div>
+        </div>
 
       <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-bottom:14px;">
         <h2 style="font-size:13px; font-weight:700; color:#1e293b; margin:0 0 8px 0; padding-bottom:4px; border-bottom:2px solid #e2e8f0;">📊 Benchmark Performance Scorecard</h2>
@@ -3459,61 +3463,115 @@ function generateReportHTML() {
           </tbody>
         </table>
       </div>
+      </div>
 
-      <!-- Section 7: SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations -->
-      <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
-        <h2 style="font-size:13px; font-weight:700; color:#1e293b; margin:0 0 4px 0; padding-bottom:4px; border-bottom:2px solid #e2e8f0;">
-          📈 SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations
-        </h2>
-        <p style="font-size:10px; color:#64748b; margin:0 0 10px 0;">
-          High-resolution 2D separating hyperplanes, density likelihood contours, and manifolds evaluated on the analyzed manuscript glyphs:
-        </p>
+      <!-- ==================== PAGE 2: 5-MODEL 2D DECISION BOUNDARIES ==================== -->
+      <div class="report-page report-page-2" style="box-sizing:border-box; margin-top:20px;">
+        <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px 12px;">
+          <div style="margin-bottom:8px; border-bottom:2px solid #e2e8f0; padding-bottom:4px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h2 style="font-size:12px; font-weight:700; color:#1e293b; margin:0 0 2px 0;">
+                📈 SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations
+              </h2>
+              <p style="font-size:9px; color:#64748b; margin:0;">
+                Separating hyperplanes, density contours, and manifold clustering computed for the manuscript glyphs:
+              </p>
+            </div>
+            <span style="font-size:9px; font-weight:700; color:#0284c7; background:#e0f2fe; padding:2px 8px; border-radius:4px; border:1px solid #bae6fd;">
+              Comparative Visual Analysis
+            </span>
+          </div>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          ${[
-            { id: 'svm', icon: '🎯', badgeColor: '#166534', badgeBg: '#f0fdf4' },
-            { id: 'gnb', icon: '📊', badgeColor: '#0369a1', badgeBg: '#f0f9ff' },
-            { id: 'rf', icon: '🌲', badgeColor: '#15803d', badgeBg: '#f0fdf4' },
-            { id: 'knn', icon: '📍', badgeColor: '#0284c7', badgeBg: '#f0f9ff' },
-            { id: 'cnn', icon: '🧬', badgeColor: '#7e22ce', badgeBg: '#faf5ff', fullWidth: true }
-          ].map(item => {
-            const m = mlModelsRegistry[item.id] || mlModelsRegistry.svm;
-            const graphUrl = generateModelGraphDataURL(item.id, 520, 340);
+          <!-- 2x2 Grid for 4 models (SVM, GNB, RF, k-NN) -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+            ${[
+              { id: 'svm', icon: '🎯', badgeColor: '#166534', badgeBg: '#f0fdf4' },
+              { id: 'gnb', icon: '📊', badgeColor: '#0369a1', badgeBg: '#f0f9ff' },
+              { id: 'rf', icon: '🌲', badgeColor: '#15803d', badgeBg: '#f0fdf4' },
+              { id: 'knn', icon: '📍', badgeColor: '#0284c7', badgeBg: '#f0f9ff' }
+            ].map(item => {
+              const m = mlModelsRegistry[item.id] || mlModelsRegistry.svm;
+              const graphUrl = generateModelGraphDataURL(item.id, 480, 240);
+              return `
+                <div class="model-graph-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.03); page-break-inside:avoid; break-inside:avoid;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px; border-bottom:1px solid #f1f5f9; padding-bottom:2px;">
+                    <h3 style="font-size:11px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
+                    <span style="font-size:8.5px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:1px 5px; border-radius:4px; border:1px solid #e2e8f0;">
+                      ${m.title}
+                    </span>
+                  </div>
+                  <div style="text-align:center; margin:2px 0;">
+                    <img src="${graphUrl}" alt="${m.title}" style="width:100%; height:105px; object-fit:contain; display:block; margin:0 auto; border-radius:4px; border:1px solid #e2e8f0;" />
+                  </div>
+                  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-top:3px; font-size:9px; text-align:center;">
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
+                      <div style="color:#64748b; font-size:8px;">Accuracy</div>
+                      <strong style="color:#15803d; font-size:10px;">${m.acc}</strong>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
+                      <div style="color:#64748b; font-size:8px;">F1-Score</div>
+                      <strong style="color:#7e22ce; font-size:10px;">${m.f1}</strong>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
+                      <div style="color:#64748b; font-size:8px;">Latency</div>
+                      <strong style="color:#0369a1; font-size:10px;">${m.latency}</strong>
+                    </div>
+                    <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 3px; border-radius:3px;">
+                      <div style="color:#64748b; font-size:8px;">Formula</div>
+                      <strong style="color:#b45309; font-size:8px; font-family:monospace;">${m.core}</strong>
+                    </div>
+                  </div>
+                  <p style="font-size:8.5px; color:#475569; margin:3px 0 0 0; line-height:1.25;">
+                    ${m.desc}
+                  </p>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- 5th Model: CNN Neural Lattice (Full Width Balanced Layout) -->
+          ${(() => {
+            const cnnM = mlModelsRegistry.cnn || mlModelsRegistry.svm;
+            const cnnGraphUrl = generateModelGraphDataURL('cnn', 480, 240);
             return `
-              <div class="model-graph-card" style="${item.fullWidth ? 'grid-column: span 2;' : ''} background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:10px; box-shadow:0 1px 3px rgba(0,0,0,0.03); page-break-inside:avoid; break-inside:avoid;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; border-bottom:1px solid #f1f5f9; padding-bottom:4px;">
-                  <h3 style="font-size:12px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
-                  <span style="font-size:10px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:1px 6px; border-radius:4px; border:1px solid #e2e8f0;">
-                    ${m.title}
+              <div class="model-graph-card" style="background:#ffffff; border:1.5px solid #d8b4fe; border-radius:6px; padding:8px 10px; box-shadow:0 1px 3px rgba(0,0,0,0.03); page-break-inside:avoid; break-inside:avoid;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px; border-bottom:1px solid #f3e8ff; padding-bottom:2px;">
+                  <h3 style="font-size:11px; font-weight:800; color:#6b21a8; margin:0;">🧬 ${cnnM.name}</h3>
+                  <span style="font-size:8.5px; font-weight:700; background:#faf5ff; color:#7e22ce; padding:1px 6px; border-radius:4px; border:1px solid #e9d5ff;">
+                    ${cnnM.title}
                   </span>
                 </div>
-                <div style="text-align:center; margin:4px 0;">
-                  <img src="${graphUrl}" alt="${m.title}" style="width:100%; max-height:220px; object-fit:contain; display:block; margin:0 auto; border-radius:6px; border:1px solid #e2e8f0;" />
+                <div style="display:flex; gap:10px; align-items:center;">
+                  <div style="width:170px; flex-shrink:0;">
+                    <img src="${cnnGraphUrl}" alt="${cnnM.title}" style="width:100%; height:80px; object-fit:contain; display:block; border-radius:4px; border:1px solid #e2e8f0;" />
+                  </div>
+                  <div style="flex:1;">
+                    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3px; margin-bottom:3px; font-size:9px; text-align:center;">
+                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
+                        <div style="color:#64748b; font-size:8px;">Accuracy</div>
+                        <strong style="color:#7e22ce; font-size:10px;">${cnnM.acc}</strong>
+                      </div>
+                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
+                        <div style="color:#64748b; font-size:8px;">F1-Score</div>
+                        <strong style="color:#6b21a8; font-size:10px;">${cnnM.f1}</strong>
+                      </div>
+                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
+                        <div style="color:#64748b; font-size:8px;">Latency</div>
+                        <strong style="color:#0369a1; font-size:10px;">${cnnM.latency}</strong>
+                      </div>
+                      <div style="background:#faf5ff; border:1px solid #e9d5ff; padding:2px 3px; border-radius:3px;">
+                        <div style="color:#64748b; font-size:8px;">Formula</div>
+                        <strong style="color:#b45309; font-size:8px; font-family:monospace;">${cnnM.core}</strong>
+                      </div>
+                    </div>
+                    <p style="font-size:8.5px; color:#475569; margin:0; line-height:1.25;">
+                      ${cnnM.desc}
+                    </p>
+                  </div>
                 </div>
-                <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:4px; margin-top:6px; font-size:10px; text-align:center;">
-                  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 4px; border-radius:4px;">
-                    <div style="color:#64748b; font-size:9px;">Accuracy</div>
-                    <strong style="color:#15803d; font-size:11px;">${m.acc}</strong>
-                  </div>
-                  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 4px; border-radius:4px;">
-                    <div style="color:#64748b; font-size:9px;">F1-Score</div>
-                    <strong style="color:#7e22ce; font-size:11px;">${m.f1}</strong>
-                  </div>
-                  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 4px; border-radius:4px;">
-                    <div style="color:#64748b; font-size:9px;">Latency</div>
-                    <strong style="color:#0369a1; font-size:11px;">${m.latency}</strong>
-                  </div>
-                  <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:2px 4px; border-radius:4px;">
-                    <div style="color:#64748b; font-size:9px;">Core Formula</div>
-                    <strong style="color:#b45309; font-size:9px; font-family:monospace;">${m.core}</strong>
-                  </div>
-                </div>
-                <p style="font-size:10px; color:#475569; margin:6px 0 0 0; line-height:1.35;">
-                  ${m.desc}
-                </p>
               </div>
             `;
-          }).join('')}
+          })()}
         </div>
       </div>
     </div>
@@ -3668,6 +3726,7 @@ function openPrintPreviewWindow() {
         <title>Malayalam OCR Evaluation Report</title>
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
         <style>
+          * { box-sizing: border-box; }
           body { margin: 0; padding: 0; background: #0f172a; color: #0f172a; font-family: 'Manrope', 'Noto Sans Malayalam', sans-serif; }
           .top-bar { background: #1e293b; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
           .top-title { color: #38bdf8; font-weight: 800; font-size: 15px; }
@@ -3675,12 +3734,16 @@ function openPrintPreviewWindow() {
           .btn-print:hover { background: #7dd3fc; }
           .report-wrapper { max-width: 860px; margin: 20px auto; background: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
           @media print {
-            @page { size: portrait; margin: 8mm; }
+            @page { size: portrait; margin: 8mm 10mm; }
             .top-bar { display: none !important; }
-            body { background: #ffffff; padding: 0; }
-            .report-wrapper { margin: 0; max-width: 100%; box-shadow: none; border-radius: 0; }
-            .report-section { page-break-inside: auto !important; break-inside: auto !important; }
-            .model-graph-card, table, tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+            body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            .report-wrapper { margin: 0 !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; padding: 0 !important; }
+            .report-container { padding: 0 !important; }
+            .report-page-1 { page-break-after: always !important; break-after: page !important; margin-bottom: 0 !important; }
+            .report-page-2 { page-break-before: always !important; break-before: page !important; margin-top: 0 !important; }
+            .report-section { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .model-graph-card { page-break-inside: avoid !important; break-inside: avoid !important; }
+            table, tr { page-break-inside: avoid !important; break-inside: avoid !important; }
             img { max-width: 100%; height: auto; display: block; }
           }
         </style>
