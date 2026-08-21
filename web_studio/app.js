@@ -637,24 +637,23 @@ function detectPalmLeafManuscript(data, w, h) {
       }
 
       // Check saturated red cloth background (common in manuscript photography: R is very high, G & B are low)
-      const isRedCloth = (r - g > 70) && (g < 75);
+      const isRedCloth = (r - g > 65) && (g < 80);
       if (isRedCloth) continue;
 
       // Check pure dark / black background
-      const isDark = (r < 35) && (g < 35) && (b < 45);
+      const isDark = (r < 28) && (g < 28) && (b < 36);
       if (isDark) continue;
 
-      // Authentic Palm-Leaf / Parchment Chromatography (Ochre, golden-brown, tan, sepia, or light parchment)
-      const isWarmPalm = (r >= g - 12) && (g >= b - 18) && (r > 42) && (g > 35) && (r - g < 68);
-      const isLightParchment = (r > 105) && (g > 95) && (b > 65) && (r - g < 65);
-      const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
+      // Authentic Palm-Leaf / Parchment Chromatography (Ochre, golden-brown, tan, sepia, dark patina, or light parchment)
+      const isWarmPalm = (r >= g - 18) && (g >= b - 24) && (r > 35) && (g > 30) && (r - g < 68);
+      const isLightParchment = (r > 40) && (g > 35) && (b > 30) && (Math.abs(r - g) < 35) && (Math.abs(g - b) < 35) && (r < 225);
 
-      if (isWarmPalm || isLightParchment || isGrayscaleParchment) {
+      if (isWarmPalm || isLightParchment) {
         palmPxInRow++;
       }
     }
 
-    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.16) {
+    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.12) {
       for (let sy = y; sy < Math.min(h, y + step); sy++) {
         isLeafRow[sy] = 1;
       }
@@ -665,10 +664,12 @@ function detectPalmLeafManuscript(data, w, h) {
   const blueRatio = blueDominantPixels / Math.max(1, totalSampled);
   const aspect = w / Math.max(1, h);
 
-  // Reject obvious non-manuscripts (human portraits / selfies with white studio backgrounds and clothing)
-  const isPortraitPhoto = (whiteRatio > 0.25 && blueRatio > 0.05) || (whiteRatio > 0.35 && aspect < 1.3) || (blueRatio > 0.15 && aspect < 1.5);
-  if (isPortraitPhoto) {
-    return { isValidManuscript: false, leafRect: null, confidence: 0 };
+  // Reject non-manuscripts (photos with blue clothing / modern dyes, studio backdrops, or non-epigraphical color profiles)
+  const isTooBlue = blueRatio > 0.25;
+  const isTooWhite = whiteRatio > 0.32;
+  const isPortraitRatio = (whiteRatio > 0.18 && aspect < 1.15);
+  if (isTooBlue || isTooWhite || isPortraitRatio) {
+    return { isValidManuscript: false, isBlankLeaf: false, status: 'non_manuscript', leafRect: null, confidence: 0, reason: 'Non-Manuscript Photo Detected' };
   }
 
   // Find contiguous vertical span of palm leaf strip
@@ -703,7 +704,7 @@ function detectPalmLeafManuscript(data, w, h) {
       minLeafY = 0;
       maxLeafY = h;
     } else {
-      return { isValidManuscript: false, leafRect: null, confidence: 0 };
+      return { isValidManuscript: false, isBlankLeaf: false, status: 'non_manuscript', leafRect: null, confidence: 0, reason: 'No Palm-Leaf Detected' };
     }
   }
 
@@ -722,8 +723,8 @@ function detectPalmLeafManuscript(data, w, h) {
       const b = data[idx + 2];
       sampledInCol++;
 
-      const isRedCloth = (r - g > 70) && (g < 75);
-      const isDark = (r < 35) && (g < 35) && (b < 45);
+      const isRedCloth = (r - g > 65) && (g < 80);
+      const isDark = (r < 38) && (g < 38) && (b < 48);
       const isWarmPalm = (r >= g - 12) && (g >= b - 18) && (r > 42) && (g > 35) && (r - g < 68);
       const isLightParchment = (r > 105) && (g > 95) && (b > 65) && (r - g < 65);
       const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
@@ -733,7 +734,7 @@ function detectPalmLeafManuscript(data, w, h) {
       }
     }
 
-    if (sampledInCol > 0 && (palmPxInCol / sampledInCol) > 0.14) {
+    if (sampledInCol > 0 && (palmPxInCol / sampledInCol) > 0.12) {
       for (let sx = x; sx < Math.min(w, x + step); sx++) {
         isLeafCol[sx] = 1;
       }
@@ -759,10 +760,36 @@ function detectPalmLeafManuscript(data, w, h) {
   const leafW = Math.max(30, maxLeafX - minLeafX);
   const leafH = Math.max(20, maxLeafY - minLeafY);
 
+  // 2. Measure text stroke / stylus incision activity strictly inside the detected palm leaf
+  let strokeCount = 0;
+  for (let y = minLeafY; y < maxLeafY; y += step) {
+    for (let x = minLeafX; x < maxLeafX; x += step) {
+      const idx = (y * w + x) * 4;
+      const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
+      if (lum < 150) {
+        strokeCount++;
+      }
+    }
+  }
+
+  // If palm leaf is present but has zero text / character incisions (blank leaf)
+  if (strokeCount < 12) {
+    return {
+      isValidManuscript: false,
+      isBlankLeaf: true,
+      status: 'blank_leaf',
+      reason: 'Plain Palm-Leaf (No Text Inscriptions Found)',
+      leafRect: { x: minLeafX, y: minLeafY, w: leafW, h: leafH },
+      confidence: 0
+    };
+  }
+
   return {
     isValidManuscript: true,
+    isBlankLeaf: false,
+    status: 'valid_inscribed_leaf',
     confidence: 0.96,
-    reason: 'Valid Palm-Leaf Manuscript Inscription',
+    reason: 'Valid Historical Inscribed Palm-Leaf Manuscript',
     leafRect: {
       x: minLeafX,
       y: minLeafY,
@@ -1354,8 +1381,17 @@ function renderOCRResultToUI() {
   renderBinarizedCropsTray();
 
   if (!currentOCRResult.isManuscript || !currentOCRResult.candidateWords || currentOCRResult.candidateWords.length === 0) {
-    if (displayRawText) displayRawText.innerHTML = '<span style="color:#ef4444; font-size:12px; font-weight:700;">⚠️ Non-Manuscript Image (No Epigraphical Inscriptions Found)</span>';
-    if (displayCorrText) displayCorrText.innerHTML = '<span style="color:#ef4444; font-size:15px; font-weight:800;">⚠️ Invalid Palm-Leaf Input</span>';
+    const isBlank = currentOCRResult.status === 'blank_leaf';
+    if (displayRawText) {
+      displayRawText.innerHTML = isBlank
+        ? '<span style="color:#f59e0b; font-size:12px; font-weight:700;">⚠️ Plain Palm-Leaf (No Text Inscriptions Found)</span>'
+        : '<span style="color:#ef4444; font-size:12px; font-weight:700;">⚠️ Non-Manuscript Image (No Epigraphical Inscriptions Found)</span>';
+    }
+    if (displayCorrText) {
+      displayCorrText.innerHTML = isBlank
+        ? '<span style="color:#f59e0b; font-size:15px; font-weight:800;">Blank Palm-Leaf Surface</span>'
+        : '<span style="color:#ef4444; font-size:15px; font-weight:800;">⚠️ Invalid Palm-Leaf Input</span>';
+    }
     if (valDist) valDist.textContent = '--';
     if (valConf) valConf.textContent = '0.0%';
     if (valSub) valSub.textContent = '0';
@@ -1363,7 +1399,11 @@ function renderOCRResultToUI() {
     if (valDel) valDel.textContent = '0';
 
     const valPalaeoAge = document.getElementById('valPalaeoAge');
-    if (valPalaeoAge) valPalaeoAge.textContent = 'N/A — Non-Palm Leaf Artifact (Upload a Thaliyola manuscript)';
+    if (valPalaeoAge) {
+      valPalaeoAge.textContent = isBlank
+        ? 'N/A — Blank Palm Leaf (No Incisions to Age)'
+        : 'N/A — Non-Palm Leaf Artifact (Upload a Thaliyola manuscript)';
+    }
 
     const valVedicAccent = document.getElementById('valVedicAccent');
     if (valVedicAccent) valVedicAccent.textContent = 'N/A — Non-Epigraphical Content';
@@ -1373,13 +1413,36 @@ function renderOCRResultToUI() {
     const transHindi = document.getElementById('transHindi');
     const transGenreBadge = document.getElementById('transGenreBadge');
 
-    if (transOldVsNew) transOldVsNew.innerHTML = '<strong>Status:</strong> Non-Palm Leaf Image Uploaded';
-    if (transEnglish) transEnglish.textContent = 'Please upload a historical Malayalam or Grantha palm-leaf manuscript (താലിയോല).';
-    if (transHindi) transHindi.textContent = 'कृपया ऐतिहासिक ताड़पत्र पाण्डुलिपि (താളിയോല) अपलोड करें।';
-    if (transGenreBadge) transGenreBadge.textContent = 'Non-Manuscript';
+    if (transOldVsNew) {
+      transOldVsNew.innerHTML = isBlank
+        ? '<strong>Status:</strong> Blank Palm-Leaf (No Inscriptions)'
+        : '<strong>Status:</strong> Non-Palm Leaf Image Uploaded';
+    }
+    if (transEnglish) {
+      transEnglish.textContent = isBlank
+        ? 'Please upload a palm leaf containing inscribed historical Malayalam/Grantha characters.'
+        : 'Please upload a historical Malayalam or Grantha palm-leaf manuscript (താലിയോല).';
+    }
+    if (transHindi) {
+      transHindi.textContent = isBlank
+        ? 'कृपया अक्षरांकित ऐतिहासिक ताड़पत्र पाण्डुलिपि अपलोड करें।'
+        : 'कृपया ऐतिहासिक ताड़पत्र पाण्डुलिपि (താളിയോല) अपलोड करें।';
+    }
+    if (transGenreBadge) transGenreBadge.textContent = isBlank ? 'Blank Leaf' : 'Non-Manuscript';
+
+    // Clear SVG morph synthesizer
+    const svgContour = document.getElementById('svgGlyphContour');
+    if (svgContour) svgContour.innerHTML = '';
 
     if (extractedContainer) {
-      extractedContainer.innerHTML = `
+      extractedContainer.innerHTML = isBlank ? `
+        <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:14px; text-align:center; color:#fde68a; font-size:11.5px; line-height:1.6;">
+          <div style="font-size:18px; margin-bottom:4px;">📜</div>
+          <strong style="color:#fbbf24; font-size:12.5px;">Blank Palm Leaf Detected</strong><br>
+          A palm-leaf surface was identified, but no historical ink incisions or stylus grooves were found.<br>
+          <span style="color:#94a3b8; font-size:10.5px;">Please upload an inscribed palm-leaf manuscript to trigger character extraction and OCR transcription.</span>
+        </div>
+      ` : `
         <div style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; padding:14px; text-align:center; color:#fca5a5; font-size:11.5px; line-height:1.6;">
           <div style="font-size:18px; margin-bottom:4px;">⚠️</div>
           <strong style="color:#f87171; font-size:12.5px;">Non-Palm Leaf Image Detected</strong><br>
@@ -3180,8 +3243,9 @@ function renderImage() {
   // If non-manuscript image, render warning overlay and SKIP drawing character bounding boxes
   if (currentOCRResult.isManuscript === false) {
     imgCtx.save();
+    const isBlank = currentOCRResult.status === 'blank_leaf';
     imgCtx.fillStyle = 'rgba(15, 23, 42, 0.88)';
-    imgCtx.strokeStyle = 'rgba(239, 68, 68, 0.7)';
+    imgCtx.strokeStyle = isBlank ? 'rgba(245, 158, 11, 0.7)' : 'rgba(239, 68, 68, 0.7)';
     imgCtx.lineWidth = 1.5;
     const badgeW = Math.min(w - 24, 460);
     const badgeH = 34;
@@ -3196,10 +3260,10 @@ function renderImage() {
     imgCtx.fill();
     imgCtx.stroke();
 
-    imgCtx.fillStyle = '#f87171';
+    imgCtx.fillStyle = isBlank ? '#fbbf24' : '#f87171';
     imgCtx.font = 'bold 12px Manrope, sans-serif';
     imgCtx.textAlign = 'center';
-    imgCtx.fillText('⚠️ Non-Palm Leaf Image (Epigraphical OCR Inactive)', w / 2, badgeY + 21);
+    imgCtx.fillText(isBlank ? '⚠️ Blank Palm-Leaf (No Text Inscriptions Found)' : '⚠️ Non-Palm Leaf Image (Epigraphical OCR Inactive)', w / 2, badgeY + 21);
     imgCtx.restore();
     return;
   }
