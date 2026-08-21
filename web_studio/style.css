@@ -1037,23 +1037,10 @@ body {
   #printReportArea * {
     visibility: visible !important;
   }
-  .report-page-1 {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  .report-page-2 {
-    page-break-before: always !important;
-    break-before: page !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
   .report-section {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+    margin-bottom: 8px !important;
   }
   .model-graph-card {
     page-break-inside: avoid !important;

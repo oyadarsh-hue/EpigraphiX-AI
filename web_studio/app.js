@@ -3297,17 +3297,15 @@ function generateReportHTML() {
     : [];
 
   return `
-    <div class="report-container" style="background:#ffffff; color:#0f172a; padding:16px 20px; font-family:'Manrope', 'Noto Sans Malayalam', sans-serif; width:100%; box-sizing:border-box;">
-      
-      <!-- ==================== PAGE 1: EXECUTIVE OCR & LINGUISTIC BENCHMARK ==================== -->
-      <div class="report-page report-page-1" style="box-sizing:border-box;">
-        <!-- Title Banner -->
-        <div style="background:linear-gradient(135deg, #0f172a, #1e293b); color:#ffffff; padding:14px 18px; border-radius:10px; margin-bottom:12px; border-left:6px solid #38bdf8;">
-          <h1 style="font-size:17px; font-weight:800; color:#38bdf8; margin:0 0 3px 0;">⚡ Malayalam Palm-Leaf OCR Evaluation Report</h1>
-          <div style="font-size:10px; color:#94a3b8;">Generated: ${timestampStr} | SOTA FANI-Net & NLL Lattice Classifier</div>
-        </div>
+    <div class="report-container" style="background:#ffffff; color:#0f172a; padding:14px 18px; font-family:'Manrope', 'Noto Sans Malayalam', sans-serif; width:100%; box-sizing:border-box;">
+      <!-- Title Banner -->
+      <div style="background:linear-gradient(135deg, #0f172a, #1e293b); color:#ffffff; padding:12px 16px; border-radius:8px; margin-bottom:10px; border-left:5px solid #38bdf8;">
+        <h1 style="font-size:16px; font-weight:800; color:#38bdf8; margin:0 0 2px 0;">⚡ Malayalam Palm-Leaf OCR Evaluation Report</h1>
+        <div style="font-size:9.5px; color:#94a3b8;">Generated: ${timestampStr} | SOTA FANI-Net & NLL Lattice Classifier</div>
+      </div>
 
-      <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-bottom:14px;">
+      <!-- Benchmark Performance Scorecard -->
+      <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; margin-bottom:10px;">
         <h2 style="font-size:13px; font-weight:700; color:#1e293b; margin:0 0 8px 0; padding-bottom:4px; border-bottom:2px solid #e2e8f0;">📊 Benchmark Performance Scorecard</h2>
         <table style="width:100%; border-collapse:collapse; text-align:center;">
           <tr>
@@ -3463,108 +3461,105 @@ function generateReportHTML() {
           </tbody>
         </table>
       </div>
-      </div>
 
-      <!-- ==================== PAGE 2: 5-MODEL 2D DECISION BOUNDARIES ==================== -->
-      <div class="report-page report-page-2" style="box-sizing:border-box; margin-top:14px;">
-        <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px;">
-          <div style="margin-bottom:6px; border-bottom:1.5px solid #e2e8f0; padding-bottom:3px; display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <h2 style="font-size:11.5px; font-weight:700; color:#1e293b; margin:0 0 1px 0;">
-                📈 SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations
-              </h2>
-              <p style="font-size:8.5px; color:#64748b; margin:0;">
-                Separating hyperplanes, density contours, and manifold clustering computed for the manuscript glyphs:
-              </p>
-            </div>
-            <span style="font-size:8.5px; font-weight:700; color:#0284c7; background:#e0f2fe; padding:1px 6px; border-radius:4px; border:1px solid #bae6fd;">
-              Comparative Visual Analysis
-            </span>
+      <!-- SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations -->
+      <div class="report-section" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; margin-bottom:0;">
+        <div style="margin-bottom:6px; border-bottom:1.5px solid #e2e8f0; padding-bottom:3px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 style="font-size:11.5px; font-weight:700; color:#1e293b; margin:0 0 1px 0;">
+              📈 SOTA 5-Model 2D Decision Boundary & Epigraphical Manifold Visualizations
+            </h2>
+            <p style="font-size:8.5px; color:#64748b; margin:0;">
+              Separating hyperplanes, density contours, and manifold clustering computed for the manuscript glyphs:
+            </p>
           </div>
+          <span style="font-size:8.5px; font-weight:700; color:#0284c7; background:#e0f2fe; padding:1px 6px; border-radius:4px; border:1px solid #bae6fd;">
+            Comparative Visual Analysis
+          </span>
+        </div>
 
-          <!-- 2x2 Grid for 4 models (SVM, GNB, RF, k-NN) -->
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:6px;">
-            ${[
-              { id: 'svm', icon: '🎯', badgeColor: '#166534', badgeBg: '#f0fdf4' },
-              { id: 'gnb', icon: '📊', badgeColor: '#0369a1', badgeBg: '#f0f9ff' },
-              { id: 'rf', icon: '🌲', badgeColor: '#15803d', badgeBg: '#f0fdf4' },
-              { id: 'knn', icon: '📍', badgeColor: '#0284c7', badgeBg: '#f0f9ff' }
-            ].map(item => {
-              const m = mlModelsRegistry[item.id] || mlModelsRegistry.svm;
-              const graphUrl = generateModelGraphDataURL(item.id, 360, 160);
-              return `
-                <div class="model-graph-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:5px; padding:5px 6px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f1f5f9; padding-bottom:1px;">
-                    <h3 style="font-size:10px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
-                    <span style="font-size:7.5px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:0.5px 4px; border-radius:3px; border:1px solid #e2e8f0;">
-                      ${m.title}
-                    </span>
-                  </div>
-                  <div style="text-align:center; margin:1px 0;">
-                    <img src="${graphUrl}" alt="${m.title}" style="width:100%; height:70px; object-fit:contain; display:block; margin:0 auto; border-radius:3px; border:1px solid #e2e8f0;" />
-                  </div>
-                  <div style="display:flex; justify-content:space-between; gap:2px; margin-top:2px; font-size:8px; text-align:center;">
-                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
-                      <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#15803d;">${m.acc}</strong>
-                    </div>
-                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
-                      <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#7e22ce;">${m.f1}</strong>
-                    </div>
-                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
-                      <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${m.latency}</strong>
-                    </div>
-                    <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
-                      <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${m.core}</strong>
-                    </div>
-                  </div>
-                  <p style="font-size:7.5px; color:#475569; margin:2px 0 0 0; line-height:1.18;">
-                    ${m.desc}
-                  </p>
-                </div>
-              `;
-            }).join('')}
-          </div>
-
-          <!-- 5th Model: CNN Neural Lattice (Full Width Balanced Compact Layout) -->
-          ${(() => {
-            const cnnM = mlModelsRegistry.cnn || mlModelsRegistry.svm;
-            const cnnGraphUrl = generateModelGraphDataURL('cnn', 360, 160);
+        <!-- 2x2 Grid for 4 models (SVM, GNB, RF, k-NN) -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:6px;">
+          ${[
+            { id: 'svm', icon: '🎯', badgeColor: '#166534', badgeBg: '#f0fdf4' },
+            { id: 'gnb', icon: '📊', badgeColor: '#0369a1', badgeBg: '#f0f9ff' },
+            { id: 'rf', icon: '🌲', badgeColor: '#15803d', badgeBg: '#f0fdf4' },
+            { id: 'knn', icon: '📍', badgeColor: '#0284c7', badgeBg: '#f0f9ff' }
+          ].map(item => {
+            const m = mlModelsRegistry[item.id] || mlModelsRegistry.svm;
+            const graphUrl = generateModelGraphDataURL(item.id, 360, 160);
             return `
-              <div class="model-graph-card" style="background:#ffffff; border:1px solid #d8b4fe; border-radius:5px; padding:4px 8px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f3e8ff; padding-bottom:1px;">
-                  <h3 style="font-size:10px; font-weight:800; color:#6b21a8; margin:0;">🧬 ${cnnM.name}</h3>
-                  <span style="font-size:7.5px; font-weight:700; background:#faf5ff; color:#7e22ce; padding:0.5px 5px; border-radius:3px; border:1px solid #e9d5ff;">
-                    ${cnnM.title}
+              <div class="model-graph-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:5px; padding:5px 6px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f1f5f9; padding-bottom:1px;">
+                  <h3 style="font-size:10px; font-weight:800; color:#0f172a; margin:0;">${item.icon} ${m.name}</h3>
+                  <span style="font-size:7.5px; font-weight:700; background:${item.badgeBg}; color:${item.badgeColor}; padding:0.5px 4px; border-radius:3px; border:1px solid #e2e8f0;">
+                    ${m.title}
                   </span>
                 </div>
-                <div style="display:flex; gap:8px; align-items:center;">
-                  <div style="width:110px; flex-shrink:0;">
-                    <img src="${cnnGraphUrl}" alt="${cnnM.title}" style="width:100%; height:52px; object-fit:contain; display:block; border-radius:3px; border:1px solid #e2e8f0;" />
+                <div style="text-align:center; margin:1px 0;">
+                  <img src="${graphUrl}" alt="${m.title}" style="width:100%; height:70px; object-fit:contain; display:block; margin:0 auto; border-radius:3px; border:1px solid #e2e8f0;" />
+                </div>
+                <div style="display:flex; justify-content:space-between; gap:2px; margin-top:2px; font-size:8px; text-align:center;">
+                  <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                    <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#15803d;">${m.acc}</strong>
                   </div>
-                  <div style="flex:1;">
-                    <div style="display:flex; justify-content:space-between; gap:2px; margin-bottom:2px; font-size:8px; text-align:center;">
-                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
-                        <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#7e22ce;">${cnnM.acc}</strong>
-                      </div>
-                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
-                        <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#6b21a8;">${cnnM.f1}</strong>
-                      </div>
-                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
-                        <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${cnnM.latency}</strong>
-                      </div>
-                      <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
-                        <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${cnnM.core}</strong>
-                      </div>
-                    </div>
-                    <p style="font-size:7.5px; color:#475569; margin:0; line-height:1.18;">
-                      ${cnnM.desc}
-                    </p>
+                  <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                    <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#7e22ce;">${m.f1}</strong>
+                  </div>
+                  <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                    <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${m.latency}</strong>
+                  </div>
+                  <div style="flex:1; background:#f8fafc; border:1px solid #e2e8f0; padding:1px 2px; border-radius:2px;">
+                    <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${m.core}</strong>
                   </div>
                 </div>
+                <p style="font-size:7.5px; color:#475569; margin:2px 0 0 0; line-height:1.18;">
+                  ${m.desc}
+                </p>
               </div>
             `;
-          })()}
+          }).join('')}
         </div>
+
+        <!-- 5th Model: CNN Neural Lattice (Full Width Balanced Compact Layout) -->
+        ${(() => {
+          const cnnM = mlModelsRegistry.cnn || mlModelsRegistry.svm;
+          const cnnGraphUrl = generateModelGraphDataURL('cnn', 360, 160);
+          return `
+            <div class="model-graph-card" style="background:#ffffff; border:1px solid #d8b4fe; border-radius:5px; padding:4px 8px; box-shadow:0 1px 2px rgba(0,0,0,0.02); page-break-inside:avoid; break-inside:avoid;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; border-bottom:1px solid #f3e8ff; padding-bottom:1px;">
+                <h3 style="font-size:10px; font-weight:800; color:#6b21a8; margin:0;">🧬 ${cnnM.name}</h3>
+                <span style="font-size:7.5px; font-weight:700; background:#faf5ff; color:#7e22ce; padding:0.5px 5px; border-radius:3px; border:1px solid #e9d5ff;">
+                  ${cnnM.title}
+                </span>
+              </div>
+              <div style="display:flex; gap:8px; align-items:center;">
+                <div style="width:110px; flex-shrink:0;">
+                  <img src="${cnnGraphUrl}" alt="${cnnM.title}" style="width:100%; height:52px; object-fit:contain; display:block; border-radius:3px; border:1px solid #e2e8f0;" />
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex; justify-content:space-between; gap:2px; margin-bottom:2px; font-size:8px; text-align:center;">
+                    <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Acc: </span><strong style="color:#7e22ce;">${cnnM.acc}</strong>
+                    </div>
+                    <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">F1: </span><strong style="color:#6b21a8;">${cnnM.f1}</strong>
+                    </div>
+                    <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Lat: </span><strong style="color:#0369a1;">${cnnM.latency}</strong>
+                    </div>
+                    <div style="flex:1; background:#faf5ff; border:1px solid #e9d5ff; padding:1px 2px; border-radius:2px;">
+                      <span style="color:#64748b; font-size:7px;">Formula: </span><strong style="color:#b45309; font-family:monospace; font-size:7px;">${cnnM.core}</strong>
+                    </div>
+                  </div>
+                  <p style="font-size:7.5px; color:#475569; margin:0; line-height:1.18;">
+                    ${cnnM.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          `;
+        })()}
       </div>
     </div>
   `;
@@ -3731,21 +3726,7 @@ function openPrintPreviewWindow() {
             body { background: #ffffff !important; padding: 0 !important; margin: 0 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             .report-wrapper { margin: 0 !important; max-width: 100% !important; box-shadow: none !important; border-radius: 0 !important; padding: 0 !important; }
             .report-container { padding: 0 !important; }
-            .report-page-1 {
-              page-break-inside: avoid !important;
-              break-inside: avoid !important;
-              margin-bottom: 0 !important;
-              padding-bottom: 0 !important;
-            }
-            .report-page-2 {
-              page-break-before: always !important;
-              break-before: page !important;
-              page-break-inside: avoid !important;
-              break-inside: avoid !important;
-              margin-top: 0 !important;
-              padding-top: 0 !important;
-            }
-            .report-section { page-break-inside: avoid !important; break-inside: avoid !important; }
+            .report-section { page-break-inside: avoid !important; break-inside: avoid !important; margin-bottom: 8px !important; }
             .model-graph-card { page-break-inside: avoid !important; break-inside: avoid !important; }
             table, tr { page-break-inside: avoid !important; break-inside: avoid !important; }
             img { max-width: 100%; height: auto; display: block; }
