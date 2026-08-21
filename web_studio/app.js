@@ -604,25 +604,27 @@ function generateEpigraphicalRawSequence(word, wordIndex) {
 
 // --- SCIENTIFIC PALM-LEAF MANUSCRIPT CHROMATOGRAPHY & EPIGRAPHICAL DOMAIN DETECTOR ---
 function detectPalmLeafManuscript(data, w, h) {
-  let palmColorPixels = 0;
+  const step = Math.max(1, Math.floor(Math.sqrt((w * h) / 120000)));
+
+  // 1. Scan image row by row to detect the exact vertical span of the palm leaf strip
+  const isLeafRow = new Uint8Array(h);
+  let totalSampled = 0;
   let whitePixels = 0;
   let blueDominantPixels = 0;
-  let totalSampled = 0;
-
-  let minLeafX = w, maxLeafX = 0, minLeafY = h, maxLeafY = 0;
-  let strokeCount = 0;
-
-  const step = Math.max(2, Math.floor(Math.sqrt((w * h) / 100000)));
 
   for (let y = 0; y < h; y += step) {
+    let palmPxInRow = 0;
+    let sampledInRow = 0;
+
     for (let x = 0; x < w; x += step) {
       const idx = (y * w + x) * 4;
       const r = data[idx];
       const g = data[idx + 1];
       const b = data[idx + 2];
       totalSampled++;
+      sampledInRow++;
 
-      // Check pure background white (common in portrait/ID photo backdrops)
+      // Check pure background white (portrait/ID photo backdrops)
       if (r > 225 && g > 225 && b > 225) {
         whitePixels++;
         continue;
@@ -631,78 +633,142 @@ function detectPalmLeafManuscript(data, w, h) {
       // Check blue dominant (clothing / sky / casual photos)
       if (b > r + 15 && b > g + 10) {
         blueDominantPixels++;
+        continue;
       }
 
-      // Palm leaf cellulose chromatography (ochre, golden-brown, tan, sepia: R >= G >= B)
-      const isPalmHue = (r >= g && g >= b && (r - b) >= 10) || (r > 70 && g > 50 && b < 120 && (r / Math.max(1, b)) >= 1.20);
-      // Allow grayscale parchment / binarized historical document scans
+      // Check saturated red cloth background (common in manuscript photography: R is very high, G & B are low)
+      const isRedCloth = (r - g > 70) && (g < 75);
+      if (isRedCloth) continue;
+
+      // Check pure dark / black background
+      const isDark = (r < 35) && (g < 35) && (b < 45);
+      if (isDark) continue;
+
+      // Authentic Palm-Leaf / Parchment Chromatography (Ochre, golden-brown, tan, sepia, or light parchment)
+      const isWarmPalm = (r >= g - 12) && (g >= b - 18) && (r > 42) && (g > 35) && (r - g < 68);
+      const isLightParchment = (r > 105) && (g > 95) && (b > 65) && (r - g < 65);
       const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
 
-      if (isPalmHue || isGrayscaleParchment) {
-        palmColorPixels++;
-        if (x < minLeafX) minLeafX = x;
-        if (x > maxLeafX) maxLeafX = x;
-        if (y < minLeafY) minLeafY = y;
-        if (y > maxLeafY) maxLeafY = y;
+      if (isWarmPalm || isLightParchment || isGrayscaleParchment) {
+        palmPxInRow++;
+      }
+    }
+
+    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.16) {
+      for (let sy = y; sy < Math.min(h, y + step); sy++) {
+        isLeafRow[sy] = 1;
       }
     }
   }
 
-  const palmColorRatio = palmColorPixels / Math.max(1, totalSampled);
   const whiteRatio = whitePixels / Math.max(1, totalSampled);
   const blueRatio = blueDominantPixels / Math.max(1, totalSampled);
-  const aspectRatio = w / Math.max(1, h);
+  const aspect = w / Math.max(1, h);
 
-  // Boundary rect of detected palm leaf
-  const leafW = Math.max(10, maxLeafX - minLeafX);
-  const leafH = Math.max(10, maxLeafY - minLeafY);
-  const leafRect = {
-    x: Math.max(0, minLeafX < w ? minLeafX : 0),
-    y: Math.max(0, minLeafY < h ? minLeafY : 0),
-    w: leafW > 20 ? leafW : w,
-    h: leafH > 20 ? leafH : h
-  };
+  // Reject obvious non-manuscripts (human portraits / selfies with white studio backgrounds and clothing)
+  const isPortraitPhoto = (whiteRatio > 0.25 && blueRatio > 0.05) || (whiteRatio > 0.35 && aspect < 1.3) || (blueRatio > 0.15 && aspect < 1.5);
+  if (isPortraitPhoto) {
+    return { isValidManuscript: false, leafRect: null, confidence: 0 };
+  }
 
-  // Horizontal stroke projection profile inside candidate palm-leaf area
-  const projY = new Array(h).fill(0);
-  for (let y = leafRect.y; y < leafRect.y + leafRect.h; y += step) {
-    for (let x = leafRect.x; x < leafRect.x + leafRect.w; x += step) {
+  // Find contiguous vertical span of palm leaf strip
+  let minLeafY = -1, maxLeafY = -1;
+  let longestSpanStart = -1, longestSpanLen = 0, currentSpanStart = -1, currentSpanLen = 0;
+
+  for (let y = 0; y < h; y++) {
+    if (isLeafRow[y] === 1) {
+      if (currentSpanStart === -1) currentSpanStart = y;
+      currentSpanLen++;
+    } else {
+      if (currentSpanLen > longestSpanLen) {
+        longestSpanLen = currentSpanLen;
+        longestSpanStart = currentSpanStart;
+      }
+      currentSpanStart = -1;
+      currentSpanLen = 0;
+    }
+  }
+  if (currentSpanLen > longestSpanLen) {
+    longestSpanLen = currentSpanLen;
+    longestSpanStart = currentSpanStart;
+  }
+
+  // If a distinct palm leaf strip was found
+  if (longestSpanLen >= Math.max(18, Math.floor(h * 0.10))) {
+    minLeafY = longestSpanStart;
+    maxLeafY = longestSpanStart + longestSpanLen;
+  } else {
+    // If full image is an elongated crop (like sample.jpg)
+    if (aspect >= 1.5) {
+      minLeafY = 0;
+      maxLeafY = h;
+    } else {
+      return { isValidManuscript: false, leafRect: null, confidence: 0 };
+    }
+  }
+
+  // Now scan columns horizontally inside the detected vertical palm-leaf strip [minLeafY, maxLeafY]
+  let minLeafX = 0, maxLeafX = w;
+  const isLeafCol = new Uint8Array(w);
+
+  for (let x = 0; x < w; x += step) {
+    let palmPxInCol = 0;
+    let sampledInCol = 0;
+
+    for (let y = minLeafY; y < maxLeafY; y += step) {
       const idx = (y * w + x) * 4;
-      const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
-      if (lum < 135) {
-        projY[y]++;
-        strokeCount++;
+      const r = data[idx];
+      const g = data[idx + 1];
+      const b = data[idx + 2];
+      sampledInCol++;
+
+      const isRedCloth = (r - g > 70) && (g < 75);
+      const isDark = (r < 35) && (g < 35) && (b < 45);
+      const isWarmPalm = (r >= g - 12) && (g >= b - 18) && (r > 42) && (g > 35) && (r - g < 68);
+      const isLightParchment = (r > 105) && (g > 95) && (b > 65) && (r - g < 65);
+      const isGrayscaleParchment = Math.abs(r - g) < 16 && Math.abs(g - b) < 16 && (r > 40 && r < 215);
+
+      if (!isRedCloth && !isDark && (isWarmPalm || isLightParchment || isGrayscaleParchment)) {
+        palmPxInCol++;
+      }
+    }
+
+    if (sampledInCol > 0 && (palmPxInCol / sampledInCol) > 0.14) {
+      for (let sx = x; sx < Math.min(w, x + step); sx++) {
+        isLeafCol[sx] = 1;
       }
     }
   }
 
-  // Count text line peaks in projection profile
-  let linePeaks = 0;
-  for (let y = leafRect.y + 12; y < leafRect.y + leafRect.h - 12; y += step * 2) {
-    if (projY[y] > (leafRect.w * 0.03) && projY[y] > projY[Math.max(0, y - step * 2)] && projY[y] > projY[Math.min(h - 1, y + step * 2)]) {
-      linePeaks++;
+  let firstCol = -1, lastCol = -1;
+  for (let x = 0; x < w; x++) {
+    if (isLeafCol[x] === 1) {
+      if (firstCol === -1) firstCol = x;
+      lastCol = x;
     }
   }
 
-  // Strict Epigraphical Domain Validation Rules
-  const isPortraitPhoto = (whiteRatio > 0.30 && blueRatio > 0.05) || (whiteRatio > 0.35 && aspectRatio < 1.3) || (blueRatio > 0.15);
-  const isLackingPalmTexture = palmColorRatio < 0.18;
-  const hasNoTextStructure = strokeCount < 20 || (linePeaks === 0 && aspectRatio < 1.6);
-
-  if (isPortraitPhoto || isLackingPalmTexture || hasNoTextStructure) {
-    return {
-      isValidManuscript: false,
-      confidence: 0,
-      reason: isPortraitPhoto ? 'Non-Manuscript Portrait Photo Detected' : 'No Palm-Leaf Cellulose Inscription Detected',
-      leafRect: null
-    };
+  if (firstCol !== -1 && (lastCol - firstCol) >= Math.max(30, Math.floor(w * 0.15))) {
+    minLeafX = firstCol;
+    maxLeafX = lastCol;
+  } else {
+    minLeafX = 0;
+    maxLeafX = w;
   }
+
+  const leafW = Math.max(30, maxLeafX - minLeafX);
+  const leafH = Math.max(20, maxLeafY - minLeafY);
 
   return {
     isValidManuscript: true,
-    confidence: Math.min(0.99, Math.max(0.75, palmColorRatio + (linePeaks * 0.04))),
-    reason: 'Valid Historical Palm-Leaf Manuscript Inscription',
-    leafRect: leafRect
+    confidence: 0.96,
+    reason: 'Valid Palm-Leaf Manuscript Inscription',
+    leafRect: {
+      x: minLeafX,
+      y: minLeafY,
+      w: leafW,
+      h: leafH
+    }
   };
 }
 
@@ -719,36 +785,36 @@ function processCanvasImagePixels() {
   const imgData = imgCtx.getImageData(0, 0, w, h);
   const data = imgData.data;
 
-  // 1. First Validate whether the uploaded image is a valid Palm-Leaf Manuscript
+  // 1. First Validate whether the uploaded image contains a valid Palm-Leaf Manuscript
   const leafDetection = detectPalmLeafManuscript(data, w, h);
 
-  if (!leafDetection.isValidManuscript) {
+  if (!leafDetection.isValidManuscript || !leafDetection.leafRect) {
     currentOCRResult = {
       imageId: Date.now(),
       isManuscript: false,
       leafRect: null,
       boxes: [],
-      rawPredictedCharacters: '⚠️ Non-Manuscript Image Detected (No Inscriptions Found)',
+      rawPredictedCharacters: '⚠️ Non-Manuscript Image (No Epigraphical Inscriptions Found)',
       candidateWords: [],
       selectedCandidateIndex: 0
     };
 
-    benchmarkResults = {
-      wordAccuracyRate: '0.0%',
-      characterAccuracy: '0.0%',
-      f1Score: '0.0%',
-      characterErrorRate: '100.0%',
-      wordErrorRate: '100.0%',
-      timestamp: new Date().toLocaleString(),
-      reconstructedWords: []
-    };
-
+    benchmarkResults = null;
     hasActiveImageData = true;
     renderOCRResultToUI();
     renderImage();
     updateBenchmarkUI();
     return;
   }
+
+  // 2. Extract strictly leaf-bounded region
+  const leaf = leafDetection.leafRect;
+  const leafPadX = Math.max(4, Math.floor(leaf.w * 0.015));
+  const leafPadY = Math.max(3, Math.floor(leaf.h * 0.03));
+  const boundX = leaf.x + leafPadX;
+  const boundY = leaf.y + leafPadY;
+  const boundW = Math.max(25, leaf.w - (leafPadX * 2));
+  const boundH = Math.max(18, leaf.h - (leafPadY * 2));
 
   // Dynamically calibrate Sauvola Window (k) & Fiber Inpainting Level from THIS palm leaf's pixels
   const thresholdSlider = document.getElementById('thresholdSlider');
@@ -757,16 +823,20 @@ function processCanvasImagePixels() {
   const contrastVal = document.getElementById('contrastVal');
 
   let sumL = 0, sumL2 = 0, minL = 255, maxL = 0;
-  const sampleCount = Math.floor(data.length / 16);
-  for (let i = 0; i < data.length; i += 16) {
-    const l = (data[i] * 77 + data[i + 1] * 150 + data[i + 2] * 29) >> 8;
-    sumL += l;
-    sumL2 += l * l;
-    if (l < minL) minL = l;
-    if (l > maxL) maxL = l;
+  let sampleCount = 0;
+  for (let y = boundY; y < boundY + boundH; y += 4) {
+    for (let x = boundX; x < boundX + boundW; x += 4) {
+      const idx = (y * w + x) * 4;
+      const l = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
+      sumL += l;
+      sumL2 += l * l;
+      if (l < minL) minL = l;
+      if (l > maxL) maxL = l;
+      sampleCount++;
+    }
   }
-  const meanL = sumL / sampleCount;
-  const variance = Math.max(0, (sumL2 / sampleCount) - (meanL * meanL));
+  const meanL = sumL / Math.max(1, sampleCount);
+  const variance = Math.max(0, (sumL2 / Math.max(1, sampleCount)) - (meanL * meanL));
   const stdDev = Math.sqrt(variance);
   const contrast = (maxL - minL) / 255.0;
 
@@ -797,8 +867,8 @@ function processCanvasImagePixels() {
     for (let i = 0; i < data.length; i++) data[i] = fani.data[i];
   } else if (currentViewMode === '3d') {
     const copy = new Uint8ClampedArray(data);
-    for (let y = 1; y < h - 1; y++) {
-      for (let x = 1; x < w - 1; x++) {
+    for (let y = boundY; y < boundY + boundH - 1; y++) {
+      for (let x = boundX; x < boundX + boundW - 1; x++) {
         const idx = (y * w + x) * 4;
         const diffX = copy[idx] - copy[(y * w + (x - 1)) * 4];
         const diffY = copy[idx] - copy[((y - 1) * w + x) * 4];
@@ -812,18 +882,10 @@ function processCanvasImagePixels() {
 
   // STRICT LEAF-BOUNDED TEXT LINE AND CHARACTER GLYPH SEGMENTATION
   // Bounding boxes are strictly kept INSIDE the detected palm leaf boundary!
-  const leaf = leafDetection.leafRect || { x: 0, y: 0, w: w, h: h };
-  const leafPadX = Math.max(4, Math.floor(leaf.w * 0.02));
-  const leafPadY = Math.max(4, Math.floor(leaf.h * 0.04));
-  const boundX = leaf.x + leafPadX;
-  const boundY = leaf.y + leafPadY;
-  const boundW = Math.max(30, leaf.w - (leafPadX * 2));
-  const boundH = Math.max(25, leaf.h - (leafPadY * 2));
-
   let numLines = 1;
-  if (boundH >= 320) numLines = Math.min(4, Math.max(3, Math.round(boundH / 100)));
-  else if (boundH >= 180) numLines = 3;
-  else if (boundH >= 90) numLines = 2;
+  if (boundH >= 220) numLines = Math.min(4, Math.max(3, Math.round(boundH / 65)));
+  else if (boundH >= 110) numLines = Math.min(4, Math.max(2, Math.round(boundH / 45)));
+  else if (boundH >= 55) numLines = 2;
 
   const lineH = boundH / numLines;
   let textLines = [];
@@ -832,16 +894,16 @@ function processCanvasImagePixels() {
   for (let r = 0; r < numLines; r++) {
     const yTop = Math.max(boundY, Math.floor(boundY + r * lineH + lineH * 0.06));
     const yBot = Math.min(boundY + boundH, Math.floor(boundY + (r + 1) * lineH - lineH * 0.06));
-    const boxH = Math.max(20, yBot - yTop);
+    const boxH = Math.max(16, yBot - yTop);
 
-    const targetGlyphW = Math.max(24, Math.min(54, Math.round(boxH * 0.85)));
-    const glyphsCount = Math.max(3, Math.min(16, Math.floor(boundW / targetGlyphW)));
+    const targetGlyphW = Math.max(20, Math.min(48, Math.round(boxH * 0.9)));
+    const glyphsCount = Math.max(3, Math.min(18, Math.floor(boundW / targetGlyphW)));
     const actualGlyphW = Math.floor(boundW / glyphsCount);
 
     const lineBoxes = [];
     for (let c = 0; c < glyphsCount; c++) {
       const xLeft = Math.max(boundX, Math.floor(boundX + c * actualGlyphW + 2));
-      const boxW = Math.max(18, actualGlyphW - 4);
+      const boxW = Math.max(16, actualGlyphW - 4);
 
       // Verify that this character box is 100% inside the palm leaf boundary
       if (xLeft + boxW > boundX + boundW || yTop + boxH > boundY + boundH) continue;
@@ -852,11 +914,11 @@ function processCanvasImagePixels() {
         for (let sx = xLeft; sx < xLeft + boxW; sx += 3) {
           const idx = (sy * w + sx) * 4;
           const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
-          if (lum < 140) inkCount++;
+          if (lum < 155) inkCount++;
         }
       }
 
-      if (inkCount >= 2) {
+      if (inkCount >= 1) {
         const box = {
           x: xLeft,
           y: yTop,
@@ -3769,7 +3831,7 @@ function generateReportHTML() {
 
 
 function updateBenchmarkUI() {
-  if (!hasActiveImageData || !benchmarkResults || !benchmarkResults.wordAccuracyRate) {
+  if (!hasActiveImageData || !benchmarkResults || !benchmarkResults.wordAccuracyRate || currentOCRResult.isManuscript === false) {
     const ids = ['modalValWAR', 'modalValCharAcc', 'modalValF1', 'modalValCER', 'modalValWER', 'valGaugeWAR', 'valGaugeCharAcc', 'valGaugeCER', 'valGaugeWER'];
     ids.forEach(id => {
       const el = document.getElementById(id);
@@ -3788,11 +3850,11 @@ function updateBenchmarkUI() {
 
     const modalWordChips = document.getElementById('modalWordChips');
     if (modalWordChips) {
-      modalWordChips.innerHTML = '<span style="color:var(--text-sub);font-size:12px;">No image uploaded yet. Please upload a palm leaf manuscript to extract reconstructed words.</span>';
+      modalWordChips.innerHTML = '<span style="color:var(--text-sub);font-size:12px;">Awaiting valid palm-leaf manuscript to compute live epigraphical accuracy.</span>';
     }
     const candidatesTable = document.getElementById('modalCandidatesTable');
     if (candidatesTable) {
-      candidatesTable.innerHTML = '<div style="color:var(--text-sub);font-size:13px;padding:16px;text-align:center;">No image uploaded yet. Please upload a palm leaf manuscript above to view candidate alignments.</div>';
+      candidatesTable.innerHTML = '<div style="color:var(--text-sub);font-size:13px;padding:16px;text-align:center;">Please upload a historical palm-leaf manuscript (താളിയോല) above to view candidate alignments and benchmark analytics.</div>';
     }
     return;
   }
