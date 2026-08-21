@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palm-Leaf Epigraphical OCR | Digital Palaeography Studio</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=61">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+  <!-- 3D Antigravity Panoramic Pipeline Background Architecture -->
+  <div id="antigravityBgContainer">
+    <div class="bg-parallax-image" id="bgParallaxImage"></div>
+    <div class="bg-vignette"></div>
+    <div class="bg-light-beams"></div>
+  </div>
+
+  <!-- Interactive 3D Cursor Radial Glow -->
+  <div id="cursorGlow"></div>
+
+  <!-- Particle Canvas Overlay Background -->
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="app-container">
+    <!-- Header Navbar -->
+    <header class="glass-nav">
+      <div class="brand">
+        <div class="logo-icon">
+          <img src="app_logo.png?v=59" alt="Palm-Leaf Epigraphical OCR Official Logo">
+        </div>
+        <div class="brand-text">
+          <h1>Palm-Leaf Epigraphical OCR Studio</h1>
+          <span class="tagline">SOTA Malayalam Script OCR Engine • Digital Palaeography & Meaningful Word Suite</span>
+        </div>
+      </div>
+      <div class="nav-badges" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div class="backdrop-switcher" style="display:flex; align-items:center; background:rgba(0,0,0,0.4); padding:3px 6px; border-radius:20px; border:1px solid rgba(56,189,248,0.25); gap:4px;">
+          <span style="font-size:10px; color:#94a3b8; margin-left:4px; font-weight:700;">🖼️ 3D Theme:</span>
+          <button class="bg-theme-btn active" data-bg="cinematic" style="background:#38bdf8; color:#0f172a; border:none; border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; cursor:pointer;">Cinematic</button>
+          <button class="bg-theme-btn" data-bg="vivid" style="background:transparent; color:#94a3b8; border:none; border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; cursor:pointer;">Vivid</button>
+          <button class="bg-theme-btn" data-bg="deep" style="background:transparent; color:#94a3b8; border:none; border-radius:12px; padding:2px 8px; font-size:10px; font-weight:700; cursor:pointer;">Deep</button>
+        </div>
+        <button id="btnToggle3D" class="badge glow-blue" style="cursor:pointer; border:1px solid rgba(56,189,248,0.4); font-size:10px;">🔮 3D Tilt: ON</button>
+        <span class="badge glow-green">● Engine Active</span>
+      </div>
+    </header>
+
+    <!-- Main Grid Dashboard -->
+    <main class="dashboard-grid">
+
+      <!-- Panel 1: Image Inspector & Bounding Box Visualizer -->
+      <section class="glass-card panel-image">
+        <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h2>🖼️ Image Inspector & Segmentation</h2>
+            <span class="card-sub">Palm Leaf Preprocessing ➔ Sauvola Binarization ➔ Character Bounding Boxes</span>
+          </div>
+          <span class="badge glow-green" id="viewModeBadge" style="font-size:11px;">View: Original</span>
+        </div>
+
+        <!-- View Mode Segmented Switcher -->
+        <div class="view-mode-bar" id="viewModeBar">
+          <button class="mode-btn active" id="btnModeOriginal" data-mode="original">🖼️ Original</button>
+          <button class="mode-btn" id="btnModeBinarized" data-mode="binarized">⬛ Sauvola Binarized</button>
+          <button class="mode-btn" id="btnModeFANI" data-mode="fani">🌿 FANI Clean</button>
+          <button class="mode-btn" id="btnMode3D" data-mode="3d">🔬 Stylus 3D</button>
+          <button class="mode-btn" id="btnModeRaking" data-mode="raking">💡 3D Raking Light</button>
+          <button class="mode-btn" id="btnModeTopology" data-mode="topology">🧬 Betti Topology</button>
+          <button class="mode-btn" id="btnModeFlow" data-mode="flow">🌊 Scribe Flow</button>
+          <button class="mode-btn" id="btnModeSubSurface" data-mode="subsurface">🔬 Sub-Surface Scattering</button>
+          <button class="mode-btn" id="btnModeGraph" data-mode="graph">🧬 Graph Inpainting</button>
+          <button class="mode-btn" id="btnModeFatigue" data-mode="fatigue">✍️ Scribe Fatigue</button>
+        </div>
+
+        <label class="drop-zone" id="dropZone" for="fileInput">
+          <canvas id="imageCanvas"></canvas>
+          <div class="drop-placeholder" id="dropPlaceholder">
+            <div class="upload-icon">📁</div>
+            <p>Drag & Drop Palm Leaf Manuscript Image Here or <strong>Click to Select File</strong></p>
+            <span class="hint">Supports PNG, JPG, JPEG, BMP, WEBP • Click Anywhere to Upload</span>
+          </div>
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display:none;">
+
+
+        <div class="canvas-controls" style="flex-wrap:wrap; gap:8px;">
+          <button class="btn btn-primary" id="btnSimulateOCR">▶ Run Interactive OCR & Segmentation</button>
+          <button class="btn btn-secondary" id="btnToggleBBox" style="color:var(--accent-cyan);">👁 Bounding Boxes: ON</button>
+          <button class="btn btn-secondary" id="btnNextWord">↻ Next Word</button>
+        </div>
+
+
+        <!-- SOTA 1: Live Interactive Contrast & Fiber Denoising Threshold Slider -->
+        <div class="filter-controls">
+          <div class="filter-group">
+            <label for="thresholdSlider">Sauvola Window (k): <span id="thresholdVal">-- (Awaiting Image)</span></label>
+            <input type="range" id="thresholdSlider" min="5" max="60" value="5" class="slider" disabled>
+          </div>
+          <div class="filter-group">
+            <label for="contrastSlider">Fiber Inpainting Level: <span id="contrastVal">-- (Awaiting Image)</span></label>
+            <input type="range" id="contrastSlider" min="0.05" max="0.60" step="0.01" value="0.05" class="slider" disabled>
+          </div>
+        </div>
+
+        <!-- Binarized Character & Word Crops Gallery Tray (Horizontal Scroll) -->
+        <div class="crops-gallery-container" id="cropsGalleryContainer">
+          <div class="crops-gallery-title">
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span>🔬 Binarized Segmented Text & Glyph Cuts</span>
+              <div class="crops-toggle-group">
+                <button type="button" class="crops-toggle-btn active" id="btnCropsGlyphs">🔬 Glyphs</button>
+                <button type="button" class="crops-toggle-btn" id="btnCropsWords">📜 Segment Words</button>
+              </div>
+            </div>
+            <span class="badge glow-green" id="cropCountBadge">0 Detected</span>
+          </div>
+          <div class="crops-scroll-track" id="cropsScrollTrack">
+            <!-- Dynamic Canvas Character & Word Crops Appended Here -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Panel 2: Whole-Image Dynamic Word Extraction -->
+      <section class="glass-card panel-transform">
+        <div class="card-header">
+          <h2>📜 Whole-Image Dynamic Word Extraction</h2>
+          <span class="card-sub">Dynamic Pixel Preprocessing ➔ Dynamic Lexicon Extraction</span>
+        </div>
+
+        <div class="morph-container">
+          <div class="morph-box raw-box">
+            <span class="box-label">Raw Predicted Characters</span>
+            <div class="display-text" id="displayRawText">No image processed</div>
+          </div>
+
+          <div class="morph-arrow" id="morphArrow">➔</div>
+
+          <div class="morph-box corr-box">
+            <span class="box-label">Meaningful Word Match</span>
+            <div class="display-text text-green" id="displayCorrText">Upload image to extract</div>
+          </div>
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric-pill">
+            <span class="pill-label">Levenshtein Dist</span>
+            <strong id="valDist">0</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="pill-label">Match Confidence</span>
+            <strong class="text-cyan" id="valConf">0%</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="pill-label">Substitutions</span>
+            <strong id="valSub">0</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="pill-label">Insertions</span>
+            <strong id="valIns">0</strong>
+          </div>
+          <div class="metric-pill">
+            <span class="pill-label">Deletions</span>
+            <strong id="valDel">0</strong>
+          </div>
+        </div>
+
+        <!-- Palaeographic Carbon Chronometry & Vedic Meter Bar -->
+        <div style="display:flex; gap:10px; margin: 12px 0; flex-wrap:wrap;">
+          <div style="flex:1; min-width:180px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:18px;">⏳</span>
+            <div>
+              <div style="font-size:10px; color:#fcd34d; font-weight:700;">Palaeographic Age (PCC-CSAE)</div>
+              <strong id="valPalaeoAge" style="font-size:12px; color:#ffffff;">14th Century CE • Zamorin Era</strong>
+            </div>
+          </div>
+          <div style="flex:1; min-width:180px; background:rgba(168,85,247,0.08); border:1px solid rgba(168,85,247,0.3); border-radius:10px; padding:8px 12px; display:flex; align-items:center; gap:8px;">
+            <span style="font-size:18px;">📜</span>
+            <div>
+              <div style="font-size:10px; color:#d8b4fe; font-weight:700;">Vedic Meter / Accent (SCT-VTAD)</div>
+              <strong id="valVedicAccent" style="font-size:12px; color:#ffffff;">Anushtup (അനുഷ്ടുപ്പ്) • ഉദാത്തം</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extracted Meaningful Words Section -->
+        <div class="extracted-words-section">
+          <h3>📜 Extracted Meaningful Words (N-Gram Lattice Ranked)</h3>
+          <div class="word-list" id="extractedWordsList">
+            <div style="color:var(--text-sub);font-size:13px;">No image uploaded. Drag & drop a manuscript image to run dynamic OCR.</div>
+          </div>
+        </div>
+
+        <!-- SOTA S3: SVG Glyph Vector Morphing Synthesizer -->
+        <div class="synthesized-section" style="margin-top:16px; background:rgba(168,85,247,0.06); border-color:rgba(168,85,247,0.2);">
+          <h4 style="color:#a855f7; display:flex; justify-content:space-between; align-items:center;">
+            <span>✨ SVG Vector Glyph Morphing Synthesizer</span>
+            <span style="font-size:10px; background:rgba(168,85,247,0.2); padding:2px 8px; border-radius:10px; color:#e9d5ff;">SOTA Bezier Engine</span>
+          </h4>
+          <div style="display:flex; align-items:center; justify-content:space-around; background:rgba(0,0,0,0.3); padding:12px; border-radius:10px; margin-top:8px;">
+            <div style="text-align:center;">
+              <div style="font-size:10px; color:#94a3b8; margin-bottom:4px;">Historical Stylus Ink Contour</div>
+              <svg id="svgRawContour" width="140" height="52" viewBox="0 0 130 55" style="background:#0f172a; border-radius:8px; border:1px solid rgba(56,189,248,0.25); box-shadow:0 0 10px rgba(56,189,248,0.1);"></svg>
+            </div>
+            <div style="font-size:18px; color:#a855f7; animation: pulse 1.5s infinite;">⚡ ➔ ⚡</div>
+            <div style="text-align:center;">
+              <div style="font-size:10px; color:#94a3b8; margin-bottom:4px;">Modern Standardized Vector Glyph</div>
+              <div id="svgMorphGlyph" style="font-size:26px; font-weight:800; color:#38bdf8; font-family:'Noto Sans Malayalam', sans-serif;">--</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOTA Multilingual Literature Translation & Semantic Bridge Panel -->
+        <div class="translation-bridge-card" style="margin-top:16px; background:linear-gradient(135deg, rgba(30,58,138,0.22), rgba(88,28,135,0.22)); border:1px solid rgba(56,189,248,0.3); border-radius:14px; padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <h4 style="color:#38bdf8; margin:0; font-size:13px; display:flex; align-items:center; gap:8px;">
+              <span>🌐 Multilingual Epigraphical Semantic Bridge</span>
+            </h4>
+            <span class="badge glow-blue" id="transGenreBadge" style="font-size:10px;">Classical Literature</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px;">
+            <!-- Old vs New Literature Form -->
+            <div style="background:rgba(0,0,0,0.35); padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+              <div style="font-size:10px; color:#fcd34d; font-weight:700; margin-bottom:4px;">🏛️ Old vs New Literature Form</div>
+              <div id="transOldVsNew" style="font-size:12px; color:#e2e8f0; line-height:1.5;">--</div>
+            </div>
+
+            <!-- English Translation -->
+            <div style="background:rgba(0,0,0,0.35); padding:10px; border-radius:8px; border:1px solid rgba(56,189,248,0.2);">
+              <div style="font-size:10px; color:#38bdf8; font-weight:700; margin-bottom:4px;">🇬🇧 English Meaning & Exegesis</div>
+              <div id="transEnglish" style="font-size:12px; color:#ffffff; font-weight:600; line-height:1.4;">--</div>
+            </div>
+
+            <!-- Hindi Translation -->
+            <div style="background:rgba(0,0,0,0.35); padding:10px; border-radius:8px; border:1px solid rgba(168,85,247,0.2);">
+              <div style="font-size:10px; color:#c084fc; font-weight:700; margin-bottom:4px;">🇮🇳 हिन्दी अर्थ एवं संदर्भ (Hindi)</div>
+              <div id="transHindi" style="font-size:13px; color:#ffffff; font-weight:600; line-height:1.4;">--</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Panel 3: Malayalam Trie Lexicon Visualizer -->
+      <section class="glass-card panel-dictionary">
+        <div class="card-header">
+          <h2>📚 Malayalam Dictionary Trie Explorer</h2>
+          <span class="card-sub">Lexicon Verification Engine</span>
+        </div>
+        <div class="search-bar">
+          <input type="text" id="dictSearchInput" placeholder="Type Malayalam word to search lexicon...">
+          <button class="btn btn-secondary" id="btnSearchDict">Search</button>
+        </div>
+        <div class="lexicon-results" id="lexiconResults">
+          <!-- Dynamic Results -->
+        </div>
+      </section>
+
+      <!-- Panel 4: Accuracy & Benchmark Gauges -->
+      <section class="glass-card panel-accuracy">
+        <div class="card-header">
+          <h2>📊 Accuracy & Performance Benchmark Suite</h2>
+          <span class="card-sub">WAR, WER, CER & F1 Evaluation</span>
+        </div>
+
+        <div class="gauges-grid">
+          <div class="gauge-card">
+            <div class="gauge-circle" id="circleWAR" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeWAR">--%</span>
+            </div>
+            <span class="gauge-label">Word Accuracy Rate (WAR)</span>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-circle" id="circleCharAcc" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeCharAcc">--%</span>
+            </div>
+            <span class="gauge-label">Character Accuracy</span>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-circle danger-circle" id="circleCER" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeCER">--%</span>
+            </div>
+            <span class="gauge-label">Character Error Rate (CER)</span>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-circle danger-circle" id="circleWER" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeWER">--%</span>
+            </div>
+            <span class="gauge-label">Word Error Rate (WER)</span>
+          </div>
+        </div>
+
+        <div class="benchmark-footer">
+          <button class="btn btn-outline" id="btnRunBenchmark">⚡ Run Full Benchmark Test</button>
+        </div>
+      </section>
+
+      <!-- Panel 5: Multi-Model ML Classifier & 2D Decision Boundary Space -->
+      <section class="glass-card panel-ml-models" style="grid-column: 1 / -1; margin-top:8px;">
+        <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <div>
+            <h2>🔬 Multi-Model ML Classifier & 2D Decision Boundary Space</h2>
+            <span class="card-sub">Comparative Epigraphical Separability: SVM • Gaussian Naive Bayes • Random Forest • k-NN • CNN Lattice</span>
+          </div>
+          <span class="badge glow-blue" id="activeModelBadge" style="font-size:11px;">Active: Support Vector Machine (SVM) • Awaiting Image</span>
+        </div>
+
+        <!-- Model Selector Switcher Bar -->
+        <div class="model-selector-bar" id="modelSelectorBar" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
+          <button class="model-tab-btn active" data-model="svm" style="background:#38bdf8; color:#0f172a; border:none; border-radius:10px; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer;">🎯 SVM (Hyperplane)</button>
+          <button class="model-tab-btn" data-model="gnb" style="background:rgba(255,255,255,0.08); color:#cbd5e1; border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer;">📊 Gaussian Naive Bayes</button>
+          <button class="model-tab-btn" data-model="rf" style="background:rgba(255,255,255,0.08); color:#cbd5e1; border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer;">🌲 Random Forest (100 Trees)</button>
+          <button class="model-tab-btn" data-model="knn" style="background:rgba(255,255,255,0.08); color:#cbd5e1; border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer;">📍 k-NN (Mahalanobis k=5)</button>
+          <button class="model-tab-btn" data-model="cnn" style="background:rgba(255,255,255,0.08); color:#cbd5e1; border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer;">🧬 CNN Neural Lattice</button>
+        </div>
+
+        <div style="display:grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap:16px; align-items:start;">
+          <!-- 2D Decision Boundary Canvas Viewport -->
+          <div style="background:#ffffff; border-radius:14px; padding:10px; border:1px solid rgba(255,255,255,0.2); box-shadow:0 8px 30px rgba(0,0,0,0.4); text-align:center; overflow:hidden;">
+            <canvas id="decisionCanvas" width="620" height="460" style="max-width:100%; height:auto; display:block; margin:0 auto; border-radius:8px;"></canvas>
+          </div>
+
+          <!-- Model Performance Metrics & Comparative Table -->
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Active Model Metrics Card -->
+            <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(56,189,248,0.3); border-radius:12px; padding:14px;">
+              <h4 id="modelCardTitle" style="color:#38bdf8; margin:0 0 8px 0; font-size:14px;">Support Vector Machine (SVM) Decision Boundary</h4>
+              <p id="modelCardDesc" style="font-size:12px; color:#cbd5e1; line-height:1.5; margin-bottom:10px;">
+                Constructs an optimal maximum-margin separating hyperplane to distinguish complex Grantha ligatures from standard consonant glyphs using stroke projection variance and loop curvature entropy.
+              </p>
+              <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; font-size:12px;">
+                <div style="background:rgba(255,255,255,0.05); padding:6px 10px; border-radius:6px;">
+                  <span style="color:#94a3b8;">Accuracy:</span> <strong id="mlMetricAcc" style="color:#4ade80;">--%</strong>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:6px 10px; border-radius:6px;">
+                  <span style="color:#94a3b8;">F1-Score:</span> <strong id="mlMetricF1" style="color:#a855f7;">--%</strong>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:6px 10px; border-radius:6px;">
+                  <span style="color:#94a3b8;">Inference Latency:</span> <strong id="mlMetricLatency" style="color:#38bdf8;">-- ms</strong>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:6px 10px; border-radius:6px;">
+                  <span style="color:#94a3b8;">Optimization Core:</span> <strong id="mlMetricCore" style="color:#fcd34d;">max (2 / ‖w‖) + C∑ξᵢ</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5-Model Quick Comparison Snapshot -->
+            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; overflow-x:auto;">
+              <div style="font-size:11px; font-weight:700; color:#e2e8f0; margin-bottom:8px; display:flex; justify-content:space-between;">
+                <span>📊 5-Model SOTA Benchmark Summary</span>
+                <span id="mlEvaluationStatus" style="color:#38bdf8;">Awaiting Palm Leaf Upload</span>
+              </div>
+              <table style="width:100%; border-collapse:collapse; font-size:11px; text-align:left;">
+                <thead>
+                  <tr style="border-bottom:1px solid rgba(255,255,255,0.15); color:#94a3b8;">
+                    <th style="padding:4px 6px;">Model</th>
+                    <th style="padding:4px 6px;">Accuracy</th>
+                    <th style="padding:4px 6px;">F1</th>
+                    <th style="padding:4px 6px;">Latency</th>
+                  </tr>
+                </thead>
+                <tbody id="mlModelsSummaryBody">
+                  <!-- Generated Dynamically in app.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Glassmorphic Benchmark Modal -->
+  <div class="modal-overlay" id="benchmarkModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3>⚡ Benchmark Performance Dashboard</h3>
+          <span class="modal-sub">Live SOTA Evaluation & Unique Word Synthesis Metrics</span>
+        </div>
+        <button class="modal-close" id="btnCloseModal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Performance Scorecard Bars -->
+        <div class="scorecard-grid">
+          <div class="score-row">
+            <div class="score-info">
+              <span>Word Accuracy Rate (WAR)</span>
+              <strong class="text-cyan" id="modalValWAR">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill bg-cyan" id="modalFillWAR" style="width: 0%;"></div></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-info">
+              <span>Character Accuracy</span>
+              <strong class="text-green" id="modalValCharAcc">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill bg-green" id="modalFillCharAcc" style="width: 0%;"></div></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-info">
+              <span>F1-Score</span>
+              <strong class="text-purple" id="modalValF1">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill bg-purple" id="modalFillF1" style="width: 0%;"></div></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-info">
+              <span>Character Error Rate (CER)</span>
+              <strong class="text-pink" id="modalValCER">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill bg-pink" id="modalFillCER" style="width: 0%;"></div></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-info">
+              <span>Word Error Rate (WER)</span>
+              <strong class="text-orange" id="modalValWER" style="color:#fb923c;">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="modalFillWER" style="width: 0%; background:#fb923c;"></div></div>
+          </div>
+        </div>
+
+        <!-- Synthesized Unique Meaningful Words Section -->
+        <div class="synthesized-section">
+          <h4>📜 Reconstructed Unique Manuscript Words (N-Gram Beam Search)</h4>
+          <div class="word-chips-container" id="modalWordChips">
+            <span style="color:var(--text-sub);font-size:13px;" id="modalChipsPlaceholder">Loading synthesized lexicon candidates...</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Candidate Ranking & Analysis Section -->
+        <div class="synthesized-section" style="background: rgba(15, 23, 42, 0.6); border-color: rgba(255, 255, 255, 0.1);">
+          <h4>📋 Extracted Candidates & Alignment Analysis</h4>
+          <div id="modalCandidatesTable" style="overflow-x:auto;">
+            <div style="color:var(--text-sub);font-size:13px;">Analyzing candidate alignments...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display:flex; gap:12px; justify-content:flex-end; border-top:1px solid rgba(255,255,255,0.1); padding-top:16px; margin-top:16px;">
+        <button class="btn btn-primary" id="btnPrintPDF">🖨️ Export & Print Benchmark PDF</button>
+        <button class="btn btn-secondary" id="btnCloseModalBtn">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dynamic Studio Toast Notification Element -->
+  <div id="studioToast" class="studio-toast" role="alert">
+    <div class="studio-toast-icon" id="toastIcon">📥</div>
+    <div class="studio-toast-content">
+      <div class="studio-toast-title" id="toastTitle">Palm Leaf Manuscript Required</div>
+      <div class="studio-toast-msg" id="toastMsg">Please upload a palm leaf image to run dynamic OCR segmentation & evaluation.</div>
+    </div>
+    <button class="studio-toast-btn" id="toastActionBtn">📁 Upload Image</button>
+    <button class="studio-toast-close" id="toastCloseBtn" aria-label="Close">✕</button>
+  </div>
+
+  <!-- Dedicated Printable Report Container -->
+  <div id="printReportArea" style="display:none;"></div>
+
+  <script src="app.js?v=62"></script>
+</body>
+</html>
+
+
