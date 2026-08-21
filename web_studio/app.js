@@ -630,8 +630,8 @@ function detectPalmLeafManuscript(data, w, h) {
         continue;
       }
 
-      // Check modern blue dyes (clothing / sky / casual photos)
-      if (b > r + 16 && b > g + 10) {
+      // Check modern synthetic blue dyes (clothing / sky in casual photos: Blue strictly exceeds Red and Green)
+      if (b > r + 20 && b > g + 15) {
         blueDominantPixels++;
         continue;
       }
@@ -640,7 +640,7 @@ function detectPalmLeafManuscript(data, w, h) {
       const isRedCloth = ((r - g > 45) && (g < 115)) || ((r - b > 40) && (b < 95)) || ((r > 120) && (g < 60) && (b < 80));
       if (isRedCloth) continue;
 
-      // Check purple / velvet book cover (Blue is higher than Green on purple fabrics)
+      // Check purple / velvet book cover (Blue exceeds Green on purple covers, but Red exceeds Blue)
       const isPurple = (b > g + 8) && (r > 75);
       if (isPurple) continue;
 
@@ -658,7 +658,7 @@ function detectPalmLeafManuscript(data, w, h) {
       }
     }
 
-    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.22) {
+    if (sampledInRow > 0 && (palmPxInRow / sampledInRow) > 0.20) {
       for (let sy = y; sy < Math.min(h, y + step); sy++) {
         isLeafRow[sy] = 1;
       }
@@ -670,8 +670,8 @@ function detectPalmLeafManuscript(data, w, h) {
   const aspect = w / Math.max(1, h);
 
   // Reject non-manuscripts (photos with blue clothing / modern dyes, studio backdrops, or non-epigraphical color profiles)
-  const isTooBlue = blueRatio > 0.20;
-  const isTooWhite = whiteRatio > 0.32;
+  const isTooBlue = blueRatio > 0.08;
+  const isTooWhite = whiteRatio > 0.35;
   const isPortraitRatio = (whiteRatio > 0.18 && aspect < 1.15);
   if (isTooBlue || isTooWhite || isPortraitRatio) {
     return { isValidManuscript: false, isBlankLeaf: false, status: 'non_manuscript', leafRect: null, confidence: 0, reason: 'Non-Manuscript Photo Detected' };
@@ -3166,6 +3166,37 @@ function renderImage() {
   const w = imageCanvas.width;
   const h = imageCanvas.height;
 
+  // If non-manuscript image, render warning overlay and SKIP running epigraphical filters on non-manuscripts
+  if (currentOCRResult.isManuscript === false) {
+    imgCtx.save();
+    const isBlank = currentOCRResult.status === 'blank_leaf';
+    imgCtx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+    imgCtx.strokeStyle = isBlank ? 'rgba(245, 158, 11, 0.7)' : 'rgba(239, 68, 68, 0.7)';
+    imgCtx.lineWidth = 1.5;
+    const badgeW = Math.min(w - 24, 460);
+    const badgeH = 34;
+    const badgeX = (w - badgeW) / 2;
+    const badgeY = 14;
+    imgCtx.beginPath();
+    if (typeof imgCtx.roundRect === 'function') {
+      imgCtx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
+    } else {
+      imgCtx.rect(badgeX, badgeY, badgeW, badgeH);
+    }
+    imgCtx.fill();
+    imgCtx.stroke();
+
+    imgCtx.fillStyle = isBlank ? '#fbbf24' : '#f87171';
+    imgCtx.font = 'bold 12px Manrope, sans-serif';
+    imgCtx.textAlign = 'center';
+    const textMsg = isBlank
+      ? '⚠️ Blank Palm-Leaf (No Text Inscriptions Found)'
+      : (currentViewMode !== 'original' ? '⚠️ Epigraphical Filters Active Only on Palm-Leaf Manuscripts' : '⚠️ Non-Palm Leaf Image (Epigraphical OCR Inactive)');
+    imgCtx.fillText(textMsg, w / 2, badgeY + 21);
+    imgCtx.restore();
+    return;
+  }
+
   // Mode: Sauvola Adaptive Binarization (Pure Clean White Background with Black Ink)
   if (currentViewMode === 'binarized') {
     const rawData = imgCtx.getImageData(0, 0, w, h);
@@ -3244,34 +3275,6 @@ function renderImage() {
     const rawData = imgCtx.getImageData(0, 0, w, h);
     const fatData = computeBiometricScribeFatigue(rawData, currentOCRResult.boxes);
     imgCtx.putImageData(fatData, 0, 0);
-  }
-
-  // If non-manuscript image, render warning overlay and SKIP drawing character bounding boxes
-  if (currentOCRResult.isManuscript === false) {
-    imgCtx.save();
-    const isBlank = currentOCRResult.status === 'blank_leaf';
-    imgCtx.fillStyle = 'rgba(15, 23, 42, 0.88)';
-    imgCtx.strokeStyle = isBlank ? 'rgba(245, 158, 11, 0.7)' : 'rgba(239, 68, 68, 0.7)';
-    imgCtx.lineWidth = 1.5;
-    const badgeW = Math.min(w - 24, 460);
-    const badgeH = 34;
-    const badgeX = (w - badgeW) / 2;
-    const badgeY = 14;
-    imgCtx.beginPath();
-    if (typeof imgCtx.roundRect === 'function') {
-      imgCtx.roundRect(badgeX, badgeY, badgeW, badgeH, 6);
-    } else {
-      imgCtx.rect(badgeX, badgeY, badgeW, badgeH);
-    }
-    imgCtx.fill();
-    imgCtx.stroke();
-
-    imgCtx.fillStyle = isBlank ? '#fbbf24' : '#f87171';
-    imgCtx.font = 'bold 12px Manrope, sans-serif';
-    imgCtx.textAlign = 'center';
-    imgCtx.fillText(isBlank ? '⚠️ Blank Palm-Leaf (No Text Inscriptions Found)' : '⚠️ Non-Palm Leaf Image (Epigraphical OCR Inactive)', w / 2, badgeY + 21);
-    imgCtx.restore();
-    return;
   }
 
   // Draw bounding boxes ONLY if bBoxesVisible is TRUE and boxes exist
