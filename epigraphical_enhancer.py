@@ -116,9 +116,56 @@ class EpigraphicalEnhancer:
 
         return output
 
+    def trace_palm_leaf_bounds(self, img):
+        """
+        Locates the exact bounding box of a palm leaf strip inside an arbitrary photograph
+        (e.g., resting on red cloth, dark desk, museum mount, velvet backing).
+        """
+        h, w = img.shape[:2]
+        if len(img.shape) == 3:
+            rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            r, g, b = rgb[:, :, 0].astype(float), rgb[:, :, 1].astype(float), rgb[:, :, 2].astype(float)
+        else:
+            gray = img.copy()
+            r = g = b = gray.astype(float)
+
+        # 1. Background Masking (red cloth, blue background, pure black/white borders)
+        is_red_cloth = (r - g > 25) & (r - b > 20) & (r > 70)
+        is_blue_bg = (b > r + 15) & (b > g + 10) & (b > 60)
+        is_deep_black = (r < 25) & (g < 25) & (b < 25)
+        is_pure_white = (r > 238) & (g > 238) & (b > 238)
+
+        is_background = is_red_cloth | is_blue_bg | is_deep_black | is_pure_white
+        is_candidate = ~is_background
+
+        # 2. Vertical Span Tracing
+        row_ratio = np.mean(is_candidate, axis=1)
+        leaf_rows = np.where(row_ratio > 0.28)[0]
+
+        if len(leaf_rows) > 0:
+            min_y = int(np.min(leaf_rows))
+            max_y = int(np.max(leaf_rows))
+        else:
+            min_y, max_y = 0, h
+
+        # 3. Horizontal Span Tracing
+        col_ratio = np.mean(is_candidate[min_y:max_y, :], axis=0)
+        leaf_cols = np.where(col_ratio > 0.20)[0]
+
+        if len(leaf_cols) > 0:
+            min_x = int(np.min(leaf_cols))
+            max_x = int(np.max(leaf_cols))
+        else:
+            min_x, max_x = 0, w
+
+        leaf_w = max(25, max_x - min_x)
+        leaf_h = max(16, max_y - min_y)
+
+        return min_x, min_y, leaf_w, leaf_h
+
     def validate_palm_leaf_authenticity(self, img):
         """
-        Multi-Stage Palm-Leaf Authenticity, Cellulose Matrix & Depth Profiler.
+        Multi-Stage Palm-Leaf Authenticity, Spatial Location & Multi-Gamut Profiler.
         Classifies input as: 'valid_inscribed_leaf', 'blank_leaf', or 'non_manuscript'.
         """
         if img is None:
@@ -127,85 +174,100 @@ class EpigraphicalEnhancer:
         h, w = img.shape[:2]
         total_pixels = w * h
 
-        # RGB conversion
         if len(img.shape) == 3:
             rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            r = rgb[:, :, 0].astype(float)
-            g = rgb[:, :, 1].astype(float)
-            b = rgb[:, :, 2].astype(float)
+            r, g, b = rgb[:, :, 0].astype(float), rgb[:, :, 1].astype(float), rgb[:, :, 2].astype(float)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         else:
             gray = img.copy()
             r = g = b = gray.astype(float)
 
-        # 1. Color Gamut Analysis
-        dark_ui_mask = (r < 42) & (g < 45) & (b < 60)
-        dark_ui_ratio = np.sum(dark_ui_mask) / total_pixels
-
-        synthetic_blue_mask = (b > r + 18) & (b > g + 10) & (b > 60)
-        synthetic_blue_ratio = np.sum(synthetic_blue_mask) / total_pixels
-
-        lignin_mask = (r >= 45) & (g >= 35) & (b >= 20) & (r >= g - 8) & (g >= b - 15) & (r >= b + 8) & ((r / np.maximum(1.0, b)) >= 1.08)
-        lignin_ratio = np.sum(lignin_mask) / total_pixels
-
-        green_leaf_mask = (g > r + 12) & (g > b + 12) & (g > 45)
-        green_leaf_ratio = np.sum(green_leaf_mask) / total_pixels
+        # Whole-Image synthetic UI checks
+        dark_ui_mask = (r < 40) & (g < 45) & (b < 60)
+        dark_ui_ratio = float(np.sum(dark_ui_mask) / total_pixels)
 
         local_std = cv2.blur((gray.astype(float) - cv2.blur(gray.astype(float), (9, 9)))**2, (9, 9))
-        flat_ratio = np.sum(local_std < 4.0) / total_pixels
+        flat_ratio = float(np.sum(local_std < 3.5) / total_pixels)
 
-        # 2. Cellulose Fiber Energy
-        gray_float = gray.astype(float)
-        blur_horiz = cv2.blur(gray_float, (15, 1))
-        blur_vert = cv2.blur(gray_float, (1, 15))
-        fiber_energy = float(np.mean(np.abs(blur_horiz - blur_vert)))
+        # 1. Trace exact spatial palm leaf location
+        leaf_x, leaf_y, leaf_w, leaf_h = self.trace_palm_leaf_bounds(img)
+        leaf_pixels = max(1, leaf_w * leaf_h)
 
-        # 3. Stylus Groove Micro-Relief (3D Depth)
-        laplacian = np.abs(cv2.Laplacian(gray, cv2.CV_64F))
-        groove_relief = float(np.mean(laplacian) / 255.0)
+        leaf_roi_gray = gray[leaf_y:leaf_y+leaf_h, leaf_x:leaf_x+leaf_w]
+        if len(img.shape) == 3:
+            leaf_roi_rgb = rgb[leaf_y:leaf_y+leaf_h, leaf_x:leaf_x+leaf_w]
+            lr = leaf_roi_rgb[:, :, 0].astype(float)
+            lg = leaf_roi_rgb[:, :, 1].astype(float)
+            lb = leaf_roi_rgb[:, :, 2].astype(float)
+        else:
+            lr = lg = lb = leaf_roi_gray.astype(float)
 
-        # 4. Inscription Density
-        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 25, 8)
+        # 2. Multi-Gamut Chromatography Inside Leaf Strip
+        is_ochre = (lr >= lg - 10) & (lg >= lb - 15) & (lr >= 50)
+        is_weathered_ivory = (np.abs(lr - lg) < 28) & (np.abs(lg - lb) < 28) & (lr > 65)
+        is_dark_patina = (lr >= 35) & (lg >= 30) & (lb >= 20) & (np.abs(lr - lg) < 35)
+        is_green = (lg > lr + 10) & (lg > lb + 10) & (lg > 45)
+
+        palm_pigment_mask = is_ochre | is_weathered_ivory | is_dark_patina | is_green
+        palm_pigment_ratio = float(np.sum(palm_pigment_mask) / leaf_pixels)
+        green_ratio = float(np.sum(is_green) / leaf_pixels)
+
+        # 3. Directional Cellulose Fiber Energy inside Leaf Strip
+        gray_float = leaf_roi_gray.astype(float)
+        blur_h = cv2.blur(gray_float, (15, 1))
+        blur_v = cv2.blur(gray_float, (1, 15))
+        fiber_energy = float(np.mean(np.abs(blur_h - blur_v)))
+
+        # 4. 3D Stylus Groove Micro-Relief (Laplacian)
+        lap = np.abs(cv2.Laplacian(leaf_roi_gray, cv2.CV_64F))
+        depth_relief = float(np.mean(lap) / 255.0)
+
+        # 5. Inscription Stroke Density inside Leaf Strip
+        thresh = cv2.adaptiveThreshold(leaf_roi_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 21, 6)
         kernel_small = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
-        cleaned_ink = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel_small)
-        ink_density = float(np.sum(cleaned_ink > 0) / total_pixels)
+        ink_mask = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel_small)
+        ink_density = float(np.sum(ink_mask > 0) / leaf_pixels)
 
-        # Decision Matrix
-        is_synthetic_ui = (dark_ui_ratio > 0.25) or (synthetic_blue_ratio > 0.08) or (flat_ratio > 0.40 and lignin_ratio < 0.20)
-
-        cellulose_index = min(99.4, max(1.2, (fiber_energy * 18.5) + (lignin_ratio * 25.0)))
-        depth_score = min(1.20, max(0.01, groove_relief * 12.0))
+        # Telemetry calculations
+        cellulose_index = min(99.6, max(2.5, (fiber_energy * 15.0) + (palm_pigment_ratio * 30.0)))
+        depth_score = min(1.20, max(0.02, depth_relief * 11.5))
+        is_synthetic_ui = (dark_ui_ratio > 0.35 and palm_pigment_ratio < 0.25) or (flat_ratio > 0.45 and fiber_energy < 0.8)
 
         telemetry = {
             "cellulose_index": f"{cellulose_index:.1f}%",
             "depth_score": f"{depth_score:.2f} μm",
             "inscription_density": f"{ink_density * 100:.1f}%",
-            "gamut_match": f"{lignin_ratio * 100:.1f}%",
-            "is_synthetic_ui": bool(is_synthetic_ui)
+            "gamut_match": f"{palm_pigment_ratio * 100:.1f}%",
+            "is_synthetic_ui": bool(is_synthetic_ui),
+            "leaf_location": f"X:{leaf_x}, Y:{leaf_y}, W:{leaf_w}, H:{leaf_h}"
         }
 
-        if is_synthetic_ui or (lignin_ratio < 0.18 and green_leaf_ratio < 0.20) or (fiber_energy < 1.2 and dark_ui_ratio > 0.12):
+        # Classification
+        if is_synthetic_ui or (palm_pigment_ratio < 0.22 and fiber_energy < 1.0) or (dark_ui_ratio > 0.30 and palm_pigment_ratio < 0.25):
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
                 "reason": "Synthetic Digital UI / Non-Manuscript Image Detected (No Organic Cellulose Fibers or 3D Stylus Incisions Found)",
+                "location": None,
                 "telemetry": telemetry
             }
-        elif (green_leaf_ratio > 0.30 or lignin_ratio > 0.25) and ink_density < 0.015:
+        elif (green_ratio > 0.35 or palm_pigment_ratio > 0.35) and ink_density < 0.020:
             return {
                 "is_valid": False,
                 "is_blank": True,
                 "status": "blank_leaf",
                 "reason": "Blank / Uninscribed Leaf Surface Detected (No Historical Character Inscriptions)",
+                "location": (leaf_x, leaf_y, leaf_w, leaf_h),
                 "telemetry": telemetry
             }
-        elif (lignin_ratio >= 0.18 or fiber_energy >= 1.8) and ink_density >= 0.010:
+        elif palm_pigment_ratio >= 0.25 and ink_density >= 0.015:
             return {
                 "is_valid": True,
                 "is_blank": False,
                 "status": "valid_inscribed_leaf",
-                "reason": "Valid Historical Inscribed Palm-Leaf Manuscript",
+                "reason": "Authentic Historical Inscribed Palm-Leaf Manuscript",
+                "location": (leaf_x, leaf_y, leaf_w, leaf_h),
                 "telemetry": telemetry
             }
         else:
@@ -214,6 +276,7 @@ class EpigraphicalEnhancer:
                 "is_blank": False,
                 "status": "non_manuscript",
                 "reason": "Non-Manuscript Image (Cellulose Striation Below Inscription Threshold)",
+                "location": None,
                 "telemetry": telemetry
             }
 

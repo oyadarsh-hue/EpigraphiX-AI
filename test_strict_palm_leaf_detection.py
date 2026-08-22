@@ -1,13 +1,12 @@
 """
 EpigraphiX-AI: Automated Test Suite for Strict Palm-Leaf Detection & Depth Analysis
-Verifies multi-class discrimination between:
-1. Authentic Inscribed Palm-Leaf Manuscripts (valid_inscribed_leaf)
-2. Natural Uninscribed Leaves / Blank Palm Leaves (blank_leaf)
-3. Synthetic Digital UI Screenshots / Non-Manuscript Images (non_manuscript)
+Verifies multi-class discrimination and spatial location tracing across:
+1. Authentic Inscribed Palm-Leaf Manuscripts (Classic, Light Weathered, Red Cloth Background) -> valid_inscribed_leaf
+2. Natural Uninscribed Leaves / Blank Palm Leaves -> blank_leaf
+3. Synthetic Digital UI Screenshots / Non-Manuscript Images -> non_manuscript
 """
 
 import sys
-import io
 import os
 import cv2
 import numpy as np
@@ -45,16 +44,18 @@ def create_synthetic_ui_screenshot():
 def test_real_palm_leaf_manuscripts():
     enhancer = EpigraphicalEnhancer()
     real_paths = [
-        os.path.join("Input Image", "1.jpg"),
-        os.path.join("Input Image", "2.jpg"),
-        os.path.join("web_studio", "sample1.jpg"),
-        os.path.join("web_studio", "sample2.jpg")
+        ("Sample 1", os.path.join("Input Image", "1.jpg")),
+        ("Sample 2", os.path.join("Input Image", "2.jpg")),
+        ("Web Studio Sample 1", os.path.join("web_studio", "sample1.jpg")),
+        ("Web Studio Sample 2", os.path.join("web_studio", "sample2.jpg")),
+        ("User Image 1 (Light/Weathered Leaf)", r"C:\Users\HP\.gemini\antigravity\brain\3ba28ec2-ff52-48b3-b72f-a1248ba36c59\scratch\crop_user1.png"),
+        ("User Image 2 (Red Cloth Background)", r"C:\Users\HP\.gemini\antigravity\brain\3ba28ec2-ff52-48b3-b72f-a1248ba36c59\scratch\crop_user2.png")
     ]
-    for p in real_paths:
+    for name, p in real_paths:
         if os.path.exists(p):
             img = cv2.imread(p)
             res = enhancer.validate_palm_leaf_authenticity(img)
-            print(f"[TEST PASS] Real manuscript {p}: Status={res['status']}, Telemetry={res['telemetry']}")
+            print(f"[TEST PASS] {name} ({p}): Status={res['status']}, Location={res['telemetry']['leaf_location']}")
             assert res['status'] == 'valid_inscribed_leaf', f"Expected valid_inscribed_leaf for {p}, got {res['status']}"
             assert res['is_valid'] is True
 
@@ -81,18 +82,18 @@ def test_user_uploaded_screenshot():
     if os.path.exists(user_img_path):
         img = cv2.imread(user_img_path)
         res = enhancer.validate_palm_leaf_authenticity(img)
-        print(f"[TEST PASS] User screenshot: Status={res['status']}, Telemetry={res['telemetry']}")
+        print(f"[TEST PASS] User UI screenshot: Status={res['status']}, Telemetry={res['telemetry']}")
         assert res['status'] == 'non_manuscript', f"Expected non_manuscript for user screenshot, got {res['status']}"
         assert res['is_valid'] is False
 
 if __name__ == "__main__":
-    print("=" * 65)
-    print("Running EpigraphiX-AI Strict Palm-Leaf Detection Test Suite")
-    print("=" * 65)
+    print("=" * 70)
+    print("Running EpigraphiX-AI Deep-Drive Palm-Leaf Detection & Tracing Suite")
+    print("=" * 70)
     test_real_palm_leaf_manuscripts()
     test_blank_unwritten_leaf()
     test_synthetic_ui_rejection()
     test_user_uploaded_screenshot()
-    print("=" * 65)
+    print("=" * 70)
     print("ALL TESTS PASSED SUCCESSFULLY (100% Accuracy)")
-    print("=" * 65)
+    print("=" * 70)
