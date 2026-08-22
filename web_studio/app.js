@@ -5149,32 +5149,22 @@ updateModelComparisonUI();
 updateBenchmarkUI();
 updateSearch();
 
-function autoLoadInitialManuscript() {
-  if (!currentImage) {
-    loadImage('sample1.jpg');
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   updateModelComparisonUI();
   updateBenchmarkUI();
   updateSearch();
-  autoLoadInitialManuscript();
 });
 
 window.addEventListener('load', () => {
   updateModelComparisonUI();
   updateBenchmarkUI();
   updateSearch();
-  autoLoadInitialManuscript();
 });
 
-setTimeout(() => {
-  updateModelComparisonUI();
-  autoLoadInitialManuscript();
-}, 200);
-
+setTimeout(updateModelComparisonUI, 50);
+setTimeout(updateModelComparisonUI, 300);
 setTimeout(updateModelComparisonUI, 1000);
+
 
 
 
