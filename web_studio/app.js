@@ -3458,6 +3458,48 @@ function translateMalayalamWordToMultilingual(word) {
       english: 'Alphabet letter, syllable, and phonological character.',
       hindi: 'अक्षर / वर्ण (अविनाशी ध्वनि एवं लेखन प्रतीक)',
       genre: 'Phonology (വർണ്ണവിജ്ഞാനം)'
+    },
+    'ഗുണമേന്മ': {
+      old: 'ശ്രേഷ്ഠഗുണം / ഗുണവിശേഷം (Grantha Root: Guṇa)',
+      newLit: 'ഗുണമേന്മ (Quality / Superior Excellence / High Standard)',
+      english: 'Quality, superior excellence, high standard, and virtuous caliber in craftsmanship or character.',
+      hindi: 'गुणवत्ता / श्रेष्ठता / उत्तमता (उत्कृष्ट स्तर, प्रामाणिकता एवं सद्गुण)',
+      genre: 'Standard & Ethics (ഗുണനിലവാരം)'
+    },
+    'അറിവ്': {
+      old: 'ജ്ഞാനം / അറിവ് (Vatteluttu Inscription Root: Aṟivu)',
+      newLit: 'അറിവ് (Knowledge / Awareness / Wisdom / Perception)',
+      english: 'Knowledge, cognitive awareness, intellectual illumination, and deep experiential wisdom.',
+      hindi: 'ज्ञान / बोध / समझ (जानकारी, विद्या एवं आत्मबोध)',
+      genre: 'Epistemology (ജ്ഞാനശാസ്ത്രം)'
+    },
+    'അത്ഭുതം': {
+      old: 'വിസ്മയം / ആശ്ചര്യം (Grantha: Adbhuta Rasa • Wonderment)',
+      newLit: 'അത്ഭുതം (Wonder / Miracle / Astonishment)',
+      english: 'Wonder, miraculous occurrence, astonishment, and awe-inspiring marvel.',
+      hindi: 'आश्चर्य / चमत्कार / विस्मय (अनोखा कौतुक, अचरज एवं दैवीय घटना)',
+      genre: 'Aesthetics & Poetics (രസശാസ്ത്രം)'
+    },
+    'വളർച്ച': {
+      old: 'അഭിവൃദ്ധി / വികാസം (Prosperity & Flourishing)',
+      newLit: 'വളർച്ച (Growth / Progress / Expansion)',
+      english: 'Growth, flourishing advancement, expansion, and developmental progress.',
+      hindi: 'विकास / वृद्धि / बढ़ोतरी (उन्नति, उत्थान एवं संवृद्धि)',
+      genre: 'Development (പുരോഗതി)'
+    },
+    'ഐക്യം': {
+      old: 'ഏകത / സമഭാവം (Integral Harmony)',
+      newLit: 'ഐക്യം (Unity / Solidarity / Cohesion)',
+      english: 'Unity, solidarity, harmonious togetherness, and mutual fellowship.',
+      hindi: 'एकता / संगठन / मेल (सद्भाव, सामंजस्य एवं अखंडता)',
+      genre: 'Social Ethics (ഐക്യം)'
+    },
+    'മാനവികത': {
+      old: 'മാനുഷഭാവം / ദയ (Humanitarian Ethics)',
+      newLit: 'മാനവികത (Humanity / Humanism / Empathy)',
+      english: 'Humanity, universal empathy, kindness, and moral benevolence for all.',
+      hindi: 'मानवता / इंसानियत / दयालुता (परोपकार एवं मानवीय मूल्य)',
+      genre: 'Humanities (മാനവികത)'
     }
   };
 

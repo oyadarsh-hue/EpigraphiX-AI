@@ -1,4 +1,22 @@
-{
+# -*- coding: utf-8 -*-
+"""
+EpigraphiX-AI: Complete Exact Multilingual Lexicon Generator
+Generates full, authentic, rich multilingual definitions for all 341 Malayalam vocabulary words.
+Ensures ZERO generic boilerplate entries.
+"""
+
+import json
+import os
+import sys
+
+# Ensure UTF-8 output encoding across Windows terminals
+if sys.stdout and hasattr(sys.stdout, 'reconfigure') and not sys.stdout.closed:
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
+FULL_EXACT_LEXICON = {
   "മലയാളം": {
     "old": "മലയാണ്മ / മലനാട്ട് തമിഴ് (Grantha / Proto-Dravidian Root)",
     "newLit": "മലയാളം (Classical Malayalam Language)",
@@ -433,13 +451,6 @@
     "hindi": "जंगल / वन / कानन (सघन वन्य क्षेत्र एवं हरियाली)",
     "genre": "Ecology (വനശാസ്ത്രം)"
   },
-  "പൂവ്": {
-    "old": "പുഷ്പം / കുസുമം (Sacred Blossom)",
-    "newLit": "പൂവ് (Flower / Floral Blossom)",
-    "english": "Flower, botanical bloom used in ritual offerings and aesthetic art.",
-    "hindi": "फूल / पुष्प / कुसुम (सौंदर्य एवं पूजा का प्रतीक)",
-    "genre": "Aesthetics (പൂജാദ്രവ്യം)"
-  },
   "മരം": {
     "old": "വൃക്ഷം / തരു (Sacred Flora / Palm)",
     "newLit": "മരം (Tree / Timber Plant)",
@@ -447,12 +458,12 @@
     "hindi": "पेड़ / वृक्ष / तरु (छायादार एवं औषधीय पादप)",
     "genre": "Botany & Ayurveda (ഔഷധസസ്യം)"
   },
-  "ഇല": {
-    "old": "പത്രം / താളിയോല പത്രം (Foliage & Writing Leaf)",
-    "newLit": "ഇല (Leaf / Palm Foliage)",
-    "english": "Plant leaf, especially dried palmyra leaves processed for engraving manuscripts.",
-    "hindi": "पत्ता / ताड़पत्र (वृक्ष का पर्ण एवं लेखन पृष्ठ)",
-    "genre": "Manuscriptology (താളിയോല)"
+  "പൂവ്": {
+    "old": "പുഷ്പം / കുസുമം (Sacred Blossom)",
+    "newLit": "പൂവ് (Flower / Floral Blossom)",
+    "english": "Flower, botanical bloom used in ritual offerings and aesthetic art.",
+    "hindi": "फूल / पुष्प / कुसुम (सौंदर्य एवं पूजा का प्रतीक)",
+    "genre": "Aesthetics (പൂജാദ്രവ്യം)"
   },
   "കായ്": {
     "old": "ഫലം (Agricultural Harvest Produce)",
@@ -461,180 +472,194 @@
     "hindi": "फल / बीज (पेड़ की प्राकृतिक उपज)",
     "genre": "Agriculture (കൃഷിവിജ്ഞാനം)"
   },
-  "കനി": {
-    "old": "മധുരഫലം (Sweet Fruit Yield)",
-    "newLit": "കനി (Ripe Fruit / Bounty / Sweet Harvest)",
-    "english": "Sweet ripe fruit, natural agricultural bounty, and harvest blessing.",
-    "hindi": "फल / मीठा फल (पका हुआ स्वादिष्ट फल एवं प्रकृति का उपहार)",
-    "genre": "Agronomy & Nature (പ്രകൃതി)"
+  "ഇല": {
+    "old": "പത്രം / താളിയോല പത്രം (Foliage & Writing Leaf)",
+    "newLit": "ഇല (Leaf / Palm Foliage)",
+    "english": "Plant leaf, especially dried palmyra leaves processed for engraving manuscripts.",
+    "hindi": "पत्ता / ताड़पत्र (वृक्ष का पर्ण एवं लेखन पृष्ठ)",
+    "genre": "Manuscriptology (താളിയോല)"
   },
-  "ഭക്ഷണം": {
-    "old": "അന്നപാനം (Nourishment Offering)",
-    "newLit": "ഭക്ഷണം (Food / Sustenance / Meal)",
-    "english": "Nutritious sustenance, meal, and culinary nourishment.",
-    "hindi": "भोजन / खाना / आहार (जीवनदायी पोषण)",
-    "genre": "Culinary Heritage (പാചകശാസ്ത്രം)"
+  "തോട്ടം": {
+    "old": "ഉദ്യാനം / വാടിക (Cultivated Plantation)",
+    "newLit": "തോട്ടം (Garden / Orchard / Plantation)",
+    "english": "Cultivated agricultural garden, spice plantation, or floral orchard.",
+    "hindi": "बाग / बगीचा / उद्यान (पौधों एवं फसलों का बागीचा)",
+    "genre": "Horticulture (കൃഷി)"
   },
-  "വെള്ളം": {
-    "old": "ജലം / നീര് (Life-giving Aqua Root)",
-    "newLit": "വെള്ളം (Water / Life-Giving Liquid)",
-    "english": "Water — essential life-sustaining fluid and sacred cleansing element.",
-    "hindi": "पानी / जल (जीवनदायी जल एवं शुद्धि का प्रतीक)",
-    "genre": "Natural Elements (പഞ്ചഭൂതം)"
+  "വയൽ": {
+    "old": "പാടം / കേദാരം (Paddy Field)",
+    "newLit": "വയൽ (Paddy Field / Agricultural Wetland)",
+    "english": "Wetland paddy field cultivating rice sustenance in rural Kerala.",
+    "hindi": "खेत / धान का खेत (कृषि योग्य उपजाऊ भूमि)",
+    "genre": "Agronomy (കൃഷിഭൂമി)"
   },
-  "അന്നം": {
-    "old": "അന്നം ബ്രഹ്മം (Sacred Nourishing Grain)",
-    "newLit": "അന്നം (Food Grain / Sacred Rice)",
-    "english": "Sacred food grain embodying the divine spark of life.",
-    "hindi": "अन्न (जीवनदायी पवित्र अनाज)",
-    "genre": "Vedic Philosophy (അന്നസൂക്തം)"
+  "പാടം": {
+    "old": "കൃഷിനിലം (Cultivated Farmland)",
+    "newLit": "പാടം (Field / Farmland)",
+    "english": "Arable farmland, crop pasture, or agrarian cultivation tract.",
+    "hindi": "खेत / मैदान (फसलों से लहलहाता खेत)",
+    "genre": "Agronomy (കൃഷിനിലം)"
   },
-  "ആരോഗ്യം": {
-    "old": "ആയുരാരോഗ്യം (Wholesome Vitality)",
-    "newLit": "ആരോഗ്യം (Health / Well-Being / Vigor)",
-    "english": "Sound physical health, vigor, and balanced well-being.",
-    "hindi": "स्वास्थ्य / तंदुरुस्ती (आरोग्य एवं निरोगी काया)",
-    "genre": "Ayurveda (ആയുർവേദം)"
+  "കിണർ": {
+    "old": "കൂപം / ജലാശയം (Traditional Water Well)",
+    "newLit": "കിണർ (Water Well / Freshwater Shaft)",
+    "english": "Traditional stone-lined freshwater well providing domestic water.",
+    "hindi": "कुआँ / कूप (मीठे पानी का भूजल स्रोत)",
+    "genre": "Hydrology (ജലസ്രോതസ്സ്)"
   },
-  "സന്തോഷം": {
-    "old": "ആനന്ദം / പ്രസാദം (Delight & Joy)",
-    "newLit": "സന്തോഷം (Happiness / Joy / Gladness)",
-    "english": "Happiness, joy, cheerful contentment, and glad state of heart.",
-    "hindi": "खुशी / प्रसन्नता (हर्ष एवं उल्लास)",
-    "genre": "Psychology (മനോഭാവം)"
+  "കുളം": {
+    "old": "തടാകം / പുഷ്করিണി (Sacred Temple Pond)",
+    "newLit": "കുളം (Pond / Reservoir)",
+    "english": "Freshwater pond, temple reservoir, or community water body.",
+    "hindi": "तालाब / सरोवर / पुष्करिणी (पवित्र जलकुंड)",
+    "genre": "Hydrology (ജലാശയം)"
   },
-  "സമാധാനം": {
-    "old": "ശാന്തി / സമാഹിതം (Inner Composure)",
-    "newLit": "സമാധാനം (Peace / Tranquility / Reconciliation)",
-    "english": "Peace, tranquility, calm state of harmony without conflict.",
-    "hindi": "शांति / समाधान (सुलह एवं मानसिक शांति)",
-    "genre": "Philosophy (സമാധാനം)"
+  "റോഡ്": {
+    "old": "പാത / രാജവീഥി (Royal Highway)",
+    "newLit": "റോഡ് (Road / Thoroughfare)",
+    "english": "Paved road, highway, or vehicular transportation lane.",
+    "hindi": "सड़क / मार्ग / रास्ता (आवागमन का पथ)",
+    "genre": "Infrastructure (ഗതാഗതം)"
   },
-  "സ്നേഹം": {
-    "old": "അൻപ് / സ്നേഹം (Pure Affection)",
-    "newLit": "സ്നേഹം (Love / Affection / Kindness)",
-    "english": "Pure love, kindness, and compassionate affection.",
-    "hindi": "प्रेम / स्नेह / अनुराग (आत्मीयता एवं प्यार)",
-    "genre": "Ethics (ധർമ്മശാസ്ത്രം)"
+  "പാലം": {
+    "old": "സേതു (Spanning Bridge)",
+    "newLit": "പാലം (Bridge / Viaduct)",
+    "english": "Engineered bridge spanning rivers or backwaters to connect communities.",
+    "hindi": "पुल / सेतु (नदी पार करने का ढाँचा)",
+    "genre": "Architecture (നിർമ്മാണകല)"
   },
-  "കരുണ": {
-    "old": "കാരുണ്യഭാവം (Deep Compassion)",
-    "newLit": "കരുണ (Compassion / Grace / Empathetic Love)",
-    "english": "Compassion and profound empathetic grace for suffering beings.",
-    "hindi": "करुणा (गहरी सहानुभूति एवं दयाभाव)",
-    "genre": "Spiritual Ethics (കരുണാഭാവം)"
+  "നഗരം": {
+    "old": "പുരം / പട്ടണം (Urban Metropolis)",
+    "newLit": "നഗരം (City / Urban Center)",
+    "english": "Urban city, trading metropolis, or fortified municipal center.",
+    "hindi": "शहर / नगर / महानगर (शहरी आबादी एवं व्यापार केंद्र)",
+    "genre": "Urban Geography (നഗരചരിത്രം)"
   },
-  "സത്യം": {
-    "old": "സത്യവാക്ക് (Unyielding Truth)",
-    "newLit": "സത്യം (Truth / Verity / Authenticity)",
-    "english": "Eternal truth, authenticity, and honesty.",
-    "hindi": "सत्य / सच (अटल यथार्थ एवं प्रामाणिकता)",
-    "genre": "Philosophy (തത്ത്വചിന്ത)"
+  "ഗ്രാമം": {
+    "old": "കര / ഊര് (Traditional Village)",
+    "newLit": "ഗ്രാമം (Village / Rural Hamlet)",
+    "english": "Traditional rural village commune rooted in agriculture and folk culture.",
+    "hindi": "गाँव / ग्राम / देहात (ग्रामीण समुदाय एवं बस्ती)",
+    "genre": "Sociology (ഗ്രാമജീവിതം)"
   },
-  "ധർമ്മം": {
-    "old": "ധർമ്മനീതി (Cosmic Righteous Order)",
-    "newLit": "ധർമ്മം (Righteousness / Virtue / Duty)",
-    "english": "Cosmic order, righteousness, moral duty, and ethical virtue.",
-    "hindi": "धर्म / कर्तव्य (सत्य, सदाचार एवं कर्तव्य पालन)",
-    "genre": "Dharmasastra (ധർമ്മശാസ്ത്രം)"
+  "വീട്": {
+    "old": "ഭവനം / ഇല്ലം / തറവാട് (Ancestral Homestead)",
+    "newLit": "വീട് (Home / House / Residence)",
+    "english": "Home, residential dwelling, and traditional Kerala architectural homestead.",
+    "hindi": "घर / मकान / गृह (परिवार का आशियाना एवं निवास)",
+    "genre": "Architecture (വാസ്തുശാസ്ത്രം)"
   },
-  "ന്യായം": {
-    "old": "ന്യായയുക്തത (Righteous Reason)",
-    "newLit": "ന്യായം (Fairness / Reason / Equity)",
-    "english": "Reason, moral logic, and equitable fairness.",
-    "hindi": "न्याय / तर्कसंगतता (उचित एवं प्रमाणिक निर्णय)",
-    "genre": "Logic (ന്യായദർശനം)"
+  "കെട്ടിടം": {
+    "old": "സൗധം / മാളിക (Architectural Edifice)",
+    "newLit": "കെട്ടിടം (Building / Edifice / Structure)",
+    "english": "Constructed edifice, masonry building, or structural hall.",
+    "hindi": "इमारत / भवन / भवन-संरचना (पक्का मकान)",
+    "genre": "Architecture (വാസ്തുശാസ്ത്രം)"
   },
-  "നീതി": {
-    "old": "ധർമ്മനീതി (Impartial Justice)",
-    "newLit": "നീതി (Justice / Equity / Righteous Law)",
-    "english": "Impartial justice, moral fairness, and rule of righteous law.",
-    "hindi": "न्याय / नीति (निष्पक्षता एवं सत्यनिष्ठा)",
-    "genre": "Jurisprudence (നീതിശാസ്ത്രം)"
+  "കട": {
+    "old": "പീടിക / വിപണി (Trade Shop / Bazaar)",
+    "newLit": "കട (Shop / Store / Retail Outlet)",
+    "english": "Retail commercial shop, grocery depot, or trading stall.",
+    "hindi": "दुकान / बाज़ार (व्यापार एवं क्रय-विक्रय स्थल)",
+    "genre": "Commerce (വാണിജ്യം)"
   },
-  "സ്വാതന്ത്ര്യം": {
-    "old": "സ്വതന്ത്രത (Sovereign Freedom)",
-    "newLit": "സ്വാതന്ത്ര്യം (Freedom / Liberty / Independence)",
-    "english": "Freedom, independence, state of liberty, and autonomous self-determination.",
-    "hindi": "स्वतंत्रता / आज़ादी (स्वाधीनता एवं आत्मनिर्णय)",
-    "genre": "Political Philosophy (രാഷ്ട്രതന്ത്രം)"
+  "ചന്ത": {
+    "old": "അങ്ങാടി / വിപണനകേന്ദ്രം (Market Bazaar)",
+    "newLit": "ചന്ത (Market / Weekly Bazaar / Fair)",
+    "english": "Open-air periodic village market for agricultural trade and bartering.",
+    "hindi": "हाट / बाज़ार / मंडी (क्रय-विक्रय का सामूहिक केंद्र)",
+    "genre": "Commerce (വിപണി)"
   },
-  "വിപ്ലവം": {
-    "old": "പരിവർത്തനം (Epochal Transformation)",
-    "newLit": "വിപ്ലവം (Revolution / Uprising / Paradigm Shift)",
-    "english": "Revolution, profound transformative movement, and paradigm shift.",
-    "hindi": "क्रांति / विप्लव (युगांतरकारी परिवर्तन)",
-    "genre": "Sociology (സാമൂഹികവിപ്ലവം)"
+  "ഓഫീസ്": {
+    "old": "കാര്യാലയം / കച്ചേരി (Administrative Office)",
+    "newLit": "ഓഫീസ് (Office / Administrative Bureau)",
+    "english": "Administrative workplace, government office, or institutional registry.",
+    "hindi": "कार्यालय / दफ्तर (प्रशासनिक कार्यस्थल)",
+    "genre": "Administration (ഭരണം)"
   },
-  "കല": {
-    "old": "ലളിതകല / ശിൽപ്പകല (Fine Aesthetic Arts)",
-    "newLit": "കല (Art / Fine Arts / Creative Craft)",
-    "english": "Creative art, aesthetic discipline, painting, sculpture, and artistic craft.",
-    "hindi": "कला / ललित कला / हुनर (सृजनात्मक एवं सौंदर्यपूर्ण विधा)",
-    "genre": "Fine Arts (കലാശാസ്ത്രം)"
+  "ആശുപത്രി": {
+    "old": "വൈദ്യശാല / ചികിത്സിതാലയം (Healing Sanctuary)",
+    "newLit": "ആശുപത്രി (Hospital / Medical Clinic)",
+    "english": "Hospital, Ayurvedic dispensary, and medical healthcare sanctuary.",
+    "hindi": "अस्पताल / चिकित्सालय (रोगोपचार एवं स्वास्थ्य केंद्र)",
+    "genre": "Medicine & Ayurveda (ആരോഗ്യം)"
   },
-  "സംഗീതം": {
-    "old": "ഗാനവിദ്യ / സംഗീതശാസ്ത്രം (Classical Music / Svaras)",
-    "newLit": "സംഗീതം (Music / Melody / Classical Harmony)",
-    "english": "Melodious music, rhythmic composition, vocal swaras, and orchestral harmony.",
-    "hindi": "संगीत / राग / गायन (स्वर एवं लय की मधुर साधना)",
-    "genre": "Performing Arts (സംഗീതം)"
+  "റെയിൽവേ": {
+    "old": "തീവണ്ടിപ്പാത (Railway Transport Network)",
+    "newLit": "റെയിൽവേ (Railway / Train Transit)",
+    "english": "Rail transport infrastructure connecting stations and passenger trains.",
+    "hindi": "रेलवे / रेलमार्ग (ट्रेन एवं पटरी परिवहन प्रणाली)",
+    "genre": "Transport (ഗതാഗതം)"
   },
-  "നൃത്തം": {
-    "old": "നാട്യം / കഥകളി / കൂടിയാട്ടം (Classical Dance)",
-    "newLit": "നൃത്തം (Classical Dance / Natya)",
-    "english": "Classical Kerala dance drama embodying Natyashastra tradition.",
-    "hindi": "नृत्य / नाच (शास्त्रीय नृत्य एवं भावभंगिमा)",
-    "genre": "Performing Arts (നാട്യശാസ്ത്രം)"
+  "വിമാനത്താവളം": {
+    "old": "വ്യോമയാനനിലയം (Aerial Terminal)",
+    "newLit": "വിമാനത്താവളം (Airport / Aerodrome)",
+    "english": "Airport terminal accommodating passenger flights and international cargo.",
+    "hindi": "हवाई अड्डा / विमानपत्तन (विमान सेवा केंद्र)",
+    "genre": "Aviation (ഗതാഗതം)"
   },
-  "ചലച്ചിത്രം": {
-    "old": "ഛായാചിത്രം (Moving Motion Picture)",
-    "newLit": "ചലച്ചിത്രം (Cinema / Motion Picture / Movie / Film)",
-    "english": "Cinema, motion picture film storytelling, and cinematic visual art.",
-    "hindi": "चलचित्र / सिनेमा / फ़िल्म (दृश्यकला एवं सिनेमाई कहानी)",
-    "genre": "Cinema & Media (ചലച്ചിത്രം)"
+  "തുറമുഖം": {
+    "old": "പട്ടണം / കടപ്പുറ തുറ (Ancient Spice Port)",
+    "newLit": "തുറമുഖം (Seaport / Maritime Harbor)",
+    "english": "Historic maritime seaport facilitating overseas naval trade and shipping.",
+    "hindi": "बंदरगाह / पोताश्रय (समुद्री व्यापार एवं जहाज लंगरगाह)",
+    "genre": "Maritime History (തുറമുഖം)"
   },
-  "നാടകം": {
-    "old": "ദൃശ്യകാവ്യം / നാട്യപ്രബന്ധം (Classical Drama / Theatre)",
-    "newLit": "നാടകം (Play / Drama / Theatrical Performance)",
-    "english": "Dramatic theatrical play portraying human emotion through stage performance.",
-    "hindi": "नाटक / अभिनय / रंगमंच (रंगमंचीय अभिनय एवं दृश्यकाव्य)",
-    "genre": "Theatre (നാട്യശാസ്ത്രം)"
+  "ബാങ്ക്": {
+    "old": "ധനകോശം / പണയപ്പീടിക (Treasury & Banking Vault)",
+    "newLit": "ബാങ്ക് (Bank / Financial Treasury)",
+    "english": "Financial banking institution managing currency deposits, credits, and loans.",
+    "hindi": "बैंक / अधिकोष (धन-संपत्ति एवं वित्तीय संस्थान)",
+    "genre": "Finance (ധനകാര്യം)"
   },
-  "കലാലയം": {
-    "old": "വിദ്യാപീഠം / സരസ്വതീഭവനം (Higher Arts College)",
-    "newLit": "കലാലയം (College / Institute of Arts & Sciences)",
-    "english": "College, academic temple of arts, higher education campus, and university.",
-    "hindi": "महाविद्यालय / कॉलेज (उच्च शिक्षा एवं कला का प्रांगण)",
-    "genre": "Pedagogy (വിദ്യാപീഠം)"
+  "പണം": {
+    "old": "നാണയം / കാശ് (Minted Coinage / Specie)",
+    "newLit": "പണം (Money / Currency / Wealth)",
+    "english": "Money, minted currency coins, financial capital, and monetary wealth.",
+    "hindi": "पैसा / धन / मुद्रा (क्रय-विक्रय का माध्यम)",
+    "genre": "Economics (സാമ്പത്തികം)"
   },
-  "വിദ്യാർത്ഥി": {
-    "old": "അന്തേവാസി / ബ്രഹ്മചാരി (Student of Knowledge)",
-    "newLit": "വിദ്യാർത്ഥി (Student / Scholar / Learner)",
-    "english": "Seeker of knowledge, student, and scholastic learner.",
-    "hindi": "विद्यार्थी / छात्र (ज्ञान पिपासु एवं अध्येता)",
-    "genre": "Pedagogy (വിദ്യാർത്ഥിജീവിതം)"
+  "വില": {
+    "old": "മൂല്യം / വിലവിവരം (Assessed Monetary Value)",
+    "newLit": "വില (Price / Cost / Market Value)",
+    "english": "Monetary price, assessed market cost, or intrinsic worth of a good.",
+    "hindi": "दाम / मूल्य / कीमत (वस्तु का आर्थिक मोल)",
+    "genre": "Economics (വിലനിലവാരം)"
   },
-  "അധ്യാപകൻ": {
-    "old": "ഗുരുനാഥൻ / ഉപദേഷ്ടാവ് (Dedicated Educator)",
-    "newLit": "അധ്യാപകൻ (Teacher / Professor / Instructor)",
-    "english": "Dedicated teacher, mentor, and transmitter of knowledge.",
-    "hindi": "अध्यापक / शिक्षक (ज्ञानदाता एवं मार्गदर्शक)",
-    "genre": "Pedagogy (അധ്യാപനം)"
+  "കച്ചവടം": {
+    "old": "വാണിജ്യം / വ്യാപാരിസംഘം (Mercantile Trade)",
+    "newLit": "കച്ചവടം (Commerce / Trade / Business)",
+    "english": "Mercantile commerce, buying and selling of goods, and enterprise.",
+    "hindi": "व्यापार / सौदा / कारोबार (वाणिज्यिक लेन-देन)",
+    "genre": "Commerce (വാണിജ്യം)"
   },
-  "ശാസ്ത്രജ്ഞൻ": {
-    "old": "ശാസ്ത്രവിചക്ഷണൻ (Scientific Researcher)",
-    "newLit": "ശാസ്ത്രജ്ഞൻ (Scientist / Scientific Researcher)",
-    "english": "Scientist, empirical researcher discovering natural laws through scientific method.",
-    "hindi": "वैज्ञानिक / शास्त्रवेत्ता (विज्ञान एवं शोध के विशेषज्ञ)",
-    "genre": "Science (ശാസ്ത്രം)"
+  "ജോലി": {
+    "old": "തൊഴിൽ / ഉദ്യോഗം (Vocation / Employment)",
+    "newLit": "ജോലി (Job / Work / Occupation)",
+    "english": "Employment, professional vocation, labor, and earning livelihood.",
+    "hindi": "काम / नौकरी / व्यवसाय (रोज़गार एवं श्रम)",
+    "genre": "Livelihood (തൊഴിൽ)"
   },
-  "എഞ്ചിനീയർ": {
-    "old": "ശിൽപ്പി / യന്ത്രവിദഗ്ദ്ധൻ (Engineer & Architect)",
-    "newLit": "എഞ്ചിനീയർ (Engineer / Technical Architect)",
-    "english": "Engineer, technical professional designing machines, infrastructure, and software.",
-    "hindi": "अभियंता / इंजीनियर (तकनीकी निर्माण एवं डिजाइन विशेषज्ञ)",
-    "genre": "Engineering (സാങ്കേതികം)"
+  "കൂലി": {
+    "old": "വേതനം / ഭൃതി (Daily Labor Wage)",
+    "newLit": "കൂലി (Wage / Daily Remuneration)",
+    "english": "Daily wage, remuneration paid for manual labor, or service compensation.",
+    "hindi": "मज़दूरी / वेतन / पारिश्रमिक (श्रम का मेहनताना)",
+    "genre": "Labor (തൊഴിൽ)"
+  },
+  "കൃഷിക്കാരൻ": {
+    "old": "ഉഴവൻ / കർഷകൻ (Agrarian Cultivator)",
+    "newLit": "കൃഷിക്കാരൻ (Farmer / Cultivator / Agronomist)",
+    "english": "Farmer, agricultural tiller, and food producer honoring the soil.",
+    "hindi": "किसान / कृषक / खेतिहर (अन्नदाता एवं भूमि-पुत्र)",
+    "genre": "Agronomy (കർഷകൻ)"
+  },
+  "തൊഴിലാളി": {
+    "old": "ശ്രമജീവി / കർമ്മകാരി (Manual Worker / Laborer)",
+    "newLit": "തൊഴിലാളി (Worker / Laborer / Employee)",
+    "english": "Laborer, working-class member, and dynamic builder of society.",
+    "hindi": "मज़दूर / श्रमिक / कामगार (श्रमजीवी वर्ग)",
+    "genre": "Sociology (തൊഴിൽ)"
   },
   "ഡോക്ടർ": {
     "old": "വൈദ്യൻ / ഭിഷഗ്വരൻ (Ayurvedic Physician)",
@@ -643,26 +668,26 @@
     "hindi": "चिकित्सक / डॉक्टर / वैद्य (रोग निवारक एवं उपचारक)",
     "genre": "Medicine (വൈദ്യം)"
   },
-  "കലാകാരൻ": {
-    "old": "ശിൽപ്പി / ചിത്രകാരൻ (Creative Artist)",
-    "newLit": "കലാകാരൻ (Artist / Performer / Creative Maestro)",
-    "english": "Artist, creative practitioner expressing aesthetic beauty through fine arts.",
-    "hindi": "कलाकार / शिल्पी (कला का सृजन करने वाला गुणी जन)",
-    "genre": "Fine Arts (കല)"
+  "അധ്യാപിക": {
+    "old": "ഉപാധ്യായ / ഗുരുപത്നി (Female Preceptor)",
+    "newLit": "അധ്യാപിക (Female Teacher / Schoolmistress)",
+    "english": "Female teacher, scholastic educator, and mentor of children.",
+    "hindi": "शिक्षिका / अध्यापिका (ज्ञान एवं संस्कार देने वाली गुरु)",
+    "genre": "Pedagogy (അധ്യാപനം)"
   },
-  "എഴുത്തുകാരൻ": {
-    "old": "ഗ്രന്ഥകാരൻ / കവി (Scribe & Author)",
-    "newLit": "എഴുത്തുകാരൻ (Writer / Author / Scribe)",
-    "english": "Author, literate scholar, or dedicated epigraphical scribe.",
-    "hindi": "लेखक / साहित्यकार (ग्रंथ रचनाकार)",
-    "genre": "Biography (സാഹിത്യകാരൻ)"
+  "പോലീസ്": {
+    "old": "കാവൽക്കാരൻ / ദണ്ഡപാണി (Guardian of Law)",
+    "newLit": "പോലീസ് (Police Officer / Law Enforcement)",
+    "english": "Police force enforcing civil order, security, and statutory law.",
+    "hindi": "पुलिस / आरक्षक (सुरक्षा एवं विधि-व्यवस्था संरक्षक)",
+    "genre": "Law Enforcement (പോലീസ്)"
   },
-  "കവി": {
-    "old": "കാവ്യകാരൻ / സൂരി (Classical Poet & Bard)",
-    "newLit": "കവി (Poet / Bard / Versifier)",
-    "english": "Poet, literary visionary composing metrical verses and deep aesthetic works.",
-    "hindi": "कवि / पद्यकार (काव्य रचनाकार एवं भावुक विचारक)",
-    "genre": "Poetics (കാവ്യം)"
+  "ഡ്രൈവർ": {
+    "old": "സാരഥി / വണ്ടിക്കാരൻ (Charioteer / Pilot)",
+    "newLit": "ഡ്രൈവർ (Driver / Vehicle Operator)",
+    "english": "Vehicle operator, chauffeur, or transport navigator.",
+    "hindi": "चालक / ड्राइवर / सारथी (वाहन चलाने वाला)",
+    "genre": "Transport (വാഹനം)"
   },
   "പത്രപ്രവർത്തകൻ": {
     "old": "വാർത്താവാഹകൻ (News Chronicler)",
@@ -698,6 +723,55 @@
     "english": "Organized society, civic community, and collective human fraternity.",
     "hindi": "समाज / समुदाय / जनसमूह (सह-अस्तित्व वाला मानव वर्ग)",
     "genre": "Sociology (സമൂഹശാസ്ത്രം)"
+  },
+  "ഗുണനിലവാരം": {
+    "old": "ഗുണശ്രേഷ്ഠത / ലക്ഷണം (Standard of Excellence)",
+    "newLit": "ഗുണനിലവാരം (Quality Standard / Benchmark / Grade)",
+    "english": "Quality standard, calibrated measure of excellence, reliability, and precision.",
+    "hindi": "गुणवत्ता / उच्च स्तर / मानक (सटीकता, श्रेष्ठता एवं प्रामाणिकता)",
+    "genre": "Evaluation Science (ഗുണനിലവാരം)"
+  },
+  "കൃത്രിമബുദ്ധി": {
+    "old": "യന്ത്രബുദ്ധി / കൽപ്പനജ്ഞാനം (Synthetic Cognitive Reasoning)",
+    "newLit": "കൃത്രിമബുദ്ധി (Artificial Intelligence / AI)",
+    "english": "Artificial Intelligence — computational synthesis of cognitive intellect and neural reasoning.",
+    "hindi": "कृत्रिम बुद्धिमत्ता (एआई / मशीन द्वारा बुद्धिमान निर्णय एवं सोच)",
+    "genre": "Computer Science (കമ്പ്യൂട്ടർ സയൻസ്)"
+  },
+  "ഭാരതവർഷം": {
+    "old": "ഭാരതവർഷം (Grantha: Bharata • Subcontinental Core)",
+    "newLit": "ഭാരതവർഷം (Subcontinent of Bharata / Sacred Realm)",
+    "english": "Sacred subcontinent of Bharata celebrating civilizational and spiritual legacy.",
+    "hindi": "भारतवर्ष (प्राचीन एवं पवित्र भारतीय उपमहाद्वीप)",
+    "genre": "Epic Heritage (ഇതിഹാസം)"
+  },
+  "താളിയോല": {
+    "old": "താലപത്രം / ഏട് (Inscribed Palmyra Leaf)",
+    "newLit": "താളിയോല (Palm-Leaf Manuscript Record)",
+    "english": "Palm-leaf manuscript prepared from dried palmyra leaves for iron-stylus engraving.",
+    "hindi": "ताड़पत्र पाण्डुलिपि (लौह लेखनी द्वारा उत्कीर्ण प्राचीन ग्रंथ)",
+    "genre": "Epigraphical Ductus (ശാസനം)"
+  },
+  "ശ്രീഗണപതയേ": {
+    "old": "ശ്രീഗണപതയേ നമഃ (Grantha Mangalacharanam)",
+    "newLit": "ശ്രീഗണപതയേ (Salutations to Lord Ganesha)",
+    "english": "Traditional auspicious invocatory salutation to Lord Ganesha opening manuscripts.",
+    "hindi": "श्रीगणेशाय नमः (ग्रंथारंभ में प्रयुक्त मांगलिक स्तुति)",
+    "genre": "Vedic Stotram (മംഗളാചരണം)"
+  },
+  "നമഃ": {
+    "old": "പ്രണാമം / വന്ദനം (Reverent Surrender)",
+    "newLit": "നമഃ (Obeisance / Bow of Respect / Homage)",
+    "english": "Spiritual salutation, humble homage, and deep reverent surrender.",
+    "hindi": "नमः (प्रणाम, श्रद्धाभाव एवं नमन)",
+    "genre": "Vedic Mantra (മന്ത്രം)"
+  },
+  "അവിഘ്നമസ്തു": {
+    "old": "അവിഘ്നമസ്തു (Benediction for Obstacle Removal)",
+    "newLit": "അവിഘ്നമസ്തു (May there be no obstacles)",
+    "english": "Ancient scribal prayer wishing flawless completion without any hindrances.",
+    "hindi": "अविघ्नमस्तु (बिना किसी विघ्न-बाधा के कार्य संपन्न हो)",
+    "genre": "Scribe Benediction (ആശീർവാദം)"
   },
   "ജനസമൂഹം": {
     "old": "ജനപദം / പ്രജാസമൂഹം (Citizenry & Polity)",
@@ -1294,13 +1368,6 @@
     "hindi": "कार्रवाई / कदम / प्रक्रिया (उचित उपाय अथवा व्यवस्था)",
     "genre": "Administration (ഭരണം)"
   },
-  "സംവിധാനം": {
-    "old": "സംവിധായകവിധി (Direction & Systematic Coordination)",
-    "newLit": "സംവിധാനം (System / Direction / Organization / Coordination)",
-    "english": "Systematic coordination, organizational management, direction, and system structure.",
-    "hindi": "व्यवस्था / प्रणाली / निर्देशन (संगठन, प्रबंध एवं कार्य-संचालन)",
-    "genre": "Management & Systems (സംവിധാനം)"
-  },
   "ക്രമീകരണം": {
     "old": "വിന്യാസം / അടുക്കിവെപ്പ് (Systematic Configuration)",
     "newLit": "ക്രമീകരണം (Arrangement / Configuration / Organization)",
@@ -1405,13 +1472,6 @@
     "english": "Absolute, consummate, perfect, and completely fulfilled.",
     "hindi": "पूर्ण / परिपूर्ण / समग्र (बिना किसी त्रुटि के संपूर्ण)",
     "genre": "Philosophy (പൂർണ്ണത)"
-  },
-  "ഗുണനിലവാരം": {
-    "old": "ഗുണശ്രേഷ്ഠത / ലക്ഷണം (Standard of Excellence)",
-    "newLit": "ഗുണനിലവാരം (Quality Standard / Benchmark / Grade)",
-    "english": "Quality standard, calibrated measure of excellence, reliability, and precision.",
-    "hindi": "गुणवत्ता / उच्च स्तर / मानक (सटीकता, श्रेष्ठता एवं प्रामाणिकता)",
-    "genre": "Evaluation Science (ഗുണനിലവാരം)"
   },
   "തനതായ": {
     "old": "സ്വകീയമായ / മൗലികം (Indigenous & Authentic)",
@@ -1938,13 +1998,6 @@
     "hindi": "निबंध / आलेख / प्रबंध (गहन विचारयुक्त गद्य रचना)",
     "genre": "Literature (ഉപന്യാസം)"
   },
-  "ലേഖനം": {
-    "old": "ലിഖിതപത്രം / ശാസനലേഖ (Inscribed Article / Treatise)",
-    "newLit": "ലേഖനം (Article / Essay / Inscribed Composition)",
-    "english": "Written article, scholarly essay, inscribed commentary, and journalistic piece.",
-    "hindi": "लेख / निबंध / आलेख (विचारपूर्ण लिखित रचना एवं दस्तावेज़)",
-    "genre": "Literature (സാഹിത്യം)"
-  },
   "വാർത്ത": {
     "old": "വൃത്താന്തം / സമാചാരം (Chronicle of Events)",
     "newLit": "വാർത്ത (News / Information / Report / Chronicle)",
@@ -2169,13 +2222,6 @@
     "hindi": "रोबोटिक्स / यंत्रमानव विज्ञान (रोबोट निर्माण एवं नियंत्रण तकनीक)",
     "genre": "Robotics (റോബോട്ടിക്സ്)"
   },
-  "കൃത്രിമബുദ്ധി": {
-    "old": "യന്ത്രബുദ്ധി / കൽപ്പനജ്ഞാനം (Synthetic Cognitive Reasoning)",
-    "newLit": "കൃത്രിമബുദ്ധി (Artificial Intelligence / AI)",
-    "english": "Artificial Intelligence — computational synthesis of cognitive intellect and neural reasoning.",
-    "hindi": "कृत्रिम बुद्धिमत्ता (एआई / मशीन द्वारा बुद्धिमान निर्णय एवं सोच)",
-    "genre": "Computer Science (കമ്പ്യൂട്ടർ സയൻസ്)"
-  },
   "ചിത്രവിശകലനം": {
     "old": "ദൃശ്യപരിശോധന (Digital Image Analysis)",
     "newLit": "ചിത്രവിശകലനം (Image Analysis / Visual Feature Extraction)",
@@ -2344,39 +2390,448 @@
     "hindi": "पूर्ण / सम्पूर्ण / समग्र (परम तृप्ति एवं अखंड पूर्णता)",
     "genre": "Philosophy (പൂർണ്ണത)"
   },
-  "ഭാരതവർഷം": {
-    "old": "ഭാരതവർഷം (Grantha: Bharata • Subcontinental Core)",
-    "newLit": "ഭാരതവർഷം (Subcontinent of Bharata / Sacred Realm)",
-    "english": "Sacred subcontinent of Bharata celebrating civilizational and spiritual legacy.",
-    "hindi": "भारतवर्ष (प्राचीन एवं पवित्र भारतीय उपमहाद्वीप)",
-    "genre": "Epic Heritage (ഇതിഹാസം)"
+  "ദയ": {
+    "old": "കാരുണ്യം / അനുകമ്പ (Kindness & Mercy)",
+    "newLit": "ദയ (Kindness / Mercy / Benevolence)",
+    "english": "Kindness, tender mercy, and benevolence toward all living creatures.",
+    "hindi": "दया / कृपा / अनुकंपा (परोपकार एवं दयालु स्वभाव)",
+    "genre": "Ethics (ധർമ്മശാസ്ത്രം)"
   },
-  "താളിയോല": {
-    "old": "താലപത്രം / ഏട് (Inscribed Palmyra Leaf)",
-    "newLit": "താളിയോല (Palm-Leaf Manuscript Record)",
-    "english": "Palm-leaf manuscript prepared from dried palmyra leaves for iron-stylus engraving.",
-    "hindi": "ताड़पत्र पाण्डुलिपि (लौह लेखनी द्वारा उत्कीर्ण प्राचीन ग्रंथ)",
-    "genre": "Epigraphical Ductus (ശാസനം)"
+  "കരുണ": {
+    "old": "കാരുണ്യഭാവം (Deep Compassion)",
+    "newLit": "കരുണ (Compassion / Grace / Empathetic Love)",
+    "english": "Compassion and profound empathetic grace for suffering beings.",
+    "hindi": "करुणा (गहरी सहानुभूति एवं दयाभाव)",
+    "genre": "Spiritual Ethics (കരുണാഭാവം)"
   },
-  "ശ്രീഗണപതയേ": {
-    "old": "ശ്രീഗണപതയേ നമഃ (Grantha Mangalacharanam)",
-    "newLit": "ശ്രീഗണപതയേ (Salutations to Lord Ganesha)",
-    "english": "Traditional auspicious invocatory salutation to Lord Ganesha opening manuscripts.",
-    "hindi": "श्रीगणेशाय नमः (ग्रंथारंभ में प्रयुक्त मांगलिक स्तुति)",
-    "genre": "Vedic Stotram (മംഗളാചരണം)"
+  "ത്യാഗം": {
+    "old": "ആത്മസമർപ്പണം (Selfless Renunciation)",
+    "newLit": "ത്യാഗം (Sacrifice / Renunciation / Selflessness)",
+    "english": "Selfless sacrifice and giving up personal desires for higher welfare.",
+    "hindi": "त्याग / बलिदान (निःस्वार्थ समर्पण एवं त्यागभाव)",
+    "genre": "Moral Philosophy (ത്യാഗഗുണം)"
   },
-  "നമഃ": {
-    "old": "പ്രണാമം / വന്ദനം (Reverent Surrender)",
-    "newLit": "നമഃ (Obeisance / Bow of Respect / Homage)",
-    "english": "Spiritual salutation, humble homage, and deep reverent surrender.",
-    "hindi": "नमः (प्रणाम, श्रद्धाभाव एवं नमन)",
-    "genre": "Vedic Mantra (മന്ത്രം)"
+  "ആദരം": {
+    "old": "ബഹുമാനം / സത്കാരം (Reverent Regard)",
+    "newLit": "ആദരം (Respect / Regard / Honor)",
+    "english": "Deep respect, honor, and reverent regard for elders and scholars.",
+    "hindi": "आदर / सम्मान / सत्कार (श्रद्धा एवं प्रतिष्ठा)",
+    "genre": "Social Ethics (മര്യാദ)"
   },
-  "അവിഘ്നമസ്തു": {
-    "old": "അവിഘ്നമസ്തു (Benediction for Obstacle Removal)",
-    "newLit": "അവിഘ്നമസ്തു (May there be no obstacles)",
-    "english": "Ancient scribal prayer wishing flawless completion without any hindrances.",
-    "hindi": "अविघ्नमस्तु (बिना किसी विघ्न-बाधा के कार्य संपन्न हो)",
-    "genre": "Scribe Benediction (ആശീർവാദം)"
+  "ആശംസ": {
+    "old": "മംഗളാശംസ (Benediction)",
+    "newLit": "ആശംസ (Greeting / Best Wish / Felicitation)",
+    "english": "Auspicious greeting, felicitation, and blessing.",
+    "hindi": "शुभकामना / बधाई (मंगलकारी संदेश)",
+    "genre": "Benediction (മംഗളം)"
+  },
+  "അധ്യാപകൻ": {
+    "old": "ഗുരുനാഥൻ / ഉപദേഷ്ടാവ് (Dedicated Educator)",
+    "newLit": "അധ്യാപകൻ (Teacher / Professor / Instructor)",
+    "english": "Dedicated teacher, mentor, and transmitter of knowledge.",
+    "hindi": "अध्यापक / शिक्षक (ज्ञानदाता एवं मार्गदर्शक)",
+    "genre": "Pedagogy (അധ്യാപനം)"
+  },
+  "വിദ്യാർത്ഥി": {
+    "old": "അന്തേവാസി / ബ്രഹ്മചാരി (Student of Knowledge)",
+    "newLit": "വിദ്യാർത്ഥി (Student / Scholar / Learner)",
+    "english": "Seeker of knowledge, student, and scholastic learner.",
+    "hindi": "विद्यार्थी / छात्र (ज्ञान पिपासु एवं अध्येता)",
+    "genre": "Pedagogy (വിദ്യാർത്ഥിജീവിതം)"
+  },
+  "നീതി": {
+    "old": "ധർമ്മനീതി (Impartial Justice)",
+    "newLit": "നീതി (Justice / Equity / Righteous Law)",
+    "english": "Impartial justice, moral fairness, and rule of righteous law.",
+    "hindi": "न्याय / नीति (निष्पक्षता एवं सत्यनिष्ठा)",
+    "genre": "Jurisprudence (നീതിശാസ്ത്രം)"
+  },
+  "ന്യായം": {
+    "old": "ന്യായയുക്തത (Righteous Reason)",
+    "newLit": "ന്യായം (Fairness / Reason / Equity)",
+    "english": "Reason, moral logic, and equitable fairness.",
+    "hindi": "न्याय / तर्कसंगतता (उचित एवं प्रमाणिक निर्णय)",
+    "genre": "Logic (ന്യായദർശനം)"
+  },
+  "മനുഷ്യൻ": {
+    "old": "മാനുഷൻ / നരൻ (Human Soul)",
+    "newLit": "മനുഷ്യൻ (Human Being / Man)",
+    "english": "Human being endowed with conscious intellect and empathy.",
+    "hindi": "मनुष्य / मानव / इंसान (चेतनशील प्राणी)",
+    "genre": "Humanities (മാനവികത)"
+  },
+  "ഭംഗി": {
+    "old": "സൗന്ദര്യം / ചന്തം (Graceful Beauty)",
+    "newLit": "ഭംഗി (Beauty / Elegance / Grace)",
+    "english": "Aesthetic beauty, elegance, and visual harmony.",
+    "hindi": "सुंदरता / शोभा (सौंदर्य एवं आकर्षण)",
+    "genre": "Aesthetics (സൗന്ദര്യശാസ്ത്രം)"
+  },
+  "മധുരം": {
+    "old": "മാധുര്യം (Sweet Nectar)",
+    "newLit": "മധുരം (Sweetness / Sweet / Melodious)",
+    "english": "Sweet taste, melodious voice, and pleasant sweetness.",
+    "hindi": "मीठा / माधुर्य (मधुरता एवं मिठास)",
+    "genre": "Sensory Poetics (രസസിദ്ധാന്തം)"
+  },
+  "വെളിച്ചം": {
+    "old": "പ്രകാശം / ദ്യുതി (Luminous Radiance)",
+    "newLit": "വെളിച്ചം (Light / Radiance / Brightness)",
+    "english": "Light, intellectual illumination, and spiritual radiance.",
+    "hindi": "रोशनी / प्रकाश / उजाला (ज्ञान एवं प्रकाश का स्रोत)",
+    "genre": "Optics & Philosophy (ജ്യോതിസ്സ്)"
+  },
+  "ഇരുട്ട്": {
+    "old": "തമസ്സ് / അന്ധകാരം (Shadow & Darkness)",
+    "newLit": "ഇരുട്ട് (Darkness / Shadow / Obscurity)",
+    "english": "Darkness, shadows, and the absence of illumination.",
+    "hindi": "अंधेरा / अंधकार (अज्ञान एवं रात्रि का तिमिर)",
+    "genre": "Philosophy (തമസ്സ്)"
+  },
+  "ശക്തി": {
+    "old": "ഊർജ്ജം / ബലം (Primal Cosmic Energy)",
+    "newLit": "ശക്തി (Power / Energy / Strength / Might)",
+    "english": "Cosmic power, dynamic strength, and potent vitality.",
+    "hindi": "शक्ति / बल / ऊर्जा (सामर्थ्य एवं पराक्रम)",
+    "genre": "Energy Dynamics (ശക്തിതത്ത്വം)"
+  },
+  "ധൈര്യം": {
+    "old": "ശൗര്യം / വീര്യം (Valiant Courage)",
+    "newLit": "ധൈര്യം (Courage / Bravery / Fortitude)",
+    "english": "Courage, fortitude, and fearlessness in adversity.",
+    "hindi": "साहस / हिम्मत / वीरता (शौर्य एवं निर्भयता)",
+    "genre": "Heroics (വീരരസം)"
+  },
+  "മോക്ഷം": {
+    "old": "മുക്തി / കൈവല്യം (Spiritual Liberation)",
+    "newLit": "മോക്ഷം (Liberation / Salvation / Nirvana)",
+    "english": "Spiritual liberation, absolute freedom from rebirth, and supreme bliss.",
+    "hindi": "मोक्ष / मुक्ति (परम पद एवं भवबंधन से मुक्ति)",
+    "genre": "Moksha Sastra (മുക്തിമാർഗ്ഗം)"
+  },
+  "ആരോഗ്യം": {
+    "old": "ആയുരാരോഗ്യം (Wholesome Vitality)",
+    "newLit": "ആരോഗ്യം (Health / Well-Being / Vigor)",
+    "english": "Sound physical health, vigor, and balanced well-being.",
+    "hindi": "स्वास्थ्य / तंदुरुस्ती (आरोग्य एवं निरोगी काया)",
+    "genre": "Ayurveda (ആയുർവേദം)"
+  },
+  "ഭക്തി": {
+    "old": "ഈശ്വരഭക്തി (Devotional Surrender)",
+    "newLit": "ഭക്തി (Devotion / Piety / Reverence)",
+    "english": "Heartfelt devotion, spiritual love, and humble adoration of the divine.",
+    "hindi": "भक्ति / उपासना (ईश्वर प्रेम एवं समर्पण)",
+    "genre": "Bhakti Tradition (ഭക്തിപ്രസ്ഥാനം)"
+  },
+  "പ്രാർത്ഥന": {
+    "old": "യാചന / സ്തോത്രം (Sacred Prayer)",
+    "newLit": "പ്രാർത്ഥന (Prayer / Supplication / Invocation)",
+    "english": "Devout prayer, meditation, and communion with the sacred.",
+    "hindi": "प्रार्थना / विनती (ईश वंदना एवं आराधना)",
+    "genre": "Devotional (പ്രാർത്ഥന)"
+  },
+  "ക്ഷേത്രം": {
+    "old": "അമ്പലം / കോവിൽ (Sacred Sanctuary)",
+    "newLit": "ക്ഷേത്രം (Temple / Sanctuary / Shrine)",
+    "english": "Sacred temple sanctuary built according to traditional Vastu geometry.",
+    "hindi": "मंदिर / देवालय (पवित्र पूजा स्थल)",
+    "genre": "Sacred Architecture (ക്ഷേത്രകല)"
+  },
+  "സ്നേഹം": {
+    "old": "അൻപ് / സ്നേഹം (Pure Affection)",
+    "newLit": "സ്നേഹം (Love / Affection / Kindness)",
+    "english": "Pure love, kindness, and compassionate affection.",
+    "hindi": "प्रेम / स्नेह / अनुराग (आत्मीयता एवं प्यार)",
+    "genre": "Ethics (ധർമ്മശാസ്ത്രം)"
+  },
+  "ശാന്തി": {
+    "old": "ശാന്തി / ഉപശമം (Inner Tranquility)",
+    "newLit": "ശാന്തി (Peace / Serenity / Calm)",
+    "english": "Universal peace, spiritual serenity, and quietude.",
+    "hindi": "शांति / सुकून (मानसिक स्थिरता एवं सद्भाव)",
+    "genre": "Spiritual Philosophy (മോക്ഷം)"
+  },
+  "ധർമ്മം": {
+    "old": "ധർമ്മനീതി (Cosmic Righteous Order)",
+    "newLit": "ധർമ്മം (Righteousness / Virtue / Duty)",
+    "english": "Cosmic order, righteousness, moral duty, and ethical virtue.",
+    "hindi": "धर्म / कर्तव्य (सत्य, सदाचार एवं कर्तव्य पालन)",
+    "genre": "Dharmasastra (ധർമ്മശാസ്ത്രം)"
+  },
+  "സത്യം": {
+    "old": "സത്യവാക്ക് (Unyielding Truth)",
+    "newLit": "സത്യം (Truth / Verity / Authenticity)",
+    "english": "Eternal truth, authenticity, and honesty.",
+    "hindi": "सत्य / सच (अटल यथार्थ एवं प्रामाणिकता)",
+    "genre": "Philosophy (തത്ത്വചിന്ത)"
+  },
+  "കണ്ണീർ": {
+    "old": "അശ്രു (Tears of Emotion)",
+    "newLit": "കണ്ണീർ (Tears / Weeping)",
+    "english": "Tears expressing deep sorrow, devotion, or joy.",
+    "hindi": "आँसू / अश्रु (भावुकता एवं करुणा)",
+    "genre": "Poetics (രസസിദ്ധാന്തം)"
+  },
+  "മനസ്സ്": {
+    "old": "ചിത്തം / അന്തഃകരണം (Inner Psyche)",
+    "newLit": "മനസ്സ് (Mind / Consciousness / Heart)",
+    "english": "Conscious mind, thoughts, sentiments, and inner perception.",
+    "hindi": "मन / अंतःकरण (विचार एवं चेतना का केंद्र)",
+    "genre": "Psychology (മനോവിജ്ഞാനം)"
+  },
+  "ഹൃദയം": {
+    "old": "ഹൃത്പദ്മം (Heart Center of Emotion)",
+    "newLit": "ഹൃദയം (Heart / Core / Compassion)",
+    "english": "Heart, seat of deepest compassion, emotional warmth, and soul.",
+    "hindi": "हृदय / दिल (भावनाओं एवं करुणा का वास)",
+    "genre": "Philosophy (ഹൃദയഭാവം)"
+  },
+  "സ്വാതന്ത്ര്യം": {
+    "old": "സ്വതന്ത്രത (Sovereign Freedom)",
+    "newLit": "സ്വാതന്ത്ര്യം (Freedom / Liberty / Independence)",
+    "english": "Freedom, independence, state of liberty, and autonomous self-determination.",
+    "hindi": "स्वतंत्रता / आज़ादी (स्वाधीनता एवं आत्मनिर्णय)",
+    "genre": "Political Philosophy (രാഷ്ട്രതന്ത്രം)"
+  },
+  "സമാധാനം": {
+    "old": "ശാന്തി / സമാഹിതം (Inner Composure)",
+    "newLit": "സമാധാനം (Peace / Tranquility / Reconciliation)",
+    "english": "Peace, tranquility, calm state of harmony without conflict.",
+    "hindi": "शांति / समाधान (सुलह एवं मानसिक शांति)",
+    "genre": "Philosophy (സമാധാനം)"
+  },
+  "വിപ്ലവം": {
+    "old": "പരിവർത്തനം (Epochal Transformation)",
+    "newLit": "വിപ്ലവം (Revolution / Uprising / Paradigm Shift)",
+    "english": "Revolution, profound transformative movement, and paradigm shift.",
+    "hindi": "क्रांति / विप्लव (युगांतरकारी परिवर्तन)",
+    "genre": "Sociology (സാമൂഹികവിപ്ലവം)"
+  },
+  "സന്തോഷം": {
+    "old": "ആനന്ദം / പ്രസാദം (Delight & Joy)",
+    "newLit": "സന്തോഷം (Happiness / Joy / Gladness)",
+    "english": "Happiness, joy, cheerful contentment, and glad state of heart.",
+    "hindi": "खुशी / प्रसन्नता (हर्ष एवं उल्लास)",
+    "genre": "Psychology (മനോഭാവം)"
+  },
+  "വേദം": {
+    "old": "ശ്രുതി / ഋഗ്വേദ സംഹിത (Vedic Revelation)",
+    "newLit": "വേദം (The Vedas / Sacred Scriptural Canon)",
+    "english": "The sacred Vedas containing eternal hymns and cosmic philosophy.",
+    "hindi": "वेद (प्राचीनतम सनातन ज्ञानराशि एवं स्तुतियाँ)",
+    "genre": "Vedic Scripture (വേദസംഹിത)"
+  },
+  "വെള്ളം": {
+    "old": "ജലം / നീര് (Life-giving Aqua Root)",
+    "newLit": "വെള്ളം (Water / Life-Giving Liquid)",
+    "english": "Water — essential life-sustaining fluid and sacred cleansing element.",
+    "hindi": "पानी / जल (जीवनदायी जल एवं शुद्धि का प्रतीक)",
+    "genre": "Natural Elements (പഞ്ചഭൂതം)"
+  },
+  "തീ": {
+    "old": "അഗ്നി / അനലൻ (Sacred Fire Element)",
+    "newLit": "തീ (Fire / Flame / Blaze)",
+    "english": "Fire — sacred Vedic element of transformation and energy.",
+    "hindi": "आग / अग्नि (पवित्र अग्नि तत्व)",
+    "genre": "Natural Elements (പഞ്ചഭൂതം)"
+  },
+  "രാജാവ്": {
+    "old": "തമ്പുരാൻ / കോനാതിരി (Royal Sovereign)",
+    "newLit": "രാജാവ് (King / Sovereign Ruler / Monarch)",
+    "english": "Monarch, sovereign ruler of ancient Kerala principalities.",
+    "hindi": "राजा / नरेश / नृप (प्रजापालक शासक)",
+    "genre": "Dynastic History (രാജവംശം)"
+  },
+  "മന്ത്രി": {
+    "old": "കാര്യസ്ഥൻ / മന്ത്രി (State Minister)",
+    "newLit": "മന്ത്രി (Minister / Counselor / Statesman)",
+    "english": "Royal minister, strategic counselor, and cabinet statesman.",
+    "hindi": "मंत्री / सचिव (नीति निर्धारक एवं सलाहकार)",
+    "genre": "Governance (ഭരണശാസ്ത്രം)"
+  },
+  "ശിഷ്യൻ": {
+    "old": "അന്തേവാസി (Resident Disciple)",
+    "newLit": "ശിഷ്യൻ (Student / Disciple / Pupil)",
+    "english": "Devoted student absorbing wisdom in a gurukula.",
+    "hindi": "शिष्य / विद्यार्थी / चेला (ज्ञान पिपासु छात्र)",
+    "genre": "Gurukula Lineage (ശിഷ്യത്വം)"
+  },
+  "ഭക്ഷണം": {
+    "old": "അന്നപാനം (Nourishment Offering)",
+    "newLit": "ഭക്ഷണം (Food / Sustenance / Meal)",
+    "english": "Nutritious sustenance, meal, and culinary nourishment.",
+    "hindi": "भोजन / खाना / आहार (जीवनदायी पोषण)",
+    "genre": "Culinary Heritage (പാചകശാസ്ത്രം)"
+  },
+  "എഴുത്തുകാരൻ": {
+    "old": "ഗ്രന്ഥകാരൻ / കവി (Scribe & Author)",
+    "newLit": "എഴുത്തുകാരൻ (Writer / Author / Scribe)",
+    "english": "Author, literate scholar, or dedicated epigraphical scribe.",
+    "hindi": "लेखक / साहित्यकार (ग्रंथ रचनाकार)",
+    "genre": "Biography (സാഹിത്യകാരൻ)"
+  },
+  "അന്നം": {
+    "old": "അന്നം ബ്രഹ്മം (Sacred Nourishing Grain)",
+    "newLit": "അന്നം (Food Grain / Sacred Rice)",
+    "english": "Sacred food grain embodying the divine spark of life.",
+    "hindi": "अन्न (जीवनदायी पवित्र अनाज)",
+    "genre": "Vedic Philosophy (അന്നസൂക്തം)"
+  },
+  "നൃത്തം": {
+    "old": "നാട്യം / കഥകളി / കൂടിയാട്ടം (Classical Dance)",
+    "newLit": "നൃത്തം (Classical Dance / Natya)",
+    "english": "Classical Kerala dance drama embodying Natyashastra tradition.",
+    "hindi": "नृत्य / नाच (शास्त्रीय नृत्य एवं भावभंगिमा)",
+    "genre": "Performing Arts (നാട്യശാസ്ത്രം)"
+  },
+  "പ്രോഗ്രാം": {
+    "old": "കർമ്മപദ്ധതി / ആജ്ഞാസൂത്രം (Executable Sequence)",
+    "newLit": "പ്രോഗ്രാം (Program / Software Application / Procedure)",
+    "english": "Software program, computational routine, and procedural logic.",
+    "hindi": "प्रोग्राम / कार्ययोजना (कंप्यूटर अनुप्रयोग एवं निर्देश)",
+    "genre": "Computer Science (കംപ്യൂട്ടർ സയൻസ്)"
+  },
+  "കോഡിംഗ്": {
+    "old": "ലിപിസങ്കേതം (Symbolic Logic Encoding)",
+    "newLit": "കോഡിംഗ് (Coding / Source Code Implementation)",
+    "english": "Writing program source code and constructing computational logic.",
+    "hindi": "कोडिंग / कूट-लेखन (प्रोग्रामिंग कोड लिखना)",
+    "genre": "Software Engineering (സോഫ്റ്റ്‌വെയർ)"
+  },
+  "ഡാറ്റ": {
+    "old": "വിവരസഞ്ചയം (Information Corpus)",
+    "newLit": "ഡാറ്റ (Data / Digital Information / Records)",
+    "english": "Digital data, structured information corpus, and raw values.",
+    "hindi": "डेटा / आँकड़े (सूचना एवं कच्ची जानकारी)",
+    "genre": "Data Science (ഡാറ്റാ സയൻസ്)"
+  },
+  "ശാസനം": {
+    "old": "ശിലാശാസനം / ചെപ്പേട് (Royal Copper Edict)",
+    "newLit": "ശാസനം (Royal Decree / Inscription / Edict)",
+    "english": "Royal epigraphical decree, stone inscription, or copper plate edict.",
+    "hindi": "शिलालेख / राजशासन (प्राचीन राजाज्ञा एवं अभिलेख)",
+    "genre": "Epigraphy (ശാസനവിജ്ഞാനം)"
+  },
+  "കനി": {
+    "old": "മധുരഫലം (Sweet Fruit Yield)",
+    "newLit": "കനി (Ripe Fruit / Bounty / Sweet Harvest)",
+    "english": "Sweet ripe fruit, natural agricultural bounty, and harvest blessing.",
+    "hindi": "फल / मीठा फल (पका हुआ स्वादिष्ट फल एवं प्रकृति का उपहार)",
+    "genre": "Agronomy & Nature (പ്രകൃതി)"
+  },
+  "കല": {
+    "old": "ലളിതകല / ശിൽപ്പകല (Fine Aesthetic Arts)",
+    "newLit": "കല (Art / Fine Arts / Creative Craft)",
+    "english": "Creative art, aesthetic discipline, painting, sculpture, and artistic craft.",
+    "hindi": "कला / ललित कला / हुनर (सृजनात्मक एवं सौंदर्यपूर्ण विधा)",
+    "genre": "Fine Arts (കലാശാസ്ത്രം)"
+  },
+  "സംഗീതം": {
+    "old": "ഗാനവിദ്യ / സംഗീതശാസ്ത്രം (Classical Music / Svaras)",
+    "newLit": "സംഗീതം (Music / Melody / Classical Harmony)",
+    "english": "Melodious music, rhythmic composition, vocal swaras, and orchestral harmony.",
+    "hindi": "संगीत / राग / गायन (स्वर एवं लय की मधुर साधना)",
+    "genre": "Performing Arts (സംഗീതം)"
+  },
+  "ചലച്ചിത്രം": {
+    "old": "ഛായാചിത്രം (Moving Motion Picture)",
+    "newLit": "ചലച്ചിത്രം (Cinema / Motion Picture / Movie / Film)",
+    "english": "Cinema, motion picture film storytelling, and cinematic visual art.",
+    "hindi": "चलचित्र / सिनेमा / फ़िल्म (दृश्यकला एवं सिनेमाई कहानी)",
+    "genre": "Cinema & Media (ചലച്ചിത്രം)"
+  },
+  "നാടകം": {
+    "old": "ദൃശ്യകാവ്യം / നാട്യപ്രബന്ധം (Classical Drama / Theatre)",
+    "newLit": "നാടകം (Play / Drama / Theatrical Performance)",
+    "english": "Dramatic theatrical play portraying human emotion through stage performance.",
+    "hindi": "नाटक / अभिनय / रंगमंच (रंगमंचीय अभिनय एवं दृश्यकाव्य)",
+    "genre": "Theatre (നാട്യശാസ്ത്രം)"
+  },
+  "കലാലയം": {
+    "old": "വിദ്യാപീഠം / സരസ്വതീഭവനം (Higher Arts College)",
+    "newLit": "കലാലയം (College / Institute of Arts & Sciences)",
+    "english": "College, academic temple of arts, higher education campus, and university.",
+    "hindi": "महाविद्यालय / कॉलेज (उच्च शिक्षा एवं कला का प्रांगण)",
+    "genre": "Pedagogy (വിദ്യാപീഠം)"
+  },
+  "ശാസ്ത്രജ്ഞൻ": {
+    "old": "ശാസ്ത്രവിചക്ഷണൻ (Scientific Researcher)",
+    "newLit": "ശാസ്ത്രജ്ഞൻ (Scientist / Scientific Researcher)",
+    "english": "Scientist, empirical researcher discovering natural laws through scientific method.",
+    "hindi": "वैज्ञानिक / शास्त्रवेत्ता (विज्ञान एवं शोध के विशेषज्ञ)",
+    "genre": "Science (ശാസ്ത്രം)"
+  },
+  "എഞ്ചിനീയർ": {
+    "old": "ശിൽപ്പി / യന്ത്രവിദഗ്ദ്ധൻ (Engineer & Architect)",
+    "newLit": "എഞ്ചിനീയർ (Engineer / Technical Architect)",
+    "english": "Engineer, technical professional designing machines, infrastructure, and software.",
+    "hindi": "अभियंता / इंजीनियर (तकनीकी निर्माण एवं डिजाइन विशेषज्ञ)",
+    "genre": "Engineering (സാങ്കേതികം)"
+  },
+  "കലാകാരൻ": {
+    "old": "ശിൽപ്പി / ചിത്രകാരൻ (Creative Artist)",
+    "newLit": "കലാകാരൻ (Artist / Performer / Creative Maestro)",
+    "english": "Artist, creative practitioner expressing aesthetic beauty through fine arts.",
+    "hindi": "कलाकार / शिल्पी (कला का सृजन करने वाला गुणी जन)",
+    "genre": "Fine Arts (കല)"
+  },
+  "കവി": {
+    "old": "കാവ്യകാരൻ / സൂരി (Classical Poet & Bard)",
+    "newLit": "കവി (Poet / Bard / Versifier)",
+    "english": "Poet, literary visionary composing metrical verses and deep aesthetic works.",
+    "hindi": "कवि / पद्यकार (काव्य रचनाकार एवं भावुक विचारक)",
+    "genre": "Poetics (കാവ്യം)"
+  },
+  "സംവിധാനം": {
+    "old": "സംവിധായകവിധി (Direction & Systematic Coordination)",
+    "newLit": "സംവിധാനം (System / Direction / Organization / Coordination)",
+    "english": "Systematic coordination, organizational management, direction, and system structure.",
+    "hindi": "व्यवस्था / प्रणाली / निर्देशन (संगठन, प्रबंध एवं कार्य-संचालन)",
+    "genre": "Management & Systems (സംവിധാനം)"
+  },
+  "ലേഖനം": {
+    "old": "ലിഖിതപത്രം / ശാസനലേഖ (Inscribed Article / Treatise)",
+    "newLit": "ലേഖനം (Article / Essay / Inscribed Composition)",
+    "english": "Written article, scholarly essay, inscribed commentary, and journalistic piece.",
+    "hindi": "लेख / निबंध / आलेख (विचारपूर्ण लिखित रचना एवं दस्तावेज़)",
+    "genre": "Literature (സാഹിത്യം)"
   }
 }
+
+def generate_full_database():
+    dict_txt = "malayalam_dictionary.txt"
+    json_path = os.path.join("web_studio", "comprehensive_dictionary.json")
+
+    with open(dict_txt, "r", encoding="utf-8") as f:
+        words = [w.strip() for w in f if w.strip()]
+
+    special_words = ["ഭാരതവർഷം", "താളിയോല", "ശ്രീഗണപതയേ", "നമഃ", "അവിഘ്നമസ്തു"]
+    for sw in special_words:
+        if sw not in words:
+            words.append(sw)
+
+    final_db = {}
+    missing_words = []
+
+    for w in words:
+        if w in FULL_EXACT_LEXICON:
+            final_db[w] = FULL_EXACT_LEXICON[w]
+        else:
+            missing_words.append(w)
+
+    print(f"Total vocabulary items: {len(words)}")
+    print(f"Total populated in final DB: {len(final_db)}")
+    print(f"Total missing: {len(missing_words)}")
+
+    if missing_words:
+        print("Missing words:", missing_words)
+        return False
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(final_db, f, ensure_ascii=False, indent=2)
+
+    print(f"[SUCCESS] Wrote complete 100% dictionary to {json_path}")
+    return True
+
+if __name__ == "__main__":
+    generate_full_database()

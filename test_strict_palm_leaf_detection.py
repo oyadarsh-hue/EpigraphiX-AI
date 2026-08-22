@@ -11,9 +11,12 @@ import os
 import cv2
 import numpy as np
 
-# Ensure UTF-8 output encoding across Windows terminals
+# Ensure UTF-8 output encoding across Windows terminals safely
 if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
-    sys.stdout.reconfigure(encoding='utf-8')
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 from epigraphical_enhancer import EpigraphicalEnhancer
 
