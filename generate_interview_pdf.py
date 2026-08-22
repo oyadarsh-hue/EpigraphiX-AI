@@ -1,12 +1,17 @@
 """
-Adarsh S — Comprehensive Technical & Behavioral Interview Master Guide
-Generates a publication-grade, multi-page Master PDF guide containing:
-- Complete Technical Profiles & Candidate Elevating Summary
-- EpigraphiX-AI SOTA Architecture (TrOCR Transformer, FANI 2.0, Betti Invariants, Sandhi Trie, Multilingual Translation)
-- AssentTag Biometric Privacy Architecture (128D ResNet Embeddings, The Veil, GDPR)
-- Full-Stack, Cloud & DevOps Engineering Internships (Skybrisk, CODTECH, Bluegen)
-- In-Depth SOTA Deep Learning, Computer Vision, Algorithms, NLP & System Design Q&A
-- Rigorous Behavioral & Leadership Scenarios (STAR Method)
+Adarsh S — Comprehensive Technical, Architecture & Behavioral Interview Master Guide
+Generates an encyclopedic, publication-grade multi-page Master Guide PDF at:
+C:\\Users\\HP\\Downloads\\Adarsh_S_Interview_Master_Guide.pdf
+
+Covers:
+- Complete Candidate Profile, Education & 17 Certifications
+- Full Technical Architecture & Mathematical Deep-Dives for 3 Major Projects:
+    1. EpigraphiX-AI (Palm-Leaf Manuscript Vision Transformer, Sauvola O(1), FANI 2.0, 3D Stereo, 5-Model ML, Betti Invariants, Sandhi Trie, Multilingual Exegesis)
+    2. AssentTag (Privacy-by-Default Computer Vision, Dlib 68-Point Landmarking, ResNet-34 128D Embeddings, "The Veil", Django/MySQL)
+    3. Deciphera (Digital Epigraphical Archival & Multi-Scale Transliteration Engine)
+- Exhaustive "What is [Tech] and How is it Applied in the Project?" Guide (KaTeX, k-NN, SVM, RF, GNB, TrOCR, WebGPU, Web Audio API, Photometric Stereo, Betti Numbers, Trie, Sandhi, ResNet-34, Docker, K8s, OWASP ZAP)
+- Comprehensive Internship Experience & Work Deliverables (Skybrisk, CODTECH, Bluegen Solutions)
+- High-Impact Technical Q&A, System Design Scenarios, and STAR Behavioral Responses
 - Strategic Closing Interview Questions
 """
 
@@ -21,6 +26,7 @@ from reportlab.platypus import (
 )
 from reportlab.pdfgen import canvas
 
+# Ensure safe UTF-8 terminal output across Windows systems
 if hasattr(sys.stdout, 'buffer'):
     try:
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
@@ -48,80 +54,79 @@ class NumberedCanvas(canvas.Canvas):
     def draw_page_decorations(self, page_count):
         self.saveState()
         self.setFont("Helvetica-Bold", 8)
-        self.setFillColor(colors.HexColor("#475569"))
+        self.setFillColor(colors.HexColor("#334155"))
 
-        # Header (Pages 2+)
+        # Running Header (Pages 2+)
         if self._pageNumber > 1:
-            self.drawString(40, letter[1] - 28, "ADARSH S — INTERVIEW PREPARATION MASTER GUIDE & TECHNICAL PORTFOLIO")
+            self.drawString(38, letter[1] - 26, "ADARSH S — MASTER INTERVIEW & TECHNICAL ARCHITECTURE PORTFOLIO")
             self.setFont("Helvetica", 8)
-            self.drawRightString(letter[0] - 40, letter[1] - 28, "AI/ML • Computer Vision • Full-Stack • DevOps")
+            self.drawRightString(letter[0] - 38, letter[1] - 26, "AI/ML • Computer Vision • Full-Stack • DevOps • System Design")
             self.setStrokeColor(colors.HexColor("#CBD5E1"))
             self.setLineWidth(0.75)
-            self.line(40, letter[1] - 33, letter[0] - 40, letter[1] - 33)
+            self.line(38, letter[1] - 30, letter[0] - 38, letter[1] - 30)
 
-        # Footer (All Pages)
+        # Running Footer (All Pages)
         self.setFont("Helvetica", 8)
         self.setFillColor(colors.HexColor("#64748B"))
-        self.drawString(40, 24, "Confidential — Prepared for High-Impact Technical, System Design & Leadership Rounds")
+        self.drawString(38, 22, "Confidential — Comprehensive Technical Master Guide (EpigraphiX-AI • AssentTag • Deciphera)")
         page_text = f"Page {self._pageNumber} of {page_count}"
-        self.drawRightString(letter[0] - 40, 24, page_text)
+        self.drawRightString(letter[0] - 38, 22, page_text)
         self.setStrokeColor(colors.HexColor("#CBD5E1"))
         self.setLineWidth(0.75)
-        self.line(40, 34, letter[0] - 40, 34)
+        self.line(38, 32, letter[0] - 38, 32)
         self.restoreState()
 
 
-def build_pdf(filename):
+def build_interview_master_guide_pdf(output_path):
     doc = SimpleDocTemplate(
-        filename,
+        output_path,
         pagesize=letter,
-        leftMargin=38,
-        rightMargin=38,
-        topMargin=42,
-        bottomMargin=42
+        leftMargin=36,
+        rightMargin=36,
+        topMargin=38,
+        bottomMargin=38
     )
 
-    styles = getSampleStyleSheet()
-
-    # Premium Professional Palette
-    PRIMARY = colors.HexColor("#0F172A")    # Slate 900
-    NAVY = colors.HexColor("#1E3A8A")       # Blue 900
-    ACCENT_BLUE = colors.HexColor("#0284C7")# Sky 600
-    ACCENT_TEAL = colors.HexColor("#0D9488")# Teal 600
-    ACCENT_ROSE = colors.HexColor("#BE123C")# Rose 700
-    DARK_TEXT = colors.HexColor("#334155")  # Slate 700
-    LIGHT_BG = colors.HexColor("#F8FAFC")   # Slate 50
-    CARD_BG = colors.HexColor("#F1F5F9")    # Slate 100
+    # Color Palette
+    PRIMARY = colors.HexColor("#0F172A")      # Slate 900
+    NAVY = colors.HexColor("#1E3A8A")         # Blue 900
+    ACCENT_BLUE = colors.HexColor("#0284C7")  # Sky 600
+    ACCENT_TEAL = colors.HexColor("#0D9488")  # Teal 600
+    ACCENT_ROSE = colors.HexColor("#BE123C")  # Rose 700
+    DARK_TEXT = colors.HexColor("#334155")    # Slate 700
+    LIGHT_BG = colors.HexColor("#F8FAFC")     # Slate 50
+    CARD_BG = colors.HexColor("#F1F5F9")      # Slate 100
     BORDER_COLOR = colors.HexColor("#CBD5E1")
+    HIGHLIGHT_BG = colors.HexColor("#EFF6FF") # Blue 50
 
     # Typography Styles
     title_style = ParagraphStyle(
         'DocTitle',
         fontName='Helvetica-Bold',
-        fontSize=18,
-        leading=22,
+        fontSize=16,
+        leading=20,
         textColor=NAVY,
         alignment=1,
-        spaceAfter=3
+        spaceAfter=2
     )
 
     subtitle_style = ParagraphStyle(
         'DocSubtitle',
         fontName='Helvetica-Bold',
-        fontSize=10,
-        leading=13,
+        fontSize=9.5,
+        leading=12,
         textColor=ACCENT_BLUE,
         alignment=1,
-        spaceAfter=12
+        spaceAfter=8
     )
 
     h1_style = ParagraphStyle(
         'Heading1_Custom',
         fontName='Helvetica-Bold',
-        fontSize=12.5,
-        leading=16,
+        fontSize=11.5,
+        leading=15,
         textColor=NAVY,
-        spaceBefore=10,
+        spaceBefore=8,
         spaceAfter=4,
         keepWithNext=True
     )
@@ -129,19 +134,30 @@ def build_pdf(filename):
     h2_style = ParagraphStyle(
         'Heading2_Custom',
         fontName='Helvetica-Bold',
-        fontSize=10,
-        leading=13,
+        fontSize=9.5,
+        leading=12.5,
         textColor=ACCENT_BLUE,
-        spaceBefore=6,
-        spaceAfter=3,
+        spaceBefore=5,
+        spaceAfter=2,
+        keepWithNext=True
+    )
+
+    h3_style = ParagraphStyle(
+        'Heading3_Custom',
+        fontName='Helvetica-Bold',
+        fontSize=8.5,
+        leading=11,
+        textColor=PRIMARY,
+        spaceBefore=4,
+        spaceAfter=2,
         keepWithNext=True
     )
 
     body_style = ParagraphStyle(
         'Body_Custom',
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.8,
         textColor=DARK_TEXT,
         spaceAfter=3
     )
@@ -149,16 +165,16 @@ def build_pdf(filename):
     body_bold = ParagraphStyle(
         'Body_Bold',
         fontName='Helvetica-Bold',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.8,
         textColor=PRIMARY
     )
 
     q_style = ParagraphStyle(
         'Question_Style',
         fontName='Helvetica-Bold',
-        fontSize=9,
-        leading=12,
+        fontSize=8.5,
+        leading=11.5,
         textColor=NAVY,
         spaceBefore=4,
         spaceAfter=2,
@@ -168,312 +184,405 @@ def build_pdf(filename):
     a_style = ParagraphStyle(
         'Answer_Style',
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.8,
         textColor=DARK_TEXT,
-        spaceAfter=5
+        spaceAfter=4
     )
 
     bullet_style = ParagraphStyle(
         'Bullet_Style',
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
-        textColor=DARK_TEXT,
-        leftIndent=12,
-        firstLineIndent=-8,
-        spaceAfter=2
-    )
-
-    star_label = ParagraphStyle(
-        'STAR_Label',
-        fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.8,
         textColor=DARK_TEXT,
         leftIndent=10,
+        firstLineIndent=-6,
         spaceAfter=2
     )
 
-    callout_style = ParagraphStyle(
-        'Callout_Style',
-        fontName='Helvetica-Oblique',
+    tech_title = ParagraphStyle(
+        'Tech_Title',
+        fontName='Helvetica-Bold',
         fontSize=8.5,
-        leading=11.5,
+        leading=11,
         textColor=NAVY
+    )
+
+    tech_desc = ParagraphStyle(
+        'Tech_Desc',
+        fontName='Helvetica',
+        fontSize=7.8,
+        leading=10.2,
+        textColor=DARK_TEXT
     )
 
     story = []
 
-    # ==========================================
-    # HEADER & HERO SECTION
-    # ==========================================
+    # =========================================================================
+    # HERO & CANDIDATE SUMMARY
+    # =========================================================================
     story.append(Paragraph("ADARSH S — INTERVIEW PREPARATION MASTER GUIDE", title_style))
-    story.append(Paragraph("AI/ML Engineer & Full-Stack Architect • SOTA Vision Transformers • DevOps • Biometric Privacy", subtitle_style))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=ACCENT_BLUE, spaceBefore=0, spaceAfter=8))
+    story.append(Paragraph("AI/ML Engineer & Full-Stack Architect • SOTA Vision Transformers • Computer Vision • DevOps • System Design", subtitle_style))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=ACCENT_BLUE, spaceBefore=0, spaceAfter=6))
 
-    # Executive Overview Box
-    exec_summary_data = [
+    candidate_box = [
         [
-            Paragraph("<b>Target Roles:</b> AI/ML Engineer, Full-Stack Developer, Computer Vision Specialist, DevOps / Cloud Engineer.<br/>"
-                      "<b>Core Strengths:</b> Vision Transformers (TrOCR, MH-SAM), $O(1)$ Integral Computer Vision Algorithms, Deep Metric Learning (ResNet-34 128D), Dynamic Programming Levenshtein NLP, MERN & Django Distributed Systems, Kubernetes CI/CD.", body_style)
+            Paragraph("<b>Candidate:</b> Adarsh S | <b>Phone:</b> +91-9061448229 | <b>Email:</b> oyadarsh@gmail.com | <b>Location:</b> Kozhikode, Kerala, India<br/>"
+                      "<b>LinkedIn:</b> linkedin.com/in/adarshs-031869355 | <b>Education:</b> Master of Computer Applications (MCA), Govt. Engg. College Thrissur (CGPA: 7.5/10.0)<br/>"
+                      "<b>Bachelor:</b> B.Sc Computer Science, CAS IHRD Thamarassery (CGPA: 6.61/10.0) | <b>Schooling:</b> 12th (79.9%), 10th (98.8%)<br/>"
+                      "<b>Key Certifications (17):</b> AWS CloudOps Associate, TCS iON IT Primer, Cisco Modern AI, Skill India SOAR AI, Deloitte Simulation, Deep Learning Keras, Google Gemini, NPTEL Java, IBM Python Data Analysis, HackerRank SQL, React & Drupal.", body_style)
         ]
     ]
-    t_exec = Table(exec_summary_data, colWidths=[534])
-    t_exec.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), LIGHT_BG),
-        ('BOX', (0,0), (-1,-1), 1, BORDER_COLOR),
-        ('PADDING', (0,0), (-1,-1), 6),
+    t_cand = Table(candidate_box, colWidths=[540])
+    t_cand.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), HIGHLIGHT_BG),
+        ('BOX', (0,0), (-1,-1), 1, ACCENT_BLUE),
+        ('PADDING', (0,0), (-1,-1), 5),
     ]))
-    story.append(t_exec)
-    story.append(Spacer(1, 6))
-
-    # ==========================================
-    # SECTION 1: ELEVATOR PITCH & VALUE PROPOSITION
-    # ==========================================
-    story.append(Paragraph("1. Candidate Elevator Pitch & Value Proposition", h1_style))
-    story.append(Paragraph(
-        "<b>Script (60-90s Delivery):</b><br/>"
-        "\"I am a Full-Stack AI Engineer specializing in Computer Vision, Deep Learning, and Distributed Web Platforms. "
-        "My flagship project, <b>EpigraphiX-AI</b>, addresses the 1,000-year-old challenge of deciphering degraded palm-leaf manuscripts. "
-        "I engineered an $O(1)$ Integral-Image Sauvola restoration pipeline, built a <b>TrOCR Vision Transformer sequence recognition engine</b> with multi-head attention stroke heatmaps, "
-        "and formulated an NLP Sandhi prefix-trie corrector reducing Word Error Rate by 15% with real-time Malayalam-English-Hindi semantic translation. "
-        "In biometric security, I built <b>AssentTag</b>, a privacy-by-default platform utilizing ResNet-34 128D facial embeddings and dynamic consent orchestration ('The Veil'). "
-        "Across my professional internships at <b>The Skybrisk</b> (MERN/Redux ERP), <b>CODTECH</b> (Kubernetes CI/CD), and <b>Bluegen Solutions</b> (Django/MySQL), "
-        "I have consistently delivered scalable, secure, and production-tested systems.\"", body_style
-    ))
-    story.append(Spacer(1, 6))
-
-    # ==========================================
-    # SECTION 2: EPIGRAPHIX-AI DEEP-DIVE
-    # ==========================================
-    story.append(Paragraph("2. Deep-Dive: EpigraphiX-AI (SOTA Palm-Leaf Manuscript Vision & NLP)", h1_style))
-    story.append(Paragraph("<b>System Overview:</b> High-performance paleographic transcription and super-resolution engine for ancient Indic/Malayalam palm-leaf manuscripts using Vision Transformers, Betti Topological Invariants, and Trie Lexical decoders.", body_style))
+    story.append(t_cand)
     story.append(Spacer(1, 4))
 
-    epigraphix_table_data = [
-        [Paragraph("<b>Component</b>", body_bold), Paragraph("<b>Technologies Used</b>", body_bold), Paragraph("<b>Engineering Highlights & Mathematical Formulations</b>", body_bold)],
+    # Elevator Pitch
+    story.append(Paragraph("1. Candidate Elevator Pitch & Value Proposition (60–90s Pitch)", h1_style))
+    story.append(Paragraph(
+        "\"I am a Full-Stack AI Engineer specializing in Computer Vision, Vision Transformers, and Distributed Web Engineering. "
+        "My flagship project, <b>EpigraphiX-AI</b>, solves the ancient challenge of deciphering 1,000-year-old palm-leaf manuscripts using an end-to-end neural pipeline: "
+        "combining 5-layer Rule 1 substrate verification, $O(1)$ Integral-Image Sauvola binarization (&lt;5ms), FANI 2.0 neural inpainting, 3D Photometric Stereo, a hybrid TrOCR Vision Transformer with Persistent Homology Betti invariants ($\\beta_0, \\beta_1$), "
+        "and a dynamic Levenshtein prefix-trie NLP engine with a 340-word multilingual semantic bridge (Malayalam, English, Devanagari Hindi). "
+        "In biometric security, I built <b>AssentTag</b>, an automated privacy-by-default platform utilizing ResNet-34 128D facial embeddings and dynamic consent orchestration ('The Veil'). "
+        "Across my professional internships at <b>The Skybrisk</b> (React.js/Redux ERP), <b>CODTECH</b> (Kubernetes CI/CD & DevSecOps), and <b>Bluegen Solutions</b> (Django/MySQL 3NF optimization), "
+        "I have demonstrated rigorous problem-solving, architectural ownership, and production delivery.\"", body_style
+    ))
+    story.append(Spacer(1, 4))
+
+    # =========================================================================
+    # SECTION 2: 3 MAJOR PROJECTS DEEP-DIVE
+    # =========================================================================
+    story.append(Paragraph("2. Deep-Dive: The 3 Major Engineering Projects", h1_style))
+
+    # PROJECT 1: EPIGRAPHIX-AI
+    story.append(Paragraph("Project 1: EpigraphiX-AI (Neural Palm-Leaf Manuscript OCR & Epigraphical Intelligence Suite)", h2_style))
+    story.append(Paragraph("<b>Problem Statement:</b> Palm-leaf manuscripts suffer from severe physical degradation: lignified horizontal cellulose fibers running collinear with text, soot-ink erosion, micro-fissures, mold specks, and visually confusable Grantha/Vatteluttu glyphs. Standard OCR systems (Tesseract, EasyOCR) fail catastrophically because they misclassify fiber grain as ink strokes.", body_style))
+
+    epi_table = [
+        [Paragraph("<b>Pipeline Stage</b>", body_bold), Paragraph("<b>Tech Stack</b>", body_bold), Paragraph("<b>Architecture, Mathematical Formulations & Working Mechanism</b>", body_bold)],
         [
-            Paragraph("Restoration & Super-Resolution", body_style),
-            Paragraph("OpenCV, FANI 2.0, Sauvola Binarization", body_style),
-            Paragraph("Engineered $O(1)$ Integral-Image Sauvola Binarization ($T = m[1 + k(s/R - 1)]$) achieving &lt;5ms latency. FANI 2.0 uses directional morphological kernels (0°, 45°, 90°, 135°) to suppress cellulose grain noise while preserving stylus incisions.", body_style)
+            Paragraph("1. Rule 1 Substrate Authenticator", body_style),
+            Paragraph("OpenCV, NumPy, YCrCb/HSV Color Space", body_style),
+            Paragraph("5-Layer scientific discriminator: <b>(L1)</b> Human skin area filtering ($H \\in [0..8, 172..180], S \\in [35..170], R>G+12, R>B+20$) rejects portraits; <b>(L2)</b> Synthetic dye & white wall suppression ($R,G,B>215$ or cyan &gt;10%); <b>(L3)</b> Elongated horizontal strip aspect ratio ($W/H \\ge 2.2$); <b>(L4)</b> Palmyra lignin/tannin gamut ($H \\in [9..26], \\sigma_H &lt; 18.0$); <b>(L5)</b> Stylus soot-ink relative darkness density ($\ge 1.2\%$) separating authentic inscribed leaves from blank leaves.", body_style)
         ],
         [
-            Paragraph("TrOCR Vision Transformer", body_style),
-            Paragraph("PyTorch, ViT Encoder, Transformer Decoder, MH-SAM", body_style),
-            Paragraph("Vision Transformer generates multi-head self-attention feature maps across 8 heads. Computes dynamic 5-stop Turbo thermal density overlays, token sequence connection arcs, and character centroid halos.", body_style)
+            Paragraph("2. Optical Restoration & Super-Resolution", body_style),
+            Paragraph("O(1) Sauvola, FANI 2.0, 3D Photometric Stereo", body_style),
+            Paragraph("<b>Sauvola:</b> Local threshold $T(x,y) = m(x,y)[1 + k(s(x,y)/R - 1)]$. Constructs Integral Images $II(x,y)$ and $II_2(x,y)$ to compute mean $m$ and variance $s^2$ in $O(1)$ constant time (&lt;5ms).<br/>"
+                      "<b>FANI 2.0:</b> Directional morphological kernel decomposition ($0^\\circ, 45^\\circ, 90^\\circ, 135^\\circ$) suppresses horizontal cellulose fibers.<br/>"
+                      "<b>3D Stereo:</b> Computes surface normal vectors $\\mathbf{N} = (\\mathbf{L}^T \\mathbf{L})^{-1} \\mathbf{L}^T \\mathbf{I}$ to measure micro-stylus engraving depth in $\\mu\\text{m}$.", body_style)
         ],
         [
-            Paragraph("Topological Feature Space", body_style),
-            Paragraph("Persistent Homology, Betti Numbers ($\\beta_0, \\beta_1$)", body_style),
-            Paragraph("Extracts non-Euclidean topological invariants: $\\beta_0$ (connected stroke components) and $\\beta_1$ (cavity loops). Provides scale/rotation invariance for ancient ligature classification.", body_style)
+            Paragraph("3. Vision Transformer & CNN Lattice", body_style),
+            Paragraph("PyTorch, TrOCR (ViT), CNN Lattice, Betti Numbers", body_style),
+            Paragraph("<b>TrOCR:</b> ViT encoder patches image into 2D spatial tokens with 8-head self-attention; autoregressive decoder generates character sequences with Turbo thermal attention heatmaps.<br/>"
+                      "<b>Topological Invariants:</b> Persistent Homology extracts Betti numbers: $\\beta_0$ (stroke components) and $\\beta_1$ (cavity loops), providing affine and scale invariance.<br/>"
+                      "<b>5-Model Decision Manifold:</b> Benchmarks SVM (RBF), Random Forest (100 trees), $k$-NN ($k=5$), Gaussian Naive Bayes (GNB), and Softmax, achieving 98.8% accuracy.", body_style)
         ],
         [
-            Paragraph("NLP Sandhi Decoder & Semantic Bridge", body_style),
-            Paragraph("DP Levenshtein Trie, Unicode Phonetics, ISO-15919", body_style),
-            Paragraph("Prefix-Trie dynamic programming decodes Sandhi (സന്ധി) splits/merges. Multilingual semantic bridge converts Malayalam terms into Old Classical, Modern, English, and Devanagari Hindi translations.", body_style)
+            Paragraph("4. Post-OCR NLP & Semantic Bridge", body_style),
+            Paragraph("DP Levenshtein, Prefix Trie, Sandhi Rules", body_style),
+            Paragraph("Dynamic Programming Levenshtein matrix backtracking dynamically handles <b>insertions</b> (eroded strokes), <b>deletions</b> (ink bleeds/mold), and <b>substitutions</b> (glyph ambiguity).<br/>"
+                      "<b>Prefix Trie</b> prunes search at edit distance $k=2$ ($O(L \\cdot |\\Sigma|)$).<br/>"
+                      "<b>340-Word Multilingual Bridge:</b> Maps Grantha/Vatteluttu roots $\\rightarrow$ Classical/Modern Malayalam $\\rightarrow$ English exegesis $\\rightarrow$ Devanagari Hindi meaning.", body_style)
         ],
         [
-            Paragraph("Web Studio Client", body_style),
-            Paragraph("HTML5 Canvas, ES6+, WebGPU / WASM Ready", body_style),
-            Paragraph("Zero-click responsive client-side image processing. Dynamic character crop galleries, live 5-model ML decision space (CNN, SVM, RF, k-NN, GNB), and instant PDF vector reporting.", body_style)
+            Paragraph("5. Interactive Web Studio", body_style),
+            Paragraph("HTML5 Canvas, WebGPU, Web Audio, KaTeX, ReportLab", body_style),
+            Paragraph("Hardware-accelerated neural tensor inference (WebGPU), Web Audio API Vedic chant resonant synthesis (136.1Hz Ohm, 216Hz Gayatri, 432Hz Samaveda), SVG vector morphing, Palaeographic Carbon Chronometry (PCC-CSAE dynasty dating), and vector PDF report generation via ReportLab.", body_style)
         ]
     ]
-    t_epi = Table(epigraphix_table_data, colWidths=[110, 125, 299])
-    t_epi.setStyle(TableStyle([
+    t_epi_doc = Table(epi_table, colWidths=[95, 110, 335])
+    t_epi_doc.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), LIGHT_BG),
         ('GRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('PADDING', (0,0), (-1,-1), 4),
+        ('PADDING', (0,0), (-1,-1), 3.5),
     ]))
-    story.append(t_epi)
-    story.append(Spacer(1, 6))
-
-    # ==========================================
-    # SECTION 3: ASSENTTAG DEEP-DIVE
-    # ==========================================
-    story.append(Paragraph("3. Deep-Dive: AssentTag (Biometric Privacy & Consent Management)", h1_style))
-    story.append(Paragraph("<b>System Overview:</b> Privacy-by-Default Computer Vision & Biometric Consent platform designed to automatically blur non-consenting individuals in shared media and orchestrate dynamic unblurring (\"The Veil\").", body_style))
+    story.append(t_epi_doc)
     story.append(Spacer(1, 4))
 
-    assenttag_table = [
-        [Paragraph("<b>Layer</b>", body_bold), Paragraph("<b>Tech Stack</b>", body_bold), Paragraph("<b>Core Architecture & GDPR Compliance</b>", body_bold)],
+    # PROJECT 2: ASSENTTAG
+    story.append(Paragraph("Project 2: AssentTag (Automated Privacy-by-Default Computer Vision & Biometric Consent Platform)", h2_style))
+    story.append(Paragraph("<b>Problem Statement:</b> Unregulated social media sharing frequently exposes non-consenting bystanders and minors, causing serious privacy violations and failing GDPR Article 6 compliance. AssentTag enforces automated privacy-by-default image blurring with dynamic biometric consent unlocking.", body_style))
+
+    assent_table = [
+        [Paragraph("<b>Component</b>", body_bold), Paragraph("<b>Tech Stack</b>", body_bold), Paragraph("<b>Working Mechanism & Architectural Design</b>", body_bold)],
         [
-            Paragraph("Face Pipeline & Landmarks", body_style),
+            Paragraph("Real-Time Face Pipeline", body_style),
             Paragraph("OpenCV, Dlib, 68-Point Facial Landmarks", body_style),
-            Paragraph("Real-time bounding box extraction and selective Gaussian blurring over unconsented faces while keeping consented users pristine.", body_style)
+            Paragraph("Detects facial bounding boxes using frontal face HOG/linear SVM detectors; extracts 68 facial fiducial landmarks (eyes, nose, jawline) and applies selective Gaussian blur (kernel $25\\times 25$) to unconsented faces.", body_style)
         ],
         [
             Paragraph("Biometric Metric Learning", body_style),
-            Paragraph("ResNet-34 Deep Metric Learning", body_style),
-            Paragraph("Extracts 128-dimensional L2-normalized embedding vectors; vectorized Euclidean distance ($d &lt; 0.6$) matches registered identity descriptors.", body_style)
+            Paragraph("ResNet-34 Deep Metric Learning, NumPy", body_style),
+            Paragraph("Passes aligned face crops through ResNet-34 deep convolutional neural network trained with triplet loss to produce 128-dimensional L2-normalized embedding vectors. Vectorized Euclidean distance ($d = \\|\\mathbf{v}_1 - \\mathbf{v}_2\\|_2 &lt; 0.6$) matches identity against database descriptors.", body_style)
         ],
         [
-            Paragraph("Backend & Dynamic Consent", body_style),
-            Paragraph("Python, Django, MySQL, In-Memory Caching", body_style),
-            Paragraph("In-memory NumPy descriptor cache reduces matching latency from 250ms to &lt;10ms. 'The Veil' dynamic workflow sends push requests to grant real-time unblurring.", body_style)
+            Paragraph("Dynamic Consent ('The Veil')", body_style),
+            Paragraph("Python, Django REST, MySQL, In-Memory Cache", body_style),
+            Paragraph("In-memory NumPy descriptor cache reduces matching latency from 250ms to &lt;10ms. 'The Veil' dynamic workflow sends real-time consent push notifications to unblurred registered users upon request approval.", body_style)
+        ],
+        [
+            Paragraph("Security & Compliance", body_style),
+            Paragraph("MFA OTP, GDPR Audit Logging, HTML5/CSS3", body_style),
+            Paragraph("Multi-factor authentication (MFA) with time-based OTP, ephemeral 24-hour media stories, granular consent toggles, and cryptographic audit report generation for GDPR compliance verification.", body_style)
         ]
     ]
-    t_assent = Table(assenttag_table, colWidths=[110, 125, 299])
-    t_assent.setStyle(TableStyle([
+    t_assent_doc = Table(assent_table, colWidths=[95, 110, 335])
+    t_assent_doc.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), LIGHT_BG),
         ('GRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('PADDING', (0,0), (-1,-1), 4),
+        ('PADDING', (0,0), (-1,-1), 3.5),
     ]))
-    story.append(t_assent)
-    story.append(Spacer(1, 6))
+    story.append(t_assent_doc)
+    story.append(Spacer(1, 4))
 
-    # ==========================================
-    # SECTION 4: PROFESSIONAL INTERNSHIP EXPERIENCE
-    # ==========================================
-    story.append(Paragraph("4. Professional Experience & Industry Internships", h1_style))
+    # PROJECT 3: DECIPHERA
+    story.append(Paragraph("Project 3: Deciphera (Historical Manuscript & Epigraphical Archival Intelligence Platform)", h2_style))
+    story.append(Paragraph("<b>Problem Statement:</b> Massive historical archives of stone inscriptions, copper plates, and palm leaves remain untranscribed and inaccessible to historians due to script evolution (Brahmi $\\rightarrow$ Grantha $\\rightarrow$ Vatteluttu $\\rightarrow$ Modern Malayalam).", body_style))
+    story.append(Paragraph("• <b>Multi-Scale Contrast Enhancement:</b> Employs Multi-Scale Retinex with Color Restoration (MSRCR) and morphological top-hat filtering to enhance weathered engravings on stone and metallic copper plates.<br/>"
+                           "• <b>Transliteration Pipeline:</b> Converts ancient Brahmi and Grantha epigraphical phonemes into standard Unicode Malayalam and Devanagari Sanskrit with ISO-15919 transliteration standards.<br/>"
+                           "• <b>Archival Corpus & Chronometry:</b> Tags manuscripts with dynasty chronological classifications (Chera, Chola, Pandya periods) and provides full-text phonetic search across historical archives.", body_style))
+    story.append(Spacer(1, 4))
 
-    # Skybrisk
-    story.append(Paragraph("A. The Skybrisk — React.js Development Intern (Feb 2026 – Mar 2026)", h2_style))
-    story.append(Paragraph("• <b>Enterprise ERP Architecture:</b> Built end-to-end workflows for Product Catalog, Purchase/Sales Orders, GRN, and Automated Invoicing.", bullet_style))
-    story.append(Paragraph("• <b>State Management & Security:</b> Designed Redux Toolkit slices with signed JWT authentication and granular Role-Based Access Control (Admin, Sales, Purchase, Inventory).", bullet_style))
-    story.append(Paragraph("• <b>Analytics & Export:</b> Integrated dynamic Chart.js reporting and client-side jsPDF invoice rendering, accelerating report generation by 20%.", bullet_style))
+    # =========================================================================
+    # SECTION 3: EXHAUSTIVE TECHNICAL SKILLS DEEP-DIVE ("WHAT IS IT & HOW APPLIED?")
+    # =========================================================================
+    story.append(Paragraph("3. Exhaustive Skills & Techniques Guide: 'What is It & How is It Applied?'", h1_style))
+    story.append(Paragraph("Comprehensive technical breakdown of every skill listed on the resume, its mathematical definition, and its direct application in the projects and internships.", body_style))
+    story.append(Spacer(1, 3))
 
-    # CODTECH
-    story.append(Paragraph("B. CODTECH IT Solutions — DevOps Intern (Feb 2026 – Mar 2026)", h2_style))
-    story.append(Paragraph("• <b>CI/CD Pipeline Automation:</b> Built automated GitHub Actions workflows (`.github/workflows`) for linting, testing, Docker image building, and multi-stage container push.", bullet_style))
-    story.append(Paragraph("• <b>Kubernetes Orchestration:</b> Deployed containerized microservices on K8s with 3 replica pods, RollingUpdate zero-downtime deployments, and LoadBalancer services.", bullet_style))
-    story.append(Paragraph("• <b>DevSecOps & DAST:</b> Embedded OWASP ZAP dynamic security scanning into release pipelines to identify CSP, CORS, and header vulnerabilities before production release.", bullet_style))
-
-    # Bluegen
-    story.append(Paragraph("C. Bluegen Solutions — Software Development Intern (Dec 2025 – Mar 2026)", h2_style))
-    story.append(Paragraph("• <b>RESTful Backend:</b> Engineered scalable Django REST framework endpoints handling user sessions, authentication, and core transaction lifecycles.", bullet_style))
-    story.append(Paragraph("• <b>Database Optimization:</b> Normalized MySQL schema across 8+ tables into 3NF with foreign-key composite indexing, cutting query latency by 25%.", bullet_style))
-
-    story.append(Spacer(1, 6))
-
-    # ==========================================
-    # SECTION 5: COMPREHENSIVE TECHNICAL INTERVIEW QUESTIONS & MODEL ANSWERS
-    # ==========================================
-    story.append(Paragraph("5. Comprehensive Technical Q&A (Deep Learning, Vision, NLP, Architecture)", h1_style))
-
-    qa_sections = [
-        # CATEGORY A: VISION TRANSFORMERS & DEEP LEARNING
-        ("Category A: Vision Transformers & Deep Learning Architecture", [
-            ("How does TrOCR differ from traditional CRNN (CNN + BiLSTM + CTC) architectures for scene text and manuscript recognition?",
-             "Traditional CRNNs rely on convolutional feature maps fed into 1D recurrent sequences with Connectionist Temporal Classification (CTC) loss. This struggles with 2D character deformations, non-linear text flow, and long-range dependencies in historical scripts. "
-             "TrOCR employs a <b>Vision Transformer (ViT) encoder</b> that patches the 2D image into flattened spatial tokens with self-attention across both horizontal and vertical axes, paired with an <b>Autoregressive Transformer Decoder</b>. "
-             "This eliminates CTC independence assumptions, allows joint multi-modal cross-attention between character strokes and language modeling, and handles complex historical ligatures with significantly lower character error rate (CER)."),
-
-            ("What is Multi-Head Self-Attention (MH-SAM) and how did you extract stroke attention heatmaps?",
-             "Multi-Head Self-Attention computes $A_h = \\text{softmax}(Q_h K_h^T / \\sqrt{d_k}) V_h$ across $H=8$ parallel representation subspaces. "
-             "To generate the visual attention heatmap, I extracted cross-attention weights from Layer 12 of the transformer decoder corresponding to active token generation steps. "
-             "These weights are projected back onto spatial image coordinates via 2D Gaussian splatting ($\\sigma = 0.85 \\cdot \\text{bbox}$) combined with Sobel incision gradients, and rendered using a 5-stop Turbo thermal gradient (Indigo -> Cyan -> Green -> Amber -> Crimson)."),
-
-            ("What is the vanishing gradient problem and how does ResNet solve it?",
-             "In deep networks, gradients backpropagated via the chain rule multiply through many activation derivatives. For sigmoid/tanh or deep weight matrices with eigenvalues &lt; 1, gradients decay exponentially toward zero, preventing early layers from learning. "
-             "ResNet introduces <b>residual skip connections</b>: $y = F(x, \\{W_i\\}) + x$. The derivative is $\\frac{\\partial \\mathcal{E}}{\\partial x} = \\frac{\\partial \\mathcal{E}}{\\partial y} \\left(\\frac{\\partial F}{\\partial x} + 1\\right)$. "
-             "The constant '$+1$' term guarantees that gradients propagate directly to earlier layers without vanishing, allowing networks with 34, 50, or 152 layers to converge cleanly.")
-        ]),
-
-        # CATEGORY B: COMPUTER VISION, RESTORATION & TOPOLOGY
-        ("Category B: Computer Vision, Restoration & Topological Analysis", [
-            ("Explain the mathematical derivation of O(1) Integral-Image Sauvola Binarization.",
-             "Sauvola calculates local thresholds: $T(x,y) = m(x,y) \\cdot [1 + k \\cdot (s(x,y)/R - 1)]$. Standard calculation of local mean $m$ and standard deviation $s = \\sqrt{\\frac{1}{N}\\sum I^2 - m^2}$ over a $W \\times W$ window takes $O(W^2)$ per pixel. "
-             "By constructing two Integral Images (prefix sum tables): $II(x,y) = \\sum_{i\\le x, j\\le y} I(i,j)$ and $II_2(x,y) = \\sum_{i\\le x, j\\le y} I^2(i,j)$, "
-             "any rectangular sum is computed in 4 array lookups: $\\text{Sum} = II(D) + II(A) - II(B) - II(C)$. This reduces variance computation to $O(1)$ constant time per pixel, enabling real-time manuscript binarization in under 5ms."),
-
-            ("What are Topological Betti numbers (β₀, β₁) and why use them for historical character classification?",
-             "Ancient palm leaves suffer from erosion, non-uniform scaling, and ink smudging that distort Euclidean pixel distances. "
-             "Persistent Homology extracts algebraic topology invariants: $\\beta_0$ counts connected components (stroke islands) and $\\beta_1$ counts 1-dimensional topological cycles (loops or enclosed holes in characters like 'ഠ', 'ര', 'ം'). "
-             "Because Betti numbers are topological invariants, they are strictly invariant under affine transformations, continuous shearing, non-rigid bending, and font-scale variations."),
-
-            ("How does Fiber-Aware Neural Inpainting (FANI 2.0) isolate stylus incisions from cellulose fibers?",
-             "Palm leaves feature strong horizontal striations caused by lignified cellulose microfibrils that run collinear with the leaf axis. "
-             "FANI 2.0 applies directional morphological kernel decomposition across four discrete angles ($0^\\circ, 45^\\circ, 90^\\circ, 135^\\circ$). "
-             "By isolating the $0^\\circ$ sub-band (horizontal cellulose noise) and computing directional local variance, it suppresses fiber striations while preserving curved and vertical stylus ink incisions.")
-        ]),
-
-        # CATEGORY C: NLP, SANDHI GRAMMAR & DATA STRUCTURES
-        ("Category C: NLP, Sandhi Grammar & Algorithmic Optimization", [
-            ("Explain how the Prefix-Trie Levenshtein algorithm performs Sandhi grammar correction.",
-             "Raw epigraphical OCR frequently misclassifies visually confusable characters (e.g., 'റ' vs 'ര' or 'പ' vs 'വ'). "
-             "Rather than running standard $O(N \\cdot M)$ Levenshtein distance against 50,000 dictionary words ($O(V \\cdot M)$), I constructed a <b>Prefix Trie</b>. "
-             "The Dynamic Programming state row is passed down during Trie traversal: $D[i] = \\min(D_{prev}[i]+1, D[i-1]+1, D_{prev}[i-1] + \\text{cost})$. "
-             "Branches with edit distance exceeding $k=2$ are pruned early. Sandhi compound splitting tests split-point pairs $(w_1, w_2)$ against the Trie in $O(L \\cdot |\\Sigma|)$, boosting transcription accuracy by 15%."),
-
-            ("When do you use a Trie over a Hash Table?",
-             "A Hash Table offers $O(1)$ average lookup for exact keys, but cannot execute prefix matching, range queries, or nearest-neighbor phonetic search. "
-             "A Trie provides $O(L)$ deterministic lookup (where $L$ is word length), supports prefix autocomplete, and allows simultaneous branch pruning during fuzzy dynamic programming search, making it the optimal data structure for spell-checking and Sandhi grammar engines.")
-        ]),
-
-        # CATEGORY D: FULL-STACK, CLOUD & DEVOPS ARCHITECTURE
-        ("Category D: Full-Stack Architecture, WebGPU & Cloud Systems", [
-            ("How do you design a distributed, high-throughput OCR and Translation Pipeline for 100,000 manuscript pages/hour?",
-             "<b>Architecture:</b><br/>"
-             "1. <b>Ingestion Layer:</b> API Gateway with Amazon S3 presigned upload URLs and message queuing via Apache Kafka / RabbitMQ.<br/>"
-             "2. <b>Compute Workers:</b> Kubernetes auto-scaling worker pods running GPU-accelerated PyTorch TrOCR inference using TensorRT or ONNX Runtime.<br/>"
-             "3. <b>Caching & Fast Retrieval:</b> Redis cache for frequent subword embeddings and Levenshtein lookups.<br/>"
-             "4. <b>Storage & Indexing:</b> PostgreSQL with pgvector for semantic search over historical epigraphical corpora and MinIO/S3 for tile storage."),
-
-            ("Walk me through a zero-downtime Kubernetes rolling deployment.",
-             "In Kubernetes, the Deployment controller manages a ReplicaSet with a `RollingUpdate` strategy. "
-             "When a new image tag is deployed, K8s creates a new Pod with the updated version. "
-             "The old Pod continues serving traffic until the new Pod passes both `readinessProbe` (verifying HTTP endpoints and DB connections) and `livenessProbe`. "
-             "Once healthy, the Service LoadBalancer redirects ingress traffic to the new pod, and the old pod is gracefully terminated (`SIGTERM` with `terminationGracePeriodSeconds: 30`).")
-        ])
+    tech_guide_data = [
+        [Paragraph("<b>Technology / Skill</b>", body_bold), Paragraph("<b>What is It? (Technical Definition)</b>", body_bold), Paragraph("<b>How is It Applied in the Projects / Internships?</b>", body_bold)],
+        [
+            Paragraph("<b>TrOCR (Vision Transformer)</b>", tech_title),
+            Paragraph("An end-to-end OCR model combining a Vision Transformer (ViT) image encoder with an autoregressive text Transformer decoder, eliminating CTC loss.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, TrOCR extracts 8-head self-attention feature maps across 2D image patches, generating sequence transcriptions and Turbo thermal attention overlays for ancient characters.", tech_desc)
+        ],
+        [
+            Paragraph("<b>k-NN (k-Nearest Neighbors)</b>", tech_title),
+            Paragraph("A non-parametric, lazy learning algorithm that classifies a sample based on the plurality vote of its $k$ closest training instances in feature space.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, $k$-NN ($k=5$) benchmarks topological Betti vectors $(\\beta_0, \\beta_1)$ and Gabor energy descriptors for fast character similarity matching.", tech_desc)
+        ],
+        [
+            Paragraph("<b>SVM (Support Vector Machine)</b>", tech_title),
+            Paragraph("A supervised classifier that finds the optimal hyperplane maximizing the geometric margin between classes using kernel tricks (e.g., RBF).", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, multi-class SVM with an RBF kernel classifies non-linear topological feature vectors into Malayalam character classes.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Random Forest (RF)</b>", tech_title),
+            Paragraph("An ensemble learning method that constructs multiple decision trees during training and outputs the mode/mean class prediction, preventing overfitting.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, Random Forest (100 estimators) evaluates Gabor texture and Betti invariants to provide robust baseline character classification.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Gaussian Naive Bayes (GNB)</b>", tech_title),
+            Paragraph("A probabilistic classifier applying Bayes' theorem with the assumption of conditional independence and Gaussian feature distributions.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, GNB provides a rapid, probabilistic baseline decision space benchmark against deep neural models.", tech_desc)
+        ],
+        [
+            Paragraph("<b>KaTeX</b>", tech_title),
+            Paragraph("A fast, lightweight JavaScript math typesetting library developed by Khan Academy for rendering LaTeX mathematical expressions on the web.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI Web Studio</b>, KaTeX renders live mathematical formulas (Betti numbers $\\beta_0, \\beta_1$, Sauvola equation $T=m[1+k(s/R-1)]$, normal vectors $\\mathbf{N}$) in real time.", tech_desc)
+        ],
+        [
+            Paragraph("<b>WebGPU</b>", tech_title),
+            Paragraph("Next-generation web standard for low-overhead, hardware-accelerated GPU graphics and general-purpose parallel compute in browser runtimes.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, WebGPU computes shader-based matrix convolutions and Vision Transformer tensor projections directly on client GPUs (&lt;50ms latency).", tech_desc)
+        ],
+        [
+            Paragraph("<b>Web Audio API</b>", tech_title),
+            Paragraph("High-level JavaScript audio processing system for synthesizing, routing, and manipulating modular audio signals directly in the browser.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI Web Studio</b>, Web Audio synthesizes resonant Vedic chant frequencies (136.1Hz Pranava Ohm, 216Hz Rigvedic Gayatri, 432Hz Samavedic Pitch) during script playback.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Topological Betti Numbers (β₀, β₁)</b>", tech_title),
+            Paragraph("Algebraic topology invariants from Persistent Homology: $\\beta_0$ counts connected components; $\\beta_1$ counts 1-dimensional enclosed loops/cavities.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, Betti numbers provide scale-, rotation-, and affine-invariant descriptors for recognizing ancient ligatures despite ink smudging.", tech_desc)
+        ],
+        [
+            Paragraph("<b>O(1) Sauvola Binarization</b>", tech_title),
+            Paragraph("Adaptive local thresholding method using Integral Images (prefix sums) to calculate local window mean and variance in constant time $O(1)$.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, enables real-time (&lt;5ms) thresholding of high-resolution palm leaves, handling severe non-uniform lighting and tannin discoloration.", tech_desc)
+        ],
+        [
+            Paragraph("<b>3D Photometric Stereo</b>", tech_title),
+            Paragraph("Computer vision technique estimating surface normals $\\mathbf{N} = (\\mathbf{L}^T \\mathbf{L})^{-1} \\mathbf{L}^T \\mathbf{I}$ from images under different lighting directions.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, extracts surface normal gradients to isolate iron-stylus engraving depth ($\\mu\\text{m}$) from superficial surface stains.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Dynamic Levenshtein Alignment</b>", tech_title),
+            Paragraph("Dynamic programming matrix backtracking algorithm computing optimal edit operations (insertions, deletions, substitutions) between strings.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, dynamically corrects raw OCR errors: insertions (eroded strokes), deletions (ink bleeds/mold), and substitutions (glyph confusion).", tech_desc)
+        ],
+        [
+            Paragraph("<b>Trie Lexicon Search</b>", tech_title),
+            Paragraph("An ordered tree data structure (prefix tree) where keys are strings with nodes representing characters, providing $O(L)$ search time.", tech_desc),
+            Paragraph("In <b>EpigraphiX-AI</b>, a 340-word Malayalam Trie accelerates fuzzy dictionary search by pruning search branches at edit distance $k=2$.", tech_desc)
+        ],
+        [
+            Paragraph("<b>ResNet-34 & 128D Embeddings</b>", tech_title),
+            Paragraph("Deep residual network utilizing skip connections to avoid vanishing gradients; trained with triplet loss to map faces to 128-dimensional Euclidean space.", tech_desc),
+            Paragraph("In <b>AssentTag</b>, extracts 128D biometric vectors from live camera feeds; Euclidean distance threshold ($d &lt; 0.6$) validates identity for privacy unblurring.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Dlib 68-Point Landmarking</b>", tech_title),
+            Paragraph("Ensemble of Regression Trees algorithm detecting 68 precise facial anatomical landmark coordinates (eyes, eyebrows, nose bridge, jawline).", tech_desc),
+            Paragraph("In <b>AssentTag</b>, localizes face regions for affine alignment and selective Gaussian blurring over unconsented individuals.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Kubernetes (K8s) & CI/CD</b>", tech_title),
+            Paragraph("Container orchestration platform automating deployment, scaling, and management of containerized workloads; CI/CD automates build, test, and release.", tech_desc),
+            Paragraph("In <b>CODTECH internship</b>, wrote GitHub Actions workflows and K8s manifests (3-replica Pods, RollingUpdate zero-downtime, LoadBalancers).", tech_desc)
+        ],
+        [
+            Paragraph("<b>OWASP ZAP (DAST)</b>", tech_title),
+            Paragraph("Dynamic Application Security Testing scanner detecting real-time vulnerabilities (SQLi, XSS, CSRF, insecure headers, CORS) in running applications.", tech_desc),
+            Paragraph("In <b>CODTECH internship</b>, integrated automated OWASP ZAP baseline security scans into CI/CD release gates to prevent security regressions.", tech_desc)
+        ],
+        [
+            Paragraph("<b>React.js, Redux & Material-UI</b>", tech_title),
+            Paragraph("Declarative component-based UI library paired with centralized immutable state management (Redux Toolkit) and modular component frameworks.", tech_desc),
+            Paragraph("In <b>The Skybrisk internship</b>, built enterprise ERP modules (Orders, GRN, Invoices) with 15+ modular components, slashing code duplication by 35%.", tech_desc)
+        ],
+        [
+            Paragraph("<b>Django & MySQL (3NF Optimization)</b>", tech_title),
+            Paragraph("High-level Python web framework enforcing MVC/MVT architecture paired with normalized relational database management systems.", tech_desc),
+            Paragraph("In <b>Bluegen Solutions</b> & <b>AssentTag</b>, designed normalized 3NF schemas across 8+ tables with foreign key indexing, cutting query latency by 25%.", tech_desc)
+        ]
     ]
 
-    for cat_title, qas in qa_sections:
-        story.append(Paragraph(f"<b>{cat_title}</b>", h2_style))
-        for q, a in qas:
-            story.append(Paragraph(f"<b>Q: {q}</b>", q_style))
-            story.append(Paragraph(f"<b>Answer:</b> {a}", a_style))
-        story.append(Spacer(1, 4))
+    t_tech_guide = Table(tech_guide_data, colWidths=[105, 145, 290])
+    t_tech_guide.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), LIGHT_BG),
+        ('GRID', (0,0), (-1,-1), 0.5, BORDER_COLOR),
+        ('VALIGN', (0,0), (-1,-1), 'TOP'),
+        ('PADDING', (0,0), (-1,-1), 3),
+    ]))
+    story.append(t_tech_guide)
+    story.append(Spacer(1, 4))
 
-    # ==========================================
-    # SECTION 6: BEHAVIORAL & LEADERSHIP (STAR METHOD)
-    # ==========================================
-    story.append(Paragraph("6. Behavioral & Leadership Questions (STAR Method)", h1_style))
+    # =========================================================================
+    # SECTION 4: PROFESSIONAL INTERNSHIPS IN DETAIL
+    # =========================================================================
+    story.append(Paragraph("4. Professional Internships: Detailed Work Done & Metrics", h1_style))
 
-    star_examples = [
-        ("Tell me about a time you faced an ambiguous or difficult technical challenge and how you solved it.",
-         "<b>Situation:</b> In EpigraphiX-AI, standard OCR models (Tesseract, EasyOCR) failed completely on 1,000-year-old palm leaves because horizontal fiber grain and leaf stains were misclassified as character strokes.<br/>"
-         "<b>Task:</b> I needed to create an automated restoration and recognition pipeline that could run in real-time in the browser without requiring massive cloud compute.<br/>"
+    story.append(Paragraph("A. Bluegen Solutions — Software Development Intern (Dec 2025 – Mar 2026 | On-site, Kozhikode)", h2_style))
+    story.append(Paragraph("• <b>Backend Architecture:</b> Built scalable REST API endpoints using Python and Django REST framework handling user authentication, session security, and transaction lifecycles.<br/>"
+                           "• <b>Database Normalization & Indexing:</b> Structured an 8+ table MySQL relational database into Third Normal Form (3NF), designing composite B-tree indexes on foreign keys that reduced query retrieval latency by 25%.<br/>"
+                           "• <b>Agile Delivery & Bug Resolution:</b> Participated in daily standups and sprint retrospectives, profiling server bottlenecks and fixing 15+ critical software defects to boost overall stability.", bullet_style))
+    story.append(Spacer(1, 3))
+
+    story.append(Paragraph("B. The Skybrisk — React.js Development Intern (Feb 2026 – Mar 2026 | Remote)", h2_style))
+    story.append(Paragraph("• <b>Enterprise ERP Web Suite:</b> Developed core modules for Product Catalog, Purchase Orders, Sales Orders, Goods Receipt Notes (GRN), and Invoicing using React.js and Material-UI.<br/>"
+                           "• <b>Centralized State & Route Security:</b> Architected Redux Toolkit slices with normalized state shapes, integrating JWT token route guards (RBAC) that slashed front-end code redundancy by 35%.<br/>"
+                           "• <b>Analytics & Client-Side PDF Export:</b> Built dynamic business dashboards with Chart.js and client-side invoice PDF generation via jsPDF, improving operational reporting speed by 20%.", bullet_style))
+    story.append(Spacer(1, 3))
+
+    story.append(Paragraph("C. CODTECH IT Solutions — DevOps Intern (Feb 2026 – Mar 2026 | Remote)", h2_style))
+    story.append(Paragraph("• <b>CI/CD Pipeline Automation:</b> Configured end-to-end GitHub Actions pipelines (`.github/workflows`) automating unit testing, Docker container multi-stage builds, and container registry publishing.<br/>"
+                           "• <b>Kubernetes Microservices:</b> Authored K8s manifests (Deployments, Services, ConfigMaps, Secrets), configuring 3-replica Pods, rolling updates with zero downtime, and Service LoadBalancers.<br/>"
+                           "• <b>DevSecOps Security Gates:</b> Integrated OWASP ZAP dynamic application security testing (DAST) baseline scans to catch XSS, CSP, and header misconfigurations prior to deployment.", bullet_style))
+    story.append(Spacer(1, 4))
+
+    # =========================================================================
+    # SECTION 5: TOP TECHNICAL & SYSTEM DESIGN INTERVIEW Q&A
+    # =========================================================================
+    story.append(Paragraph("5. Top Technical & System Design Interview Questions & Model Answers", h1_style))
+
+    tech_qas = [
+        ("How does TrOCR differ from traditional CRNN (CNN + BiLSTM + CTC) architectures for scene text and manuscript recognition?",
+         "Traditional CRNNs pass CNN feature maps into 1D recurrent sequences with Connectionist Temporal Classification (CTC) loss. This enforces conditional independence between time steps and struggles with 2D character deformations, non-linear script baseline drift, and complex ancient ligatures. "
+         "TrOCR employs a <b>Vision Transformer (ViT) encoder</b> that patches the 2D image with full spatial self-attention, paired with an <b>Autoregressive Transformer Decoder</b>. "
+         "This eliminates CTC independence assumptions, allows joint cross-attention between character strokes and language modeling, and handles complex historical ligatures with significantly lower Character Error Rate (CER)."),
+
+        ("Explain the mathematical derivation of O(1) Integral-Image Sauvola Binarization.",
+         "Sauvola calculates local thresholds: $T(x,y) = m(x,y) \\cdot [1 + k \\cdot (s(x,y)/R - 1)]$, where $m$ is local mean, $s$ is standard deviation, $R=128$, and $k=0.2$. "
+         "Standard calculation over a window $W \\times W$ requires $O(W^2)$ operations per pixel. "
+         "By creating two Integral Images: $II(x,y) = \\sum_{i\\le x, j\\le y} I(i,j)$ and $II_2(x,y) = \\sum_{i\\le x, j\\le y} I^2(i,j)$, "
+         "the sum of pixel intensities and squared intensities inside any arbitrary rectangle $[x_1, y_1, x_2, y_2]$ is computed in exactly 4 array lookups: "
+         "$\\text{Sum} = II(x_2, y_2) - II(x_1-1, y_2) - II(x_2, y_1-1) + II(x_1-1, y_1-1)$. "
+         "Variance $s^2 = \\frac{1}{N}\\text{Sum}_2 - m^2$ is evaluated in $O(1)$ constant time per pixel, enabling high-resolution manuscript binarization in under 5ms."),
+
+        ("What are Topological Betti numbers (β₀, β₁) and why are they superior to Euclidean pixel matching for historical scripts?",
+         "Ancient palm leaves suffer from erosion, non-uniform scaling, and ink smudging that distort Euclidean pixel distances. "
+         "Persistent Homology extracts algebraic topology invariants: $\\beta_0$ counts connected components (stroke islands) and $\\beta_1$ counts 1-dimensional topological cycles (enclosed loops in characters like 'ഠ', 'ര', 'ം'). "
+         "Because Betti numbers are topological invariants, they are strictly invariant under affine transformations, continuous shearing, non-rigid bending, and font-scale variations."),
+
+        ("How does ResNet-34 deep metric learning work in AssentTag for biometric verification?",
+         "ResNet-34 maps 2D facial images into a 128-dimensional continuous vector space $\\mathbb{R}^{128}$ such that Euclidean distance directly corresponds to facial identity similarity. "
+         "The network is trained with Triplet Loss: $\\mathcal{L} = \\max(0, \\|f(A) - f(P)\\|^2 - \\|f(A) - f(N)\\|^2 + \\alpha)$, where $A$ is anchor, $P$ is positive (same person), and $N$ is negative (different person). "
+         "During runtime, L2-normalized embeddings $\\mathbf{v}_1, \\mathbf{v}_2$ are compared: if $d = \\|\\mathbf{v}_1 - \\mathbf{v}_2\\|_2 &lt; 0.6$, the identity is verified. In-memory NumPy descriptor caching keeps lookup latency under 10ms."),
+
+        ("How would you design a distributed, high-throughput OCR and Translation Pipeline for 100,000 manuscript pages/hour?",
+         "<b>Architecture:</b><br/>"
+         "1. <b>Ingestion Layer:</b> API Gateway with Amazon S3 presigned upload URLs and message queuing via Apache Kafka / RabbitMQ.<br/>"
+         "2. <b>Compute Workers:</b> Kubernetes auto-scaling worker pods running GPU-accelerated PyTorch TrOCR inference using TensorRT or ONNX Runtime.<br/>"
+         "3. <b>Caching & Fast Retrieval:</b> Redis cluster caching subword embeddings and Levenshtein Trie lookups.<br/>"
+         "4. <b>Storage & Indexing:</b> PostgreSQL with pgvector for semantic search over historical epigraphical corpora and MinIO/S3 for tile storage.")
+    ]
+
+    for q, a in tech_qas:
+        story.append(Paragraph(f"<b>Q: {q}</b>", q_style))
+        story.append(Paragraph(f"<b>Answer:</b> {a}", a_style))
+
+    story.append(Spacer(1, 4))
+
+    # =========================================================================
+    # SECTION 6: BEHAVIORAL INTERVIEW RESPONSES (STAR METHOD)
+    # =========================================================================
+    story.append(Paragraph("6. Behavioral & Leadership Competencies (STAR Method)", h1_style))
+
+    star_qas = [
+        ("Tell me about a time you faced a difficult technical challenge and how you overcame it.",
+         "<b>Situation:</b> In EpigraphiX-AI, standard OCR engines (Tesseract, EasyOCR) failed completely on 1,000-year-old palm leaves because horizontal fiber grain and leaf stains were misclassified as character strokes.<br/>"
+         "<b>Task:</b> I needed to engineer an automated restoration and recognition pipeline capable of running in real time without massive cloud infrastructure.<br/>"
          "<b>Action:</b> I formulated an $O(1)$ Integral-Image Sauvola algorithm for &lt;5ms binarization, developed FANI 2.0 directional morphological inpainting, and trained a TrOCR Vision Transformer with Persistent Homology Betti topological invariants for ligature classification.<br/>"
-         "<b>Result:</b> Achieved &gt;90% character accuracy and &lt;300ms end-to-end inference latency, creating a zero-dependency web studio that runs entirely client-side."),
+         "<b>Result:</b> Achieved 98.8% manuscript detection accuracy, &gt;92% character recognition, and &lt;300ms end-to-end inference latency, creating a zero-dependency web studio that runs client-side."),
 
-        ("Describe a situation where you had to balance technical debt with strict delivery deadlines.",
-         "<b>Situation:</b> During my internship at The Skybrisk, the team needed to ship the core ERP Purchase & Invoicing modules within a 3-week sprint while the existing state management was becoming unmaintainable.<br/>"
+        ("Describe a situation where you had to balance technical debt with tight delivery deadlines.",
+         "<b>Situation:</b> During my internship at The Skybrisk, the team needed to ship the core ERP Purchase & Invoicing modules within a 3-week sprint while existing component state management was becoming unmaintainable.<br/>"
          "<b>Task:</b> I had to deliver the complete GRN and invoicing workflow without introducing regressions or fragile prop drilling.<br/>"
-         "<b>Action:</b> I advocated for migrating to Redux Toolkit state slices with normalized state shapes. I created reusable custom hooks for API caching and wrapped routes with an RBAC higher-order component.<br/>"
+         "<b>Action:</b> I advocated for migrating to Redux Toolkit state slices with normalized state shapes. I created 15+ reusable modular UI components and wrapped routes with an RBAC higher-order component.<br/>"
          "<b>Result:</b> Delivered the module 2 days ahead of deadline and reduced subsequent bug report tickets by 35% across the sprint."),
 
         ("How do you handle critical feedback during a technical code review?",
          "<b>Situation:</b> In my DevOps internship at CODTECH, a senior engineer noted that my initial GitHub Actions CI/CD pipeline lacked security vulnerability gates and used hardcoded container tags.<br/>"
          "<b>Task:</b> Refactor the pipeline to adhere to enterprise security and semantic versioning standards.<br/>"
-         "<b>Action:</b> I actively welcomed the feedback, researched OWASP ZAP DAST integration, added automated vulnerability scanning, and transitioned Docker builds to Git SHA-based immutable tags.<br/>"
+         "<b>Action:</b> I welcomed the feedback, researched OWASP ZAP DAST integration, added automated vulnerability scanning, and transitioned Docker builds to Git SHA-based immutable tags.<br/>"
          "<b>Result:</b> Established a hardened DevSecOps template that became the standard CI/CD workflow across the internship repository.")
     ]
 
-    for q, star_text in star_examples:
+    for q, star_text in star_qas:
         story.append(Paragraph(f"<b>Q: {q}</b>", q_style))
-        story.append(Paragraph(star_text, star_label))
-        story.append(Spacer(1, 3))
+        story.append(Paragraph(star_text, a_style))
 
-    # ==========================================
-    # SECTION 7: SMART QUESTIONS TO ASK INTERVIEWERS
-    # ==========================================
     story.append(Spacer(1, 4))
-    story.append(Paragraph("7. Strategic Questions to Ask Interviewers", h1_style))
-    story.append(Paragraph("1. <i>\"How does your engineering team manage the lifecycle between ML research prototypes and production-hardened microservices?\"</i>", bullet_style))
+
+    # =========================================================================
+    # SECTION 7: STRATEGIC QUESTIONS TO ASK INTERVIEWERS
+    # =========================================================================
+    story.append(Paragraph("7. Strategic Questions to Ask the Interviewer", h1_style))
+    story.append(Paragraph("1. <i>\"How does your engineering team bridge the gap between ML research prototypes and production-hardened, low-latency microservices?\"</i>", bullet_style))
     story.append(Paragraph("2. <i>\"What are the highest-priority architectural milestones your team is aiming to achieve over the next two quarters?\"</i>", bullet_style))
     story.append(Paragraph("3. <i>\"What does success look like for an engineer in this role during the first 90 days?\"</i>", bullet_style))
     story.append(Paragraph("4. <i>\"How does the team foster continuous learning and adoption of emerging technologies (e.g., WebGPU, Edge AI, DevSecOps)?\"</i>", bullet_style))
 
     # Build Document
     doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"✔ Successfully generated Master Guide PDF at: {filename}")
-    return filename
+    print(f"✔ Successfully generated Master Guide PDF at: {output_path}")
+    return output_path
 
 
 if __name__ == "__main__":
     downloads_path = r"C:\Users\HP\Downloads"
     output_pdf = os.path.join(downloads_path, "Adarsh_S_Interview_Master_Guide.pdf")
-    build_pdf(output_pdf)
+    build_interview_master_guide_pdf(output_pdf)
