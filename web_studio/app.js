@@ -262,6 +262,33 @@ if (fileInput) {
   });
 }
 
+const btnLoadSample1 = document.getElementById('btnLoadSample1');
+if (btnLoadSample1) {
+  btnLoadSample1.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    loadImage('sample1.jpg');
+  });
+}
+
+const btnLoadSample2 = document.getElementById('btnLoadSample2');
+if (btnLoadSample2) {
+  btnLoadSample2.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    loadImage('sample2.jpg');
+  });
+}
+
+const btnUploadCustom = document.getElementById('btnUploadCustom');
+if (btnUploadCustom) {
+  btnUploadCustom.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (fileInput) fileInput.click();
+  });
+}
+
 if (dropZone) {
   ['dragenter', 'dragover'].forEach(name => {
     dropZone.addEventListener(name, (e) => {
@@ -2088,6 +2115,9 @@ function computeBiometricScribeFatigue(srcImgData, boxes) {
       }
     }
   }
+  return outData;
+}
+
 // --- SOTA TECHNIQUE: TrOCR MULTI-HEAD SELF-ATTENTION MAP (MH-SAM) ---
 function computeTrOCRAttentionMap(srcImgData, boxes) {
   const w = srcImgData.width;
@@ -4893,19 +4923,34 @@ if (modelSelectorBar) {
 updateModelComparisonUI();
 updateBenchmarkUI();
 updateSearch();
+
+function autoLoadInitialManuscript() {
+  if (!currentImage) {
+    loadImage('sample1.jpg');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   updateModelComparisonUI();
   updateBenchmarkUI();
   updateSearch();
+  autoLoadInitialManuscript();
 });
+
 window.addEventListener('load', () => {
   updateModelComparisonUI();
   updateBenchmarkUI();
   updateSearch();
+  autoLoadInitialManuscript();
 });
-setTimeout(updateModelComparisonUI, 50);
-setTimeout(updateModelComparisonUI, 300);
+
+setTimeout(() => {
+  updateModelComparisonUI();
+  autoLoadInitialManuscript();
+}, 200);
+
 setTimeout(updateModelComparisonUI, 1000);
+
 
 
 
