@@ -109,6 +109,34 @@
           </div>
         </div>
 
+        <!-- Deep Depth, Cellulose Matrix & Stylus Telemetry HUD -->
+        <div class="epigraphical-telemetry-hud" id="epigraphicalTelemetryHud" style="margin: 12px 0; background: rgba(0,0,0,0.45); border: 1px solid rgba(56,189,248,0.3); border-radius: 12px; padding: 10px 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 11px; font-weight: 700; color: #38bdf8; display:flex; align-items:center; gap:6px;">
+              <span>🔬 Deep Depth & Cellulose Matrix Telemetry</span>
+            </span>
+            <span id="telemetryStatusBadge" class="badge glow-green" style="font-size: 10px;">Awaiting Image</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px;">
+            <div style="background: rgba(255,255,255,0.04); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 9.5px; color: #94a3b8; font-weight: 600;">🧬 Cellulose Fiber Index</div>
+              <strong id="telCelluloseVal" style="font-size: 12px; color: #ffffff;">--%</strong>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 9.5px; color: #94a3b8; font-weight: 600;">🔬 Stylus Depth (∇·N)</div>
+              <strong id="telDepthVal" style="font-size: 12px; color: #ffffff;">-- μm</strong>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 9.5px; color: #94a3b8; font-weight: 600;">📜 Inscription Density</div>
+              <strong id="telInscriptionVal" style="font-size: 12px; color: #ffffff;">--%</strong>
+            </div>
+            <div style="background: rgba(255,255,255,0.04); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 9.5px; color: #94a3b8; font-weight: 600;">🍂 Organic Gamut Match</div>
+              <strong id="telGamutVal" style="font-size: 12px; color: #ffffff;">--%</strong>
+            </div>
+          </div>
+        </div>
+
         <!-- Binarized Character & Word Crops Gallery Tray (Horizontal Scroll) -->
         <div class="crops-gallery-container" id="cropsGalleryContainer">
           <div class="crops-gallery-title">

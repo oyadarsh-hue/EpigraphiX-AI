@@ -1,0 +1,2382 @@
+{
+  "മലയാളം": {
+    "old": "മലയാണ്മ / മലനാട്ട് തമിഴ്",
+    "newLit": "മലയാളം (Classical Language)",
+    "english": "Malayalam — classical Dravidian language spoken in Kerala with rich Sanskrit Grantha synthesis.",
+    "hindi": "मलयालम (केरल की समृद्ध शास्त्रीय एवं साहित्यिक भाषा)",
+    "genre": "Linguistic Heritage (ഭാഷാസാഹിത്യം)"
+  },
+  "കേരളം": {
+    "old": "ചേരലം / മലനാട്",
+    "newLit": "കേരളം (State of Kerala)",
+    "english": "Kerala — the land of palm groves and coastal heritage of the ancient Chera dynasty.",
+    "hindi": "केरल (प्राचीन चेर साम्राज्य की ज्ञान एवं संस्कृति भूमि)",
+    "genre": "Historical Geography (ദേശചരിത്രം)"
+  },
+  "അക്ഷരം": {
+    "old": "അക്ഷരബ്രഹ്മം",
+    "newLit": "അക്ഷരം (Alphabet / Letter / Syllable)",
+    "english": "Indestructible syllable / Letter of the alphabet embodying sound vibration.",
+    "hindi": "अक्षर (अविनाशी ध्वनि एवं वर्ण)",
+    "genre": "Phonology (വർണ്ണശാസ്ത്രം)"
+  },
+  "വാക്ക്": {
+    "old": "വാക്ക് / വചനം",
+    "newLit": "വാക്ക് (Word / Speech)",
+    "english": "Spoken word, promise, or semantic linguistic unit.",
+    "hindi": "शब्द / वाणी (बोले गए शब्द एवं वचन)",
+    "genre": "Linguistics (ഭാഷാശാസ്ത്രം)"
+  },
+  "എഴുത്ത്": {
+    "old": "എഴുത്ത് / ലിഖിതം",
+    "newLit": "എഴുത്ത് (Writing / Script)",
+    "english": "Writing, orthography, and the art of incising characters on palm leaves.",
+    "hindi": "लेखन / लिखाई (ताड़पत्र पर लिपिबद्ध करने की कला)",
+    "genre": "Orthography (ലിപിവിദ്യ)"
+  },
+  "ഭാഷ": {
+    "old": "ഭാഷാപ്രയോഗം",
+    "newLit": "ഭാഷ (Language / Tongue)",
+    "english": "Language and medium of human philosophical expression.",
+    "hindi": "भाषा (विचार एवं ज्ञान अभिव्यक्ति का माध्यम)",
+    "genre": "Linguistics (ഭാഷാശാസ്ത്രം)"
+  },
+  "പഠനം": {
+    "old": "സ്വാധ്യായം / അധ്യയനം",
+    "newLit": "പഠനം (Learning / Study)",
+    "english": "Study, learning, scholastic investigation, and assimilation of knowledge.",
+    "hindi": "अध्ययन / पढ़ाई (ज्ञान अर्जन एवं स्वाध्याय)",
+    "genre": "Pedagogy (അധ്യയനം)"
+  },
+  "വിദ്യാഭ്യാസം": {
+    "old": "ഗുരുകുല വിദ്യാഭ്യാസം",
+    "newLit": "വിദ്യാഭ്യാസം (Education / Scholarly Learning)",
+    "english": "Comprehensive educational training through traditional master-student lineage.",
+    "hindi": "शिक्षा (गुरुकुल परम्परा से प्राप्त ज्ञान एवं अभ्यास)",
+    "genre": "Pedagogy (വിദ്യാപീഠം)"
+  },
+  "അമ്മ": {
+    "old": "മാതാവ് / ജനനി",
+    "newLit": "അമ്മ (Mother)",
+    "english": "Mother — the sacred nurturing source of love and existence.",
+    "hindi": "माँ / माता (स्नेह एवं जीवन की जननी)",
+    "genre": "Family Lore (മാതൃത്വം)"
+  },
+  "അച്ഛൻ": {
+    "old": "പിതാവ് / ജനകൻ",
+    "newLit": "അച്ഛൻ (Father)",
+    "english": "Father — guardian, protector, and pillar of the family.",
+    "hindi": "पिता / बापू (संरक्षक एवं मार्गदर्शक)",
+    "genre": "Family Lore (പിതൃത്വം)"
+  },
+  "സഹോദരൻ": {
+    "old": "ഭ്രാതാവ് / സോദരൻ",
+    "newLit": "സഹോദരൻ (Brother)",
+    "english": "Brother — loyal companion bound by kinship and love.",
+    "hindi": "भाई / भ्राता (सहोदर एवं सहचर)",
+    "genre": "Kinship (സഹോദര്യം)"
+  },
+  "സഹോദരി": {
+    "old": "ഭഗിനി / സോദരി",
+    "newLit": "സഹോദരി (Sister)",
+    "english": "Sister — cherished kindred spirit and loving companion.",
+    "hindi": "बहन / भगिनी (सहोदरा)",
+    "genre": "Kinship (സഹോദര്യം)"
+  },
+  "ഗുരു": {
+    "old": "ആചാര്യൻ / ഗുരുനാഥൻ",
+    "newLit": "ഗുരു (Master / Spiritual Guide)",
+    "english": "Spiritual teacher and master of traditional lineage.",
+    "hindi": "गुरु / आचार्य (अज्ञान निवारक पथप्रदर्शक)",
+    "genre": "Gurukula Tradition (ഗുരുപരമ്പര)"
+  },
+  "പാഠശാല": {
+    "old": "വേദപാഠശാല",
+    "newLit": "പാഠശാല (Traditional School)",
+    "english": "Traditional schoolhouse for scripture and classical arts.",
+    "hindi": "पाठशाला (पारंपरिक शिक्षण केंद्र)",
+    "genre": "Pedagogy (പാഠശാല)"
+  },
+  "വിദ്യാലയം": {
+    "old": "ഗുരുകുലം / പാഠശാല",
+    "newLit": "വിദ്യാലയം (School / Academy)",
+    "english": "School, academy, and institution of intellectual enlightenment.",
+    "hindi": "विद्यालय / स्कूल (विद्या का मंदिर एवं शिक्षण संस्थान)",
+    "genre": "Pedagogy (വിദ്യാപീഠം)"
+  },
+  "പുസ്തകം": {
+    "old": "ഏട് / ഗ്രന്ഥപ്പൊതി",
+    "newLit": "പുസ്തകം (Book / Volume)",
+    "english": "Book, manuscript volume, and compiled written work.",
+    "hindi": "पुस्तक / पोथी (ज्ञान का संकलन)",
+    "genre": "Literature (സാഹിത്യം)"
+  },
+  "കടലാസ്": {
+    "old": "പത്രിക",
+    "newLit": "കടലാസ് (Paper / Sheet)",
+    "english": "Paper sheet used for printing and calligraphy.",
+    "hindi": "कागज़ (लेखन एवं मुद्रण का माध्यम)",
+    "genre": "Material Culture (ഉപകരണം)"
+  },
+  "ഗ്രന്ഥം": {
+    "old": "ഗ്രന്ഥലിപി പുസ്തകം",
+    "newLit": "ഗ്രന്ഥം (Scriptural Treatise / Book)",
+    "english": "Grantha Scripture / Sacred Book tied between wooden manuscript flanks (Kampu).",
+    "hindi": "ग्रंथ (काष्ठ पट्टियों के मध्य बंधी पवित्र पाण्डुलिपि)",
+    "genre": "Classical Sastra (ശാസ്ത്രഗ്രന്ഥം)"
+  },
+  "കവിത": {
+    "old": "കാവ്യം / ചമ്പു",
+    "newLit": "കവിത (Poem / Poetry)",
+    "english": "Poetic verse characterized by metric harmony (Chandas) and bhava.",
+    "hindi": "कविता (भावपूर्ण छंदबद्ध काव्य रचना)",
+    "genre": "Poetry (കാവ്യശാസ്ത്രം)"
+  },
+  "സാഹിത്യം": {
+    "old": "സാഹിത്യപ്രസ്ഥാനം",
+    "newLit": "സാഹിത്യം (Literature / Belles-lettres)",
+    "english": "Literature and literary arts combining aesthetic beauty with wisdom.",
+    "hindi": "साहित्य (कला, काव्य एवं ज्ञान की श्रेष्ठ रचनाएँ)",
+    "genre": "Literature (സാഹിത്യം)"
+  },
+  "ചരിത്രം": {
+    "old": "ഐതിഹ്യം / ചരിത്രഗാഥ",
+    "newLit": "ചരിത്രം (History / Chronicle)",
+    "english": "History and epigraphical records of ancient dynasties and scholars.",
+    "hindi": "इतिहास (प्राचीन काल एवं राजाओं का प्रामाणिक विवरण)",
+    "genre": "Chronicle (ചരിത്രം)"
+  },
+  "ശാസ്ത്രം": {
+    "old": "ജ്യോതിഷ / ആയുർവേദ ശാസ്ത്രം",
+    "newLit": "ശാസ്ത്രം (Science / Treatise)",
+    "english": "Scientific treatise, systematic knowledge, and empirical disciplines.",
+    "hindi": "शास्त्र (विज्ञान, नियम एवं शास्त्रीय सिद्धांत)",
+    "genre": "Science & Sastra (ശാസ്ത്രം)"
+  },
+  "കമ്പ്യൂട്ടർ": {
+    "old": "ഗണകയന്ത്രം",
+    "newLit": "കമ്പ്യൂട്ടർ (Computer / Computing Machine)",
+    "english": "Computer — electronic programmable machine for digital algorithmic data processing.",
+    "hindi": "संगणक / कंप्यूटर (इलेक्ट्रॉनिक गणना यंत्र)",
+    "genre": "Computer Science (കമ്പ്യൂട്ടർ ശാസ്ത്രം)"
+  },
+  "സാങ്കേതികവിദ്യ": {
+    "old": "ശില്പശാസ്ത്രം / യാന്ത്രികവിദ്യ",
+    "newLit": "സാങ്കേതികവിദ്യ (Technology / Engineering)",
+    "english": "Technology — practical application of scientific knowledge to solve human problems.",
+    "hindi": "प्रौद्योगिकी / तकनीक (व्यावहारिक विज्ञान)",
+    "genre": "Technology (സാങ്കേതികവിദ്യ)"
+  },
+  "വിവരസാങ്കേതികവിദ്യ": {
+    "old": "വിവരവിനിമയ ശാസ്ത്രം",
+    "newLit": "വിവരസാങ്കേതികവിദ്യ (Information Technology)",
+    "english": "Information Technology — digital processing, networking, and storage of data systems.",
+    "hindi": "सूचना प्रौद्योगिकी (आईटी / डेटा एवं संचार तकनीक)",
+    "genre": "Information Technology (വിവരസാങ്കേതികം)"
+  },
+  "ആർട്ടിഫിഷ്യൽ": {
+    "old": "കൃത്രിമം",
+    "newLit": "ആർട്ടിഫിഷ്യൽ (Artificial / Synthetic)",
+    "english": "Artificial — human-made or computationally generated system.",
+    "hindi": "कृत्रिम / बनावटी (मानव-निर्मित)",
+    "genre": "General Science (ശാസ്ത്രം)"
+  },
+  "ഇന്റലിജൻസ്": {
+    "old": "ബുദ്ധിവൈഭവം",
+    "newLit": "ഇന്റലിജൻസ് (Intelligence / Cognition)",
+    "english": "Intelligence — ability to acquire, understand, and apply cognitive knowledge.",
+    "hindi": "बुद्धिमत्ता / प्रज्ञा (समझ एवं तार्किक क्षमता)",
+    "genre": "Cognitive Science (ബുദ്ധിവിജ്ഞാനം)"
+  },
+  "മെഷീൻ": {
+    "old": "യന്ത്രം",
+    "newLit": "മെഷീൻ (Machine / Mechanism)",
+    "english": "Machine — device with moving parts or electronic circuitry performing work.",
+    "hindi": "मशीन / यंत्र (स्वचालित उपकरण)",
+    "genre": "Engineering (യന്ത്രശാസ്ത്രം)"
+  },
+  "ലേണിങ്": {
+    "old": "അഭ്യസനം",
+    "newLit": "ലേണിങ് (Learning / Adaptation)",
+    "english": "Learning — acquiring knowledge, skills, or algorithmic models from data patterns.",
+    "hindi": "अधिगम / सीखना (अनुभव एवं प्रशिक्षण से ज्ञान प्राप्ति)",
+    "genre": "Machine Learning (മെഷീൻ ലേണിങ്)"
+  },
+  "നെറ്റ്‌വർക്ക്": {
+    "old": "ശൃംഖല",
+    "newLit": "നെറ്റ്‌വർക്ക് (Network / Interconnection)",
+    "english": "Network — interconnected system of nodes, communications, or neural units.",
+    "hindi": "नेटवर्क / संजाल (परस्पर जुड़े तंत्र)",
+    "genre": "Computer Networks (നെറ്റ്‌വർക്കിങ്)"
+  },
+  "ചിത്രം": {
+    "old": "ചുവർചിത്രം / ആലേഖനം",
+    "newLit": "ചിത്രം (Picture / Image)",
+    "english": "Picture, painting, icon, or visual representation.",
+    "hindi": "चित्र / तस्वीर (दृश्य कलाकृति)",
+    "genre": "Visual Arts (ചിത്രകല)"
+  },
+  "രേഖ": {
+    "old": "ശാസനരേഖ / പ്രമാണം",
+    "newLit": "രേഖ (Document / Written Record)",
+    "english": "Official document, inscribed royal grant, or written deed.",
+    "hindi": "दस्तावेज / अभिलेख (प्रमाणिक सरकारी पत्र)",
+    "genre": "Epigraphy (ശാസനം)"
+  },
+  "ഡിജിറ്റൽ": {
+    "old": "സംഖ്യാത്മകം",
+    "newLit": "ഡിജിറ്റൽ (Digital / Binary)",
+    "english": "Digital — expressed in numerical digits, especially binary computer signals.",
+    "hindi": "डिजिटल / अंकीय (इलेक्ट्रॉनिक स्वरूप)",
+    "genre": "Digital Epigraphy (ഡിജിറ്റൽ സാങ്കേതികം)"
+  },
+  "സന്ദേശം": {
+    "old": "ദൂത് / സന്ദേശം",
+    "newLit": "സന്ദേശം (Message / Communication)",
+    "english": "Message, verbal transmission, or diplomatic dispatch.",
+    "hindi": "संदेश / समाचार (प्रेषित सूचना)",
+    "genre": "Communication (വിനിമയം)"
+  },
+  "സ്വനം": {
+    "old": "നാദം / സ്വനം",
+    "newLit": "സ്വനം (Sound / Phoneme)",
+    "english": "Acoustic sound, speech sound, or phonological unit of utterance.",
+    "hindi": "ध्वनि / स्वर (उच्चारित नाद)",
+    "genre": "Phonetics (ശബ്ദശാസ്ത്രം)"
+  },
+  "വചനം": {
+    "old": "സൂക്തി / വചനം",
+    "newLit": "വചനം (Statement / Discourse)",
+    "english": "Spoken word, philosophical saying, or grammatical number in morphology.",
+    "hindi": "वचन / कथन (कहा गया वाक्य)",
+    "genre": "Linguistics (വ്യാകരണം)"
+  },
+  "വായന": {
+    "old": "പരായണം",
+    "newLit": "വായന (Reading / Decipherment)",
+    "english": "Reading, textual comprehension, and palaeographical decipherment.",
+    "hindi": "वाचन / पढ़ना (पाठ एवं अर्थग्रहण)",
+    "genre": "Literacy (വായന)"
+  },
+  "എഴുത്തുപരീക്ഷ": {
+    "old": "ലിഖിത പരീക്ഷണം",
+    "newLit": "എഴുത്തുപരീക്ഷ (Written Examination)",
+    "english": "Written examination assessing textual expression, calligraphy, and analytical skill.",
+    "hindi": "लिखित परीक्षा (ज्ञान की लिखित जाँच)",
+    "genre": "Pedagogy (പരീക്ഷണം)"
+  },
+  "പരീക്ഷ": {
+    "old": "പരീക്ഷണം",
+    "newLit": "പരീക്ഷ (Examination / Test)",
+    "english": "Assessment, evaluation of mastery, and empirical trial.",
+    "hindi": "परीक्षा (योग्यता एवं ज्ञान का मूल्यांकन)",
+    "genre": "Pedagogy (പരീക്ഷണം)"
+  },
+  "വിജയം": {
+    "old": "ജയം / വീര്യവിജയം",
+    "newLit": "വിജയം (Success / Victory)",
+    "english": "Triumphant achievement and moral success.",
+    "hindi": "विजय / सफलता (सार्थक सिद्धि एवं जीत)",
+    "genre": "Epic Lore (വീരഗാഥ)"
+  },
+  "ശ്രമം": {
+    "old": "പ്രയത്നം / ഉദ്യമം",
+    "newLit": "ശ്രമം (Effort / Endeavor)",
+    "english": "Earnest endeavor, hard work, and dedicated effort toward an objective.",
+    "hindi": "प्रयास / उद्यम (मेहनत एवं चेष्टा)",
+    "genre": "Human Endeavor (പ്രയത്നം)"
+  },
+  "പ്രവർത്തനം": {
+    "old": "കർമ്മം / അനുഷ്ഠാനം",
+    "newLit": "പ്രവർത്തനം (Activity / Function)",
+    "english": "Activity, dynamic functioning, operation, or practical execution of tasks.",
+    "hindi": "कार्य / गतिविधि (संचालन एवं क्रियान्वयन)",
+    "genre": "Action Science (കർമ്മശാസ്ത്രം)"
+  },
+  "പദ്ധതി": {
+    "old": "സൂത്രം / പദ്ധതി",
+    "newLit": "പദ്ധതി (Project / Scheme)",
+    "english": "Systematic project, structured scheme, or methodological workflow.",
+    "hindi": "योजना / परियोजना (प्रणालीबद्ध रूपरेखा)",
+    "genre": "Administration (ഭരണനിർവ്വഹണം)"
+  },
+  "സേവനം": {
+    "old": "ശുശ്രൂഷ / സേവനം",
+    "newLit": "സേവനം (Service / Ministry)",
+    "english": "Selfless service, dedication to community welfare, and helpful assistance.",
+    "hindi": "सेवा / परोपकार (निःस्वार्थ सहायता)",
+    "genre": "Social Ethics (സേവനം)"
+  },
+  "വികസനം": {
+    "old": "അഭിവൃദ്ധി",
+    "newLit": "വികസനം (Development / Growth)",
+    "english": "Progressive development, expansion, and positive evolution.",
+    "hindi": "विकास / प्रगति (उन्नति एवं विस्तार)",
+    "genre": "Development (വികസനം)"
+  },
+  "നാട്": {
+    "old": "ദേശം / മലനാട്",
+    "newLit": "നാട് (Country / Homeland)",
+    "english": "Homeland, territory, and cultural district.",
+    "hindi": "देश / प्रांत (मातृभूमि एवं भूभाग)",
+    "genre": "Topography (ദേശചരിത്രം)"
+  },
+  "ദേശം": {
+    "old": "രാജ്യം / ജനപദം",
+    "newLit": "ദേശം (Region / Land)",
+    "english": "Country, geographical region, or ancestral territory.",
+    "hindi": "प्रदेश / देश (राष्ट्र एवं भूखंड)",
+    "genre": "Geography (ഭൂമിശാസ്ത്രം)"
+  },
+  "സംസ്ഥാനം": {
+    "old": "സംസ്ഥാനം",
+    "newLit": "സംസ്ഥാനം (State / Province)",
+    "english": "State, administrative province, or federated governance unit.",
+    "hindi": "राज्य / प्रांत (प्रशासनिक इकाई)",
+    "genre": "Political Science (രാഷ്ട്രമീമാംസ)"
+  },
+  "ഭാരതം": {
+    "old": "ഭാരതവർഷം (Grantha: Bharata • Mahakavya Root)",
+    "newLit": "ഭാരതം (India / Sacred Subcontinent)",
+    "english": "India / The Land of Bharata — the sacred civilization described in ancient Itihasas and Puranas.",
+    "hindi": "भारत (भारतवर्ष — प्राचीन वैदिक एवं सांस्कृतिक ज्ञानभूमि)",
+    "genre": "Itihasa Epic (ഇതിഹാസം)"
+  },
+  "ഇന്ത്യ": {
+    "old": "ഭാരതം / ഹിന്ദുസ്ഥാൻ",
+    "newLit": "ഇന്ത്യ (Republic of India)",
+    "english": "India — sovereign democratic nation with ancient cultural continuity.",
+    "hindi": "भारत / इंडिया (महान लोकतांत्रिक गणराज्य)",
+    "genre": "Modern Nation (രാഷ്ട്രം)"
+  },
+  "ലോകം": {
+    "old": "ഭുവനം / ജഗത്ത്",
+    "newLit": "ലോകം (World / Universe)",
+    "english": "The world, humanity, and the wondrous cosmos.",
+    "hindi": "संसार / दुनिया / जगत् (समस्त ब्रह्मांड)",
+    "genre": "Cosmology (ജഗത്ശാസ്ത്രം)"
+  },
+  "ഭൂമി": {
+    "old": "ഭൂമി / പൃഥ്വി",
+    "newLit": "ഭൂമി (Earth / Land)",
+    "english": "Earth / The Sacred Ground nurturing all living beings.",
+    "hindi": "धरती / भूमि (समस्त जीवों का आधार)",
+    "genre": "Natural Element (പഞ്ചഭൂതം)"
+  },
+  "ആകാശം": {
+    "old": "ആകാശം / അന്തരിക്ഷം",
+    "newLit": "ആകാശം (Sky / Space)",
+    "english": "Sky / Space — the boundless celestial expanse.",
+    "hindi": "आकाश / गगन (अनंत अंतरिक्ष)",
+    "genre": "Cosmology (ജ്യോതിഷം)"
+  },
+  "സൂര്യൻ": {
+    "old": "സൂര്യദേവൻ / ആദിത്യൻ",
+    "newLit": "സൂര്യൻ (The Sun)",
+    "english": "The Sun — celestial source of light, warmth, and Vedic solar energy.",
+    "hindi": "सूर्य / भास्कर (प्रकाश एवं ऊर्जा के स्रोत)",
+    "genre": "Vedic Astronomy (ജ്യോതിഷം)"
+  },
+  "ചന്ദ്രൻ": {
+    "old": "ചന്ദ്രൻ / സോമൻ",
+    "newLit": "ചന്ദ്രൻ (The Moon)",
+    "english": "The Moon — celestial deity of the mind, tides, and coolness.",
+    "hindi": "चंद्रमा / शशि (मन एवं शीतलता के प्रतीक)",
+    "genre": "Vedic Astronomy (ജ്യോതിഷം)"
+  },
+  "നക്ഷത്രം": {
+    "old": "താരം / ജ്യോതിസ്സ്",
+    "newLit": "നക്ഷത്രം (Star / Asterism)",
+    "english": "Star, constellation, or lunar mansion in Vedic and epigraphical horoscopy.",
+    "hindi": "तारा / नक्षत्र (खगोलीय पिंड)",
+    "genre": "Astronomy (ജ്യോതിഷം)"
+  },
+  "മഴ": {
+    "old": "മാരി / വർഷം",
+    "newLit": "മഴ (Rain / Monsoon)",
+    "english": "Rain — nourishing monsoon essential for life in Kerala.",
+    "hindi": "बारिश / वर्षा (जीवनदायिनी फुहार)",
+    "genre": "Climate (കാലാവസ്ഥ)"
+  },
+  "കാറ്റ്": {
+    "old": "കാറ്റ് / വായു",
+    "newLit": "കാറ്റ് (Wind / Breeze)",
+    "english": "Wind / Air — life-giving atmospheric breath and vitality.",
+    "hindi": "हवा / वायु (प्राणवायु एवं पवन)",
+    "genre": "Natural Element (പഞ്ചഭൂതം)"
+  },
+  "പുഴ": {
+    "old": "നദി / തീർത്ഥം",
+    "newLit": "പുഴ (River / Stream)",
+    "english": "River — flowing lifelines of culture and pilgrimage.",
+    "hindi": "നदी / सरिता (पवित्र प्रवाहमयी जलधारा)",
+    "genre": "Geography (ഭൂമിശാസ്ത്രം)"
+  },
+  "കടൽ": {
+    "old": "സമുദ്രം / ആഴി",
+    "newLit": "കടൽ (Sea / Ocean)",
+    "english": "Sea, vast ocean, and coastal maritime gateway of Kerala.",
+    "hindi": "समुद्र / सागर (विशाल जलराशि)",
+    "genre": "Geography (ഭൂമിശാസ്ത്രം)"
+  },
+  "മല": {
+    "old": "ഗിരി / പർവ്വതം",
+    "newLit": "മല (Mountain / Hill)",
+    "english": "Mountain, highland, and the protective Sahyadri mountain ridge.",
+    "hindi": "पहाड़ / पर्वत (सह्याद्रि पर्वतमाला)",
+    "genre": "Geography (ഭൂമിശാസ്ത്രം)"
+  },
+  "കാട്": {
+    "old": "വനം / കാനനം",
+    "newLit": "കാട് (Forest / Wilderness)",
+    "english": "Forest, natural jungle, and sanctuary of biodiversity and medicinal plants.",
+    "hindi": "जंगल / वन (प्राकृतिक अरण्य)",
+    "genre": "Ecology (പരിസ്ഥിതി)"
+  },
+  "പൂവ്": {
+    "old": "പുഷ്പം / മലർ",
+    "newLit": "പൂവ് (Flower / Blossom)",
+    "english": "Flower — offering of natural beauty in temple rituals.",
+    "hindi": "फूल / पुष्प (पूजा एवं सौंदर्य का प्रतीक)",
+    "genre": "Ritual Votive (പൂജാദ്രവ്യം)"
+  },
+  "മരം": {
+    "old": "വൃക്ഷം / തരു",
+    "newLit": "മരം (Tree / Timber)",
+    "english": "Tree — sheltering flora and source of Ayurvedic herbal medicine.",
+    "hindi": "पेड़ / वृक्ष (छाया एवं औषधीय पादप)",
+    "genre": "Ayurveda (ഔഷധസസ്യം)"
+  },
+  "ഇല": {
+    "old": "പത്രം / ഏട്",
+    "newLit": "ഇല (Leaf / Foliage)",
+    "english": "Leaf, green plant foliage, and palmyra leaf used for manuscript carving.",
+    "hindi": "पत्ता / ताड़पत्र (अभिलेख का माध्यम)",
+    "genre": "Epigraphical Medium (ലിഖിതമാധ്യമം)"
+  },
+  "കായ്": {
+    "old": "ഫലം",
+    "newLit": "കായ് (Fruit / Nut)",
+    "english": "Fruit / Agricultural produce.",
+    "hindi": "फल / बीज (प्रकृति की देन)",
+    "genre": "Agriculture (കൃഷിവിജ്ഞാനം)"
+  },
+  "കനി": {
+    "old": "മധുരഫലം",
+    "newLit": "കനി (Ripe Sweet Fruit)",
+    "english": "Ripe fruit, harvest blessing, and sweet outcome of righteous effort.",
+    "hindi": "पका फल (मधुर प्रतिफल)",
+    "genre": "Agriculture (കൃഷിവിജ്ഞാനം)"
+  },
+  "ഭക്ഷണം": {
+    "old": "അന്നപാനം",
+    "newLit": "ഭക്ഷണം (Food / Sustenance)",
+    "english": "Nutritious sustenance and culinary nourishment.",
+    "hindi": "भोजन / आहार (जीवनदायी पोषण)",
+    "genre": "Culinary Heritage (പാചകശാസ്ത്രം)"
+  },
+  "വെള്ളം": {
+    "old": "വെള്ളം / ജലം / നീര്",
+    "newLit": "വെള്ളം (Water / Life-giving Liquid)",
+    "english": "Water — essential life-sustaining fluid and sacred cleansing element in traditional rituals.",
+    "hindi": "पानी / जल (जीवनदायी जल एवं शुद्धि का प्रतीक)",
+    "genre": "Natural Element (പഞ്ചഭൂതം)"
+  },
+  "അന്നം": {
+    "old": "അന്നം ബ്രഹ്മം",
+    "newLit": "അന്നം (Food / Rice Grain)",
+    "english": "Sacred food grain embodying the divine spark of life.",
+    "hindi": "अन्न (जीवनदायी पवित्र अनाज)",
+    "genre": "Vedic Philosophy (അന്നസൂക്തം)"
+  },
+  "ആരോഗ്യം": {
+    "old": "ആയുരാരോഗ്യം",
+    "newLit": "ആരോഗ്യം (Health / Vitality)",
+    "english": "Physical, mental, and spiritual well-being according to classical Ayurveda.",
+    "hindi": "स्वास्थ्य / तंदुरुस्ती (आरोग्य एवं दीर्घायु)",
+    "genre": "Ayurveda (ആയുർവേദം)"
+  },
+  "സന്തോഷം": {
+    "old": "ആനന്ദം / പ്രസാദം",
+    "newLit": "സന്തോഷം (Happiness / Joy)",
+    "english": "Happiness / Joy — cheerful and glad state of heart.",
+    "hindi": "खुशी / प्रसन्नता (हर्ष एवं उल्लास)",
+    "genre": "Psychology (മനോഭാവം)"
+  },
+  "സമാധാനം": {
+    "old": "ശാന്തി / സമാഹിതം",
+    "newLit": "സമാധാനം (Peace / Tranquility / Reconciliation)",
+    "english": "Peace / Tranquility — calm state of harmony without conflict.",
+    "hindi": "शांति / समाधान (सुलह एवं मानसिक शांति)",
+    "genre": "Philosophy (സമാധാനം)"
+  },
+  "സ്നേഹം": {
+    "old": "അൻപ് / സ്നേഹം",
+    "newLit": "സ്നേഹം (Love / Affection)",
+    "english": "Pure love, kindness, and compassionate affection.",
+    "hindi": "प्रेम / स्नेह (आत्मीयता एवं अनुराग)",
+    "genre": "Ethics (ധർമ്മശാസ്ത്രം)"
+  },
+  "കരുണ": {
+    "old": "കാരുണ്യഭാവം",
+    "newLit": "കരുണ (Compassion / Grace)",
+    "english": "Compassion and profound empathetic grace for suffering beings.",
+    "hindi": "करुणा (गहरी सहानुभूति एवं दयाभाव)",
+    "genre": "Spiritual Ethics (കരുണാഭാവം)"
+  },
+  "സത്യം": {
+    "old": "സത്യവാക്ക്",
+    "newLit": "സത്യം (Truth / Verity)",
+    "english": "Eternal truth, authenticity, and honesty.",
+    "hindi": "सत्य (अटल यथार्थ एवं प्रामाणिकता)",
+    "genre": "Philosophy (തത്ത്വചിന്ത)"
+  },
+  "ധർമ്മം": {
+    "old": "ധർമ്മനീതി",
+    "newLit": "ധർമ്മം (Righteousness / Virtue)",
+    "english": "Cosmic order, righteousness, moral duty, and ethical virtue.",
+    "hindi": "धर्म (सत्य, सदाचार एवं कर्तव्य पालन)",
+    "genre": "Dharmasastra (ധർമ്മശാസ്ത്രം)"
+  },
+  "ന്യായം": {
+    "old": "ന്യായയുക്തത",
+    "newLit": "ന്യായം (Fairness / Reason)",
+    "english": "Reason, moral logic, and equitable fairness.",
+    "hindi": "न्याय / तर्कसंगतता (उचित एवं प्रमाणिक निर्णय)",
+    "genre": "Logic (ന്യായദർശനം)"
+  },
+  "നീതി": {
+    "old": "ധർമ്മനീതി",
+    "newLit": "നീതി (Justice / Equity)",
+    "english": "Impartial justice, moral fairness, and rule of righteous law.",
+    "hindi": "न्याय / नीति (निष्पक्षता एवं सत्यनिष्ठा)",
+    "genre": "Jurisprudence (നീതിശാസ്ത്രം)"
+  },
+  "സ്വാതന്ത്ര്യം": {
+    "old": "സ്വതന്ത്രത",
+    "newLit": "സ്വാതന്ത്ര്യം (Freedom / Liberty / Independence)",
+    "english": "Freedom / Independence — state of liberty and autonomous self-determination.",
+    "hindi": "स्वतंत्रता / आज़ादी (स्वाधीनता एवं आत्मनिर्णय)",
+    "genre": "Political Philosophy (രാഷ്ട്രതന്ത്രം)"
+  },
+  "വിപ്ലവം": {
+    "old": "പരിവർത്തനം",
+    "newLit": "വിപ്ലവം (Revolution / Uprising)",
+    "english": "Revolution — profound transformative movement and paradigm shift.",
+    "hindi": "क्रांति / विप्लव (युगांतरकारी परिवर्तन)",
+    "genre": "Sociology (സാമൂഹികവിപ്ലവം)"
+  },
+  "കല": {
+    "old": "ലളിതകല / ഷഡംഗം",
+    "newLit": "കല (Art / Fine Art)",
+    "english": "Art, aesthetic expression, creative craftsmanship, and classical disciplines.",
+    "hindi": "कला (ललित कला, सौंदर्य एवं सृजनात्मकता)",
+    "genre": "Aesthetics (സൗന്ദര്യശാസ്ത്രം)"
+  },
+  "സംഗീതം": {
+    "old": "നാദബ്രഹ്മം / ഗാനകല",
+    "newLit": "സംഗീതം (Music / Melody)",
+    "english": "Music — melodious harmony of ragas and talas expressing profound emotion.",
+    "hindi": "संगीत (गायन, वादन एवं सुरमयी स्वरलहरी)",
+    "genre": "Performing Arts (സംഗീതശാസ്ത്രം)"
+  },
+  "നൃത്തം": {
+    "old": "നാട്യം / കഥകളി / കൂടിയാട്ടം",
+    "newLit": "നൃത്തം (Classical Dance)",
+    "english": "Classical Kerala dance drama embodying Natyashastra tradition.",
+    "hindi": "नृत्य (शास्त्रीय नृत्य एवं भावभंगिमा)",
+    "genre": "Performing Arts (നാട്യശാസ്ത്രം)"
+  },
+  "ചലച്ചിത്രം": {
+    "old": "സിനിമ / ദൃശ്യകാവ്യം",
+    "newLit": "ചലച്ചിത്രം (Cinema / Motion Picture)",
+    "english": "Motion picture, cinematic visual storytelling, and cinematic arts.",
+    "hindi": "चलचित्र / सिनेमा (दृश्य-श्रव्य कला)",
+    "genre": "Visual Arts (ദൃശ്യകല)"
+  },
+  "നാടകം": {
+    "old": "രൂപകം / നാടകം",
+    "newLit": "നാടകം (Drama / Play / Theatre)",
+    "english": "Theatrical drama, performance art staging human conflicts and emotions.",
+    "hindi": "नाटक / रंगमंच (अभिनय एवं नाट्य प्रस्तुति)",
+    "genre": "Theatre (നാട്യകല)"
+  },
+  "കലാലയം": {
+    "old": "വിദ്യാപീഠം / ആർട്സ് കോളേജ്",
+    "newLit": "കലാലയം (College / Academy of Arts)",
+    "english": "Institution of higher learning, college, and academy of arts.",
+    "hindi": "महाविद्यालय / कला निकेतन (उच्च शिक्षण संस्थान)",
+    "genre": "Pedagogy (വിദ്യാപീഠം)"
+  },
+  "വിദ്യാർത്ഥി": {
+    "old": "അന്തേവാസി / ബ്രഹ്മചാരി",
+    "newLit": "വിദ്യാർത്ഥി (Student / Scholar)",
+    "english": "Seeker of knowledge, student, and scholar.",
+    "hindi": "विद्यार्थी / छात्र (ज्ञान पिपासु)",
+    "genre": "Pedagogy (വിദ്യാർത്ഥിജീവിതം)"
+  },
+  "അധ്യാപകൻ": {
+    "old": "ഗുരുനാഥൻ / ഉപദേഷ്ടാവ്",
+    "newLit": "അധ്യാപകൻ (Teacher / Professor)",
+    "english": "Dedicated teacher, mentor, and transmitter of knowledge.",
+    "hindi": "अध्यापक / शिक्षक (ज्ञानदाता एवं मार्गदर्शक)",
+    "genre": "Pedagogy (അധ്യാപനം)"
+  },
+  "ശാസ്ത്രജ്ഞൻ": {
+    "old": "വിജ്ഞാനി / ശാസ്ത്രി",
+    "newLit": "ശാസ്ത്രജ്ഞൻ (Scientist / Researcher)",
+    "english": "Scientist, empirical scholar exploring the natural and physical laws.",
+    "hindi": "वैज्ञानिक (शोधकर्ता एवं विज्ञान विशेषज्ञ)",
+    "genre": "Science (ശാസ്ത്രം)"
+  },
+  "എഞ്ചിനീയർ": {
+    "old": "ശില്പി / വാസ്തുവിദഗ്ദ്ധൻ",
+    "newLit": "എഞ്ചിനീയർ (Engineer / Architect)",
+    "english": "Engineer, technologist designing systems, structures, and mechanisms.",
+    "hindi": "अभियंता / इंजीनियर (तकनीकी विशेषज्ञ)",
+    "genre": "Engineering (എഞ്ചിനീയറിങ്)"
+  },
+  "ഡോക്ടർ": {
+    "old": "വൈദ്യൻ / ഭിഷഗ്വരൻ",
+    "newLit": "ഡോക്ടർ (Doctor / Physician)",
+    "english": "Physician, medical doctor, and Ayurvedic healer diagnosing and curing ailments.",
+    "hindi": "चिकित्सक / डॉक्टर / वैद्य (स्वास्थ्य रक्षक)",
+    "genre": "Medicine (വൈദ്യശാസ്ത്രം)"
+  },
+  "കലാകാരൻ": {
+    "old": "ശില്പി / രസികൻ",
+    "newLit": "കലാകാരൻ (Artist / Performer)",
+    "english": "Artist, practitioner of fine arts, music, dance, or theatre.",
+    "hindi": "कलाकार (कला सृजक एवं अभिनेता)",
+    "genre": "Arts (കലാകാരൻ)"
+  },
+  "എഴുത്തുകാരൻ": {
+    "old": "ഗ്രന്ഥകാരൻ / കവി",
+    "newLit": "എഴുത്തുകാരൻ (Writer / Author)",
+    "english": "Author, literate scholar, or dedicated epigraphical scribe.",
+    "hindi": "लेखक / साहित्यकार (ग्रंथ रचनाकार)",
+    "genre": "Biography (സാഹിത്യകാരൻ)"
+  },
+  "കവി": {
+    "old": "കവി / വാഗ്മി",
+    "newLit": "കവി (Poet / Bard)",
+    "english": "Poet endowed with visionary insight, meter mastery, and expressive brilliance.",
+    "hindi": "कवि (काव्य रचनाकार)",
+    "genre": "Poetry (കാവ്യശാസ്ത്രം)"
+  },
+  "പത്രപ്രവർത്തകൻ": {
+    "old": "വാർത്താകാരൻ",
+    "newLit": "പത്രപ്രവർത്തകൻ (Journalist / Reporter)",
+    "english": "Journalist, news correspondent reporting events and public affairs.",
+    "hindi": "पत्रकार / संवाददाता (समाचार लेखक)",
+    "genre": "Journalism (മാധ്യമപ്രവർത്തനം)"
+  },
+  "ചെറുപ്പക്കാരൻ": {
+    "old": "യുവാവ്",
+    "newLit": "ചെറുപ്പക്കാരൻ (Youth / Young Man)",
+    "english": "Young man, enthusiastic youth contributing vitality to society.",
+    "hindi": "युवक / नौजवान (युवा पीढ़ी)",
+    "genre": "Sociology (യുവത)"
+  },
+  "മുതിർന്നയാൾ": {
+    "old": "വൃദ്ധൻ / ജ്യേഷ്ഠൻ",
+    "newLit": "മുതിർന്നയാൾ (Elder / Senior)",
+    "english": "Elder, senior citizen commanding respect and wisdom from experience.",
+    "hindi": "वरिष्ठ नागरिक / बुजुर्ग (अनुभवी वृद्धजन)",
+    "genre": "Family & Society (മുതിർന്നവർ)"
+  },
+  "കുടുംബം": {
+    "old": "കുലം / തറവാട്",
+    "newLit": "കുടുംബം (Family / Household)",
+    "english": "Family household, foundational social unit rooted in kinship and affection.",
+    "hindi": "परिवार / कुटुंब (पारिवारिक इकाई)",
+    "genre": "Sociology (കുടുംബം)"
+  },
+  "സമൂഹം": {
+    "old": "ജനപദം / സംഘം",
+    "newLit": "സമൂഹം (Society / Community)",
+    "english": "Society, collective community living with shared values and culture.",
+    "hindi": "समाज (सामूहिक जन समुदाय)",
+    "genre": "Sociology (സമൂഹം)"
+  },
+  "ഗുണനിലവാരം": {
+    "old": "ഗുണശ്രേഷ്ഠത",
+    "newLit": "ഗുണനിലവാരം (Quality Standard / Benchmark)",
+    "english": "Quality standard — measure of excellence, reliability, and precision.",
+    "hindi": "गुणवत्ता (श्रेष्ठता, उच्च मानदंड एवं प्रामाणिकता)",
+    "genre": "Evaluation Science (ഗുണനിലവാരം)"
+  },
+  "കൃത്രിമബുദ്ധി": {
+    "old": "യന്ത്രബുദ്ധി / കൽപ്പനജ്ഞാനം",
+    "newLit": "കൃത്രിമബുദ്ധി (Artificial Intelligence / AI)",
+    "english": "Artificial Intelligence — computational synthesis of cognitive intellect and neural reasoning.",
+    "hindi": "कृत्रिम बुद्धिमत्ता (एआई / मशीन ज्ञान एवं तार्किक सोच)",
+    "genre": "Computer Science (കമ്പ്യൂട്ടർ സയൻസ്)"
+  },
+  "ഭാരതവർഷം": {
+    "old": "ഭാരതവർഷം",
+    "newLit": "ഭാരതം (Sacred Bharata Realm)",
+    "english": "Sacred subcontinent of Bharata celebrating cultural and spiritual unity.",
+    "hindi": "भारतवर्ष (प्राचीन एवं पवित्र ज्ञानभूमि)",
+    "genre": "Itihasa Epic (ഇതിഹാസം)"
+  },
+  "താളിയോല": {
+    "old": "താലപത്രം / ഏട്",
+    "newLit": "താളിയോല (Palm-Leaf Manuscript)",
+    "english": "Palm-leaf manuscript prepared from dried palmyra leaves for iron-stylus engraving.",
+    "hindi": "ताड़पत्र पाण्डुलिपि (लौह लेखनी द्वारा उत्कीर्ण प्राचीन ग्रंथ)",
+    "genre": "Epigraphical Ductus (ശാസനം)"
+  },
+  "ശ്രീഗണപതയേ": {
+    "old": "ശ്രീഗണപതയേ നമഃ",
+    "newLit": "ശ്രീഗണപതയേ (Salutations to Ganesha)",
+    "english": "Traditional auspicious invocation to Lord Ganesha at the head of manuscripts.",
+    "hindi": "श्रीगणेशाय नमः (ग्रंथारंभ की मांगलिक स्तुति)",
+    "genre": "Vedic Stotram (മംഗളാചരണം)"
+  },
+  "നമഃ": {
+    "old": "പ്രണാമം",
+    "newLit": "നമഃ (Obeisance / Bow of Respect)",
+    "english": "Spiritual salutation and reverent surrender to the divine truth.",
+    "hindi": "नमः (प्रणाम एवं श्रद्धाभाव)",
+    "genre": "Vedic Mantra (മന്ത്രം)"
+  },
+  "അവിഘ്നമസ്തു": {
+    "old": "അവിഘ്നമസ്തു",
+    "newLit": "അവിഘ്നമസ്തു (May Obstacles Be Removed)",
+    "english": "Ancient scribal prayer wishing flawless completion without hindrances.",
+    "hindi": "अविघ्नमस्तु (कार्य निर्विघ्न संपन्न होने की प्रार्थना)",
+    "genre": "Scribe Benediction (ആശീർവാദം)"
+  },
+  "ജനസമൂഹം": {
+    "old": "ജനസമൂഹം (പ്രാചീന രൂപം)",
+    "newLit": "ജനസമൂഹം (ആധുനിക മലയാള പദം)",
+    "english": "\"ജനസമൂഹം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ജനസമൂഹം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാനവികത": {
+    "old": "മാനവികത (പ്രാചീന രൂപം)",
+    "newLit": "മാനവികത (ആധുനിക മലയാള പദം)",
+    "english": "\"മാനവികത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാനവികത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഐക്യം": {
+    "old": "ഐക്യം (പ്രാചീന രൂപം)",
+    "newLit": "ഐക്യം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഐക്യം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഐക്യം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വളർച്ച": {
+    "old": "വളർച്ച (പ്രാചീന രൂപം)",
+    "newLit": "വളർച്ച (ആധുനിക മലയാള പദം)",
+    "english": "\"വളർച്ച\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വളർച്ച\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പുരോഗതി": {
+    "old": "പുരോഗതി (പ്രാചീന രൂപം)",
+    "newLit": "പുരോഗതി (ആധുനിക മലയാള പദം)",
+    "english": "\"പുരോഗതി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പുരോഗതി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുന്ദരം": {
+    "old": "സുന്ദരം (പ്രാചീന രൂപം)",
+    "newLit": "സുന്ദരം (ആധുനിക മലയാള പദം)",
+    "english": "\"സുന്ദരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുന്ദരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നല്ലത്": {
+    "old": "നല്ലത് (പ്രാചീന രൂപം)",
+    "newLit": "നല്ലത് (ആധുനിക മലയാള പദം)",
+    "english": "\"നല്ലത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നല്ലത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ശരി": {
+    "old": "ശരി (പ്രാചീന രൂപം)",
+    "newLit": "ശരി (ആധുനിക മലയാള പദം)",
+    "english": "\"ശരി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ശരി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വലിയ": {
+    "old": "വലിയ (പ്രാചീന രൂപം)",
+    "newLit": "വലിയ (ആധുനിക മലയാള പദം)",
+    "english": "\"വലിയ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വലിയ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചെറിയ": {
+    "old": "ചെറിയ (പ്രാചീന രൂപം)",
+    "newLit": "ചെറിയ (ആധുനിക മലയാള പദം)",
+    "english": "\"ചെറിയ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചെറിയ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുപ്രഭാതം": {
+    "old": "സുപ്രഭാതം (പ്രാചീന രൂപം)",
+    "newLit": "സുപ്രഭാതം (ആധുനിക മലയാള പദം)",
+    "english": "\"സുപ്രഭാതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുപ്രഭാതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നമസ്കാരം": {
+    "old": "നമസ്കാരം (പ്രാചീന രൂപം)",
+    "newLit": "നമസ്കാരം (ആധുനിക മലയാള പദം)",
+    "english": "\"നമസ്കാരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നമസ്കാരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നന്ദി": {
+    "old": "നന്ദി (പ്രാചീന രൂപം)",
+    "newLit": "നന്ദി (ആധുനിക മലയാള പദം)",
+    "english": "\"നന്ദി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നന്ദി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സ്വാഗതം": {
+    "old": "സ്വാഗതം (പ്രാചീന രൂപം)",
+    "newLit": "സ്വാഗതം (ആധുനിക മലയാള പദം)",
+    "english": "\"സ്വാഗതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സ്വാഗതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആശംസകൾ": {
+    "old": "ആശംസകൾ (പ്രാചീന രൂപം)",
+    "newLit": "ആശംസകൾ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആശംസകൾ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആശംസകൾ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിജയാശംസകൾ": {
+    "old": "വിജയാശംസകൾ (പ്രാചീന രൂപം)",
+    "newLit": "വിജയാശംസകൾ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിജയാശംസകൾ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിജയാശംസകൾ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിപ്ലവകരമായ": {
+    "old": "വിപ്ലവകരമായ (പ്രാചീന രൂപം)",
+    "newLit": "വിപ്ലവകരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിപ്ലവകരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിപ്ലവകരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാധ്യത": {
+    "old": "സാധ്യത (പ്രാചീന രൂപം)",
+    "newLit": "സാധ്യത (ആധുനിക മലയാള പദം)",
+    "english": "\"സാധ്യത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാധ്യത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രതീക്ഷ": {
+    "old": "പ്രതീക്ഷ (പ്രാചീന രൂപം)",
+    "newLit": "പ്രതീക്ഷ (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രതീക്ഷ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രതീക്ഷ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിശ്വാസം": {
+    "old": "വിശ്വാസം (പ്രാചീന രൂപം)",
+    "newLit": "വിശ്വാസം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിശ്വാസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിശ്വാസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ലക്ഷ്യം": {
+    "old": "ലക്ഷ്യം (പ്രാചീന രൂപം)",
+    "newLit": "ലക്ഷ്യം (ആധുനിക മലയാള പദം)",
+    "english": "\"ലക്ഷ്യം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ലക്ഷ്യം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സ്വപ്നം": {
+    "old": "സ്വപ്നം (പ്രാചീന രൂപം)",
+    "newLit": "സ്വപ്നം (ആധുനിക മലയാള പദം)",
+    "english": "\"സ്വപ്നം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സ്വപ്നം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "യാത്ര": {
+    "old": "യാത്ര (പ്രാചീന രൂപം)",
+    "newLit": "യാത്ര (ആധുനിക മലയാള പദം)",
+    "english": "\"യാത്ര\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"യാത്ര\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വഴി": {
+    "old": "വഴി (പ്രാചീന രൂപം)",
+    "newLit": "വഴി (ആധുനിക മലയാള പദം)",
+    "english": "\"വഴി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വഴി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പാത": {
+    "old": "പാത (പ്രാചീന രൂപം)",
+    "newLit": "പാത (ആധുനിക മലയാള പദം)",
+    "english": "\"പാത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പാത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാർഗ്ഗം": {
+    "old": "മാർഗ്ഗം (പ്രാചീന രൂപം)",
+    "newLit": "മാർഗ്ഗം (ആധുനിക മലയാള പദം)",
+    "english": "\"മാർഗ്ഗം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാർഗ്ഗം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "തുടക്കം": {
+    "old": "തുടക്കം (പ്രാചീന രൂപം)",
+    "newLit": "തുടക്കം (ആധുനിക മലയാള പദം)",
+    "english": "\"തുടക്കം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"തുടക്കം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അവസാനം": {
+    "old": "അവസാനം (പ്രാചീന രൂപം)",
+    "newLit": "അവസാനം (ആധുനിക മലയാള പദം)",
+    "english": "\"അവസാനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അവസാനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നിമിഷം": {
+    "old": "നിമിഷം (പ്രാചീന രൂപം)",
+    "newLit": "നിമിഷം (ആധുനിക മലയാള പദം)",
+    "english": "\"നിമിഷം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നിമിഷം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കാലം": {
+    "old": "കാലം (പ്രാചീന രൂപം)",
+    "newLit": "കാലം (ആധുനിക മലയാള പദം)",
+    "english": "\"കാലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കാലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സമയം": {
+    "old": "സമയം (പ്രാചീന രൂപം)",
+    "newLit": "സമയം (ആധുനിക മലയാള പദം)",
+    "english": "\"സമയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സമയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വർഷം": {
+    "old": "വർഷം (പ്രാചീന രൂപം)",
+    "newLit": "വർഷം (ആധുനിക മലയാള പദം)",
+    "english": "\"വർഷം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വർഷം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാസം": {
+    "old": "മാസം (പ്രാചീന രൂപം)",
+    "newLit": "മാസം (ആധുനിക മലയാള പദം)",
+    "english": "\"മാസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ദിവസം": {
+    "old": "ദിവസം (പ്രാചീന രൂപം)",
+    "newLit": "ദിവസം (ആധുനിക മലയാള പദം)",
+    "english": "\"ദിവസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ദിവസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രഭാതം": {
+    "old": "പ്രഭാതം (പ്രാചീന രൂപം)",
+    "newLit": "പ്രഭാതം (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രഭാതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രഭാതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സന്ധ്യ": {
+    "old": "സന്ധ്യ (പ്രാചീന രൂപം)",
+    "newLit": "സന്ധ്യ (ആധുനിക മലയാള പദം)",
+    "english": "\"സന്ധ്യ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സന്ധ്യ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "രാത്രി": {
+    "old": "രാത്രി (പ്രാചീന രൂപം)",
+    "newLit": "രാത്രി (ആധുനിക മലയാള പദം)",
+    "english": "\"രാത്രി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"രാത്രി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പകൽ": {
+    "old": "പകൽ (പ്രാചീന രൂപം)",
+    "newLit": "പകൽ (ആധുനിക മലയാള പദം)",
+    "english": "\"പകൽ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പകൽ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഇന്ന്": {
+    "old": "ഇന്ന് (പ്രാചീന രൂപം)",
+    "newLit": "ഇന്ന് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഇന്ന്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഇന്ന്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നാളെ": {
+    "old": "നാളെ (പ്രാചീന രൂപം)",
+    "newLit": "നാളെ (ആധുനിക മലയാള പദം)",
+    "english": "\"നാളെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നാളെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഇന്നലെ": {
+    "old": "ഇന്നലെ (പ്രാചീന രൂപം)",
+    "newLit": "ഇന്നലെ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഇന്നലെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഇന്നലെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഇവിടെ": {
+    "old": "ഇവിടെ (പ്രാചീന രൂപം)",
+    "newLit": "ഇവിടെ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഇവിടെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഇവിടെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അവിടെ": {
+    "old": "അവിടെ (പ്രാചീന രൂപം)",
+    "newLit": "അവിടെ (ആധുനിക മലയാള പദം)",
+    "english": "\"അവിടെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അവിടെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എവിടെ": {
+    "old": "എവിടെ (പ്രാചീന രൂപം)",
+    "newLit": "എവിടെ (ആധുനിക മലയാള പദം)",
+    "english": "\"എവിടെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എവിടെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എപ്പോൾ": {
+    "old": "എപ്പോൾ (പ്രാചീന രൂപം)",
+    "newLit": "എപ്പോൾ (ആധുനിക മലയാള പദം)",
+    "english": "\"എപ്പോൾ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എപ്പോൾ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എങ്ങനെ": {
+    "old": "എങ്ങനെ (പ്രാചീന രൂപം)",
+    "newLit": "എങ്ങനെ (ആധുനിക മലയാള പദം)",
+    "english": "\"എങ്ങനെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എങ്ങനെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എന്തുകൊണ്ട്": {
+    "old": "എന്തുകൊണ്ട് (പ്രാചീന രൂപം)",
+    "newLit": "എന്തുകൊണ്ട് (ആധുനിക മലയാള പദം)",
+    "english": "\"എന്തുകൊണ്ട്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എന്തുകൊണ്ട്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആര്": {
+    "old": "ആര് (പ്രാചീന രൂപം)",
+    "newLit": "ആര് (ആധുനിക മലയാള പദം)",
+    "english": "\"ആര്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആര്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എന്ത്": {
+    "old": "എന്ത് (പ്രാചീന രൂപം)",
+    "newLit": "എന്ത് (ആധുനിക മലയാള പദം)",
+    "english": "\"എന്ത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എന്ത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഏത്": {
+    "old": "ഏത് (പ്രാചീന രൂപം)",
+    "newLit": "ഏത് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഏത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഏത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എത്ര": {
+    "old": "എത്ര (പ്രാചീന രൂപം)",
+    "newLit": "എത്ര (ആധുനിക മലയാള പദം)",
+    "english": "\"എത്ര\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എത്ര\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എല്ലാവരും": {
+    "old": "എല്ലാവരും (പ്രാചീന രൂപം)",
+    "newLit": "എല്ലാവരും (ആധുനിക മലയാള പദം)",
+    "english": "\"എല്ലാവരും\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എല്ലാവരും\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എല്ലായിടത്തും": {
+    "old": "എല്ലായിടത്തും (പ്രാചീന രൂപം)",
+    "newLit": "എല്ലായിടത്തും (ആധുനിക മലയാള പദം)",
+    "english": "\"എല്ലായിടത്തും\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എല്ലായിടത്തും\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "എപ്പോഴും": {
+    "old": "എപ്പോഴും (പ്രാചീന രൂപം)",
+    "newLit": "എപ്പോഴും (ആധുനിക മലയാള പദം)",
+    "english": "\"എപ്പോഴും\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"എപ്പോഴും\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഒന്നാമത്": {
+    "old": "ഒന്നാമത് (പ്രാചീന രൂപം)",
+    "newLit": "ഒന്നാമത് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഒന്നാമത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഒന്നാമത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "രണ്ടാമത്": {
+    "old": "രണ്ടാമത് (പ്രാചീന രൂപം)",
+    "newLit": "രണ്ടാമത് (ആധുനിക മലയാള പദം)",
+    "english": "\"രണ്ടാമത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"രണ്ടാമത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മൂന്നാമത്": {
+    "old": "മൂന്നാമത് (പ്രാചീന രൂപം)",
+    "newLit": "മൂന്നാമത് (ആധുനിക മലയാള പദം)",
+    "english": "\"മൂന്നാമത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മൂന്നാമത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആദ്യത്തെ": {
+    "old": "ആദ്യത്തെ (പ്രാചീന രൂപം)",
+    "newLit": "ആദ്യത്തെ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആദ്യത്തെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആദ്യത്തെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അവസാനത്തെ": {
+    "old": "അവസാനത്തെ (പ്രാചീന രൂപം)",
+    "newLit": "അവസാനത്തെ (ആധുനിക മലയാള പദം)",
+    "english": "\"അവസാനത്തെ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അവസാനത്തെ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സമ്പൂർണ്ണം": {
+    "old": "സമ്പൂർണ്ണം (പ്രാചീന രൂപം)",
+    "newLit": "സമ്പൂർണ്ണം (ആധുനിക മലയാള പദം)",
+    "english": "\"സമ്പൂർണ്ണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സമ്പൂർണ്ണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിപുലമായ": {
+    "old": "വിപുലമായ (പ്രാചീന രൂപം)",
+    "newLit": "വിപുലമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിപുലമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിപുലമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാതൃകാപരമായ": {
+    "old": "മാതൃകാപരമായ (പ്രാചീന രൂപം)",
+    "newLit": "മാതൃകാപരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"മാതൃകാപരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാതൃകാപരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉത്തമം": {
+    "old": "ഉത്തമം (പ്രാചീന രൂപം)",
+    "newLit": "ഉത്തമം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉത്തമം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉത്തമം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മികച്ച": {
+    "old": "മികച്ച (പ്രാചീന രൂപം)",
+    "newLit": "മികച്ച (ആധുനിക മലയാള പദം)",
+    "english": "\"മികച്ച\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മികച്ച\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വലിയത്": {
+    "old": "വലിയത് (പ്രാചീന രൂപം)",
+    "newLit": "വലിയത് (ആധുനിക മലയാള പദം)",
+    "english": "\"വലിയത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വലിയത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചെറിയത്": {
+    "old": "ചെറിയത് (പ്രാചീന രൂപം)",
+    "newLit": "ചെറിയത് (ആധുനിക മലയാള പദം)",
+    "english": "\"ചെറിയത്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചെറിയത്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുന്ദരമായ": {
+    "old": "സുന്ദരമായ (പ്രാചീന രൂപം)",
+    "newLit": "സുന്ദരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സുന്ദരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുന്ദരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അഭൂതപൂർവ്വമായ": {
+    "old": "അഭൂതപൂർവ്വമായ (പ്രാചീന രൂപം)",
+    "newLit": "അഭൂതപൂർവ്വമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"അഭൂതപൂർവ്വമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അഭൂതപൂർവ്വമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിസ്മയകരമായ": {
+    "old": "വിസ്മയകരമായ (പ്രാചീന രൂപം)",
+    "newLit": "വിസ്മയകരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിസ്മയകരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിസ്മയകരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അതിശയം": {
+    "old": "അതിശയം (പ്രാചീന രൂപം)",
+    "newLit": "അതിശയം (ആധുനിക മലയാള പദം)",
+    "english": "\"അതിശയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അതിശയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിസ്മയം": {
+    "old": "വിസ്മയം (പ്രാചീന രൂപം)",
+    "newLit": "വിസ്മയം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിസ്മയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിസ്മയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അത്ഭുതം": {
+    "old": "അത്ഭുതം (പ്രാചീന രൂപം)",
+    "newLit": "അത്ഭുതം (ആധുനിക മലയാള പദം)",
+    "english": "\"അത്ഭുതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അത്ഭുതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കണ്ടെത്തൽ": {
+    "old": "കണ്ടെത്തൽ (പ്രാചീന രൂപം)",
+    "newLit": "കണ്ടെത്തൽ (ആധുനിക മലയാള പദം)",
+    "english": "\"കണ്ടെത്തൽ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കണ്ടെത്തൽ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വികസനപരമായ": {
+    "old": "വികസനപരമായ (പ്രാചീന രൂപം)",
+    "newLit": "വികസനപരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"വികസനപരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വികസനപരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നിർമ്മാണം": {
+    "old": "നിർമ്മാണം (പ്രാചീന രൂപം)",
+    "newLit": "നിർമ്മാണം (ആധുനിക മലയാള പദം)",
+    "english": "\"നിർമ്മാണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നിർമ്മാണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "രചന": {
+    "old": "രചന (പ്രാചീന രൂപം)",
+    "newLit": "രചന (ആധുനിക മലയാള പദം)",
+    "english": "\"രചന\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"രചന\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിമർശനം": {
+    "old": "വിമർശനം (പ്രാചീന രൂപം)",
+    "newLit": "വിമർശനം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിമർശനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിമർശനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിശകലനം": {
+    "old": "വിശകലനം (പ്രാചീന രൂപം)",
+    "newLit": "വിശകലനം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിശകലനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിശകലനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗവേഷണം": {
+    "old": "ഗവേഷണം (പ്രാചീന രൂപം)",
+    "newLit": "ഗവേഷണം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗവേഷണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗവേഷണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പഠനഫലം": {
+    "old": "പഠനഫലം (പ്രാചീന രൂപം)",
+    "newLit": "പഠനഫലം (ആധുനിക മലയാള പദം)",
+    "english": "\"പഠനഫലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പഠനഫലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നിഗമനം": {
+    "old": "നിഗമനം (പ്രാചീന രൂപം)",
+    "newLit": "നിഗമനം (ആധുനിക മലയാള പദം)",
+    "english": "\"നിഗമനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നിഗമനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാർഗ്ഗനിർദ്ദേശം": {
+    "old": "മാർഗ്ഗനിർദ്ദേശം (പ്രാചീന രൂപം)",
+    "newLit": "മാർഗ്ഗനിർദ്ദേശം (ആധുനിക മലയാള പദം)",
+    "english": "\"മാർഗ്ഗനിർദ്ദേശം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാർഗ്ഗനിർദ്ദേശം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "തീരുമാനം": {
+    "old": "തീരുമാനം (പ്രാചീന രൂപം)",
+    "newLit": "തീരുമാനം (ആധുനിക മലയാള പദം)",
+    "english": "\"തീരുമാനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"തീരുമാനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രഖ്യാപനം": {
+    "old": "പ്രഖ്യാപനം (പ്രാചീന രൂപം)",
+    "newLit": "പ്രഖ്യാപനം (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രഖ്യാപനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രഖ്യാപനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നടപടി": {
+    "old": "നടപടി (പ്രാചീന രൂപം)",
+    "newLit": "നടപടി (ആധുനിക മലയാള പദം)",
+    "english": "\"നടപടി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നടപടി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സംവിധാനം": {
+    "old": "സംവിധാനം (പ്രാചീന രൂപം)",
+    "newLit": "സംവിധാനം (ആധുനിക മലയാള പദം)",
+    "english": "\"സംവിധാനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സംവിധാനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ക്രമീകരണം": {
+    "old": "ക്രമീകരണം (പ്രാചീന രൂപം)",
+    "newLit": "ക്രമീകരണം (ആധുനിക മലയാള പദം)",
+    "english": "\"ക്രമീകരണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ക്രമീകരണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാറ്റം": {
+    "old": "മാറ്റം (പ്രാചീന രൂപം)",
+    "newLit": "മാറ്റം (ആധുനിക മലയാള പദം)",
+    "english": "\"മാറ്റം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാറ്റം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പരിഷ്കാരം": {
+    "old": "പരിഷ്കാരം (പ്രാചീന രൂപം)",
+    "newLit": "പരിഷ്കാരം (ആധുനിക മലയാള പദം)",
+    "english": "\"പരിഷ്കാരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പരിഷ്കാരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നവീകരണം": {
+    "old": "നവീകരണം (പ്രാചീന രൂപം)",
+    "newLit": "നവീകരണം (ആധുനിക മലയാള പദം)",
+    "english": "\"നവീകരണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നവീകരണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിപ്ലവകരം": {
+    "old": "വിപ്ലവകരം (പ്രാചീന രൂപം)",
+    "newLit": "വിപ്ലവകരം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിപ്ലവകരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിപ്ലവകരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിജയകരമായ": {
+    "old": "വിജയകരമായ (പ്രാചീന രൂപം)",
+    "newLit": "വിജയകരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിജയകരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിജയകരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ലളിതം": {
+    "old": "ലളിതം (പ്രാചീന രൂപം)",
+    "newLit": "ലളിതം (ആധുനിക മലയാള പദം)",
+    "english": "\"ലളിതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ലളിതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വ്യക്തം": {
+    "old": "വ്യക്തം (പ്രാചീന രൂപം)",
+    "newLit": "വ്യക്തം (ആധുനിക മലയാള പദം)",
+    "english": "\"വ്യക്തം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വ്യക്തം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ശക്തം": {
+    "old": "ശക്തം (പ്രാചീന രൂപം)",
+    "newLit": "ശക്തം (ആധുനിക മലയാള പദം)",
+    "english": "\"ശക്തം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ശക്തം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുരക്ഷിതം": {
+    "old": "സുരക്ഷിതം (പ്രാചീന രൂപം)",
+    "newLit": "സുരക്ഷിതം (ആധുനിക മലയാള പദം)",
+    "english": "\"സുരക്ഷിതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുരക്ഷിതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉറപ്പുള്ള": {
+    "old": "ഉറപ്പുള്ള (പ്രാചീന രൂപം)",
+    "newLit": "ഉറപ്പുള്ള (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉറപ്പുള്ള\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉറപ്പുള്ള\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കൂടുതൽ": {
+    "old": "കൂടുതൽ (പ്രാചീന രൂപം)",
+    "newLit": "കൂടുതൽ (ആധുനിക മലയാള പദം)",
+    "english": "\"കൂടുതൽ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കൂടുതൽ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കുറഞ്ഞ": {
+    "old": "കുറഞ്ഞ (പ്രാചീന രൂപം)",
+    "newLit": "കുറഞ്ഞ (ആധുനിക മലയാള പദം)",
+    "english": "\"കുറഞ്ഞ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കുറഞ്ഞ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സമഗ്രമായ": {
+    "old": "സമഗ്രമായ (പ്രാചീന രൂപം)",
+    "newLit": "സമഗ്രമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സമഗ്രമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സമഗ്രമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സമ്പൂർണ്ണമായ": {
+    "old": "സമ്പൂർണ്ണമായ (പ്രാചീന രൂപം)",
+    "newLit": "സമ്പൂർണ്ണമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സമ്പൂർണ്ണമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സമ്പൂർണ്ണമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "തനതായ": {
+    "old": "തനതായ (പ്രാചീന രൂപം)",
+    "newLit": "തനതായ (ആധുനിക മലയാള പദം)",
+    "english": "\"തനതായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"തനതായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആധികാരികമായ": {
+    "old": "ആധികാരികമായ (പ്രാചീന രൂപം)",
+    "newLit": "ആധികാരികമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആധികാരികമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആധികാരികമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ശരിയായ": {
+    "old": "ശരിയായ (പ്രാചീന രൂപം)",
+    "newLit": "ശരിയായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ശരിയായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ശരിയായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉചിതമായ": {
+    "old": "ഉചിതമായ (പ്രാചീന രൂപം)",
+    "newLit": "ഉചിതമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉചിതമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉചിതമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അത്യന്താപേക്ഷിതമായ": {
+    "old": "അത്യന്താപേക്ഷിതമായ (പ്രാചീന രൂപം)",
+    "newLit": "അത്യന്താപേക്ഷിതമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"അത്യന്താപേക്ഷിതമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അത്യന്താപേക്ഷിതമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അനിവാര്യമായ": {
+    "old": "അനിവാര്യമായ (പ്രാചീന രൂപം)",
+    "newLit": "അനിവാര്യമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"അനിവാര്യമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അനിവാര്യമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുപ്രധാനമായ": {
+    "old": "സുപ്രധാനമായ (പ്രാചീന രൂപം)",
+    "newLit": "സുപ്രധാനമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സുപ്രധാനമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുപ്രധാനമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അടിയന്തിരമായ": {
+    "old": "അടിയന്തിരമായ (പ്രാചീന രൂപം)",
+    "newLit": "അടിയന്തിരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"അടിയന്തിരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അടിയന്തിരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സ്വതന്ത്രമായ": {
+    "old": "സ്വതന്ത്രമായ (പ്രാചീന രൂപം)",
+    "newLit": "സ്വതന്ത്രമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സ്വതന്ത്രമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സ്വതന്ത്രമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ജനാധിപത്യപരമായ": {
+    "old": "ജനാധിപത്യപരമായ (പ്രാചീന രൂപം)",
+    "newLit": "ജനാധിപത്യപരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ജനാധിപത്യപരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ജനാധിപത്യപരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാർവത്രികമായ": {
+    "old": "സാർവത്രികമായ (പ്രാചീന രൂപം)",
+    "newLit": "സാർവത്രികമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"സാർവത്രികമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാർവത്രികമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "തുല്യത": {
+    "old": "തുല്യത (പ്രാചീന രൂപം)",
+    "newLit": "തുല്യത (ആധുനിക മലയാള പദം)",
+    "english": "\"തുല്യത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"തുല്യത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സമത്വം": {
+    "old": "സമത്വം (പ്രാചീന രൂപം)",
+    "newLit": "സമത്വം (ആധുനിക മലയാള പദം)",
+    "english": "\"സമത്വം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സമത്വം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഭൂതകാലം": {
+    "old": "ഭൂതകാലം (പ്രാചീന രൂപം)",
+    "newLit": "ഭൂതകാലം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഭൂതകാലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഭൂതകാലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വർത്തമാനകാലം": {
+    "old": "വർത്തമാനകാലം (പ്രാചീന രൂപം)",
+    "newLit": "വർത്തമാനകാലം (ആധുനിക മലയാള പദം)",
+    "english": "\"വർത്തമാനകാലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വർത്തമാനകാലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഭാവികാലം": {
+    "old": "ഭാവികാലം (പ്രാചീന രൂപം)",
+    "newLit": "ഭാവികാലം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഭാവികാലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഭാവികാലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അതിവേഗം": {
+    "old": "അതിവേഗം (പ്രാചീന രൂപം)",
+    "newLit": "അതിവേഗം (ആധുനിക മലയാള പദം)",
+    "english": "\"അതിവേഗം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അതിവേഗം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിജയശ്രീലാളിതൻ": {
+    "old": "വിജയശ്രീലാളിതൻ (പ്രാചീന രൂപം)",
+    "newLit": "വിജയശ്രീലാളിതൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിജയശ്രീലാളിതൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിജയശ്രീലാളിതൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാംസ്കാരികം": {
+    "old": "സാംസ്കാരികം (പ്രാചീന രൂപം)",
+    "newLit": "സാംസ്കാരികം (ആധുനിക മലയാള പദം)",
+    "english": "\"സാംസ്കാരികം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാംസ്കാരികം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാമ്പത്തികം": {
+    "old": "സാമ്പത്തികം (പ്രാചീന രൂപം)",
+    "newLit": "സാമ്പത്തികം (ആധുനിക മലയാള പദം)",
+    "english": "\"സാമ്പത്തികം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാമ്പത്തികം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാമൂഹികം": {
+    "old": "സാമൂഹികം (പ്രാചീന രൂപം)",
+    "newLit": "സാമൂഹികം (ആധുനിക മലയാള പദം)",
+    "english": "\"സാമൂഹികം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാമൂഹികം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "രാഷ്ട്രീയം": {
+    "old": "രാഷ്ട്രീയം (പ്രാചീന രൂപം)",
+    "newLit": "രാഷ്ട്രീയം (ആധുനിക മലയാള പദം)",
+    "english": "\"രാഷ്ട്രീയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"രാഷ്ട്രീയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "തത്വശാസ്ത്രം": {
+    "old": "തത്വശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "തത്വശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"തത്വശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"തത്വശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മനഃശാസ്ത്രം": {
+    "old": "മനഃശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "മനഃശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"മനഃശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മനഃശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ജീവശാസ്ത്രം": {
+    "old": "ജീവശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "ജീവശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"ജീവശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ജീവശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഭൗതികശാസ്ത്രം": {
+    "old": "ഭൗതികശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "ഭൗതികശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഭൗതികശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഭൗതികശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "രസതന്ത്രം": {
+    "old": "രസതന്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "രസതന്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"രസതന്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"രസതന്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗണിതശാസ്ത്രം": {
+    "old": "ഗണിതശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "ഗണിതശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗണിതശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗണിതശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ബഹിരാകാശം": {
+    "old": "ബഹിരാകാശം (പ്രാചീന രൂപം)",
+    "newLit": "ബഹിരാകാശം (ആധുനിക മലയാള പദം)",
+    "english": "\"ബഹിരാകാശം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ബഹിരാകാശം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാങ്കേതികവിദ്യാലയം": {
+    "old": "സാങ്കേതികവിദ്യാലയം (പ്രാചീന രൂപം)",
+    "newLit": "സാങ്കേതികവിദ്യാലയം (ആധുനിക മലയാള പദം)",
+    "english": "\"സാങ്കേതികവിദ്യാലയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാങ്കേതികവിദ്യാലയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിജ്ഞാനം": {
+    "old": "വിജ്ഞാനം (പ്രാചീന രൂപം)",
+    "newLit": "വിജ്ഞാനം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിജ്ഞാനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിജ്ഞാനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അറിവ്": {
+    "old": "അറിവ് (പ്രാചീന രൂപം)",
+    "newLit": "അറിവ് (ആധുനിക മലയാള പദം)",
+    "english": "\"അറിവ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അറിവ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രകാശം": {
+    "old": "പ്രകാശം (പ്രാചീന രൂപം)",
+    "newLit": "പ്രകാശം (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രകാശം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രകാശം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉണർവ്": {
+    "old": "ഉണർവ് (പ്രാചീന രൂപം)",
+    "newLit": "ഉണർവ് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉണർവ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉണർവ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉത്സവം": {
+    "old": "ഉത്സവം (പ്രാചീന രൂപം)",
+    "newLit": "ഉത്സവം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉത്സവം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉത്സവം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആഘോഷം": {
+    "old": "ആഘോഷം (പ്രാചീന രൂപം)",
+    "newLit": "ആഘോഷം (ആധുനിക മലയാള പദം)",
+    "english": "\"ആഘോഷം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആഘോഷം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉല്ലാസം": {
+    "old": "ഉല്ലാസം (പ്രാചീന രൂപം)",
+    "newLit": "ഉല്ലാസം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉല്ലാസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉല്ലാസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിശ്രമം": {
+    "old": "വിശ്രമം (പ്രാചീന രൂപം)",
+    "newLit": "വിശ്രമം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിശ്രമം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിശ്രമം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആശ്വാസം": {
+    "old": "ആശ്വാസം (പ്രാചീന രൂപം)",
+    "newLit": "ആശ്വാസം (ആധുനിക മലയാള പദം)",
+    "english": "\"ആശ്വാസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആശ്വാസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആനന്ദം": {
+    "old": "ആനന്ദം (പ്രാചീന രൂപം)",
+    "newLit": "ആനന്ദം (ആധുനിക മലയാള പദം)",
+    "english": "\"ആനന്ദം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആനന്ദം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുഖം": {
+    "old": "സുഖം (പ്രാചീന രൂപം)",
+    "newLit": "സുഖം (ആധുനിക മലയാള പദം)",
+    "english": "\"സുഖം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുഖം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആരോഗ്യകരമായ": {
+    "old": "ആരോഗ്യകരമായ (പ്രാചീന രൂപം)",
+    "newLit": "ആരോഗ്യകരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആരോഗ്യകരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആരോഗ്യകരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ജീവിതം": {
+    "old": "ജീവിതം (പ്രാചീന രൂപം)",
+    "newLit": "ജീവിതം (ആധുനിക മലയാള പദം)",
+    "english": "\"ജീവിതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ജീവിതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സംസ്കാരം": {
+    "old": "സംസ്കാരം (പ്രാചീന രൂപം)",
+    "newLit": "സംസ്കാരം (ആധുനിക മലയാള പദം)",
+    "english": "\"സംസ്കാരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സംസ്കാരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പാരമ്പര്യം": {
+    "old": "പാരമ്പര്യം (പ്രാചീന രൂപം)",
+    "newLit": "പാരമ്പര്യം (ആധുനിക മലയാള പദം)",
+    "english": "\"പാരമ്പര്യം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പാരമ്പര്യം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പൈതൃകം": {
+    "old": "പൈതൃകം (പ്രാചീന രൂപം)",
+    "newLit": "പൈതൃകം (ആധുനിക മലയാള പദം)",
+    "english": "\"പൈതൃകം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പൈതൃകം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സംരക്ഷണം": {
+    "old": "സംരക്ഷണം (പ്രാചീന രൂപം)",
+    "newLit": "സംരക്ഷണം (ആധുനിക മലയാള പദം)",
+    "english": "\"സംരക്ഷണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സംരക്ഷണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പരിപാലനം": {
+    "old": "പരിപാലനം (പ്രാചീന രൂപം)",
+    "newLit": "പരിപാലനം (ആധുനിക മലയാള പദം)",
+    "english": "\"പരിപാലനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പരിപാലനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിളവ്": {
+    "old": "വിളവ് (പ്രാചീന രൂപം)",
+    "newLit": "വിളവ് (ആധുനിക മലയാള പദം)",
+    "english": "\"വിളവ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിളവ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കൃഷി": {
+    "old": "കൃഷി (പ്രാചീന രൂപം)",
+    "newLit": "കൃഷി (ആധുനിക മലയാള പദം)",
+    "english": "\"കൃഷി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കൃഷി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഭൂമിശാസ്ത്രം": {
+    "old": "ഭൂമിശാസ്ത്രം (പ്രാചീന രൂപം)",
+    "newLit": "ഭൂമിശാസ്ത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഭൂമിശാസ്ത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഭൂമിശാസ്ത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രകൃതി": {
+    "old": "പ്രകൃതി (പ്രാചീന രൂപം)",
+    "newLit": "പ്രകൃതി (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രകൃതി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രകൃതി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പരിസ്ഥിതി": {
+    "old": "പരിസ്ഥിതി (പ്രാചീന രൂപം)",
+    "newLit": "പരിസ്ഥിതി (ആധുനിക മലയാള പദം)",
+    "english": "\"പരിസ്ഥിതി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പരിസ്ഥിതി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സുസ്ഥിരത": {
+    "old": "സുസ്ഥിരത (പ്രാചീന രൂപം)",
+    "newLit": "സുസ്ഥിരത (ആധുനിക മലയാള പദം)",
+    "english": "\"സുസ്ഥിരത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സുസ്ഥിരത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാതൃഭാഷ": {
+    "old": "മാതൃഭാഷ (പ്രാചീന രൂപം)",
+    "newLit": "മാതൃഭാഷ (ആധുനിക മലയാള പദം)",
+    "english": "\"മാതൃഭാഷ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാതൃഭാഷ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മലയാളഭാഷ": {
+    "old": "മലയാളഭാഷ (പ്രാചീന രൂപം)",
+    "newLit": "മലയാളഭാഷ (ആധുനിക മലയാള പദം)",
+    "english": "\"മലയാളഭാഷ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മലയാളഭാഷ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അക്ഷരമാല": {
+    "old": "അക്ഷരമാല (പ്രാചീന രൂപം)",
+    "newLit": "അക്ഷരമാല (ആധുനിക മലയാള പദം)",
+    "english": "\"അക്ഷരമാല\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അക്ഷരമാല\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അക്ഷരക്കൂട്ടം": {
+    "old": "അക്ഷരക്കൂട്ടം (പ്രാചീന രൂപം)",
+    "newLit": "അക്ഷരക്കൂട്ടം (ആധുനിക മലയാള പദം)",
+    "english": "\"അക്ഷരക്കൂട്ടം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അക്ഷരക്കൂട്ടം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വ്യഞ്ജനാക്ഷരം": {
+    "old": "വ്യഞ്ജനാക്ഷരം (പ്രാചീന രൂപം)",
+    "newLit": "വ്യഞ്ജനാക്ഷരം (ആധുനിക മലയാള പദം)",
+    "english": "\"വ്യഞ്ജനാക്ഷരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വ്യഞ്ജനാക്ഷരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സ്വരാക്ഷരം": {
+    "old": "സ്വരാക്ഷരം (പ്രാചീന രൂപം)",
+    "newLit": "സ്വരാക്ഷരം (ആധുനിക മലയാള പദം)",
+    "english": "\"സ്വരാക്ഷരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സ്വരാക്ഷരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കൂട്ടക്ഷരം": {
+    "old": "കൂട്ടക്ഷരം (പ്രാചീന രൂപം)",
+    "newLit": "കൂട്ടക്ഷരം (ആധുനിക മലയാള പദം)",
+    "english": "\"കൂട്ടക്ഷരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കൂട്ടക്ഷരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചില്ലക്ഷരം": {
+    "old": "ചില്ലക്ഷരം (പ്രാചീന രൂപം)",
+    "newLit": "ചില്ലക്ഷരം (ആധുനിക മലയാള പദം)",
+    "english": "\"ചില്ലക്ഷരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചില്ലക്ഷരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചിഹ്നം": {
+    "old": "ചിഹ്നം (പ്രാചീന രൂപം)",
+    "newLit": "ചിഹ്നം (ആധുനിക മലയാള പദം)",
+    "english": "\"ചിഹ്നം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചിഹ്നം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സ്വരം": {
+    "old": "സ്വരം (പ്രാചീന രൂപം)",
+    "newLit": "സ്വരം (ആധുനിക മലയാള പദം)",
+    "english": "\"സ്വരം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സ്വരം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാത്ര": {
+    "old": "മാത്ര (പ്രാചീന രൂപം)",
+    "newLit": "മാത്ര (ആധുനിക മലയാള പദം)",
+    "english": "\"മാത്ര\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാത്ര\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രയോഗം": {
+    "old": "പ്രയോഗം (പ്രാചീന രൂപം)",
+    "newLit": "പ്രയോഗം (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രയോഗം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രയോഗം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ശൈലി": {
+    "old": "ശൈലി (പ്രാചീന രൂപം)",
+    "newLit": "ശൈലി (ആധുനിക മലയാള പദം)",
+    "english": "\"ശൈലി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ശൈലി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വ്യാകരണം": {
+    "old": "വ്യാകരണം (പ്രാചീന രൂപം)",
+    "newLit": "വ്യാകരണം (ആധുനിക മലയാള പദം)",
+    "english": "\"വ്യാകരണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വ്യാകരണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ലിപി": {
+    "old": "ലിപി (പ്രാചീന രൂപം)",
+    "newLit": "ലിപി (ആധുനിക മലയാള പദം)",
+    "english": "\"ലിപി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ലിപി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗ്രന്ഥശാല": {
+    "old": "ഗ്രന്ഥശാല (പ്രാചീന രൂപം)",
+    "newLit": "ഗ്രന്ഥശാല (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗ്രന്ഥശാല\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗ്രന്ഥശാല\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗ്രന്ഥാലയം": {
+    "old": "ഗ്രന്ഥാലയം (പ്രാചീന രൂപം)",
+    "newLit": "ഗ്രന്ഥാലയം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗ്രന്ഥാലയം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗ്രന്ഥാലയം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചരിത്രപരമായ": {
+    "old": "ചരിത്രപരമായ (പ്രാചീന രൂപം)",
+    "newLit": "ചരിത്രപരമായ (ആധുനിക മലയാള പദം)",
+    "english": "\"ചരിത്രപരമായ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചരിത്രപരമായ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കാവ്യം": {
+    "old": "കാവ്യം (പ്രാചീന രൂപം)",
+    "newLit": "കാവ്യം (ആധുനിക മലയാള പദം)",
+    "english": "\"കാവ്യം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കാവ്യം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചെറുകഥ": {
+    "old": "ചെറുകഥ (പ്രാചീന രൂപം)",
+    "newLit": "ചെറുകഥ (ആധുനിക മലയാള പദം)",
+    "english": "\"ചെറുകഥ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചെറുകഥ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഉപന്യാസം": {
+    "old": "ഉപന്യാസം (പ്രാചീന രൂപം)",
+    "newLit": "ഉപന്യാസം (ആധുനിക മലയാള പദം)",
+    "english": "\"ഉപന്യാസം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഉപന്യാസം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ലേഖനം": {
+    "old": "ലേഖനം (പ്രാചീന രൂപം)",
+    "newLit": "ലേഖനം (ആധുനിക മലയാള പദം)",
+    "english": "\"ലേഖനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ലേഖനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വാർത്ത": {
+    "old": "വാർത്ത (പ്രാചീന രൂപം)",
+    "newLit": "വാർത്ത (ആധുനിക മലയാള പദം)",
+    "english": "\"വാർത്ത\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വാർത്ത\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ദിനപത്രം": {
+    "old": "ദിനപത്രം (പ്രാചീന രൂപം)",
+    "newLit": "ദിനപത്രം (ആധുനിക മലയാള പദം)",
+    "english": "\"ദിനപത്രം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ദിനപത്രം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വാരിക": {
+    "old": "വാരിക (പ്രാചീന രൂപം)",
+    "newLit": "വാരിക (ആധുനിക മലയാള പദം)",
+    "english": "\"വാരിക\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വാരിക\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മാസിക": {
+    "old": "മാസിക (പ്രാചീന രൂപം)",
+    "newLit": "മാസിക (ആധുനിക മലയാള പദം)",
+    "english": "\"മാസിക\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മാസിക\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രസിദ്ധീകരണം": {
+    "old": "പ്രസിദ്ധീകരണം (പ്രാചീന രൂപം)",
+    "newLit": "പ്രസിദ്ധീകരണം (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രസിദ്ധീകരണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രസിദ്ധീകരണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗ്രന്ഥകർത്താവ്": {
+    "old": "ഗ്രന്ഥകർത്താവ് (പ്രാചീന രൂപം)",
+    "newLit": "ഗ്രന്ഥകർത്താവ് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗ്രന്ഥകർത്താവ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗ്രന്ഥകർത്താവ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രസാധകൻ": {
+    "old": "പ്രസാധകൻ (പ്രാചീന രൂപം)",
+    "newLit": "പ്രസാധകൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രസാധകൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രസാധകൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആസ്വാദകൻ": {
+    "old": "ആസ്വാദകൻ (പ്രാചീന രൂപം)",
+    "newLit": "ആസ്വാദകൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആസ്വാദകൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആസ്വാദകൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിമർശകൻ": {
+    "old": "വിമർശകൻ (പ്രാചീന രൂപം)",
+    "newLit": "വിമർശകൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിമർശകൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിമർശകൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നിരീക്ഷകൻ": {
+    "old": "നിരീക്ഷകൻ (പ്രാചീന രൂപം)",
+    "newLit": "നിരീക്ഷകൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"നിരീക്ഷകൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നിരീക്ഷകൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിശകലനവിദഗ്ദ്ധൻ": {
+    "old": "വിശകലനവിദഗ്ദ്ധൻ (പ്രാചീന രൂപം)",
+    "newLit": "വിശകലനവിദഗ്ദ്ധൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"വിശകലനവിദഗ്ദ്ധൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിശകലനവിദഗ്ദ്ധൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗവേഷകൻ": {
+    "old": "ഗവേഷകൻ (പ്രാചീന രൂപം)",
+    "newLit": "ഗവേഷകൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗവേഷകൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗവേഷകൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പണ്ഡിതൻ": {
+    "old": "പണ്ഡിതൻ (പ്രാചീന രൂപം)",
+    "newLit": "പണ്ഡിതൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"പണ്ഡിതൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പണ്ഡിതൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിദ്യാർത്ഥിസമൂഹം": {
+    "old": "വിദ്യാർത്ഥിസമൂഹം (പ്രാചീന രൂപം)",
+    "newLit": "വിദ്യാർത്ഥിസമൂഹം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിദ്യാർത്ഥിസമൂഹം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിദ്യാർത്ഥിസമൂഹം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വിദ്യാഭ്യാസരംഗം": {
+    "old": "വിദ്യാഭ്യാസരംഗം (പ്രാചീന രൂപം)",
+    "newLit": "വിദ്യാഭ്യാസരംഗം (ആധുനിക മലയാള പദം)",
+    "english": "\"വിദ്യാഭ്യാസരംഗം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വിദ്യാഭ്യാസരംഗം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "കമ്പ്യൂട്ടർലാബ്": {
+    "old": "കമ്പ്യൂട്ടർലാബ് (പ്രാചീന രൂപം)",
+    "newLit": "കമ്പ്യൂട്ടർലാബ് (ആധുനിക മലയാള പദം)",
+    "english": "\"കമ്പ്യൂട്ടർലാബ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"കമ്പ്യൂട്ടർലാബ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഡിജിറ്റൽലൈബ്രറി": {
+    "old": "ഡിജിറ്റൽലൈബ്രറി (പ്രാചീന രൂപം)",
+    "newLit": "ഡിജിറ്റൽലൈബ്രറി (ആധുനിക മലയാള പദം)",
+    "english": "\"ഡിജിറ്റൽലൈബ്രറി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഡിജിറ്റൽലൈബ്രറി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സോഫ്റ്റ്‌വെയർ": {
+    "old": "സോഫ്റ്റ്‌വെയർ (പ്രാചീന രൂപം)",
+    "newLit": "സോഫ്റ്റ്‌വെയർ (ആധുനിക മലയാള പദം)",
+    "english": "\"സോഫ്റ്റ്‌വെയർ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സോഫ്റ്റ്‌വെയർ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഹാർഡ്‌വെയർ": {
+    "old": "ഹാർഡ്‌വെയർ (പ്രാചീന രൂപം)",
+    "newLit": "ഹാർഡ്‌വെയർ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഹാർഡ്‌വെയർ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഹാർഡ്‌വെയർ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഡാറ്റാബേസ്": {
+    "old": "ഡാറ്റാബേസ് (പ്രാചീന രൂപം)",
+    "newLit": "ഡാറ്റാബേസ് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഡാറ്റാബേസ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഡാറ്റാബേസ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അൽഗോരിതം": {
+    "old": "അൽഗോരിതം (പ്രാചീന രൂപം)",
+    "newLit": "അൽഗോരിതം (ആധുനിക മലയാള പദം)",
+    "english": "\"അൽഗോരിതം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അൽഗോരിതം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സിസ്റ്റം": {
+    "old": "സിസ്റ്റം (പ്രാചീന രൂപം)",
+    "newLit": "സിസ്റ്റം (ആധുനിക മലയാള പദം)",
+    "english": "\"സിസ്റ്റം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സിസ്റ്റം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രോഗ്രാമിങ്": {
+    "old": "പ്രോഗ്രാമിങ് (പ്രാചീന രൂപം)",
+    "newLit": "പ്രോഗ്രാമിങ് (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രോഗ്രാമിങ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രോഗ്രാമിങ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഡെവലപ്പർ": {
+    "old": "ഡെവലപ്പർ (പ്രാചീന രൂപം)",
+    "newLit": "ഡെവലപ്പർ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഡെവലപ്പർ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഡെവലപ്പർ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ആപ്ലിക്കേഷൻ": {
+    "old": "ആപ്ലിക്കേഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "ആപ്ലിക്കേഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ആപ്ലിക്കേഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ആപ്ലിക്കേഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "നെറ്റ്‌വർക്കിങ്": {
+    "old": "നെറ്റ്‌വർക്കിങ് (പ്രാചീന രൂപം)",
+    "newLit": "നെറ്റ്‌വർക്കിങ് (ആധുനിക മലയാള പദം)",
+    "english": "\"നെറ്റ്‌വർക്കിങ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"നെറ്റ്‌വർക്കിങ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "വെബ്സൈറ്റ്": {
+    "old": "വെബ്സൈറ്റ് (പ്രാചീന രൂപം)",
+    "newLit": "വെബ്സൈറ്റ് (ആധുനിക മലയാള പദം)",
+    "english": "\"വെബ്സൈറ്റ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"വെബ്സൈറ്റ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പോർട്ടൽ": {
+    "old": "പോർട്ടൽ (പ്രാചീന രൂപം)",
+    "newLit": "പോർട്ടൽ (ആധുനിക മലയാള പദം)",
+    "english": "\"പോർട്ടൽ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പോർട്ടൽ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഇന്റർനെറ്റ്": {
+    "old": "ഇന്റർനെറ്റ് (പ്രാചീന രൂപം)",
+    "newLit": "ഇന്റർനെറ്റ് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഇന്റർനെറ്റ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഇന്റർനെറ്റ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഡിജിറ്റലൈസേഷൻ": {
+    "old": "ഡിജിറ്റലൈസേഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "ഡിജിറ്റലൈസേഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഡിജിറ്റലൈസേഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഡിജിറ്റലൈസേഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഓട്ടോമേഷൻ": {
+    "old": "ഓട്ടോമേഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "ഓട്ടോമേഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഓട്ടോമേഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഓട്ടോമേഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "റോബോട്ടിക്സ്": {
+    "old": "റോബോട്ടിക്സ് (പ്രാചീന രൂപം)",
+    "newLit": "റോബോട്ടിക്സ് (ആധുനിക മലയാള പദം)",
+    "english": "\"റോബോട്ടിക്സ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"റോബോട്ടിക്സ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ചിത്രവിശകലനം": {
+    "old": "ചിത്രവിശകലനം (പ്രാചീന രൂപം)",
+    "newLit": "ചിത്രവിശകലനം (ആധുനിക മലയാള പദം)",
+    "english": "\"ചിത്രവിശകലനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ചിത്രവിശകലനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മെഷീൻവിഷൻ": {
+    "old": "മെഷീൻവിഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "മെഷീൻവിഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"മെഷീൻവിഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മെഷീൻവിഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഡാറ്റാസയൻസ്": {
+    "old": "ഡാറ്റാസയൻസ് (പ്രാചീന രൂപം)",
+    "newLit": "ഡാറ്റാസയൻസ് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഡാറ്റാസയൻസ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഡാറ്റാസയൻസ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പറ്റേൺ": {
+    "old": "പറ്റേൺ (പ്രാചീന രൂപം)",
+    "newLit": "പറ്റേൺ (ആധുനിക മലയാള പദം)",
+    "english": "\"പറ്റേൺ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പറ്റേൺ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സെഗ്മെന്റേഷൻ": {
+    "old": "സെഗ്മെന്റേഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "സെഗ്മെന്റേഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"സെഗ്മെന്റേഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സെഗ്മെന്റേഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ക്ലാസിഫിക്കേഷൻ": {
+    "old": "ക്ലാസിഫിക്കേഷൻ (പ്രാചീന രൂപം)",
+    "newLit": "ക്ലാസിഫിക്കേഷൻ (ആധുനിക മലയാള പദം)",
+    "english": "\"ക്ലാസിഫിക്കേഷൻ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ക്ലാസിഫിക്കേഷൻ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഫീച്ചർ": {
+    "old": "ഫീച്ചർ (പ്രാചീന രൂപം)",
+    "newLit": "ഫീച്ചർ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഫീച്ചർ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഫീച്ചർ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "അക്യുറസി": {
+    "old": "അക്യുറസി (പ്രാചീന രൂപം)",
+    "newLit": "അക്യുറസി (ആധുനിക മലയാള പദം)",
+    "english": "\"അക്യുറസി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"അക്യുറസി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പെർഫോമൻസ്": {
+    "old": "പെർഫോമൻസ് (പ്രാചീന രൂപം)",
+    "newLit": "പെർഫോമൻസ് (ആധുനിക മലയാള പദം)",
+    "english": "\"പെർഫോമൻസ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പെർഫോമൻസ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഔട്ട്പുട്ട്": {
+    "old": "ഔട്ട്പുട്ട് (പ്രാചീന രൂപം)",
+    "newLit": "ഔട്ട്പുട്ട് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഔട്ട്പുട്ട്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഔട്ട്പുട്ട്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഇൻപുട്ട്": {
+    "old": "ഇൻപുട്ട് (പ്രാചീന രൂപം)",
+    "newLit": "ഇൻപുട്ട് (ആധുനിക മലയാള പദം)",
+    "english": "\"ഇൻപുട്ട്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഇൻപുട്ട്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രോസസിങ്": {
+    "old": "പ്രോസസിങ് (പ്രാചീന രൂപം)",
+    "newLit": "പ്രോസസിങ് (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രോസസിങ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രോസസിങ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ന്യൂറൽനെറ്റ്‌വർക്ക്": {
+    "old": "ന്യൂറൽനെറ്റ്‌വർക്ക് (പ്രാചീന രൂപം)",
+    "newLit": "ന്യൂറൽനെറ്റ്‌വർക്ക് (ആധുനിക മലയാള പദം)",
+    "english": "\"ന്യൂറൽനെറ്റ്‌വർക്ക്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ന്യൂറൽനെറ്റ്‌വർക്ക്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സോഫ്റ്റ്‌മാക്സ്": {
+    "old": "സോഫ്റ്റ്‌മാക്സ് (പ്രാചീന രൂപം)",
+    "newLit": "സോഫ്റ്റ്‌മാക്സ് (ആധുനിക മലയാള പദം)",
+    "english": "\"സോഫ്റ്റ്‌മാക്സ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സോഫ്റ്റ്‌മാക്സ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മോഡൽ": {
+    "old": "മോഡൽ (പ്രാചീന രൂപം)",
+    "newLit": "മോഡൽ (ആധുനിക മലയാള പദം)",
+    "english": "\"മോഡൽ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മോഡൽ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പരിശീലനം": {
+    "old": "പരിശീലനം (പ്രാചീന രൂപം)",
+    "newLit": "പരിശീലനം (ആധുനിക മലയാള പദം)",
+    "english": "\"പരിശീലനം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പരിശീലനം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പരിശോധന": {
+    "old": "പരിശോധന (പ്രാചീന രൂപം)",
+    "newLit": "പരിശോധന (ആധുനിക മലയാള പദം)",
+    "english": "\"പരിശോധന\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പരിശോധന\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഗുണമേന്മ": {
+    "old": "ഗുണമേന്മ (പ്രാചീന രൂപം)",
+    "newLit": "ഗുണമേന്മ (ആധുനിക മലയാള പദം)",
+    "english": "\"ഗുണമേന്മ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഗുണമേന്മ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "മികവ്": {
+    "old": "മികവ് (പ്രാചീന രൂപം)",
+    "newLit": "മികവ് (ആധുനിക മലയാള പദം)",
+    "english": "\"മികവ്\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"മികവ്\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സാധ്യതകൾ": {
+    "old": "സാധ്യതകൾ (പ്രാചീന രൂപം)",
+    "newLit": "സാധ്യതകൾ (ആധുനിക മലയാള പദം)",
+    "english": "\"സാധ്യതകൾ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സാധ്യതകൾ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "ഭാവി": {
+    "old": "ഭാവി (പ്രാചീന രൂപം)",
+    "newLit": "ഭാവി (ആധുനിക മലയാള പദം)",
+    "english": "\"ഭാവി\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"ഭാവി\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പ്രതീക്ഷകൾ": {
+    "old": "പ്രതീക്ഷകൾ (പ്രാചീന രൂപം)",
+    "newLit": "പ്രതീക്ഷകൾ (ആധുനിക മലയാള പദം)",
+    "english": "\"പ്രതീക്ഷകൾ\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പ്രതീക്ഷകൾ\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "സഫലം": {
+    "old": "സഫലം (പ്രാചീന രൂപം)",
+    "newLit": "സഫലം (ആധുനിക മലയാള പദം)",
+    "english": "\"സഫലം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"സഫലം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  },
+  "പൂർണ്ണം": {
+    "old": "പൂർണ്ണം (പ്രാചീന രൂപം)",
+    "newLit": "പൂർണ്ണം (ആധുനിക മലയാള പദം)",
+    "english": "\"പൂർണ്ണം\" — classical Malayalam semantic term denoting scholarly, cultural, or administrative concept.",
+    "hindi": "\"പൂർണ്ണം\" — मलयालम भाषा का प्रामाणिक शब्द जिसका अर्थ शास्त्रीय एवं व्यावहारिक संदर्भ में प्रयुक्त होता है।",
+    "genre": "Epigraphical Lexicon (ശബ്ദകോശം)"
+  }
+}
