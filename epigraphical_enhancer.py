@@ -166,80 +166,110 @@ class EpigraphicalEnhancer:
     def validate_palm_leaf_authenticity(self, img):
         """
         Multi-Stage Palm-Leaf Authenticity, Spatial Location & Multi-Gamut Profiler.
-        Classifies input as: 'valid_inscribed_leaf', 'blank_leaf', or 'non_manuscript'.
+        Strictly enforces Rule 1: Accepts ONLY authentic inscribed palm-leaf manuscripts.
+        Strictly rejects human portraits, group photos, outdoor buildings, indoor rooms,
+        synthetic clothing, digital infographics, and non-manuscript objects.
         """
         if img is None:
             return {"is_valid": False, "status": "non_manuscript", "reason": "Empty image"}
 
         h, w = img.shape[:2]
         total_pixels = w * h
+        whole_aspect_ratio = float(w / max(1, h))
 
         if len(img.shape) == 3:
             rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            r, g, b = rgb[:, :, 0].astype(float), rgb[:, :, 1].astype(float), rgb[:, :, 2].astype(float)
+            hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            r = rgb[:, :, 0].astype(float)
+            g = rgb[:, :, 1].astype(float)
+            b = rgb[:, :, 2].astype(float)
+            hue = hsv[:, :, 0]
+            sat = hsv[:, :, 1]
+            val = hsv[:, :, 2]
         else:
             gray = img.copy()
             r = g = b = gray.astype(float)
+            hue = np.zeros((h, w), dtype=np.uint8)
+            sat = np.zeros((h, w), dtype=np.uint8)
+            val = gray.astype(np.uint8)
 
-        # Studio / Modern photography backdrops
-        white_bg_mask = (r > 225) & (g > 225) & (b > 225)
+        # 1. LAYER 1: Human Skin & Face Area Detection (Reddish skin hue H in [0..8, 172..180])
+        is_human_skin = ((hue <= 8) | (hue >= 172)) & (sat >= 35) & (sat <= 170) & (val >= 55) & (r > g + 12) & (r > b + 20)
+        skin_ratio = float(np.sum(is_human_skin) / total_pixels)
+
+        # 2. LAYER 2: Modern Photo / Studio Backdrop, Synthetic Clothing & White Walls
+        white_bg_mask = (r > 215) & (g > 215) & (b > 215)
         white_bg_ratio = float(np.sum(white_bg_mask) / total_pixels)
 
-        blue_cyan_mask = (b > r + 15) & (b > 55)
+        blue_cyan_mask = (b > r + 15) & (b > 50)
         blue_cyan_ratio = float(np.sum(blue_cyan_mask) / total_pixels)
 
-        # Whole-Image digital diagram & dark poster checks
-        dark_mask = (r < 55) & (g < 55) & (b < 60)
+        # High-saturation synthetic modern clothing (blue, magenta, purple, green)
+        is_synthetic_clothing = ((hue >= 35) & (hue <= 165) & (sat >= 60)) | (sat >= 180)
+        synthetic_ratio = float(np.sum(is_synthetic_clothing) / total_pixels)
+
+        # Digital dark UI / AI infographic
+        dark_mask = (r < 50) & (g < 50) & (b < 55)
         dark_ratio = float(np.sum(dark_mask) / total_pixels)
 
         dark_ui_mask = (r < 45) & (g < 48) & (b < 65)
         dark_ui_ratio = float(np.sum(dark_ui_mask) / total_pixels)
 
-        # Whole-Image organic substrate scanning
-        is_ochre_all = (r >= 60) & (g >= 45) & (b >= 30) & (r >= g - 5) & (g >= b - 15) & (r >= b + 8)
-        is_ivory_all = (r >= 85) & (g >= 80) & (b >= 70) & (np.abs(r - g) < 22) & (np.abs(g - b) < 22)
-        is_patina_all = (r >= 60) & (g >= 50) & (b >= 35) & (r >= b + 10)
-        is_green_all = (g > r + 10) & (g > b + 10) & (g >= 55)
-        substrate_ratio = float(np.sum(is_ochre_all | is_ivory_all | is_patina_all | is_green_all) / total_pixels)
+        # Red cloth backing (for palm leaves photographed on museum velvet backing)
+        is_red_cloth = (r - g > 30) & (r - b > 25) & (r > 65)
+        red_cloth_ratio = float(np.sum(is_red_cloth) / total_pixels)
 
-        # 1. Trace exact spatial palm leaf location
+        # 3. LAYER 3: Strict Organic Palm-Leaf Lignin/Tannin Color Gamut
+        # Authentic dried palmyra leaves have distinct amber/ochre pigmentation:
+        # Hue in [9..26] (OpenCV 0-180), Sat in [35..175], Val in [45..225], R > G + 6, G > B + 6, R > B + 15, R <= 225
+        is_strict_palm_ochre = (hue >= 9) & (hue <= 26) & (sat >= 30) & (sat <= 175) & (val >= 45) & (val <= 225) & (r > g + 6) & (g > b + 6) & (r > b + 15)
+        strict_palm_gamut = is_strict_palm_ochre
+        substrate_ratio = float(np.sum(strict_palm_gamut) / total_pixels)
+
+        # Global Hue Standard Deviation (Organic palm leaves are monochromatic sigma < 12.0; natural scenes have sigma > 20)
+        hue_std = float(np.std(hue))
+
+        # 4. Trace exact spatial palm leaf location
         leaf_x, leaf_y, leaf_w, leaf_h = self.trace_palm_leaf_bounds(img)
         leaf_pixels = max(1, leaf_w * leaf_h)
+        leaf_aspect_ratio = float(leaf_w / max(1, leaf_h))
 
         leaf_roi_gray = gray[leaf_y:leaf_y+leaf_h, leaf_x:leaf_x+leaf_w]
         if len(img.shape) == 3:
+            leaf_roi_hsv = hsv[leaf_y:leaf_y+leaf_h, leaf_x:leaf_x+leaf_w]
             leaf_roi_rgb = rgb[leaf_y:leaf_y+leaf_h, leaf_x:leaf_x+leaf_w]
             lr = leaf_roi_rgb[:, :, 0].astype(float)
             lg = leaf_roi_rgb[:, :, 1].astype(float)
             lb = leaf_roi_rgb[:, :, 2].astype(float)
+            lh = leaf_roi_hsv[:, :, 0]
+            ls = leaf_roi_hsv[:, :, 1]
+            lv = leaf_roi_hsv[:, :, 2]
         else:
             lr = lg = lb = leaf_roi_gray.astype(float)
+            lh = ls = np.zeros_like(leaf_roi_gray)
+            lv = leaf_roi_gray.astype(np.uint8)
 
-        # 2. Multi-Gamut Chromatography Inside Leaf Strip
-        is_ochre = (lr >= 60) & (lg >= 45) & (lb >= 30) & (lr >= lg - 5) & (lg >= lb - 15) & (lr >= lb + 8)
-        is_weathered_ivory = (lr >= 85) & (lg >= 80) & (lb >= 70) & (np.abs(lr - lg) < 22) & (np.abs(lg - lb) < 22)
-        is_dark_patina = (lr >= 60) & (lg >= 50) & (lb >= 35) & (lr >= lb + 10)
-        is_green = (lg > lr + 10) & (lg > lb + 10) & (lg >= 55)
+        # Multi-Gamut inside Leaf Strip
+        is_roi_palm = (lh >= 9) & (lh <= 26) & (ls >= 30) & (ls <= 175) & (lv >= 45) & (lv <= 225) & (lr > lg + 6) & (lg > lb + 6) & (lr > lb + 15)
+        roi_substrate_ratio = float(np.sum(is_roi_palm) / leaf_pixels)
 
-        palm_pigment_mask = is_ochre | is_weathered_ivory | is_dark_patina | is_green
-        roi_substrate_ratio = float(np.sum(palm_pigment_mask) / leaf_pixels)
-        green_ratio = float(np.sum(is_green) / leaf_pixels)
-
-        # 3. Directional Cellulose Fiber Energy inside Leaf Strip
+        # Directional Cellulose Fiber Energy inside Leaf Strip
         gray_float = leaf_roi_gray.astype(float)
         blur_h = cv2.blur(gray_float, (15, 1))
         blur_v = cv2.blur(gray_float, (1, 15))
         fiber_energy = float(np.mean(np.abs(blur_h - blur_v)))
 
-        # 4. 3D Stylus Groove Micro-Relief (Laplacian)
+        # 3D Stylus Groove Micro-Relief (Laplacian)
         lap = np.abs(cv2.Laplacian(leaf_roi_gray, cv2.CV_64F))
         depth_relief = float(np.mean(lap) / 255.0)
 
-        # 5. Inscription Stroke Density inside Leaf Strip
-        thresh = cv2.adaptiveThreshold(leaf_roi_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 21, 6)
+        # Inscription Stroke Density inside Leaf Strip (soot-ink / iron-tannate carbon tracks)
+        thresh = cv2.adaptiveThreshold(leaf_roi_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 25, 12)
+        mean_lum = float(np.mean(leaf_roi_gray))
+        dark_ink = (thresh > 0) & (leaf_roi_gray < mean_lum - 15) & is_roi_palm
         kernel_small = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
-        ink_mask = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel_small)
+        ink_mask = cv2.morphologyEx(dark_ink.astype(np.uint8), cv2.MORPH_OPEN, kernel_small)
         ink_density = float(np.sum(ink_mask > 0) / leaf_pixels)
 
         # Telemetry calculations
@@ -255,52 +285,97 @@ class EpigraphicalEnhancer:
             "leaf_location": f"X:{leaf_x}, Y:{leaf_y}, W:{leaf_w}, H:{leaf_h}"
         }
 
-        # REJECTION & CLASSIFICATION RULES:
-        # 1. Reject Studio Portrait Photos (White / Blue / Cyan Backdrops, Human Faces):
-        if white_bg_ratio > 0.20:
+        # --- STRICT RULE 1 MULTI-LAYER REJECTION & CLASSIFICATION DECISION MATRIX ---
+
+        # 1. Reject Human Faces / Skin / Group Photos / Selfies:
+        if skin_ratio > 0.035:
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
-                "reason": "Human Portrait / Studio Photo Detected (White Studio Backdrop Rejected)",
+                "reason": f"Human Face / Portrait Detected (Skin Area {skin_ratio*100:.1f}% Rejected under Rule 1)",
                 "location": None,
                 "telemetry": telemetry
             }
 
-        if blue_cyan_ratio > 0.12:
+        # 2. Reject Studio / Modern Photos (White walls, studio backdrops, cyan/blue backdrops):
+        if white_bg_ratio > 0.18:
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
-                "reason": "Human Portrait / Modern Photo Detected (Synthetic Blue/Cyan Studio Backdrop Rejected)",
+                "reason": f"Studio Photo / White Backdrop Detected (White Area {white_bg_ratio*100:.1f}% Rejected under Rule 1)",
                 "location": None,
                 "telemetry": telemetry
             }
 
-        # 2. Reject Gemini AI infographics, dark digital diagrams & UI screenshots:
-        if (dark_ratio > 0.45 and substrate_ratio < 0.25) or (dark_ui_ratio > 0.35 and substrate_ratio < 0.25):
+        if blue_cyan_ratio > 0.10:
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
-                "reason": "AI-Generated Digital Infographic / Non-Manuscript Graphic Rejected",
+                "reason": f"Modern Photo / Synthetic Backdrop Detected (Blue/Cyan {blue_cyan_ratio*100:.1f}% Rejected under Rule 1)",
                 "location": None,
                 "telemetry": telemetry
             }
 
-        # 2. Reject images with no genuine organic palm-leaf substrate:
-        if roi_substrate_ratio < 0.22 or substrate_ratio < 0.08:
+        # 3. Reject High-Saturation Modern Synthetic Clothing & Objects:
+        if synthetic_ratio > 0.08:
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
-                "reason": "Non-Manuscript Image (No Organic Palm-Leaf Substrate Found)",
+                "reason": f"Modern Scene Detected (Synthetic Clothing / Objects {synthetic_ratio*100:.1f}% Rejected under Rule 1)",
                 "location": None,
                 "telemetry": telemetry
             }
 
-        # 3. Blank leaf:
-        if (green_ratio > 0.35 or roi_substrate_ratio > 0.35) and ink_density < 0.020:
+        # 4. Reject Gemini AI infographics, dark digital diagrams & UI screenshots:
+        if (dark_ratio > 0.40 and substrate_ratio < 0.20) or (dark_ui_ratio > 0.35 and substrate_ratio < 0.20):
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": "AI-Generated Digital Infographic / Non-Manuscript Graphic Rejected under Rule 1",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 5. Reject High Hue Variance (Natural scene photos have sigma > 18.0; palm leaves have sigma < 12.0):
+        if hue_std > 18.0 and not (red_cloth_ratio > 0.25 and roi_substrate_ratio > 0.45):
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": f"Natural Scene / Object Photo Detected (High Color Variance sigma={hue_std:.1f} Rejected under Rule 1)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 6. Reject Non-Manuscript Aspect Ratio (Palm leaf manuscripts are elongated horizontal slats W/H >= 2.0):
+        if whole_aspect_ratio < 2.0 and leaf_aspect_ratio < 2.0:
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": f"Non-Manuscript Image (Aspect Ratio {whole_aspect_ratio:.2f} is not elongated horizontal palm leaf strip)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 7. Reject images lacking genuine organic palm-leaf substrate:
+        if roi_substrate_ratio < 0.25 and substrate_ratio < 0.18:
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": "Non-Manuscript Image (No Organic Palm-Leaf Substrate Found under Rule 1)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 8. Blank palm leaf (Organic leaf present, but no historical character inscriptions):
+        if ink_density < 0.012:
             return {
                 "is_valid": False,
                 "is_blank": True,
@@ -310,23 +385,13 @@ class EpigraphicalEnhancer:
                 "telemetry": telemetry
             }
 
-        # 4. Authentic Inscribed Palm-Leaf Manuscript:
-        if roi_substrate_ratio >= 0.25 and ink_density >= 0.015:
-            return {
-                "is_valid": True,
-                "is_blank": False,
-                "status": "valid_inscribed_leaf",
-                "reason": "Authentic Historical Inscribed Palm-Leaf Manuscript",
-                "location": (leaf_x, leaf_y, leaf_w, leaf_h),
-                "telemetry": telemetry
-            }
-
+        # 9. Authentic Inscribed Palm-Leaf Manuscript:
         return {
-            "is_valid": False,
+            "is_valid": True,
             "is_blank": False,
-            "status": "non_manuscript",
-            "reason": "Non-Manuscript Image (Cellulose Striation Below Inscription Threshold)",
-            "location": None,
+            "status": "valid_inscribed_leaf",
+            "reason": "Authentic Historical Inscribed Palm-Leaf Manuscript",
+            "location": (leaf_x, leaf_y, leaf_w, leaf_h),
             "telemetry": telemetry
         }
 
