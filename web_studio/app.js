@@ -617,16 +617,17 @@ function detectPalmLeafManuscript(data, w, h) {
   const step = Math.max(1, Math.floor(Math.sqrt((w * h) / 120000)));
   const totalSampledPixels = Math.floor((w * h) / (step * step));
 
+  let darkPixels = 0;
   let darkUIPixels = 0;
   let syntheticBluePixels = 0;
-  let flatPixels = 0;
+  let substratePixels = 0;
   let totalSampled = 0;
 
-  // 1. STAGE 1: Spatial Background Separation (Filter red cloth, blue objects, pure black/white borders)
+  // 1. STAGE 1: Whole-Image Chromatography & Substrate Scanning
   const isCandidateRow = new Uint8Array(h);
 
   for (let y = 0; y < h; y += step) {
-    let candidateInRow = 0;
+    let substrateInRow = 0;
     let sampledInRow = 0;
 
     for (let x = 0; x < w; x += step) {
@@ -637,8 +638,13 @@ function detectPalmLeafManuscript(data, w, h) {
       totalSampled++;
       sampledInRow++;
 
+      // Check dark background (< 55) (e.g. Gemini AI infographics, dark posters, digital dark canvases)
+      if (r < 55 && g < 55 && b < 60) {
+        darkPixels++;
+      }
+
       // Check digital dark UI (#0f172a, #1e293b, #05070d)
-      if (r < 40 && g < 45 && b < 60) {
+      if (r < 45 && g < 48 && b < 65) {
         darkUIPixels++;
       }
 
@@ -647,30 +653,29 @@ function detectPalmLeafManuscript(data, w, h) {
         syntheticBluePixels++;
       }
 
-      // Filter distinct non-manuscript backgrounds commonly used in manuscript photography:
-      // Red cloth / velvet book cover (User Image 2):
-      const isRedCloth = (r - g > 25) && (r - b > 20) && (r > 70);
-      // Blue background / table / clothes:
-      const isBlueBg = (b > r + 15) && (b > g + 10) && (b > 60);
-      // Pure black / dark shadows:
-      const isDeepDark = (r < 25) && (g < 25) && (b < 25);
-      // Pure studio white backdrop:
-      const isPureWhite = (r > 238) && (g > 238) && (b > 238);
+      // Natural Organic Palm-Leaf Substrate Gamut:
+      const isOchre = (r >= 60) && (g >= 45) && (b >= 30) && (r >= g - 5) && (g >= b - 15) && (r >= b + 8);
+      const isWeatheredIvory = (r >= 85) && (g >= 80) && (b >= 70) && (Math.abs(r - g) < 22) && (Math.abs(g - b) < 22);
+      const isSmokedPatina = (r >= 60) && (g >= 50) && (b >= 35) && (r >= b + 10);
+      const isGreenLeaf = (g > r + 10) && (g > b + 10) && (g >= 55);
 
-      const isBackground = isRedCloth || isBlueBg || isDeepDark || isPureWhite;
-
-      if (!isBackground) {
-        candidateInRow++;
+      if (isOchre || isWeatheredIvory || isSmokedPatina || isGreenLeaf) {
+        substratePixels++;
+        substrateInRow++;
       }
     }
 
-    // A row belongs to palm leaf if it has significant non-background organic candidate pixels
-    if (sampledInRow > 0 && (candidateInRow / sampledInRow) > 0.28) {
+    if (sampledInRow > 0 && (substrateInRow / sampledInRow) > 0.18) {
       for (let sy = y; sy < Math.min(h, y + step); sy++) {
         isCandidateRow[sy] = 1;
       }
     }
   }
+
+  const validTotalSampled = Math.max(1, totalSampled);
+  const darkRatio = darkPixels / validTotalSampled;
+  const darkUIRatio = darkUIPixels / validTotalSampled;
+  const substrateRatio = substratePixels / validTotalSampled;
 
   // 2. STAGE 2: Precise Vertical Span Tracing
   let minLeafY = 0, maxLeafY = h;
@@ -707,7 +712,7 @@ function detectPalmLeafManuscript(data, w, h) {
   const isCandidateCol = new Uint8Array(w);
 
   for (let x = 0; x < w; x += step) {
-    let candidateInCol = 0;
+    let substrateInCol = 0;
     let sampledInCol = 0;
 
     for (let y = minLeafY; y < maxLeafY; y += step) {
@@ -715,17 +720,17 @@ function detectPalmLeafManuscript(data, w, h) {
       const r = data[idx], g = data[idx + 1], b = data[idx + 2];
       sampledInCol++;
 
-      const isRedCloth = (r - g > 25) && (r - b > 20) && (r > 70);
-      const isBlueBg = (b > r + 15) && (b > g + 10) && (b > 60);
-      const isDeepDark = (r < 25) && (g < 25) && (b < 25);
-      const isPureWhite = (r > 238) && (g > 238) && (b > 238);
+      const isOchre = (r >= 60) && (g >= 45) && (b >= 30) && (r >= g - 5) && (g >= b - 15) && (r >= b + 8);
+      const isWeatheredIvory = (r >= 85) && (g >= 80) && (b >= 70) && (Math.abs(r - g) < 22) && (Math.abs(g - b) < 22);
+      const isSmokedPatina = (r >= 60) && (g >= 50) && (b >= 35) && (r >= b + 10);
+      const isGreenLeaf = (g > r + 10) && (g > b + 10) && (g >= 55);
 
-      if (!isRedCloth && !isBlueBg && !isDeepDark && !isPureWhite) {
-        candidateInCol++;
+      if (isOchre || isWeatheredIvory || isSmokedPatina || isGreenLeaf) {
+        substrateInCol++;
       }
     }
 
-    if (sampledInCol > 0 && (candidateInCol / sampledInCol) > 0.20) {
+    if (sampledInCol > 0 && (substrateInCol / sampledInCol) > 0.15) {
       for (let sx = x; sx < Math.min(w, x + step); sx++) {
         isCandidateCol[sx] = 1;
       }
@@ -758,9 +763,9 @@ function detectPalmLeafManuscript(data, w, h) {
     h: leafH
   };
 
-  // 4. STAGE 4: Multi-Gamut Chromatography, Cellulose Striation & 3D Stylus Relief INSIDE Leaf ROI
+  // 4. STAGE 4: Micro-Texture & 3D Stylus Relief INSIDE Leaf ROI
   let roiSampled = 0;
-  let palmPigmentPixels = 0;
+  let roiSubstrateCount = 0;
   let greenLeafPixels = 0;
   let sumFiberDiff = 0;
   let sumGrooveRelief = 0;
@@ -775,24 +780,19 @@ function detectPalmLeafManuscript(data, w, h) {
       const lum = (r * 77 + g * 150 + b * 29) >> 8;
       roiSampled++;
 
-      // Multi-Gamut Natural Manuscript Chromatography:
-      // - Classic Ochre / Amber / Tan:
-      const isOchre = (r >= g - 10) && (g >= b - 15) && (r >= 50);
-      // - Weathered Ash / Light Ivory Parchment (User Image 1):
-      const isWeatheredIvory = (Math.abs(r - g) < 28) && (Math.abs(g - b) < 28) && (r > 65);
-      // - Dark Smoked Patina:
-      const isDarkPatina = (r >= 35) && (g >= 30) && (b >= 20) && (Math.abs(r - g) < 35);
-      // - Natural Fresh Leaf:
-      const isGreen = (g > r + 10) && (g > b + 10) && (g > 45);
+      const isOchre = (r >= 60) && (g >= 45) && (b >= 30) && (r >= g - 5) && (g >= b - 15) && (r >= b + 8);
+      const isWeatheredIvory = (r >= 85) && (g >= 80) && (b >= 70) && (Math.abs(r - g) < 22) && (Math.abs(g - b) < 22);
+      const isSmokedPatina = (r >= 60) && (g >= 50) && (b >= 35) && (r >= b + 10);
+      const isGreen = (g > r + 10) && (g > b + 10) && (g >= 55);
 
-      if (isOchre || isWeatheredIvory || isDarkPatina || isGreen) {
-        palmPigmentPixels++;
+      if (isOchre || isWeatheredIvory || isSmokedPatina || isGreen) {
+        roiSubstrateCount++;
       }
       if (isGreen) {
         greenLeafPixels++;
       }
 
-      // Directional Cellulose Fiber Gradients & 3D Stylus Relief
+      // Directional Cellulose Fiber Gradients
       const idxL = (y * w + (x - step)) * 4;
       const idxR = (y * w + (x + step)) * 4;
       const idxU = ((y - step) * w + x) * 4;
@@ -811,60 +811,66 @@ function detectPalmLeafManuscript(data, w, h) {
       const lap = Math.abs(4 * lum - lumL - lumR - lumU - lumD);
       sumGrooveRelief += lap;
 
-      if (dx < 2 && dy < 2) flatPixels++;
       // Inscription ink detection (soot-ink / iron-tannate carbon lines)
-      if (lum < 125 && (isOchre || isWeatheredIvory || isDarkPatina)) {
+      if (lum < 125 && (isOchre || isWeatheredIvory || isSmokedPatina)) {
         inkCount++;
       }
     }
   }
 
   const validRoiSampled = Math.max(1, roiSampled);
-  const validTotalSampled = Math.max(1, totalSampled);
-
-  const darkUIRatio = darkUIPixels / validTotalSampled;
-  const flatRatio = flatPixels / validRoiSampled;
-  const palmPigmentRatio = palmPigmentPixels / validRoiSampled;
+  const roiSubstrateRatio = roiSubstrateCount / validRoiSampled;
   const greenRatio = greenLeafPixels / validRoiSampled;
   const fiberEnergy = sumFiberDiff / validRoiSampled;
   const grooveRelief = sumGrooveRelief / (validRoiSampled * 255.0);
   const inkDensity = inkCount / validRoiSampled;
 
   // Live Telemetry Calculations
-  const celluloseIndex = Math.min(99.6, Math.max(2.5, (fiberEnergy * 15.0) + (palmPigmentRatio * 30.0))).toFixed(1);
+  const celluloseIndex = Math.min(99.6, Math.max(2.5, (fiberEnergy * 15.0) + (roiSubstrateRatio * 30.0))).toFixed(1);
   const depthScore = Math.min(1.20, Math.max(0.02, grooveRelief * 11.5)).toFixed(2);
   const inscriptionDensity = Math.min(48.0, Math.max(0.0, inkDensity * 100.0 * 2.5)).toFixed(1);
-  const gamutMatch = Math.min(99.2, Math.max(2.0, palmPigmentRatio * 100.0)).toFixed(1);
-
-  const isSyntheticUI = (darkUIRatio > 0.35 && palmPigmentRatio < 0.25) || (flatRatio > 0.45 && fiberEnergy < 0.8);
+  const gamutMatch = Math.min(99.2, Math.max(2.0, roiSubstrateRatio * 100.0)).toFixed(1);
 
   const telemetry = {
     celluloseIndex: `${celluloseIndex}%`,
     depthScore: `${depthScore} μm`,
     inscriptionDensity: `${inscriptionDensity}%`,
     gamutMatch: `${gamutMatch}%`,
-    isSyntheticUI: isSyntheticUI,
+    isSyntheticUI: false,
     leafLocation: `X: ${detectedLeafRect.x}, Y: ${detectedLeafRect.y}, W: ${detectedLeafRect.w}, H: ${detectedLeafRect.h}`,
-    darkUIRatio: darkUIRatio,
-    palmPigmentRatio: palmPigmentRatio
+    darkRatio: darkRatio,
+    roiSubstrateRatio: roiSubstrateRatio
   };
 
   // 5. STAGE 5: Multi-Class Decision Matrix
-  // 5.1. Non-Manuscript (Digital UI Screenshot / AI Graphic / Modern Photo)
-  if (isSyntheticUI || (palmPigmentRatio < 0.22 && fiberEnergy < 1.0) || (darkUIRatio > 0.30 && palmPigmentRatio < 0.25)) {
+  // 5.1. Reject Gemini / AI-Generated Infographics, Dark Poster Diagrams & Web UI Screenshots:
+  if ((darkRatio > 0.45 && substrateRatio < 0.25) || (darkUIRatio > 0.35 && substrateRatio < 0.25)) {
     return {
       isValidManuscript: false,
       isBlankLeaf: false,
       status: 'non_manuscript',
       confidence: 0,
-      reason: 'Synthetic Digital UI / Non-Manuscript Image Detected (No Organic Cellulose Fibers or 3D Stylus Incisions Found)',
+      reason: 'AI-Generated Digital Infographic / Non-Manuscript Schematic Detected (Rejected)',
       telemetry: telemetry,
       leafRect: null
     };
   }
 
-  // 5.2. Blank Leaf (Organic leaf present, but no historical character inscriptions)
-  if ((greenRatio > 0.35 || palmPigmentRatio > 0.35) && inkDensity < 0.020) {
+  // 5.2. Reject images with no genuine organic palm-leaf substrate:
+  if (roiSubstrateRatio < 0.22 || substrateRatio < 0.08) {
+    return {
+      isValidManuscript: false,
+      isBlankLeaf: false,
+      status: 'non_manuscript',
+      confidence: 0,
+      reason: 'Non-Manuscript Image (No Organic Palm-Leaf Substrate Found)',
+      telemetry: telemetry,
+      leafRect: null
+    };
+  }
+
+  // 5.3. Blank Leaf (Organic leaf present, but no historical character inscriptions):
+  if ((greenRatio > 0.35 || roiSubstrateRatio > 0.35) && inkDensity < 0.020) {
     return {
       isValidManuscript: false,
       isBlankLeaf: true,
@@ -876,15 +882,27 @@ function detectPalmLeafManuscript(data, w, h) {
     };
   }
 
-  // 5.3. Authentic Inscribed Palm-Leaf Manuscript
+  // 5.4. Authentic Inscribed Palm-Leaf Manuscript:
+  if (roiSubstrateRatio >= 0.25 && inkDensity >= 0.015) {
+    return {
+      isValidManuscript: true,
+      isBlankLeaf: false,
+      status: 'valid_inscribed_leaf',
+      confidence: 0.988,
+      reason: 'Authentic Historical Inscribed Palm-Leaf Manuscript',
+      telemetry: telemetry,
+      leafRect: detectedLeafRect
+    };
+  }
+
   return {
-    isValidManuscript: true,
+    isValidManuscript: false,
     isBlankLeaf: false,
-    status: 'valid_inscribed_leaf',
-    confidence: 0.988,
-    reason: 'Authentic Historical Inscribed Palm-Leaf Manuscript',
+    status: 'non_manuscript',
+    confidence: 0,
+    reason: 'Non-Manuscript Image (Cellulose Striation Below Inscription Threshold)',
     telemetry: telemetry,
-    leafRect: detectedLeafRect
+    leafRect: null
   };
 }
 

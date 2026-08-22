@@ -3,7 +3,7 @@ EpigraphiX-AI: Automated Test Suite for Strict Palm-Leaf Detection & Depth Analy
 Verifies multi-class discrimination and spatial location tracing across:
 1. Authentic Inscribed Palm-Leaf Manuscripts (Classic, Light Weathered, Red Cloth Background) -> valid_inscribed_leaf
 2. Natural Uninscribed Leaves / Blank Palm Leaves -> blank_leaf
-3. Synthetic Digital UI Screenshots / Non-Manuscript Images -> non_manuscript
+3. Gemini AI Infographics, Digital Diagrams, UI Screenshots -> non_manuscript
 """
 
 import sys
@@ -32,12 +32,9 @@ def create_synthetic_blank_leaf():
 
 def create_synthetic_ui_screenshot():
     h, w = 400, 800
-    # Dark UI background #0f172a (B=42, G=23, R=15)
     ui_img = np.zeros((h, w, 3), dtype=np.uint8)
     ui_img[:, :] = [42, 23, 15]
-    # Draw flat UI card #1e293b (B=59, G=41, R=30)
     ui_img[50:350, 100:700] = [59, 41, 30]
-    # Draw cyan button #38bdf8 (B=248, G=189, R=56)
     ui_img[280:320, 250:550] = [248, 189, 56]
     return ui_img
 
@@ -55,7 +52,7 @@ def test_real_palm_leaf_manuscripts():
         if os.path.exists(p):
             img = cv2.imread(p)
             res = enhancer.validate_palm_leaf_authenticity(img)
-            print(f"[TEST PASS] {name} ({p}): Status={res['status']}, Location={res['telemetry']['leaf_location']}")
+            print(f"[TEST PASS] {name}: Status={res['status']}, Location={res['telemetry']['leaf_location']}")
             assert res['status'] == 'valid_inscribed_leaf', f"Expected valid_inscribed_leaf for {p}, got {res['status']}"
             assert res['is_valid'] is True
 
@@ -68,23 +65,19 @@ def test_blank_unwritten_leaf():
     assert res['is_blank'] is True
     assert res['is_valid'] is False
 
-def test_synthetic_ui_rejection():
+def test_ai_and_ui_rejections():
     enhancer = EpigraphicalEnhancer()
-    ui_img = create_synthetic_ui_screenshot()
-    res = enhancer.validate_palm_leaf_authenticity(ui_img)
-    print(f"[TEST PASS] Synthetic UI: Status={res['status']}, Telemetry={res['telemetry']}")
-    assert res['status'] == 'non_manuscript', f"Expected non_manuscript for UI image, got {res['status']}"
-    assert res['is_valid'] is False
-
-def test_user_uploaded_screenshot():
-    enhancer = EpigraphicalEnhancer()
-    user_img_path = r"C:\Users\HP\.gemini\antigravity\brain\3ba28ec2-ff52-48b3-b72f-a1248ba36c59\.user_uploaded\media_1787403338660.png"
-    if os.path.exists(user_img_path):
-        img = cv2.imread(user_img_path)
-        res = enhancer.validate_palm_leaf_authenticity(img)
-        print(f"[TEST PASS] User UI screenshot: Status={res['status']}, Telemetry={res['telemetry']}")
-        assert res['status'] == 'non_manuscript', f"Expected non_manuscript for user screenshot, got {res['status']}"
-        assert res['is_valid'] is False
+    rejection_targets = [
+        ("Synthetic UI Array", create_synthetic_ui_screenshot()),
+        ("User UI Screenshot", cv2.imread(r"C:\Users\HP\.gemini\antigravity\brain\3ba28ec2-ff52-48b3-b72f-a1248ba36c59\.user_uploaded\media_1787403338660.png")),
+        ("Gemini AI Infographic Diagram", cv2.imread(r"C:\Users\HP\.gemini\antigravity\brain\3ba28ec2-ff52-48b3-b72f-a1248ba36c59\.user_uploaded\media_1787403552930.jpg"))
+    ]
+    for label, img in rejection_targets:
+        if img is not None:
+            res = enhancer.validate_palm_leaf_authenticity(img)
+            print(f"[TEST PASS] {label}: Status={res['status']}, Reason={res['reason']}")
+            assert res['status'] == 'non_manuscript', f"Expected non_manuscript for {label}, got {res['status']}"
+            assert res['is_valid'] is False
 
 if __name__ == "__main__":
     print("=" * 70)
@@ -92,8 +85,7 @@ if __name__ == "__main__":
     print("=" * 70)
     test_real_palm_leaf_manuscripts()
     test_blank_unwritten_leaf()
-    test_synthetic_ui_rejection()
-    test_user_uploaded_screenshot()
+    test_ai_and_ui_rejections()
     print("=" * 70)
     print("ALL TESTS PASSED SUCCESSFULLY (100% Accuracy)")
     print("=" * 70)

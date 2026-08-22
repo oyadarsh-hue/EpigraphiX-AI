@@ -182,12 +182,19 @@ class EpigraphicalEnhancer:
             gray = img.copy()
             r = g = b = gray.astype(float)
 
-        # Whole-Image synthetic UI checks
-        dark_ui_mask = (r < 40) & (g < 45) & (b < 60)
+        # Whole-Image digital diagram & dark poster checks
+        dark_mask = (r < 55) & (g < 55) & (b < 60)
+        dark_ratio = float(np.sum(dark_mask) / total_pixels)
+
+        dark_ui_mask = (r < 45) & (g < 48) & (b < 65)
         dark_ui_ratio = float(np.sum(dark_ui_mask) / total_pixels)
 
-        local_std = cv2.blur((gray.astype(float) - cv2.blur(gray.astype(float), (9, 9)))**2, (9, 9))
-        flat_ratio = float(np.sum(local_std < 3.5) / total_pixels)
+        # Whole-Image organic substrate scanning
+        is_ochre_all = (r >= 60) & (g >= 45) & (b >= 30) & (r >= g - 5) & (g >= b - 15) & (r >= b + 8)
+        is_ivory_all = (r >= 85) & (g >= 80) & (b >= 70) & (np.abs(r - g) < 22) & (np.abs(g - b) < 22)
+        is_patina_all = (r >= 60) & (g >= 50) & (b >= 35) & (r >= b + 10)
+        is_green_all = (g > r + 10) & (g > b + 10) & (g >= 55)
+        substrate_ratio = float(np.sum(is_ochre_all | is_ivory_all | is_patina_all | is_green_all) / total_pixels)
 
         # 1. Trace exact spatial palm leaf location
         leaf_x, leaf_y, leaf_w, leaf_h = self.trace_palm_leaf_bounds(img)
@@ -203,13 +210,13 @@ class EpigraphicalEnhancer:
             lr = lg = lb = leaf_roi_gray.astype(float)
 
         # 2. Multi-Gamut Chromatography Inside Leaf Strip
-        is_ochre = (lr >= lg - 10) & (lg >= lb - 15) & (lr >= 50)
-        is_weathered_ivory = (np.abs(lr - lg) < 28) & (np.abs(lg - lb) < 28) & (lr > 65)
-        is_dark_patina = (lr >= 35) & (lg >= 30) & (lb >= 20) & (np.abs(lr - lg) < 35)
-        is_green = (lg > lr + 10) & (lg > lb + 10) & (lg > 45)
+        is_ochre = (lr >= 60) & (lg >= 45) & (lb >= 30) & (lr >= lg - 5) & (lg >= lb - 15) & (lr >= lb + 8)
+        is_weathered_ivory = (lr >= 85) & (lg >= 80) & (lb >= 70) & (np.abs(lr - lg) < 22) & (np.abs(lg - lb) < 22)
+        is_dark_patina = (lr >= 60) & (lg >= 50) & (lb >= 35) & (lr >= lb + 10)
+        is_green = (lg > lr + 10) & (lg > lb + 10) & (lg >= 55)
 
         palm_pigment_mask = is_ochre | is_weathered_ivory | is_dark_patina | is_green
-        palm_pigment_ratio = float(np.sum(palm_pigment_mask) / leaf_pixels)
+        roi_substrate_ratio = float(np.sum(palm_pigment_mask) / leaf_pixels)
         green_ratio = float(np.sum(is_green) / leaf_pixels)
 
         # 3. Directional Cellulose Fiber Energy inside Leaf Strip
@@ -229,30 +236,43 @@ class EpigraphicalEnhancer:
         ink_density = float(np.sum(ink_mask > 0) / leaf_pixels)
 
         # Telemetry calculations
-        cellulose_index = min(99.6, max(2.5, (fiber_energy * 15.0) + (palm_pigment_ratio * 30.0)))
+        cellulose_index = min(99.6, max(2.5, (fiber_energy * 15.0) + (roi_substrate_ratio * 30.0)))
         depth_score = min(1.20, max(0.02, depth_relief * 11.5))
-        is_synthetic_ui = (dark_ui_ratio > 0.35 and palm_pigment_ratio < 0.25) or (flat_ratio > 0.45 and fiber_energy < 0.8)
 
         telemetry = {
             "cellulose_index": f"{cellulose_index:.1f}%",
             "depth_score": f"{depth_score:.2f} μm",
             "inscription_density": f"{ink_density * 100:.1f}%",
-            "gamut_match": f"{palm_pigment_ratio * 100:.1f}%",
-            "is_synthetic_ui": bool(is_synthetic_ui),
+            "gamut_match": f"{roi_substrate_ratio * 100:.1f}%",
+            "is_synthetic_ui": False,
             "leaf_location": f"X:{leaf_x}, Y:{leaf_y}, W:{leaf_w}, H:{leaf_h}"
         }
 
-        # Classification
-        if is_synthetic_ui or (palm_pigment_ratio < 0.22 and fiber_energy < 1.0) or (dark_ui_ratio > 0.30 and palm_pigment_ratio < 0.25):
+        # REJECTION & CLASSIFICATION RULES:
+        # 1. Reject Gemini AI infographics, dark digital diagrams & UI screenshots:
+        if (dark_ratio > 0.45 and substrate_ratio < 0.25) or (dark_ui_ratio > 0.35 and substrate_ratio < 0.25):
             return {
                 "is_valid": False,
                 "is_blank": False,
                 "status": "non_manuscript",
-                "reason": "Synthetic Digital UI / Non-Manuscript Image Detected (No Organic Cellulose Fibers or 3D Stylus Incisions Found)",
+                "reason": "AI-Generated Digital Infographic / Non-Manuscript Graphic Rejected",
                 "location": None,
                 "telemetry": telemetry
             }
-        elif (green_ratio > 0.35 or palm_pigment_ratio > 0.35) and ink_density < 0.020:
+
+        # 2. Reject images with no genuine organic palm-leaf substrate:
+        if roi_substrate_ratio < 0.22 or substrate_ratio < 0.08:
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": "Non-Manuscript Image (No Organic Palm-Leaf Substrate Found)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 3. Blank leaf:
+        if (green_ratio > 0.35 or roi_substrate_ratio > 0.35) and ink_density < 0.020:
             return {
                 "is_valid": False,
                 "is_blank": True,
@@ -261,7 +281,9 @@ class EpigraphicalEnhancer:
                 "location": (leaf_x, leaf_y, leaf_w, leaf_h),
                 "telemetry": telemetry
             }
-        elif palm_pigment_ratio >= 0.25 and ink_density >= 0.015:
+
+        # 4. Authentic Inscribed Palm-Leaf Manuscript:
+        if roi_substrate_ratio >= 0.25 and ink_density >= 0.015:
             return {
                 "is_valid": True,
                 "is_blank": False,
@@ -270,15 +292,15 @@ class EpigraphicalEnhancer:
                 "location": (leaf_x, leaf_y, leaf_w, leaf_h),
                 "telemetry": telemetry
             }
-        else:
-            return {
-                "is_valid": False,
-                "is_blank": False,
-                "status": "non_manuscript",
-                "reason": "Non-Manuscript Image (Cellulose Striation Below Inscription Threshold)",
-                "location": None,
-                "telemetry": telemetry
-            }
+
+        return {
+            "is_valid": False,
+            "is_blank": False,
+            "status": "non_manuscript",
+            "reason": "Non-Manuscript Image (Cellulose Striation Below Inscription Threshold)",
+            "location": None,
+            "telemetry": telemetry
+        }
 
     def process_manuscript(self, input_path, output_denoised_path=None):
         """
