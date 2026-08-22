@@ -617,13 +617,14 @@ function detectPalmLeafManuscript(data, w, h) {
   const step = Math.max(1, Math.floor(Math.sqrt((w * h) / 120000)));
   const totalSampledPixels = Math.floor((w * h) / (step * step));
 
+  let whiteBgPixels = 0;
+  let blueCyanBgPixels = 0;
   let darkPixels = 0;
   let darkUIPixels = 0;
-  let syntheticBluePixels = 0;
   let substratePixels = 0;
   let totalSampled = 0;
 
-  // 1. STAGE 1: Whole-Image Chromatography & Substrate Scanning
+  // 1. STAGE 1: Whole-Image Studio Backdrop & Organic Substrate Scanning
   const isCandidateRow = new Uint8Array(h);
 
   for (let y = 0; y < h; y += step) {
@@ -638,6 +639,16 @@ function detectPalmLeafManuscript(data, w, h) {
       totalSampled++;
       sampledInRow++;
 
+      // Check pure white studio background (ID / Passport / Studio Portrait photos)
+      if (r > 225 && g > 225 && b > 225) {
+        whiteBgPixels++;
+      }
+
+      // Check modern synthetic blue / cyan dyes and studio backdrops (ID photos, modern clothing, sky)
+      if (b > r + 15 && b > 55) {
+        blueCyanBgPixels++;
+      }
+
       // Check dark background (< 55) (e.g. Gemini AI infographics, dark posters, digital dark canvases)
       if (r < 55 && g < 55 && b < 60) {
         darkPixels++;
@@ -646,11 +657,6 @@ function detectPalmLeafManuscript(data, w, h) {
       // Check digital dark UI (#0f172a, #1e293b, #05070d)
       if (r < 45 && g < 48 && b < 65) {
         darkUIPixels++;
-      }
-
-      // Check modern synthetic blue / cyan
-      if (b > r + 18 && b > g + 10 && b > 60) {
-        syntheticBluePixels++;
       }
 
       // Natural Organic Palm-Leaf Substrate Gamut:
@@ -673,6 +679,8 @@ function detectPalmLeafManuscript(data, w, h) {
   }
 
   const validTotalSampled = Math.max(1, totalSampled);
+  const whiteBgRatio = whiteBgPixels / validTotalSampled;
+  const blueCyanRatio = blueCyanBgPixels / validTotalSampled;
   const darkRatio = darkPixels / validTotalSampled;
   const darkUIRatio = darkUIPixels / validTotalSampled;
   const substrateRatio = substratePixels / validTotalSampled;
@@ -843,7 +851,32 @@ function detectPalmLeafManuscript(data, w, h) {
   };
 
   // 5. STAGE 5: Multi-Class Decision Matrix
-  // 5.1. Reject Gemini / AI-Generated Infographics, Dark Poster Diagrams & Web UI Screenshots:
+  // 5.1. Reject Studio Portrait Photos (White / Blue / Cyan Backdrops, Human Faces, Everyday Objects):
+  if (whiteBgRatio > 0.20) {
+    return {
+      isValidManuscript: false,
+      isBlankLeaf: false,
+      status: 'non_manuscript',
+      confidence: 0,
+      reason: 'Human Portrait / Studio Photo Detected (White Studio Backdrop Rejected)',
+      telemetry: telemetry,
+      leafRect: null
+    };
+  }
+
+  if (blueCyanRatio > 0.12) {
+    return {
+      isValidManuscript: false,
+      isBlankLeaf: false,
+      status: 'non_manuscript',
+      confidence: 0,
+      reason: 'Human Portrait / Modern Photo Detected (Synthetic Blue/Cyan Studio Backdrop Rejected)',
+      telemetry: telemetry,
+      leafRect: null
+    };
+  }
+
+  // 5.2. Reject Gemini / AI-Generated Infographics, Dark Poster Diagrams & Web UI Screenshots:
   if ((darkRatio > 0.45 && substrateRatio < 0.25) || (darkUIRatio > 0.35 && substrateRatio < 0.25)) {
     return {
       isValidManuscript: false,
@@ -856,7 +889,7 @@ function detectPalmLeafManuscript(data, w, h) {
     };
   }
 
-  // 5.2. Reject images with no genuine organic palm-leaf substrate:
+  // 5.3. Reject images with no genuine organic palm-leaf substrate:
   if (roiSubstrateRatio < 0.22 || substrateRatio < 0.08) {
     return {
       isValidManuscript: false,
@@ -869,7 +902,7 @@ function detectPalmLeafManuscript(data, w, h) {
     };
   }
 
-  // 5.3. Blank Leaf (Organic leaf present, but no historical character inscriptions):
+  // 5.4. Blank Leaf (Organic leaf present, but no historical character inscriptions):
   if ((greenRatio > 0.35 || roiSubstrateRatio > 0.35) && inkDensity < 0.020) {
     return {
       isValidManuscript: false,
@@ -882,7 +915,7 @@ function detectPalmLeafManuscript(data, w, h) {
     };
   }
 
-  // 5.4. Authentic Inscribed Palm-Leaf Manuscript:
+  // 5.5. Authentic Inscribed Palm-Leaf Manuscript:
   if (roiSubstrateRatio >= 0.25 && inkDensity >= 0.015) {
     return {
       isValidManuscript: true,

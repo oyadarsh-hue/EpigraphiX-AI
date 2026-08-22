@@ -182,6 +182,13 @@ class EpigraphicalEnhancer:
             gray = img.copy()
             r = g = b = gray.astype(float)
 
+        # Studio / Modern photography backdrops
+        white_bg_mask = (r > 225) & (g > 225) & (b > 225)
+        white_bg_ratio = float(np.sum(white_bg_mask) / total_pixels)
+
+        blue_cyan_mask = (b > r + 15) & (b > 55)
+        blue_cyan_ratio = float(np.sum(blue_cyan_mask) / total_pixels)
+
         # Whole-Image digital diagram & dark poster checks
         dark_mask = (r < 55) & (g < 55) & (b < 60)
         dark_ratio = float(np.sum(dark_mask) / total_pixels)
@@ -249,7 +256,28 @@ class EpigraphicalEnhancer:
         }
 
         # REJECTION & CLASSIFICATION RULES:
-        # 1. Reject Gemini AI infographics, dark digital diagrams & UI screenshots:
+        # 1. Reject Studio Portrait Photos (White / Blue / Cyan Backdrops, Human Faces):
+        if white_bg_ratio > 0.20:
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": "Human Portrait / Studio Photo Detected (White Studio Backdrop Rejected)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        if blue_cyan_ratio > 0.12:
+            return {
+                "is_valid": False,
+                "is_blank": False,
+                "status": "non_manuscript",
+                "reason": "Human Portrait / Modern Photo Detected (Synthetic Blue/Cyan Studio Backdrop Rejected)",
+                "location": None,
+                "telemetry": telemetry
+            }
+
+        # 2. Reject Gemini AI infographics, dark digital diagrams & UI screenshots:
         if (dark_ratio > 0.45 and substrate_ratio < 0.25) or (dark_ui_ratio > 0.35 and substrate_ratio < 0.25):
             return {
                 "is_valid": False,
