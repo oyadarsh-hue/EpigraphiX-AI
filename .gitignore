@@ -9,3 +9,6 @@ Desktop.ini
 *.log
 *.tmp
 *.asv
+__pycache__/
+*.pyc
+

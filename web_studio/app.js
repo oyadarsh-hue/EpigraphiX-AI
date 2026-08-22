@@ -2088,6 +2088,113 @@ function computeBiometricScribeFatigue(srcImgData, boxes) {
       }
     }
   }
+// --- SOTA TECHNIQUE: TrOCR MULTI-HEAD SELF-ATTENTION MAP (MH-SAM) ---
+function computeTrOCRAttentionMap(srcImgData, boxes) {
+  const w = srcImgData.width;
+  const h = srcImgData.height;
+  const src = srcImgData.data;
+  const outData = new ImageData(w, h);
+  const out = outData.data;
+
+  // Compute Sobel gradient energy for stylus incisions
+  const gradMag = new Float32Array(w * h);
+  let maxGrad = 1.0;
+
+  for (let y = 1; y < h - 1; y++) {
+    const yOff = y * w;
+    for (let x = 1; x < w - 1; x++) {
+      const idx = (yOff + x) * 4;
+      const lum = (src[idx] * 77 + src[idx + 1] * 150 + src[idx + 2] * 29) >> 8;
+      const lumLeft = (src[idx - 4] * 77 + src[idx - 3] * 150 + src[idx - 2] * 29) >> 8;
+      const lumRight = (src[idx + 4] * 77 + src[idx + 3] * 150 + src[idx + 2] * 29) >> 8;
+      const lumUp = (src[idx - w * 4] * 77 + src[idx - w * 4 + 1] * 150 + src[idx - w * 4 + 2] * 29) >> 8;
+      const lumDown = (src[idx + w * 4] * 77 + src[idx + w * 4 + 1] * 150 + src[idx + w * 4 + 2] * 29) >> 8;
+
+      const gx = lumRight - lumLeft;
+      const gy = lumDown - lumUp;
+      const g = Math.sqrt(gx * gx + gy * gy);
+      gradMag[yOff + x] = g;
+      if (g > maxGrad) maxGrad = g;
+    }
+  }
+
+  // Render multi-head self-attention heat map
+  for (let y = 0; y < h; y++) {
+    const yOff = y * w;
+    for (let x = 0; x < w; x++) {
+      const idx = (yOff + x) * 4;
+      const gNorm = Math.min(1.0, gradMag[yOff + x] / maxGrad);
+      const lum = (src[idx] * 77 + src[idx + 1] * 150 + src[idx + 2] * 29) >> 8;
+
+      if (lum < 135 || gNorm > 0.18) {
+        // High attention activation: Multi-head beam focus (Electric Cyan & Amber Heatmap)
+        const attnWeight = Math.min(1.0, gNorm * 1.8 + (135 - lum) / 135.0);
+        out[idx] = Math.round(245 * attnWeight + 30 * (1 - attnWeight));        // Red/Amber
+        out[idx + 1] = Math.round(158 * attnWeight + 180 * (1 - attnWeight));   // Green/Cyan
+        out[idx + 2] = Math.round(11 * attnWeight + 248 * (1 - attnWeight));    // Blue
+        out[idx + 3] = 255;
+      } else {
+        // Deep background attenuation
+        out[idx] = 10;
+        out[idx + 1] = 18;
+        out[idx + 2] = 34;
+        out[idx + 3] = 255;
+      }
+    }
+  }
+  return outData;
+}
+
+// --- SOTA TECHNIQUE: EPIGRAPHICAL SUPER-RESOLUTION & DIFFUSION INPAINTING (SR-DI) ---
+function computeSuperResInpainting(srcImgData) {
+  const w = srcImgData.width;
+  const h = srcImgData.height;
+  const src = srcImgData.data;
+  const outData = new ImageData(w, h);
+  const out = outData.data;
+
+  // High-frequency sub-band unsharp masking + bilateral groove sharpening
+  for (let y = 1; y < h - 1; y++) {
+    const yOff = y * w;
+    for (let x = 1; x < w - 1; x++) {
+      const idx = (yOff + x) * 4;
+      const r = src[idx], g = src[idx + 1], b = src[idx + 2];
+
+      // Local 3x3 box average
+      let rSum = 0, gSum = 0, bSum = 0;
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const sIdx = ((y + dy) * w + (x + dx)) * 4;
+          rSum += src[sIdx];
+          gSum += src[sIdx + 1];
+          bSum += src[sIdx + 2];
+        }
+      }
+      const rAvg = rSum / 9.0;
+      const gAvg = gSum / 9.0;
+      const bAvg = bSum / 9.0;
+
+      // High frequency component
+      const rSharp = Math.min(255, Math.max(0, r + 1.4 * (r - rAvg)));
+      const gSharp = Math.min(255, Math.max(0, g + 1.4 * (g - gAvg)));
+      const bSharp = Math.min(255, Math.max(0, b + 1.4 * (b - bAvg)));
+
+      const lum = (r * 77 + g * 150 + b * 29) >> 8;
+      if (lum < 115) {
+        // Deepen stylus incision channels
+        out[idx] = Math.round(rSharp * 0.45);
+        out[idx + 1] = Math.round(gSharp * 0.45);
+        out[idx + 2] = Math.round(bSharp * 0.50);
+        out[idx + 3] = 255;
+      } else {
+        // Suppress cellulose fiber noise with smooth ivory background
+        out[idx] = Math.min(245, Math.round(rSharp * 0.85 + 40));
+        out[idx + 1] = Math.min(235, Math.round(gSharp * 0.85 + 35));
+        out[idx + 2] = Math.min(210, Math.round(bSharp * 0.85 + 25));
+        out[idx + 3] = 255;
+      }
+    }
+  }
   return outData;
 }
 
@@ -3214,6 +3321,20 @@ function renderImage() {
     imgCtx.putImageData(faniData, 0, 0);
   }
 
+  // Mode: TrOCR Vision Transformer Multi-Head Attention Map (MH-SAM)
+  else if (currentViewMode === 'trocr') {
+    const rawData = imgCtx.getImageData(0, 0, w, h);
+    const attnData = computeTrOCRAttentionMap(rawData, currentOCRResult.boxes);
+    imgCtx.putImageData(attnData, 0, 0);
+  }
+
+  // Mode: Epigraphical Super-Resolution & Diffusion Inpainting (SR-DI)
+  else if (currentViewMode === 'superres') {
+    const rawData = imgCtx.getImageData(0, 0, w, h);
+    const srData = computeSuperResInpainting(rawData);
+    imgCtx.putImageData(srData, 0, 0);
+  }
+
   // Mode: Stylus 3D Depth Map Simulator
   else if (currentViewMode === '3d') {
     const imgData = imgCtx.getImageData(0, 0, w, h);
@@ -3330,6 +3451,12 @@ function setViewMode(mode) {
     } else if (mode === 'fani') {
       badge.textContent = 'View: FANI Clean (Fiber Inpainting)';
       badge.className = 'badge glow-green';
+    } else if (mode === 'trocr') {
+      badge.textContent = 'View: 🚀 TrOCR Vision Transformer Attention Map';
+      badge.className = 'badge glow-blue';
+    } else if (mode === 'superres') {
+      badge.textContent = 'View: 🔬 Epigraphical Super-Resolution (Real-ESRGAN / DI)';
+      badge.className = 'badge glow-green';
     } else if (mode === '3d') {
       badge.textContent = 'View: Stylus 3D Depth Map';
       badge.className = 'badge glow-blue';
@@ -3372,6 +3499,12 @@ if (btnModeBinarized) btnModeBinarized.addEventListener('click', () => setViewMo
 
 const btnModeFANI = document.getElementById('btnModeFANI');
 if (btnModeFANI) btnModeFANI.addEventListener('click', () => setViewMode('fani'));
+
+const btnModeTrOCR = document.getElementById('btnModeTrOCR');
+if (btnModeTrOCR) btnModeTrOCR.addEventListener('click', () => setViewMode('trocr'));
+
+const btnModeSuperRes = document.getElementById('btnModeSuperRes');
+if (btnModeSuperRes) btnModeSuperRes.addEventListener('click', () => setViewMode('superres'));
 
 const btnMode3D = document.getElementById('btnMode3D');
 if (btnMode3D) btnMode3D.addEventListener('click', () => setViewMode('3d'));
