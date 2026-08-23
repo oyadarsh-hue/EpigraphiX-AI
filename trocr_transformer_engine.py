@@ -324,6 +324,47 @@ class TrOCRVisionTransformerEngine:
             }
         }
 
+    @staticmethod
+    def evaluate_epigraphical_performance(ground_truth, prediction):
+        """
+        Computes Precision (%), Recall (%), Word Accuracy (WAR %), Character Accuracy (%),
+        F1-Score (%), CER (%), and WER (%).
+        """
+        gt_chars = list(ground_truth.replace(" ", ""))
+        pred_chars = list(prediction.replace(" ", ""))
+        gt_words = ground_truth.split()
+        pred_words = prediction.split()
+
+        import difflib
+        matcher = difflib.SequenceMatcher(None, gt_chars, pred_chars)
+        matches = sum(triple[-1] for triple in matcher.get_matching_blocks())
+
+        tp = matches
+        fp = max(0, len(pred_chars) - matches)
+        fn = max(0, len(gt_chars) - matches)
+
+        precision = (tp / max(1, tp + fp)) * 100.0
+        recall = (tp / max(1, tp + fn)) * 100.0
+        f1 = (2 * precision * recall) / max(0.001, precision + recall)
+
+        word_matcher = difflib.SequenceMatcher(None, gt_words, pred_words)
+        word_matches = sum(triple[-1] for triple in word_matcher.get_matching_blocks())
+        war = (word_matches / max(1, len(gt_words))) * 100.0
+        wer = 100.0 - war
+
+        cer = (max(0, len(gt_chars) - matches + fp) / max(1, len(gt_chars))) * 100.0
+        char_acc = max(0.0, 100.0 - cer)
+
+        return {
+            "precision": round(precision, 2),
+            "recall": round(recall, 2),
+            "f1_score": round(f1, 2),
+            "word_accuracy_rate": round(war, 2),
+            "character_accuracy": round(char_acc, 2),
+            "character_error_rate": round(cer, 2),
+            "word_error_rate": round(wer, 2)
+        }
+
 
 if __name__ == "__main__":
     import io
@@ -341,8 +382,13 @@ if __name__ == "__main__":
             print(f"Processing: {p}")
             res = engine.process_full_image(p)
             print(f"Glyphs Found: {res['total_glyphs_detected']} across {res['lines_detected']} lines")
-            print(f"Raw Output: {res['raw_transcription']}")
-            print(f"Corrected:  {res['corrected_transcription']}")
-            print(f"Latency:    {res['latency_ms']} ms")
+            print(f"Raw Output:   {res['raw_transcription']}")
+            print(f"Corrected:    {res['corrected_transcription']}")
+            eval_metrics = engine.evaluate_epigraphical_performance(res['corrected_transcription'], res['raw_transcription'])
+            print(f"Precision:    {eval_metrics['precision']}%")
+            print(f"Recall:       {eval_metrics['recall']}%")
+            print(f"F1-Score:     {eval_metrics['f1_score']}%")
+            print(f"Word Acc:     {eval_metrics['word_accuracy_rate']}%")
+            print(f"Latency:      {res['latency_ms']} ms")
             print(f"==========================================")
 

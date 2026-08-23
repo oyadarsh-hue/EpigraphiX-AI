@@ -306,10 +306,24 @@
 
         <div class="gauges-grid">
           <div class="gauge-card">
+            <div class="gauge-circle success-circle" id="circlePrecision" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugePrecision">--%</span>
+            </div>
+            <span class="gauge-label">🎯 Precision</span>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-circle" id="circleRecall" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeRecall">--%</span>
+            </div>
+            <span class="gauge-label">🔁 Recall</span>
+          </div>
+
+          <div class="gauge-card">
             <div class="gauge-circle" id="circleWAR" style="--percent: 0;">
               <span class="gauge-val" id="valGaugeWAR">--%</span>
             </div>
-            <span class="gauge-label">Word Accuracy Rate (WAR)</span>
+            <span class="gauge-label">Word Accuracy (WAR)</span>
           </div>
 
           <div class="gauge-card">
@@ -323,14 +337,14 @@
             <div class="gauge-circle danger-circle" id="circleCER" style="--percent: 0;">
               <span class="gauge-val" id="valGaugeCER">--%</span>
             </div>
-            <span class="gauge-label">Character Error Rate (CER)</span>
+            <span class="gauge-label">Char Error (CER)</span>
           </div>
 
           <div class="gauge-card">
             <div class="gauge-circle danger-circle" id="circleWER" style="--percent: 0;">
               <span class="gauge-val" id="valGaugeWER">--%</span>
             </div>
-            <span class="gauge-label">Word Error Rate (WER)</span>
+            <span class="gauge-label">Word Error (WER)</span>
           </div>
         </div>
 
@@ -399,6 +413,8 @@
                   <tr style="border-bottom:1px solid rgba(255,255,255,0.15); color:#94a3b8;">
                     <th style="padding:4px 6px;">Model</th>
                     <th style="padding:4px 6px;">Accuracy</th>
+                    <th style="padding:4px 6px;">Precision</th>
+                    <th style="padding:4px 6px;">Recall</th>
                     <th style="padding:4px 6px;">F1</th>
                     <th style="padding:4px 6px;">Latency</th>
                   </tr>
@@ -429,6 +445,22 @@
       <div class="modal-body">
         <!-- Performance Scorecard Bars -->
         <div class="scorecard-grid">
+          <div class="score-row">
+            <div class="score-info">
+              <span>🎯 Precision</span>
+              <strong class="text-green" id="modalValPrecision" style="color:#34d399;">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="modalFillPrecision" style="width: 0%; background:#34d399;"></div></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-info">
+              <span>🔁 Recall</span>
+              <strong class="text-cyan" id="modalValRecall" style="color:#38bdf8;">--%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="modalFillRecall" style="width: 0%; background:#38bdf8;"></div></div>
+          </div>
+
           <div class="score-row">
             <div class="score-info">
               <span>Word Accuracy Rate (WAR)</span>
