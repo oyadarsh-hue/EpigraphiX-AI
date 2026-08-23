@@ -278,17 +278,6 @@ if (fileInput) {
   });
 }
 
-document.querySelectorAll('.btn-sample-load').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const sampleSrc = btn.getAttribute('data-sample');
-    if (sampleSrc) {
-      loadImage(sampleSrc);
-    }
-  });
-});
-
 if (dropZone) {
   ['dragenter', 'dragover'].forEach(name => {
     dropZone.addEventListener(name, (e) => {
