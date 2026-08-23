@@ -11,4 +11,8 @@ Desktop.ini
 *.asv
 __pycache__/
 *.pyc
+scratch/
+scratch_*
+assentag_extracted/
+
 

@@ -43,9 +43,10 @@ def create_synthetic_ui_screenshot():
     return ui_img
 
 def create_synthetic_outdoor_photo():
-    # Outdoor building with archway, white wall, red floor tile, and 2 people
+    # Outdoor building with archway, white wall, red floor tile, sky, and 2 people
     h, w = 500, 500
     img = np.full((h, w, 3), (210, 210, 210), dtype=np.uint8) # white/grey archway wall
+    img[:150, :] = (235, 180, 70) # Blue sky (BGR)
     img[360:, :] = (50, 60, 180) # red floor tiles (BGR)
     # 2 people with skin heads
     cv2.circle(img, (180, 200), 40, (130, 160, 220), -1) # skin face 1
@@ -56,6 +57,7 @@ def create_synthetic_indoor_photo():
     # Indoor room with curtains, window, and 3 people
     h, w = 450, 600
     img = np.full((h, w, 3), (120, 150, 190), dtype=np.uint8) # tan wall/curtain
+    img[50:180, 50:200] = (240, 200, 80) # cyan window (BGR)
     # 3 people with skin heads
     cv2.circle(img, (150, 200), 45, (135, 165, 225), -1) # face 1
     cv2.circle(img, (300, 200), 45, (135, 165, 225), -1) # face 2
@@ -68,7 +70,9 @@ def test_real_palm_leaf_manuscripts():
         ("Sample 1", os.path.join("Input Image", "1.jpg")),
         ("Sample 2", os.path.join("Input Image", "2.jpg")),
         ("Web Studio Sample 1", os.path.join("web_studio", "sample1.jpg")),
-        ("Web Studio Sample 2", os.path.join("web_studio", "sample2.jpg"))
+        ("Web Studio Sample 2", os.path.join("web_studio", "sample2.jpg")),
+        ("Custom Palm Leaf Test", "custom_palm_leaf_test.jpg"),
+        ("Custom Palm Leaf Upload Test", "custom_palm_leaf_upload_test.jpg")
     ]
     for name, p in real_paths:
         if os.path.exists(p):
