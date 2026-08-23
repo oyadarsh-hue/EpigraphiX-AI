@@ -69,6 +69,8 @@ def test_real_palm_leaf_manuscripts():
     real_paths = [
         ("Sample 1", os.path.join("Input Image", "1.jpg")),
         ("Sample 2", os.path.join("Input Image", "2.jpg")),
+        ("User Upload Image 3 (Raw Historical Leaf)", os.path.join("Input Image", "3.jpg")),
+        ("User Upload Image 1 (Palm Leaf on Red Table Photo)", os.path.join("scratch", "red_table_leaf_photo.jpg")),
         ("Web Studio Sample 1", os.path.join("web_studio", "sample1.jpg")),
         ("Web Studio Sample 2", os.path.join("web_studio", "sample2.jpg")),
         ("Custom Palm Leaf Test", "custom_palm_leaf_test.jpg"),

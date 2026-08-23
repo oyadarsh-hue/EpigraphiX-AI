@@ -25,14 +25,19 @@ class MalayalamLexiconTrie:
     def __init__(self, dict_path=None):
         self.root = MalayalamTrieNode()
         self.word_count = 0
+        if dict_path is None:
+            default_dict_file = os.path.join(os.path.dirname(__file__), "web_studio", "malayalam_dictionary.txt")
+            if os.path.exists(default_dict_file):
+                dict_path = default_dict_file
+
         if dict_path and os.path.exists(dict_path):
             self.load_dictionary(dict_path)
         else:
-            # High-frequency classical Malayalam vocabulary fallback
             default_words = [
                 "മലയാളം", "എഴുത്ത്", "വിദ്യാഭ്യാസം", "കമ്പ്യൂട്ടർ", "സാങ്കേതികവിദ്യ",
-                "ഗ്രന്ഥ", "താളിയോല", "ശാസനം", "അക്ഷരം", "ലിപി", "ചരിത്രം", "കേരളം",
-                "ജ്യോതിഷം", "ആയുർവേദം", "ഗണിതം", "സംസ്കൃതം", "കവിത", "വായന"
+                "ഗ്രന്ഥം", "താളിയോല", "ശാസനം", "അക്ഷരം", "ലിപി", "ചരിത്രം", "കേരളം",
+                "ജ്യോതിഷം", "ആയുർവേദം", "ഗണിതം", "സംസ്കൃതം", "കവിത", "വായന",
+                "തീതഫലം", "ഏതൊരു", "യോഗം", "വിഭാഗം", "ശുദ്ധൻ", "ധന്യൻ", "സമ്പത്ത്"
             ]
             for w in default_words:
                 self.insert(w)

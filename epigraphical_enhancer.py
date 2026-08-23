@@ -156,26 +156,58 @@ class EpigraphicalEnhancer:
         if np.mean(is_palm_substrate) > 0.45:
             is_candidate = is_palm_substrate
 
-        # 2. Vertical Span Tracing
+        # 2. Vertical Span Tracing: Find longest contiguous band of palm substrate rows
         row_ratio = np.mean(is_candidate, axis=1)
-        leaf_rows = np.where(row_ratio > 0.12)[0]
+        is_cand_row = (row_ratio > 0.20).astype(int)
 
-        if len(leaf_rows) > 0:
-            min_y = int(np.min(leaf_rows))
-            max_y = int(np.max(leaf_rows))
+        longest_start, longest_len = -1, 0
+        cur_start, cur_len = -1, 0
+        for y in range(h):
+            if is_cand_row[y] == 1:
+                if cur_start == -1:
+                    cur_start = y
+                cur_len += 1
+            else:
+                if cur_len > longest_len:
+                    longest_len = cur_len
+                    longest_start = cur_start
+                cur_start, cur_len = -1, 0
+        if cur_len > longest_len:
+            longest_len = cur_len
+            longest_start = cur_start
+
+        if longest_len >= max(14, int(h * 0.08)):
+            min_y = longest_start
+            max_y = longest_start + longest_len
         else:
-            min_y, max_y = 0, h
+            leaf_rows = np.where(row_ratio > 0.12)[0]
+            if len(leaf_rows) > 0:
+                min_y = int(np.min(leaf_rows))
+                max_y = int(np.max(leaf_rows))
+            else:
+                min_y, max_y = 0, h
 
         # 3. Horizontal Span Tracing
         candidate_roi = is_candidate[min_y:max_y, :] if max_y > min_y else is_candidate
         col_ratio = np.mean(candidate_roi, axis=0)
-        leaf_cols = np.where(col_ratio > 0.10)[0]
+        is_cand_col = (col_ratio > 0.15).astype(int)
 
-        if len(leaf_cols) > 0:
-            min_x = int(np.min(leaf_cols))
-            max_x = int(np.max(leaf_cols))
+        first_col, last_col = -1, -1
+        for x in range(w):
+            if is_cand_col[x] == 1:
+                if first_col == -1:
+                    first_col = x
+                last_col = x
+
+        if first_col != -1 and (last_col - first_col) >= max(20, int(w * 0.10)):
+            min_x, max_x = first_col, last_col
         else:
-            min_x, max_x = 0, w
+            leaf_cols = np.where(col_ratio > 0.10)[0]
+            if len(leaf_cols) > 0:
+                min_x = int(np.min(leaf_cols))
+                max_x = int(np.max(leaf_cols))
+            else:
+                min_x, max_x = 0, w
 
         leaf_w = max(20, max_x - min_x)
         leaf_h = max(16, max_y - min_y)
@@ -309,7 +341,7 @@ class EpigraphicalEnhancer:
             }
 
         # 3. Reject High Color Diversity Natural Scenes / Outdoor Photos:
-        if hue_std > 34.0 and not (red_cloth_ratio > 0.20 and roi_substrate_ratio > 0.40):
+        if hue_std > 34.0 and (roi_substrate_ratio < 0.35 and substrate_ratio < 0.25):
             return {
                 "is_valid": False,
                 "is_blank": False,

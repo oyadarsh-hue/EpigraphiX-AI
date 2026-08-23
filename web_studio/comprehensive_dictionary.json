@@ -2378,5 +2378,103 @@
     "english": "Ancient scribal prayer wishing flawless completion without any hindrances.",
     "hindi": "अविघ्नमस्तु (बिना किसी विघ्न-बाधा के कार्य संपन्न हो)",
     "genre": "Scribe Benediction (ആശീർവാദം)"
+  },
+  "തീതഫലം": {
+    "old": "തീതഫലം / അതിഗതഫലം (Karmic Fruition of Past Actions)",
+    "newLit": "തീതഫലം (Fruition of Past Deeds / Historical Outcome)",
+    "english": "Fruition and consequence of past astronomical and karmic cycles inscribed in historical treatises.",
+    "hindi": "अतीत कर्मफल / ऐतिहासिक परिणाम (पूर्व कृत कर्मों का फल)",
+    "genre": "Epigraphical Treatises (ശാസ്ത്രഗ്രന്ഥം)"
+  },
+  "ഏതൊരു": {
+    "old": "ഏതൊരുവൻ / യാതൊരു (Whosoever / Any Sovereign Entity)",
+    "newLit": "ഏതൊരു (Whichever / Whatever / Whosoever)",
+    "english": "Whosoever or whichever entity designated in formal royal epigraphical grants.",
+    "hindi": "जो कोई / जिस किसी (राजकीय घोषणा में प्रयुक्त सर्वनाम)",
+    "genre": "Royal Proclamations (രാജശാസനം)"
+  },
+  "യോഗം": {
+    "old": "ജ്യോതിഷ യോഗം / സംയോഗം (Auspicious Planetary Conjunction)",
+    "newLit": "യോഗം (Astrological Conjunction / Spiritual Union)",
+    "english": "Auspicious planetary alignment or spiritual discipline documented in Kerala palm-leaf texts.",
+    "hindi": "योग / शुभ संयोग (ग्रह स्थिति एवं आध्यात्मिक अनुशासन)",
+    "genre": "Vedic Astronomy (ജ്യോതിഷം)"
+  },
+  "വിഭാഗം": {
+    "old": "വിഭാഗക്രമം (Division of Royal Realm or Knowledge Tract)",
+    "newLit": "വിഭാഗം (Section / Division / Classification)",
+    "english": "Classification or textual chapter dividing administrative and astrological palm leaves.",
+    "hindi": "विभाग / वर्गीकरण / खंड (ग्रंथ अथवा राज्य का विभाजन)",
+    "genre": "Taxonomy (വിജ്ഞാനശാഖ)"
+  },
+  "ശുദ്ധൻ": {
+    "old": "ശുദ്ധാത്മാവ് / നിർമ്മലൻ (Pure Soul / Purified Lineage)",
+    "newLit": "ശുദ്ധൻ (Pure / Virtuous Person)",
+    "english": "Virtuous, morally pure individual recognized in temple inscriptions.",
+    "hindi": "शुद्ध / पवित्र / निष्पाप व्यक्ति",
+    "genre": "Ethics & Virtue (ധർമ്മശാസ്ത്രം)"
+  },
+  "ധന്യൻ": {
+    "old": "ധന്യപുരുഷൻ / കൃതാർത്ഥൻ (Blessed Sovereign)",
+    "newLit": "ധന്യൻ (Blessed / Fortunate Soul)",
+    "english": "Blessed, revered individual endowed with moral and spiritual merit.",
+    "hindi": "धन्य / कृतार्थ / पुण्यात्मा (सौभाग्यशाली व्यक्ति)",
+    "genre": "Spiritual Lore (ആത്മീയത)"
+  },
+  "സമ്പത്ത്": {
+    "old": "ഐശ്വര്യം / ശ്രീസമ്പത്ത് (Sacred Royal Wealth & Prosperity)",
+    "newLit": "സമ്പത്ത് (Wealth / Fortune / Prosperity)",
+    "english": "Prosperity, treasury wealth, and bountiful harvest celebrated in Chera edicts.",
+    "hindi": "संपत्ति / वैभव / ऐश्वर्य (धन-धान्य एवं समृद्धि)",
+    "genre": "Economy & Prosperity (സാമ്പത്തികശാസ്ത്രം)"
+  },
+  "സ്ഥിതി": {
+    "old": "സംസ്ഥിതി / ധർമ്മസ്ഥിതി (Preservation of Cosmic & Social Order)",
+    "newLit": "സ്ഥിതി (State / Condition / Preservation)",
+    "english": "Maintenance of righteous governance and cosmic equilibrium.",
+    "hindi": "स्थिति / व्यवस्था / धारण (धर्म एवं राज्य का संरक्षण)",
+    "genre": "Governance (രാജനീതി)"
+  },
+  "വരം": {
+    "old": "വരദാനം / അനുഗ്രഹം (Divine Boon / Royal Favor)",
+    "newLit": "വരം (Boon / Blessing / Divine Gift)",
+    "english": "Divine boon or solemn sovereign concession granted upon temple inscriptions.",
+    "hindi": "वरदान / अनुग्रह / आशीष (दैवीय अथवा राजकीय कृपा)",
+    "genre": "Sacred Lore (സ്തോത്രസാഹിത്യം)"
+  },
+  "വ്യാഖ്യാനം": {
+    "old": "ഭാഷാവ്യാഖ്യാനം / ടീക്ക (Authoritative Epigraphical Commentary)",
+    "newLit": "വ്യാഖ്യാനം (Commentary / Exegesis / Exposition)",
+    "english": "Scholarly commentary elucidating ancient Sanskrit and Manipravalam verses on palm leaf.",
+    "hindi": "व्याख्यान / भाष्य / टीका (शास्त्रों का विस्तृत विवेचन)",
+    "genre": "Hermeneutics (വ്യാഖ്യാനശാസ്ത്രം)"
+  },
+  "ജ്ഞാനം": {
+    "old": "ബ്രഹ്മജ്ഞാനം / വിദ്യ (Supreme Transcendent Wisdom)",
+    "newLit": "ജ്ഞാനം (Knowledge / Wisdom / Gnosis)",
+    "english": "Direct spiritual illumination and scholastic wisdom inscribed in philosophical manuscripts.",
+    "hindi": "ज्ञान / प्रज्ञा / बोध (आत्मज्ञान एवं विद्या)",
+    "genre": "Philosophy (തത്ത്വശാസ്ത്രം)"
+  },
+  "ശാസനം": {
+    "old": "രാജശാസനം / ചെപ്പേട് (Royal Charter / Copper-Plate Edict)",
+    "newLit": "ശാസനം (Royal Decree / Inscribed Charter)",
+    "english": "Royal epigraphical decree issued by Kerala kings to preserve temple endowments and civil laws.",
+    "hindi": "शासन / राजाज्ञा / ताम्रपत्र लेख (राजकीय घोषणा)",
+    "genre": "Epigraphy (ശാസനശാസ്ത്രം)"
+  },
+  "വേദം": {
+    "old": "ശ്രുതി / ഋഗ്വേദ സംഹിത (Vedic Revelation)",
+    "newLit": "വേദം (Sacred Veda / Revealed Scripture)",
+    "english": "Sacred eternal Vedic hymns chanted and copied on palm-leaf folios across Kerala temples.",
+    "hindi": "वेद / श्रुति (प्राचीन ज्ञान की अमूल्य संहिताएं)",
+    "genre": "Vedic Scripture (വേദസംഹിത)"
+  },
+  "മന്ത്രം": {
+    "old": "മൂലമന്ത്രം (Sacred Incantation / Phonetic Formula)",
+    "newLit": "മന്ത്രം (Mantra / Chanted Verse)",
+    "english": "Sacred rhythmic incantation preserving transformative spiritual power.",
+    "hindi": "मंत्र / ध्वनि संहिता (पवित्र एवं शक्तिशाली जप)",
+    "genre": "Vedic Mantra (മന്ത്രം)"
   }
 }

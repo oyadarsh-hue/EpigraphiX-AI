@@ -278,6 +278,17 @@ if (fileInput) {
   });
 }
 
+document.querySelectorAll('.btn-sample-load').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const sampleSrc = btn.getAttribute('data-sample');
+    if (sampleSrc) {
+      loadImage(sampleSrc);
+    }
+  });
+});
+
 if (dropZone) {
   ['dragenter', 'dragover'].forEach(name => {
     dropZone.addEventListener(name, (e) => {
@@ -1010,7 +1021,7 @@ function detectPalmLeafManuscript(data, w, h) {
   }
 
   // 3. Reject High Color Diversity Natural Scenes / Outdoor Photos:
-  if (hueStd > 34.0 && !(redClothRatio > 0.20 && roiSubstrateRatio > 0.40)) {
+  if (hueStd > 34.0 && (roiSubstrateRatio < 0.35 && substrateRatio < 0.25)) {
     return {
       isValidManuscript: false,
       isBlankLeaf: false,
@@ -1036,7 +1047,7 @@ function detectPalmLeafManuscript(data, w, h) {
   }
 
   // 5. Reject Images Lacking Genuine Organic Palm-Leaf Substrate:
-  if (roiSubstrateRatio < 0.15 && substrateRatio < 0.12) {
+  if (roiSubstrateRatio < 0.20 && substrateRatio < 0.15) {
     return {
       isValidManuscript: false,
       isBlankLeaf: false,
