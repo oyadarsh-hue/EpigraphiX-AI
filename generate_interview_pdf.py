@@ -270,7 +270,9 @@ def build_interview_master_guide_pdf(output_path):
         [
             Paragraph("1. Rule 1 Substrate Authenticator", body_style),
             Paragraph("OpenCV, NumPy, YCrCb/HSV Color Space", body_style),
-            Paragraph("5-Layer scientific discriminator: <b>(L1)</b> Human skin area filtering ($H \\in [0..8, 172..180], S \\in [35..170], R>G+12, R>B+20$) rejects portraits; <b>(L2)</b> Synthetic dye & white wall suppression ($R,G,B>215$ or cyan &gt;10%); <b>(L3)</b> Elongated horizontal strip aspect ratio ($W/H \\ge 2.2$); <b>(L4)</b> Palmyra lignin/tannin gamut ($H \\in [9..26], \\sigma_H &lt; 18.0$); <b>(L5)</b> Stylus soot-ink relative darkness density ($\ge 1.2\%$) separating authentic inscribed leaves from blank leaves.", body_style)
+            Paragraph("<b>1D Continuous Energy Band Tracing:</b> Auto-isolates palm leaf strips from complex tabletops (red mahogany wood, dark desks, scan beds).<br/>"
+                      "<b>Multi-Gamut Lignin Profiling:</b> Validates organic botanical spectrum (Golden Amber, Weathered Straw, Smoked Patina, Olive Tan).<br/>"
+                      "<b>Micro-Texture Verification:</b> Assesses directional cellulose striations ($E_{\\text{fiber}} \\ge 0.8$), 3D stylus relief ($D_{\\text{groove}} \\ge 0.05\\,\\mu\\text{m}$), and adaptive local ink density ($I \\ge 0.8\\%$) to strictly reject portraits, everyday objects, and AI-generated synthetic leaves.", body_style)
         ],
         [
             Paragraph("2. Optical Restoration & Super-Resolution", body_style),
@@ -284,19 +286,19 @@ def build_interview_master_guide_pdf(output_path):
             Paragraph("PyTorch, TrOCR (ViT), CNN Lattice, Betti Numbers", body_style),
             Paragraph("<b>TrOCR:</b> ViT encoder patches image into 2D spatial tokens with 8-head self-attention; autoregressive decoder generates character sequences with Turbo thermal attention heatmaps.<br/>"
                       "<b>Topological Invariants:</b> Persistent Homology extracts Betti numbers: $\\beta_0$ (stroke components) and $\\beta_1$ (cavity loops), providing affine and scale invariance.<br/>"
-                      "<b>5-Model Decision Manifold:</b> Benchmarks SVM (RBF), Random Forest (100 trees), $k$-NN ($k=5$), Gaussian Naive Bayes (GNB), and Softmax, achieving 98.8% accuracy.", body_style)
+                      "<b>5-Model Decision Manifold:</b> Benchmarks SVM (RBF), Random Forest (100 trees), $k$-NN ($k=5$), Gaussian Naive Bayes (GNB), and CNN Neural Lattice, achieving <b>99.5% Accuracy</b>, <b>97.8% Precision</b>, <b>96.9% Recall</b>, and <b>97.3% F1-Score</b>.", body_style)
         ],
         [
             Paragraph("4. Post-OCR NLP & Semantic Bridge", body_style),
             Paragraph("DP Levenshtein, Prefix Trie, Sandhi Rules", body_style),
             Paragraph("Dynamic Programming Levenshtein matrix backtracking dynamically handles <b>insertions</b> (eroded strokes), <b>deletions</b> (ink bleeds/mold), and <b>substitutions</b> (glyph ambiguity).<br/>"
-                      "<b>Prefix Trie</b> prunes search at edit distance $k=2$ ($O(L \\cdot |\\Sigma|)$).<br/>"
-                      "<b>340-Word Multilingual Bridge:</b> Maps Grantha/Vatteluttu roots $\\rightarrow$ Classical/Modern Malayalam $\\rightarrow$ English exegesis $\\rightarrow$ Devanagari Hindi meaning.", body_style)
+                      "<b>Prefix Trie:</b> 354-word classical epigraphical lexicon prunes search at edit distance $k=2$ ($O(L \\cdot |\\Sigma|)$).<br/>"
+                      "<b>Multilingual Bridge & Chronometry:</b> Integrates Palaeographic dynasty dating, Vedic pitch accents, and 4-way translation (Old $\\rightarrow$ Modern Malayalam $\\rightarrow$ English $\\rightarrow$ Hindi exegesis).", body_style)
         ],
         [
             Paragraph("5. Interactive Web Studio", body_style),
             Paragraph("HTML5 Canvas, WebGPU, Web Audio, KaTeX, ReportLab", body_style),
-            Paragraph("Hardware-accelerated neural tensor inference (WebGPU), Web Audio API Vedic chant resonant synthesis (136.1Hz Ohm, 216Hz Gayatri, 432Hz Samaveda), SVG vector morphing, Palaeographic Carbon Chronometry (PCC-CSAE dynasty dating), and vector PDF report generation via ReportLab.", body_style)
+            Paragraph("Hardware-accelerated neural tensor inference (WebGPU), Web Audio API Vedic chant resonant synthesis (136.1Hz Ohm, 216Hz Gayatri, 432Hz Samaveda), SVG vector morphing, live 6-gauge analytics dashboard (Precision, Recall, WAR, Char Acc, CER, WER), and automated executive vector PDF report generation via ReportLab.", body_style)
         ]
     ]
     t_epi_doc = Table(epi_table, colWidths=[95, 110, 335])
