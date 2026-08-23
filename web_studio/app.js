@@ -1237,7 +1237,7 @@ function processCanvasImagePixels() {
         for (let sx = xLeft; sx < xLeft + boxW; sx += 3) {
           const idx = (sy * w + sx) * 4;
           const lum = (data[idx] * 77 + data[idx + 1] * 150 + data[idx + 2] * 29) >> 8;
-          if (lum < 155) inkCount++;
+          if (lum < Math.min(165, meanL - 6) || lum < 140) inkCount++;
         }
       }
 
