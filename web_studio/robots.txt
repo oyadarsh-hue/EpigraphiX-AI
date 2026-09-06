@@ -1,0 +1,29 @@
+# Universal Multi-Bot Crawl Directives for EpigraphiX Official Website
+User-agent: *
+Allow: /
+
+# Google Search
+User-agent: Googlebot
+Allow: /
+
+# Microsoft Bing & Yahoo & DuckDuckGo
+User-agent: Bingbot
+User-agent: msnbot
+User-agent: DuckDuckBot
+User-agent: Slurp
+Allow: /
+
+# Apple Spotlight & Siri
+User-agent: Applebot
+Allow: /
+
+# Yandex Search
+User-agent: YandexBot
+Allow: /
+
+# Baidu Search
+User-agent: Baiduspider
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.epigraphix.com/sitemap.xml

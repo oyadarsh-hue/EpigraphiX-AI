@@ -696,16 +696,30 @@ body {
   border-radius: 10px;
   padding: 14px;
   min-height: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
 }
 
 .result-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: rgba(56, 189, 248, 0.15);
   color: var(--accent-cyan);
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-radius: 6px;
-  margin: 4px;
-  font-size: 13px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  margin: 2px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.result-tag:hover {
+  background: rgba(56, 189, 248, 0.28);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-1px);
 }
 
 /* Accuracy Gauges */
@@ -734,6 +748,10 @@ body {
 
 .success-circle {
   background: conic-gradient(#10b981 calc(var(--percent) * 1%), rgba(255, 255, 255, 0.1) 0);
+}
+
+.purple-circle {
+  background: conic-gradient(#a855f7 calc(var(--percent) * 1%), rgba(255, 255, 255, 0.1) 0);
 }
 
 .danger-circle {

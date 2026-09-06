@@ -3,7 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Palm-Leaf Epigraphical OCR | Digital Palaeography Studio</title>
+  <title>EpigraphiX — Official Website | Neural Palm-Leaf Manuscript OCR & Digital Palaeography Studio</title>
+  <meta name="description" content="EpigraphiX: The official State-of-the-Art Neural Epigraphical OCR and Digital Palaeography platform for historical Malayalam and Grantha palm-leaf manuscripts, authored by Adarsh S.">
+  <meta name="keywords" content="EpigraphiX, Epigraphix, EpigraphiX-AI, Epigraphix AI, Palm-Leaf OCR, Malayalam OCR, Digital Palaeography, Thaliyola Manuscript OCR, Adarsh S, Sauvola Binarization, TrOCR, Grantha Script">
+  <meta name="author" content="Adarsh S.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://www.epigraphix.com/">
+
+  <!-- Search Engine Ownership Verification Slots -->
+  <meta name="google-site-verification" content="">
+  <meta name="msvalidate.01" content="">
+  <meta name="yandex-verification" content="">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.epigraphix.com/">
+  <meta property="og:site_name" content="EpigraphiX">
+  <meta property="og:title" content="EpigraphiX — Official Website | Neural Palm-Leaf Manuscript OCR">
+  <meta property="og:description" content="Official State-of-the-Art Neural Epigraphical OCR and Digital Palaeography platform for historical Malayalam and Grantha palm-leaf manuscripts.">
+  <meta property="og:image" content="app_logo_full.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EpigraphiX — Official Website | Neural Palm-Leaf OCR">
+  <meta name="twitter:description" content="Official State-of-the-Art Neural Epigraphical OCR and Digital Palaeography platform for historical manuscripts.">
+  <meta name="twitter:image" content="app_logo_full.png">
+
+  <!-- Schema.org JSON-LD for Universal Search Engines & Sitelinks -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.epigraphix.com/#website",
+        "name": "EpigraphiX",
+        "alternateName": ["EpigraphiX-AI", "Epigraphix OCR", "EpigraphiX Official"],
+        "url": "https://www.epigraphix.com/",
+        "description": "The official Neural Epigraphical OCR & Digital Palaeography Studio for historical palm-leaf manuscripts.",
+        "inLanguage": ["en", "ml"],
+        "publisher": {
+          "@type": "Person",
+          "name": "Adarsh S",
+          "url": "https://github.com/oyadarsh-hue"
+        }
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://www.epigraphix.com/#navigation",
+        "name": [
+          "EpigraphiX Web Studio",
+          "Interactive OCR & Segmentation",
+          "Research Paper PDF",
+          "Digital Palaeography Architecture"
+        ],
+        "url": [
+          "https://www.epigraphix.com/",
+          "https://www.epigraphix.com/#ocr",
+          "https://www.epigraphix.com/IEEE_EpigraphiX_AI_Research_Paper.pdf",
+          "https://www.epigraphix.com/#architecture"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "EpigraphiX-AI Web Studio",
+        "operatingSystem": "Web, Windows, macOS, Linux",
+        "applicationCategory": "EducationalApplication, ComputerVision, ArtificialIntelligence",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Adarsh S"
+        }
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "headline": "EpigraphiX-AI: Neural Epigraphical OCR, Topological Binarization, and Multi-Model Intelligence for Degraded Historical Palm-Leaf Manuscripts",
+        "author": {
+          "@type": "Person",
+          "name": "Adarsh S"
+        },
+        "url": "https://www.epigraphix.com/IEEE_EpigraphiX_AI_Research_Paper.pdf"
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -331,6 +419,13 @@
               <span class="gauge-val" id="valGaugeCharAcc">--%</span>
             </div>
             <span class="gauge-label">Character Accuracy</span>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-circle purple-circle" id="circleF1" style="--percent: 0;">
+              <span class="gauge-val" id="valGaugeF1">--%</span>
+            </div>
+            <span class="gauge-label">🧬 F1-Score</span>
           </div>
 
           <div class="gauge-card">
