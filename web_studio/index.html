@@ -54,12 +54,12 @@
   }
   </script>
 
-  <link rel="icon" type="image/svg+xml" href="assets/logo-epigraphix.svg">
-  <link rel="alternate icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="assets/logo-epigraphix-4k.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2026_prismatic">
+  <link rel="stylesheet" href="style.css?v=2026_4k_motion">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
@@ -81,16 +81,27 @@
   <!-- Preserved Subtle Starlight Particle Canvas for app.js -->
   <canvas id="bgCanvas"></canvas>
 
+  <!-- Right Floating Scroll-Spy Chapter Rail -->
+  <nav class="chapter-scroll-rail" aria-label="Chapter Scroll Spy">
+    <div class="scroll-rail-spine"><div id="scroll-rail-fill"></div></div>
+    <a href="#hero" class="scroll-rail-node is-active" data-rail-label="01 • STUDIO" aria-label="Jump to Studio Hero"></a>
+    <a href="#ocr" class="scroll-rail-node" data-rail-label="02 • OCR LAB" aria-label="Jump to OCR Workbench"></a>
+    <a href="#lexicon" class="scroll-rail-node" data-rail-label="03 • TRIE" aria-label="Jump to Malayalam Trie"></a>
+    <a href="#architecture" class="scroll-rail-node" data-rail-label="04 • 5-MODEL" aria-label="Jump to 5-Model Manifold"></a>
+    <a href="#vault" class="scroll-rail-node" data-rail-label="05 • VAULT" aria-label="Jump to Specimen Vault"></a>
+    <a href="#research" class="scroll-rail-node" data-rail-label="06 • IEEE PDF" aria-label="Jump to IEEE Paper"></a>
+  </nav>
+
   <div class="conservatory-shell">
     <!-- Floating Prismatic Capsule Header -->
     <header class="capsule-header" id="site-header">
       <a href="#hero" class="brand-cluster">
         <div class="ultra-logo-wrap">
-          <img src="assets/logo-epigraphix.svg" alt="EpigraphiX-AI Prismatic Ultra Logo">
+          <img src="assets/logo-epigraphix-4k.webp" alt="EpigraphiX-AI 4K Optical Palm-Leaf Emblem">
         </div>
         <div class="brand-titles">
           <span class="brand-name">EPIGRAPHIX-AI°</span>
-          <span class="brand-sub">Neural Palm-Leaf OCR • Digital Palaeography</span>
+          <span class="brand-sub">4K Optical Palm-Leaf OCR • Digital Palaeography</span>
         </div>
       </a>
 
@@ -112,8 +123,11 @@
 
     <!-- HERO CONSERVATORY STAGE -->
     <section class="hero-conservatory" id="hero">
-      <div class="hero-seal-medallion">
-        <img src="assets/logo-epigraphix.svg" alt="EpigraphiX-AI Emblem">
+      <div class="hero-seal-showcase">
+        <div class="hero-seal-medallion" data-loupe-src="assets/logo-epigraphix-4k.webp" data-loupe-title="EpigraphiX-AI True-4K (3840×3840) Optical Thaliyola & Stylus Medallion">
+          <img src="assets/logo-epigraphix-4k.webp" alt="EpigraphiX-AI True-4K Optical Medallion">
+        </div>
+        <span class="hero-logo-caption" data-scramble>◈ TRUE-4K OPTICAL EMBLEM • CLICK TO ZOOM</span>
       </div>
 
       <div class="hero-eyebrow-pill" data-typewriter>
@@ -138,6 +152,26 @@
         <button type="button" class="btn-stylish btn-emerald" data-load-sample="2.jpg">🌿 Test High-Res Ola Specimen II</button>
         <button type="button" class="btn-stylish btn-violet" id="btnHeroBenchmark">⚡ Live Benchmark Suite</button>
         <a href="IEEE_EpigraphiX_AI_Research_Paper.pdf" target="_blank" rel="noopener" class="btn-stylish btn-rose">📄 IEEE Research PDF</a>
+      </div>
+
+      <!-- Live Scroll-Triggered Architecture Telemetry Strip -->
+      <div class="hero-stats-strip" data-scroll-card>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-val" data-countup="12" data-suffix=" MODES" data-decimals="0">12 MODES</span>
+          <span class="hero-stat-label">Hyperspectral Vision</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-val" data-countup="354" data-suffix="+ ROOTS" data-decimals="0">354+ ROOTS</span>
+          <span class="hero-stat-label">Malayalam Prefix Trie</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-val" data-countup="5" data-suffix=" MODELS" data-decimals="0">5 MODELS</span>
+          <span class="hero-stat-label">SVM • GNB • RF • kNN • CNN</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span class="hero-stat-val" data-countup="99.5" data-suffix="% F1" data-decimals="1">99.5% F1</span>
+          <span class="hero-stat-label">Peak Neural Lattice</span>
+        </div>
       </div>
     </section>
 
@@ -167,6 +201,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-1-stylus.jpg" data-loupe-title="Cord-Bound Malayalam Thaliyola Bundle & Incised Script">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-1-stylus.jpg" alt="Cord-Bound Malayalam Thaliyola Bundle">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -178,6 +214,8 @@
         <article class="collector-frame-card" data-loupe-src="pipeline_bg.jpg" data-loupe-title="11-Stage EpigraphiX-AI Neural Restoration Architecture">
           <div class="frame-viewport">
             <img src="pipeline_bg.jpg" alt="EpigraphiX-AI Complete Pipeline">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -189,6 +227,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-2-fani.jpg" data-loupe-title="Aged Palm-Leaf Cellulose Fibers & Incised Script Folio">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-2-fani.jpg" alt="Aged Palm-Leaf Cellulose Fibers">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -453,6 +493,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-3-ptm.jpg" data-loupe-title="Twine-Strung Golden Palm-Leaf Folios Under Raking Light">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-3-ptm.jpg" alt="Twine-Strung Palm-Leaf Folios">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -464,6 +506,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-4-trocr.jpg" data-loupe-title="Diamond Cord-Hole Eyelet & Multi-Line Incised Palm-Leaf Script">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-4-trocr.jpg" alt="Diamond Eyelet Palm-Leaf Script">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -475,6 +519,8 @@
         <article class="collector-frame-card" data-loupe-src="2.jpg" data-loupe-title="Authentic Inscribed Historical Malayalam Thaliyola Specimen">
           <div class="frame-viewport">
             <img src="2.jpg" alt="Historical Thaliyola Manuscript">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -600,6 +646,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-5-trie.jpg" data-loupe-title="Wooden-Cover Malayalam Thaliyola Stack & Inscribed Folio">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-5-trie.jpg" alt="Wooden-Cover Malayalam Ola Stack">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -611,6 +659,8 @@
         <article class="collector-frame-card" data-loupe-src="assets/frames/epi-frame-6-manifold.jpg" data-loupe-title="Natural Botanical Palm-Leaf Frond Parallel Venation">
           <div class="frame-viewport">
             <img src="assets/frames/epi-frame-6-manifold.jpg" alt="Botanical Palm-Leaf Frond Macro">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -622,6 +672,8 @@
         <article class="collector-frame-card" data-loupe-src="sample.jpg" data-loupe-title="Multi-Row Inscribed Malayalam Palm-Leaf Specimen">
           <div class="frame-viewport">
             <img src="sample.jpg" alt="Sample Palm-Leaf Inscription">
+            <div class="frame-scanline" aria-hidden="true"></div>
+            <span class="loupe-hover-pill" aria-hidden="true">🔍 1.65× LOUPE</span>
             <div class="aperture-shutter"><div class="aperture-blade blade-tl"></div><div class="aperture-blade blade-tr"></div><div class="aperture-blade blade-bl"></div><div class="aperture-blade blade-br"></div></div>
           </div>
           <div class="frame-caption-bar">
@@ -816,13 +868,17 @@
       <p class="manifesto-quote" data-manifesto-words>
         Every incised palm leaf carries centuries of Chera wisdom waiting for hyperspectral light, topological mathematics, and living language intelligence to speak anew.
       </p>
+      <div class="manifesto-meter-wrap">
+        <div class="manifesto-meter-bar"><div id="manifestoProgressFill"></div></div>
+        <span id="manifestoProgressVal">0% ILLUMINATED</span>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="conservatory-footer">
       <div class="brand-cluster">
-        <div class="ultra-logo-wrap" style="width:40px; height:40px;">
-          <img src="assets/logo-epigraphix.svg" alt="EpigraphiX-AI Logo">
+        <div class="ultra-logo-wrap" style="width:46px; height:46px;">
+          <img src="assets/logo-epigraphix-4k.webp" alt="EpigraphiX-AI 4K Optical Logo">
         </div>
         <div>
           <div class="brand-name" style="font-size:15px;">EPIGRAPHIX-AI° CONSERVATORY</div>
@@ -938,7 +994,7 @@
   <!-- Dedicated Printable Report Container -->
   <div id="printReportArea" style="display:none;"></div>
 
-  <script src="app.js?v=2026_prismatic"></script>
-  <script src="ui-motion.js?v=2026_prismatic"></script>
+  <script src="app.js?v=2026_4k_motion"></script>
+  <script src="ui-motion.js?v=2026_4k_motion"></script>
 </body>
 </html>
