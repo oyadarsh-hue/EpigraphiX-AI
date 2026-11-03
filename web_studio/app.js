@@ -60,7 +60,7 @@ let targetTiltX = 0;
 let targetTiltY = 0;
 let currentTiltX = 0;
 let currentTiltY = 0;
-let is3DTiltEnabled = true;
+let is3DTiltEnabled = false;
 
 const bgParallaxImage = document.getElementById('bgParallaxImage');
 const cursorGlow = document.getElementById('cursorGlow');
@@ -6170,7 +6170,7 @@ function updateModelComparisonUI() {
       const isActive = k === currentActiveModel;
       return `
         <tr style="border-bottom:1px solid rgba(255,255,255,0.06); ${isActive ? 'background:rgba(56,189,248,0.18); font-weight:700;' : ''}">
-          <td style="padding:5px 6px; color:${isActive ? '#38bdf8' : '#ffffff'};">${m.name}</td>
+          <td style="padding:5px 6px; color:${isActive ? '#38bdf8' : 'var(--text-main)'};">${m.name}</td>
           <td style="padding:5px 6px; color:#4ade80;">${m.acc}</td>
           <td style="padding:5px 6px; color:#34d399;">${m.prec || '--%'}</td>
           <td style="padding:5px 6px; color:#38bdf8;">${m.rec || '--%'}</td>
@@ -6196,14 +6196,14 @@ if (modelSelectorBar) {
         currentActiveModel = model;
         document.querySelectorAll('.model-tab-btn').forEach(b => {
           b.classList.remove('active');
-          b.style.background = 'rgba(255,255,255,0.08)';
-          b.style.color = '#cbd5e1';
-          b.style.border = '1px solid rgba(255,255,255,0.15)';
+          b.style.background = '';
+          b.style.color = '';
+          b.style.border = '';
         });
         btn.classList.add('active');
-        btn.style.background = '#38bdf8';
-        btn.style.color = '#0f172a';
-        btn.style.border = 'none';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.border = '';
 
         updateModelComparisonUI();
       }
@@ -6236,3 +6236,7 @@ setTimeout(updateModelComparisonUI, 1000);
 
 
 
+
+// --- Prismatic Conservatory UI Hooks ---
+window.loadImage = loadImage;
+window.loadSampleImage = loadSampleImage;
