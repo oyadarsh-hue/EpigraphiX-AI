@@ -2044,7 +2044,7 @@ body {
 
 .manifesto-word {
   display: inline-block;
-  margin-right: 0.26em;
+  margin: 0 0.04em;
   opacity: 0.24;
   transition: opacity 95ms linear, color 95ms linear, transform 95ms linear, text-shadow 95ms linear;
 }

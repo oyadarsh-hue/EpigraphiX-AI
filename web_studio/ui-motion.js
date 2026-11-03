@@ -107,12 +107,16 @@
       const text = el.textContent.replace(/\s+/g, ' ').trim();
       el.dataset.manifestoReady = '1';
       const frag = document.createDocumentFragment();
-      text.split(/\s+/).forEach((word, idx) => {
+      const mWords = text.split(/\s+/);
+      mWords.forEach((word, idx) => {
         const span = document.createElement('span');
         span.className = 'manifesto-word';
         span.textContent = word;
         span.dataset.color = RAINBOW_STOPLIST[idx % RAINBOW_STOPLIST.length];
         frag.appendChild(span);
+        if (idx < mWords.length - 1) {
+          frag.appendChild(document.createTextNode(' '));
+        }
       });
       el.textContent = '';
       el.appendChild(frag);
@@ -485,12 +489,16 @@
       }
 
       // Active Section Scroll-Spy for Header Nav Pills & Right Chapter Rail
+      const remainingScroll = Math.max(0, maxScroll - scrollY);
       let currentSec = trackedSections[0] ? trackedSections[0].id : 'hero';
       for (let i = 0; i < trackedSections.length; i++) {
         const r = trackedSections[i].el.getBoundingClientRect();
-        if (r.top <= vh * 0.42) {
+        if (r.top <= vh * 0.45) {
           currentSec = trackedSections[i].id;
         }
+      }
+      if (remainingScroll <= 24 && trackedSections.length > 0) {
+        currentSec = trackedSections[trackedSections.length - 1].id;
       }
       if (currentSec !== activeSectionId) {
         activeSectionId = currentSec;
@@ -551,7 +559,10 @@
         const h = splitHeadings[i];
         const r = h.getBoundingClientRect();
         if (r.bottom < -60 || r.top > vh + 60) continue;
-        const hp = Math.max(0, Math.min(1, (vh * 0.88 - r.top) / (vh * 0.46)));
+        const minHeadTop = r.top - remainingScroll;
+        const endHeadTop = Math.max(vh * 0.42, minHeadTop + 18);
+        const startHeadTop = vh * 0.90;
+        const hp = Math.max(0, Math.min(1, (startHeadTop - r.top) / Math.max(60, startHeadTop - endHeadTop)));
         h.style.setProperty('--head-prog', hp.toFixed(3));
       }
 
@@ -609,15 +620,21 @@
         kt.el.style.transform = `translate3d(${kt.offset.toFixed(1)}px, 0, 0) skewX(${skewDeg.toFixed(2)}deg)`;
       }
 
-      // 6. Scroll-Scrubbed Rainbow Manifesto Word Illumination + Progress Readout
+      // 6. Scroll-Scrubbed Rainbow Manifesto Word Illumination + Progress Readout (Guaranteed 0% -> 100%)
       if (manifestoEl && manifestoWords.length > 0) {
         const mRect = manifestoEl.getBoundingClientRect();
-        const mProg = Math.max(0, Math.min(1, (vh * 0.86 - mRect.top) / (vh * 0.58)));
+        const minPossibleTop = mRect.top - remainingScroll;
+        const startTop = vh * 0.94;
+        const endTop = Math.max(vh * 0.32, minPossibleTop + 24);
+        const spanPx = Math.max(80, startTop - endTop);
+        const mProg = remainingScroll <= 2
+          ? 1
+          : Math.max(0, Math.min(1, (startTop - mRect.top) / spanPx));
         const litCount = Math.round(mProg * manifestoWords.length);
         for (let w = 0; w < manifestoWords.length; w++) {
           const wordEl = manifestoWords[w];
           const isLit = w < litCount;
-          const isCurrent = w === litCount - 1;
+          const isCurrent = w === litCount - 1 && mProg < 0.995;
           wordEl.classList.toggle('lit', isLit);
           wordEl.classList.toggle('lit-head', isCurrent);
           wordEl.style.color = isLit ? wordEl.dataset.color : '';
